@@ -33,6 +33,7 @@
 
     /* Accents */
     --telegram: #2aabee;
+    --telegram-deep: #0088cc;
     --danger: #ff4d4d;
 
     /* Gradients */
@@ -118,6 +119,7 @@ section { padding: 96px 0; position: relative; }
     line-height: 1.2;
     text-align: center;
     border: 1px solid transparent;
+    min-height: 44px; /* área táctil cómoda en móvil */
 }
 
 .btn i { font-size: 1rem; }
@@ -161,6 +163,78 @@ section { padding: 96px 0; position: relative; }
     color: var(--brand);
     transform: translateY(-3px);
 }
+
+/* ---------- Terminal CTA buttons (hero / comunidad) ---------- */
+.btn-cta {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 62px;
+    padding: 17px 26px;
+    font-family: 'Fira Code', monospace;
+    font-size: 15.5px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: .01em;
+    text-align: center;
+    border-radius: 12px;
+    border: 1.5px solid transparent;
+    overflow: hidden;
+    isolation: isolate;
+    transition: transform .25s ease, box-shadow .25s ease,
+                border-color .25s ease, color .25s ease, background .25s ease;
+}
+
+.btn-cta .cta-bracket { opacity: .5; font-weight: 600; }
+.btn-cta .cta-icon { font-size: 1.1em; line-height: 1; }
+.btn-cta .cta-label { display: inline; }
+
+.btn-cta-primary {
+    background: linear-gradient(135deg, #00ff85 0%, #00d96b 48%, #00b45c 100%);
+    color: #00160a;
+    border-color: rgba(0,230,118,.55);
+    box-shadow: 0 12px 34px rgba(0,230,118,.28), inset 0 0 0 1px rgba(255,255,255,.1);
+}
+
+/* barrido de brillo al pasar el cursor */
+.btn-cta-primary::after {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0; left: 0;
+    width: 55%;
+    background: linear-gradient(115deg, transparent, rgba(255,255,255,.6), transparent);
+    transform: translateX(-160%) skewX(-18deg);
+    transition: transform .65s ease;
+    z-index: -1;
+}
+
+.btn-cta-primary:hover {
+    transform: translateY(-3px);
+    border-color: var(--py-yellow);
+    box-shadow: 0 18px 50px rgba(0,230,118,.5),
+                0 0 0 1px rgba(255,212,59,.4);
+}
+
+.btn-cta-primary:hover::after { transform: translateX(320%) skewX(-18deg); }
+
+.btn-cta-telegram {
+    background: rgba(0,136,204,.1);
+    color: #52c0f2;
+    border-color: var(--telegram-deep);
+    box-shadow: inset 0 0 0 1px rgba(0,136,204,.25);
+}
+
+.btn-cta-telegram:hover {
+    background: var(--telegram-deep);
+    color: #fff;
+    border-color: #1ea6ef;
+    transform: translateY(-3px);
+    box-shadow: 0 16px 42px rgba(0,136,204,.45);
+}
+
+.btn-cta-lg { min-height: 68px; padding: 20px 30px; font-size: 16px; }
 
 /* ---------- Announcement bar ---------- */
 .announcement-bar {
@@ -462,7 +536,7 @@ section { padding: 96px 0; position: relative; }
     font-size: 14px;
 }
 
-.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero-ctas { display: flex; flex-direction: column; gap: 12px; }
 
 .hero-checks {
     display: flex;
@@ -1255,6 +1329,195 @@ section { padding: 96px 0; position: relative; }
 .final-cta-subtitle { color: var(--text-muted); font-size: 18px; }
 .final-cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 8px; }
 
+/* ---------- Termux ---------- */
+.termux { background: var(--bg-soft); position: relative; overflow: hidden; }
+
+.termux-title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.termux-prompt {
+    font-family: 'Fira Code', monospace;
+    font-size: .78em;
+    font-weight: 700;
+    color: var(--brand);
+    background: rgba(0,230,118,.08);
+    border: 1px solid rgba(0,230,118,.3);
+    border-radius: 10px;
+    padding: 6px 12px;
+    line-height: 1;
+    box-shadow: var(--glow-brand);
+}
+
+.termux-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.termux-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+
+.termux-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0,230,118,.4);
+    box-shadow: var(--shadow-lg), var(--glow-brand);
+}
+
+.termux-card-icon {
+    width: 54px; height: 54px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    line-height: 1;
+    border-radius: 14px;
+    background: var(--grad-brand-soft);
+    border: 1px solid rgba(0,230,118,.25);
+    margin-bottom: 18px;
+}
+
+.termux-card h3 { font-size: 19px; margin-bottom: 10px; }
+.termux-card p { color: var(--text-muted); font-size: 15px; }
+
+.termux-terminal {
+    max-width: 860px;
+    margin: 0 auto;
+    background: #050505;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg), var(--glow-brand);
+}
+
+.termux-terminal-body {
+    padding: 20px 22px;
+    font-family: 'Fira Code', monospace;
+    font-size: 13.5px;
+    line-height: 2;
+}
+
+.termux-line { color: #d4d4d4; }
+.termux-user { color: var(--brand); font-weight: 600; }
+.termux-ok { color: #7ee787; }
+.termux-out { color: var(--py-yellow); }
+
+.termux-cursor {
+    display: inline-block;
+    width: 8px; height: 15px;
+    background: var(--brand);
+    margin-left: 4px;
+    vertical-align: middle;
+    animation: blink 1.1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* ---------- Comunidad Telegram ---------- */
+.community { position: relative; overflow: hidden; }
+
+.community-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap: 40px;
+    align-items: center;
+    padding: 48px 44px;
+    background: linear-gradient(135deg, rgba(0,136,204,.12) 0%, rgba(0,230,118,.06) 100%), var(--bg-card);
+    border: 1px solid rgba(0,136,204,.35);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+}
+
+.community-card::before {
+    content: "";
+    position: absolute;
+    width: 420px; height: 420px;
+    background: rgba(0,136,204,.18);
+    filter: blur(120px);
+    border-radius: 50%;
+    top: -140px; right: -100px;
+    pointer-events: none;
+}
+
+.community-body {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.community-tag {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: rgba(0,136,204,.14);
+    border: 1px solid rgba(0,136,204,.45);
+    color: #52c0f2;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.community-title { font-size: clamp(1.5rem, 3vw, 2.05rem); }
+.community-bracket { opacity: .45; color: var(--brand); }
+.community-text { color: var(--text-muted); font-size: 16px; }
+
+.community-list {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 22px;
+    background: rgba(0,0,0,.45);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.community-list li { display: flex; align-items: flex-start; gap: 12px; }
+.community-emoji { font-size: 18px; line-height: 1.5; }
+.community-list div { display: flex; flex-direction: column; }
+.community-list strong { font-size: 15px; }
+.community-list span { font-size: 13.5px; color: var(--text-dim); }
+.community-list code {
+    font-family: 'Fira Code', monospace;
+    color: var(--brand);
+    font-size: 13px;
+}
+
+.community-actions { margin-top: 6px; }
+.community-actions .btn-cta { width: 100%; }
+
+.community-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-dim);
+}
+
+.community-note i { color: var(--brand); }
+
 /* ---------- Footer ---------- */
 .footer {
     background: #030303;
@@ -1378,6 +1641,12 @@ section { padding: 96px 0; position: relative; }
     .instructor-info .section-eyebrow.left { text-align: center; align-self: center; }
     .social-strip { grid-template-columns: repeat(2, 1fr); }
     .footer-content { grid-template-columns: 1fr 1fr; gap: 32px; }
+
+    /* el menú se colapsa antes para dar espacio a los nuevos enlaces */
+    .nav-links, .nav-cta { display: none; }
+    .nav-toggle { display: inline-flex; }
+
+    .community-card { grid-template-columns: 1fr; gap: 28px; padding: 38px 30px; }
 }
 
 @media (max-width: 768px) {
@@ -1395,6 +1664,8 @@ section { padding: 96px 0; position: relative; }
 
     .hero-ctas { flex-direction: column; }
     .hero-ctas .btn { width: 100%; }
+    .btn-cta { width: 100%; min-height: 58px; padding: 16px 18px; font-size: 15px; }
+    .btn-cta-lg { min-height: 62px; }
 
     .float-1, .float-2 { display: none; }
 
@@ -1405,12 +1676,15 @@ section { padding: 96px 0; position: relative; }
     .chart-crown { display: none; }
     .ranking-chart { padding: 20px 16px; }
 
-    .why-grid, .achieve-grid, .modules-grid, .testimonials-grid { grid-template-columns: 1fr; }
+    .why-grid, .achieve-grid, .modules-grid, .testimonials-grid, .termux-grid { grid-template-columns: 1fr; }
 
     .instructor-stats { grid-template-columns: 1fr 1fr 1fr; }
     .avatar-frame { width: 250px; height: 250px; }
     .avatar-fallback { font-size: 58px; }
     .instructor-badge { transform: translateX(70px); }
+
+    .community-card { grid-template-columns: 1fr; gap: 26px; padding: 32px 22px; }
+    .community-actions .btn-cta { width: 100%; }
 
     .offer-card { padding: 40px 22px 32px; }
     .offer-price { gap: 20px; }
@@ -1450,6 +1724,12 @@ section { padding: 96px 0; position: relative; }
 
     .offer-price-new-value { font-size: 42px; }
     .code-content code { font-size: 11.5px; }
+
+    .btn-cta { font-size: 14.5px; padding: 15px 14px; gap: 8px; }
+    .termux-card { padding: 22px 20px; }
+    .termux-terminal-body { font-size: 11.5px; line-height: 1.9; }
+    .community-title { font-size: 1.3rem; }
+    .community-list { padding: 18px 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

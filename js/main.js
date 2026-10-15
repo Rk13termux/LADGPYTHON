@@ -76,7 +76,8 @@
             '.section-header, .why-card, .achieve-card, .module-item, ' +
             '.testimonial, .instructor-info, .instructor-avatar-wrap, ' +
             '.offer-card, .quote-card, .faq-item, .requirement-item, ' +
-            '.social-item, .ranking-chart'
+            '.social-item, .ranking-chart, .termux-card, .termux-terminal, ' +
+            '.community-body, .community-list'
         );
 
         if (!('IntersectionObserver' in window)) {
