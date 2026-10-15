@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Python 3 de 0 a MASTER - Aprende Python desde cero con Brian De Vita. 19 módulos, +38.000 alumnos. Oferta por tiempo limitado: $100 en lugar de $450.">
+    <meta name="theme-color" content="#000000">
+    <title>Python 3 de 0 a MASTER | CHMODX</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="apple-touch-icon" href="assets/logo.png">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Python 3 de 0 a MASTER | CHMODX">
+    <meta property="og:description" content="Aprende Python desde cero y conviértete en programador. Oferta por tiempo limitado.">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <div class="container announcement-inner">
+            <span class="announcement-text">
+                <i class="fas fa-fire"></i>
+                OFERTA POR TIEMPO LIMITADO &mdash; <strong>78% OFF</strong>
+            </span>
+            <div class="countdown" id="top-countdown" aria-live="polite">
+                <div class="countdown-unit">
+                    <span class="countdown-value" data-unit="days">00</span>
+                    <span class="countdown-label">Días</span>
+                </div>
+                <div class="countdown-unit">
+                    <span class="countdown-value" data-unit="hours">00</span>
+                    <span class="countdown-label">Horas</span>
+                </div>
+                <div class="countdown-unit">
+                    <span class="countdown-value" data-unit="minutes">00</span>
+                    <span class="countdown-label">Min</span>
+                </div>
+                <div class="countdown-unit">
+                    <span class="countdown-value" data-unit="seconds">00</span>
+                    <span class="countdown-label">Seg</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container nav-container">
+                <a href="#top" class="nav-logo">
+                    <img src="assets/logo.png" alt="CHMODX" class="brand-logo">
+                    <span class="brand-name">CHMOD<span class="brand-x">X</span></span>
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="#python">Por qué Python</a></li>
+                    <li><a href="#temario">Temario</a></li>
+                    <li><a href="#opiniones">Opiniones</a></li>
+                    <li><a href="#oferta">Precio</a></li>
+                </ul>
+
+                <div class="nav-cta">
+                    <a href="https://go.hotmart.com/S99672631V?ap=7ba0" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                        <i class="fas fa-bolt"></i> Comprar ahora
+                    </a>
+                </div>
+
+                <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- Mobile menu -->
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="#python">Por qué Python</a>
+                <a href="#temario">Temario</a>
+                <a href="#opiniones">Opiniones</a>
+                <a href="#oferta">Precio</a>
+                <a href="https://go.hotmart.com/S99672631V?ap=7ba0" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Comprar ahora</a>
+                <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-telegram">Canal de Telegram</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="top">
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-glow hero-glow-1"></div>
+            <div class="hero-glow hero-glow-2"></div>
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <span class="pill">
+                        <i class="fas fa-star"></i> Curso de Python más recomendado
+                    </span>
+
+                    <h1 class="hero-title">
+                        Python 3
+                        <span class="hero-title-gradient">de 0 a MASTER</span>
+                    </h1>
+
+                    <p class="hero-subtitle">
+                        <strong>Imagina ganar dinero programando.</strong> Python es el lenguaje
+                        <span class="highlight">#1 del mundo</span> y la puerta de entrada mejor pagada a la tecnología.
+                        En pocas semanas pasarás de no saber nada a crear tus propios programas, scripts y aplicaciones.
+                        Sin experiencia previa. Sin complicaciones. Solo tú, tu computadora y resultados.
+                    </p>
+
+                    <div class="hero-price">
+                        <div class="price-old">
+                            <span class="price-old-value">$450</span>
+                            <span class="price-old-tag">Antes</span>
+                        </div>
+                        <div class="price-new">
+                            <span class="price-new-value">$100</span>
+                            <span class="price-new-tag">Hoy</span>
+                        </div>
+                        <div class="price-badge">
+                            <i class="fas fa-bolt"></i> 78% OFF
+                        </div>
+                    </div>
+
+                    <div class="hero-ctas">
+                        <a href="https://go.hotmart.com/S99672631V?ap=7ba0" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">
+                            <i class="fas fa-rocket"></i> Inscribirme por $100
+                        </a>
+                        <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-telegram btn-lg">
+                            <i class="fab fa-telegram"></i> Unirme al Telegram
+                        </a>
+                    </div>
+
+                    <ul class="hero-checks">
+                        <li><i class="fas fa-check"></i> Acceso inmediato y de por vida</li>
+                        <li><i class="fas fa-check"></i> Certificado al finalizar</li>
+                        <li><i class="fas fa-check"></i> Sin conocimientos previos</li>
+                    </ul>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="code-window">
+                        <div class="code-window-header">
+                            <span class="window-dot dot-red"></span>
+                            <span class="window-dot dot-yellow"></span>
+                            <span class="window-dot dot-green"></span>
+                            <span class="window-title">python_master.py</span>
+                        </div>
+                        <div class="code-content">
+<pre><code><span class="c-comment"># Tu primer paso a programador</span>
+<span class="c-keyword">class</span> <span class="c-class">FuturoDev</span>:
+    <span class="c-keyword">def</span> <span class="c-fn">__init__</span>(self):
+        self.ingresos = <span class="c-num">0</span>
+        self.nivel = <span class="c-str">"principiante"</span>
+
+    <span class="c-keyword">def</span> <span class="c-fn">estudiar</span>(self):
+        self.nivel = <span class="c-str">"MASTER"</span>
+        <span class="c-keyword">return</span> <span class="c-str">"🚀 Ahora sí, a programar"</span>
+
+yo = FuturoDev()
+<span class="c-fn">print</span>(yo.estudiar())</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="hero-float-card float-1">
+                        <i class="fab fa-python"></i>
+                        <div>
+                            <strong>Python 3</strong>
+                            <span>19 módulos</span>
+                        </div>
+                    </div>
+                    <div class="hero-float-card float-2">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <strong>+38.000</strong>
+                            <span>alumnos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social proof strip -->
+            <div class="container">
+                <div class="social-strip">
+                    <div class="social-item">
+                        <i class="fas fa-user-graduate"></i>
+                        <span><strong>+38.000</strong> alumnos formados</span>
+                    </div>
+                    <div class="social-item">
+                        <i class="fas fa-star"></i>
+                        <span><strong>4.8/5</strong> valoración media</span>
+                    </div>
+                    <div class="social-item">
+                        <i class="fas fa-layer-group"></i>
+                        <span><strong>19</strong> módulos completos</span>
+                    </div>
+                    <div class="social-item">
+                        <i class="fas fa-infinity"></i>
+                        <span>Acceso <strong>de por vida</strong></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ranking Chart -->
+        <section class="ranking" id="python">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow">TIOBE Index &middot; Lenguajes más usados</span>
+                    <h2 class="section-title">Python es el lenguaje <span class="grad">#1 del mundo</span></h2>
+                    <p class="section-subtitle">
+                        Mientras otros lenguajes bajan, Python crece sin parar. Es el idioma de la Inteligencia Artificial,
+                        la ciencia de datos, la automatización y las startups. Aprender Python es apostar al futuro.
+                    </p>
+                </div>
+
+                <div class="ranking-chart" id="rankingChart">
+                    <div class="chart-row chart-row-top">
+                        <div class="chart-lang">
+                            <span class="chart-icon"><i class="fab fa-python"></i></span>
+                            <span class="chart-name">Python</span>
+                            <span class="chart-crown"><i class="fas fa-crown"></i> #1</span>
+                        </div>
+                        <div class="chart-bar-track">
+                            <div class="chart-bar chart-bar-python" data-width="100%">
+                                <span class="chart-bar-value">23.4%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-row">
+                        <div class="chart-lang">
+                            <span class="chart-icon"><i class="fas fa-c"></i></span>
+                            <span class="chart-name">C</span>
+                        </div>
+                        <div class="chart-bar-track">
+                            <div class="chart-bar" data-width="42%"><span class="chart-bar-value">9.8%</span></div>
+                        </div>
+                    </div>
+
+                    <div class="chart-row">
+                        <div class="chart-lang">
+                            <span class="chart-icon"><i class="fas fa-code"></i></span>
+                            <span class="chart-name">C++</span>
+                        </div>
+                        <div class="chart-bar-track">
+                            <div class="chart-bar" data-width="38%"><span class="chart-bar-value">9.0%</span></div>
+                        </div>
+                    </div>
+
+                    <div class="chart-row">
+                        <div class="chart-lang">
+                            <span class="chart-icon"><i class="fab fa-java"></i></span>
+                            <span class="chart-name">Java</span>
+                        </div>
+                        <div class="chart-bar-track">
+                            <div class="chart-bar" data-width="33%"><span class="chart-bar-value">7.9%</span></div>
+                        </div>
+                    </div>
+
+                    <div class="chart-row">
+                        <div class="chart-lang">
+                            <span class="chart-icon"><i class="fas fa-hashtag"></i></span>
+                            <span class="chart-name">C#</span>
+                        </div>
+                        <div class="chart-bar-track">
+                            <div class="chart-bar" data-width="27%"><span class="chart-bar-value">6.4%</span></div>
+                        </div>
+                    </div>
+
+                    <div class="chart-row">
+                        <div class="chart-lang">
+                            <span class="chart-icon"><i class="fab fa-js"></i></span>
+                            <span class="chart-name">JavaScript</span>
+                        </div>
+                        <div class="chart-bar-track">
+                            <div class="chart-bar" data-width="16%"><span class="chart-bar-value">3.7%</span></div>
+                        </div>
+                    </div>
+
+                    <div class="chart-row">
+                        <div class="chart-lang">
+                            <span class="chart-icon"><i class="fas fa-cube"></i></span>
+                            <span class="chart-name">Go</span>
+                        </div>
+                        <div class="chart-bar-track">
+                            <div class="chart-bar" data-width="10%"><span class="chart-bar-value">2.4%</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="chart-source"><i class="fas fa-chart-line"></i> Datos referenciales del índice <a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noopener noreferrer">TIOBE</a>, medidor de popularidad de lenguajes de programación.</p>
+            </div>
+        </section>
+
+        <!-- Why Python -->
+        <section class="why">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow">Interés</span>
+                    <h2 class="section-title">¿Por qué <span class="grad">Python</span> y no otro lenguaje?</h2>
+                    <p class="section-subtitle">Porque es el camino más corto entre "no sé programar" y "tengo un trabajo en tecnología".</p>
+                </div>
+
+                <div class="why-grid">
+                    <div class="why-card">
+                        <div class="why-icon"><i class="fas fa-rocket"></i></div>
+                        <h3>Aprendes rápido</h3>
+                        <p>Su sintaxis es clara y parecida al inglés. Escribes menos código para hacer más cosas, así que avanzas sin frustrarte.</p>
+                    </div>
+                    <div class="why-card">
+                        <div class="why-icon"><i class="fas fa-briefcase"></i></div>
+                        <h3>Más ofertas de trabajo</h3>
+                        <p>Empresas de todo el mundo buscan programadores de Python de forma constante. Es una de las habilidades más solicitadas.</p>
+                    </div>
+                    <div class="why-card">
+                        <div class="why-icon"><i class="fas fa-robot"></i></div>
+                        <h3>El idioma de la IA</h3>
+                        <p>Inteligencia artificial, ciencia de datos y automatización se construyen con Python. Es el lenguaje de la próxima década.</p>
+                    </div>
+                    <div class="why-card">
+                        <div class="why-icon"><i class="fas fa-globe"></i></div>
+                        <h3>Comunidad enorme</h3>
+                        <p>Millones de personas lo usan. Miles de librerías gratis. Cuando tengas una duda, siempre habrá una respuesta.</p>
+                    </div>
+                    <div class="why-card">
+                        <div class="why-icon"><i class="fas fa-coins"></i></div>
+                        <h3>Trabaja desde casa</h3>
+                        <p>Programar es una de las profesiones más flexibles: remoto, freelance, proyectos propios o empleo estable en una empresa.</p>
+                    </div>
+                    <div class="why-card">
+                        <div class="why-icon"><i class="fas fa-infinity"></i></div>
+                        <h3>Sirve para todo</h3>
+                        <p>Web, apps de escritorio, videojuegos, datos, hacking ético, automatización. Aprendes una sola vez y lo aplicas en todas partes.</p>
+                    </div>
+                </div>
+
+                <div class="quote-card">
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <p class="quote-text">&ldquo;Recuerda, lo que te imaginas, puedes programar.&rdquo;</p>
+                    <p class="quote-author">&mdash; ATS</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- What you'll achieve -->
+        <section class="achieve">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow">Beneficios</span>
+                    <h2 class="section-title">¿Qué vas a <span class="grad">lograr</span>?</h2>
+                    <p class="section-subtitle">Al terminar este curso no serás la misma persona frente a una computadora.</p>
+                </div>
+
+                <div class="achieve-grid">
+                    <div class="achieve-card">
+                        <span class="achieve-check"><i class="fas fa-check"></i></span>
+                        <div>
+                            <h3>Programar de verdad</h3>
+                            <p>Escribirás tus propios programas, scripts y aplicaciones desde los primeros módulos.</p>
+                        </div>
+                    </div>
+                    <div class="achieve-card">
+                        <span class="achieve-check"><i class="fas fa-check"></i></span>
+                        <div>
+                            <h3>Entender el código</h3>
+                            <p>Sabrás leer, comprender y modificar código de otros, una habilidad clave para trabajar.</p>
+                        </div>
+                    </div>
+                    <div class="achieve-card">
+                        <span class="achieve-check"><i class="fas fa-check"></i></span>
+                        <div>
+                            <h3>Crear apps con interfaz</h3>
+                            <p>Construirás aplicaciones de escritorio reales con interfaz gráfica y base de datos.</p>
+                        </div>
+                    </div>
+                    <div class="achieve-card">
+                        <span class="achieve-check"><i class="fas fa-check"></i></span>
+                        <div>
+                            <h3>Elegir tu especialidad</h3>
+                            <p>Al dominar la base, podrás decidirte por datos, IA, web, automatización o ciberseguridad.</p>
+                        </div>
+                    </div>
+                    <div class="achieve-card">
+                        <span class="achieve-check"><i class="fas fa-check"></i></span>
+                        <div>
+                            <h3>Pensar como programador</h3>
+                            <p>Desarrollarás la lógica que se necesita para resolver cualquier problema con código.</p>
+                        </div>
+                    </div>
+                    <div class="achieve-card">
+                        <span class="achieve-check"><i class="fas fa-check"></i></span>
+                        <div>
+                            <h3>Dar el primer paso laboral</h3>
+                            <p>Tendrás las bases para postularte a tus primeras oportunidades en tecnología.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modules -->
+        <section class="modules" id="temario">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow">Programa completo</span>
+                    <h2 class="section-title">19 módulos, <span class="grad">cero relleno</span></h2>
+                    <p class="section-subtitle">Cada módulo te lleva un paso más cerca de programar por tu cuenta.</p>
+                </div>
+
+                <div class="modules-grid">
+                    <div class="module-item"><span class="module-number">01</span><span class="module-title">Presentación y bienvenida</span></div>
+                    <div class="module-item"><span class="module-number">02</span><span class="module-title">Primeros pasos</span></div>
+                    <div class="module-item"><span class="module-number">03</span><span class="module-title">Operadores y expresiones</span></div>
+                    <div class="module-item"><span class="module-number">04</span><span class="module-title">Controlando el flujo</span></div>
+                    <div class="module-item"><span class="module-number">05</span><span class="module-title">Colecciones</span></div>
+                    <div class="module-item"><span class="module-number">06</span><span class="module-title">Scripts</span></div>
+                    <div class="module-item"><span class="module-number">07</span><span class="module-title">Funciones</span></div>
+                    <div class="module-item"><span class="module-number">08</span><span class="module-title">Errores y excepciones</span></div>
+                    <div class="module-item"><span class="module-number">09</span><span class="module-title">POO (Programación Orientada a Objetos)</span></div>
+                    <div class="module-item"><span class="module-number">10</span><span class="module-title">Herencia</span></div>
+                    <div class="module-item"><span class="module-number">11</span><span class="module-title">Métodos de colección</span></div>
+                    <div class="module-item"><span class="module-number">12</span><span class="module-title">Módulos y paquetes</span></div>
+                    <div class="module-item"><span class="module-number">13</span><span class="module-title">Ficheros</span></div>
+                    <div class="module-item"><span class="module-number">14</span><span class="module-title">Interfaces gráficas</span></div>
+                    <div class="module-item"><span class="module-number">15</span><span class="module-title">App con interfaces gráficas</span></div>
+                    <div class="module-item"><span class="module-number">16</span><span class="module-title">Bases de datos SQLite</span></div>
+                    <div class="module-item"><span class="module-number">17</span><span class="module-title">Funciones avanzadas</span></div>
+                    <div class="module-item module-bonus"><span class="module-number">18</span><span class="module-title">Bonus &mdash; Documentación y pruebas</span></div>
+                    <div class="module-item module-bonus"><span class="module-number">19</span><span class="module-title">Bonus &mdash; Aplicación de escritorio</span></div>
+                </div>
+
+                <div class="modules-cta">
+                    <a href="https://go.hotmart.com/S99672631V?ap=7ba0" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">
+                        <i class="fas fa-play"></i> Quiero los 19 módulos por $100
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Instructor -->
+        <section class="instructor">
+            <div class="container instructor-content">
+                <div class="instructor-avatar-wrap">
+                    <div class="avatar-frame">
+                        <img src="assets/brian-de-vita.jpg" alt="Brian De Vita" class="avatar-img"
+                             onerror="this.style.display='none'; this.parentElement.classList.add('no-photo');">
+                        <div class="avatar-fallback"><i class="fas fa-user-graduate"></i></div>
+                    </div>
+                    <div class="instructor-badge">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <span>+38.000 alumnos</span>
+                    </div>
+                </div>
+
+                <div class="instructor-info">
+                    <span class="section-eyebrow left">Tu instructor</span>
+                    <h2 class="section-title left">Brian De Vita</h2>
+                    <p class="instructor-role">Programador &middot; Instructor en múltiples plataformas</p>
+
+                    <p class="instructor-bio">
+                        Brian es programador con más de 3 años de experiencia y enseña en distintas plataformas educativas.
+                        Más de <strong>38.000 alumnos</strong> ya lo eligieron para aprender a programar, gracias a su forma
+                        clara, práctica y directa de explicar.
+                    </p>
+
+                    <div class="instructor-stats">
+                        <div class="instructor-stat">
+                            <span class="instructor-stat-number">+3</span>
+                            <span class="instructor-stat-label">Años programando</span>
+                        </div>
+                        <div class="instructor-stat">
+                            <span class="instructor-stat-number">+38.000</span>
+                            <span class="instructor-stat-label">Alumnos formados</span>
+                        </div>
+                        <div class="instructor-stat">
+                            <span class="instructor-stat-number">4.8</span>
+                            <span class="instructor-stat-label">Valoración media</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials" id="opiniones">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow">Opiniones reales</span>
+                    <h2 class="section-title">Ellos ya están <span class="grad">programando</span></h2>
+                    <p class="section-subtitle">Más de 38.000 personas dieron el paso. Estas son algunas de sus experiencias.</p>
+                </div>
+
+                <div class="testimonials-grid">
+                    <article class="testimonial">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            Empecé sin saber absolutamente nada y hoy estoy automatizando tareas en mi trabajo.
+                            Brian explica de una forma que todo se entiende. Un antes y un después.
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Ruiz" loading="lazy"
+                                     onerror="this.style.display='none'; this.parentElement.classList.add('no-photo');">
+                                <span class="avatar-initials">CR</span>
+                            </div>
+                            <div class="testimonial-meta">
+                                <strong>Carlos Ruiz</strong>
+                                <span>@carlosdev</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="testimonial">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            El mejor curso en español que encontré. Los 19 módulos están muy bien estructurados
+                            y el proyecto final te deja con una app real. Vale cada centavo.
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="María Fernández" loading="lazy"
+                                     onerror="this.style.display='none'; this.parentElement.classList.add('no-photo');">
+                                <span class="avatar-initials">MF</span>
+                            </div>
+                            <div class="testimonial-meta">
+                                <strong>María Fernández</strong>
+                                <span>@maria.programa</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="testimonial">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            Lo compré pensando que sería otro curso más y me sorprendió. A las 3 semanas ya estaba
+                            creando mis propios scripts. Ahora quiero dedicarme a los datos.
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Diego Morales" loading="lazy"
+                                     onerror="this.style.display='none'; this.parentElement.classList.add('no-photo');">
+                                <span class="avatar-initials">DM</span>
+                            </div>
+                            <div class="testimonial-meta">
+                                <strong>Diego Morales</strong>
+                                <span>@diegoautom</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="testimonial">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            Tengo 47 años y siempre pensé que programar no era para mí. Me equivoqué.
+                            Hoy hago mis propias herramientas y me divierto mientras aprendo.
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">
+                                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Laura Giménez" loading="lazy"
+                                     onerror="this.style.display='none'; this.parentElement.classList.add('no-photo');">
+                                <span class="avatar-initials">LG</span>
+                            </div>
+                            <div class="testimonial-meta">
+                                <strong>Laura Giménez</strong>
+                                <span>@laura.codes</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="testimonial">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            Venía de un bootcamp carísimo que no terminé. Este curso, por una fracción del precio,
+                            me enseñó más. Directo, sin vueltas y con práctica desde el día uno.
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/12.jpg" alt="Javier Ortiz" loading="lazy"
+                                     onerror="this.style.display='none'; this.parentElement.classList.add('no-photo');">
+                                <span class="avatar-initials">JO</span>
+                            </div>
+                            <div class="testimonial-meta">
+                                <strong>Javier Ortiz</strong>
+                                <span>@javierdev</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="testimonial">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            Lo mejor es que no te quedas solo. La comunidad de Telegram resuelve dudas al instante
+                            y siempre hay alguien dispuesto a ayudarte. Muy recomendado.
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">
+                                <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Sofía Herrera" loading="lazy"
+                                     onerror="this.style.display='none'; this.parentElement.classList.add('no-photo');">
+                                <span class="avatar-initials">SH</span>
+                            </div>
+                            <div class="testimonial-meta">
+                                <strong>Sofía Herrera</strong>
+                                <span>@sofia.py</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Audience -->
+        <section class="audience">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow">Es para ti</span>
+                    <h2 class="section-title">¿A quién va <span class="grad">dirigido</span>?</h2>
+                </div>
+                <p class="audience-description">
+                    A cualquier persona que quiera hacer de la programación su fuente de trabajo o su nueva habilidad,
+                    sin importar su edad ni su punto de partida. Si puedes leer esto, puedes aprender Python.
+                </p>
+
+                <div class="requirements-grid">
+                    <div class="requirement-item"><i class="fas fa-check-circle"></i><span>Ganas de aprender</span></div>
+                    <div class="requirement-item"><i class="fas fa-check-circle"></i><span>Constancia diaria</span></div>
+                    <div class="requirement-item"><i class="fas fa-check-circle"></i><span>Una computadora</span></div>
+                    <div class="requirement-item"><i class="fas fa-check-circle"></i><span>Conexión a internet</span></div>
+                    <div class="requirement-item no-req"><i class="fas fa-times-circle"></i><span>Sin conocimientos previos</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow">Dudas frecuentes</span>
+                    <h2 class="section-title">Todo lo que <span class="grad">necesitas saber</span></h2>
+                </div>
+
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary>¿Necesito saber programar antes? <i class="fas fa-chevron-down"></i></summary>
+                        <p>No. El curso empieza desde lo más básico, en el Módulo 1. Solo necesitas una computadora, internet y ganas de aprender.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>¿Cuánto tiempo tengo para completarlo? <i class="fas fa-chevron-down"></i></summary>
+                        <p>El acceso es de por vida. Puedes avanzar a tu ritmo, sin fechas límite y viendo las clases las veces que quieras.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>¿Qué pasa si no me convence? <i class="fas fa-chevron-down"></i></summary>
+                        <p>La compra se realiza de forma segura a través de Hotmart, con su garantía de satisfacción. Puedes solicitar el reembolso según sus políticas.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>¿Por qué el precio está tan bajo? <i class="fas fa-chevron-down"></i></summary>
+                        <p>Es una promoción de lanzamiento por tiempo limitado. El precio normal es de $450 y hoy puedes acceder por $100. Cuando termine el contador, vuelve a su valor original.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>¿Cómo hago las consultas? <i class="fas fa-chevron-down"></i></summary>
+                        <p>Al comprar puedes unirte al canal de Telegram exclusivo de CHMODX, donde resolverás dudas y estarás en contacto con la comunidad.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>¿Recibo algún certificado? <i class="fas fa-chevron-down"></i></summary>
+                        <p>Sí. Al finalizar los 19 módulos obtienes un certificado que acredita tu formación en Python 3.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Offer / Pricing -->
+        <section class="offer" id="oferta">
+            <div class="offer-glow"></div>
+            <div class="container">
+                <div class="offer-card">
+                    <div class="offer-ribbon"><i class="fas fa-fire"></i> OFERTA POR TIEMPO LIMITADO</div>
+
+                    <h2 class="offer-title">Acceso completo a <span class="grad">Python 3 de 0 a MASTER</span></h2>
+                    <p class="offer-subtitle">El precio sube cuando termina el contador. Asegura tu lugar ahora.</p>
+
+                    <div class="offer-countdown" id="offer-countdown" aria-live="polite">
+                        <div class="countdown-unit">
+                            <span class="countdown-value" data-unit="days">00</span>
+                            <span class="countdown-label">Días</span>
+                        </div>
+                        <div class="countdown-sep">:</div>
+                        <div class="countdown-unit">
+                            <span class="countdown-value" data-unit="hours">00</span>
+                            <span class="countdown-label">Horas</span>
+                        </div>
+                        <div class="countdown-sep">:</div>
+                        <div class="countdown-unit">
+                            <span class="countdown-value" data-unit="minutes">00</span>
+                            <span class="countdown-label">Minutos</span>
+                        </div>
+                        <div class="countdown-sep">:</div>
+                        <div class="countdown-unit">
+                            <span class="countdown-value" data-unit="seconds">00</span>
+                            <span class="countdown-label">Segundos</span>
+                        </div>
+                    </div>
+
+                    <div class="offer-price">
+                        <div class="offer-price-old">
+                            <span class="offer-price-old-label">Precio normal</span>
+                            <span class="offer-price-old-value">$450</span>
+                        </div>
+                        <div class="offer-price-new">
+                            <span class="offer-price-new-label">Hoy pagas solo</span>
+                            <span class="offer-price-new-value">$100</span>
+                        </div>
+                        <div class="offer-price-save">Ahorras $350 &middot; 78% OFF</div>
+                    </div>
+
+                    <ul class="offer-includes">
+                        <li><i class="fas fa-check"></i> 19 módulos en video, paso a paso</li>
+                        <li><i class="fas fa-check"></i> Acceso de por vida y actualizaciones</li>
+                        <li><i class="fas fa-check"></i> Comunidad exclusiva en Telegram</li>
+                        <li><i class="fas fa-check"></i> Proyectos reales y aplicaciones completas</li>
+                        <li><i class="fas fa-check"></i> Certificado al finalizar</li>
+                    </ul>
+
+                    <div class="offer-buttons">
+                        <a href="https://go.hotmart.com/S99672631V?ap=7ba0" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-xl">
+                            <i class="fas fa-shopping-cart"></i> Comprar ahora por $100
+                        </a>
+                        <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-telegram btn-xl">
+                            <i class="fab fa-telegram"></i> Entrar al canal de Telegram
+                        </a>
+                    </div>
+
+                    <p class="offer-note">
+                        <i class="fas fa-lock"></i> Pago 100% seguro procesado por Hotmart
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="final-cta">
+            <div class="container">
+                <div class="final-cta-content">
+                    <h2 class="final-cta-title">El mejor momento para aprender Python <span class="grad">es hoy</span></h2>
+                    <p class="final-cta-subtitle">
+                        Mañana puede costarte $450. Hoy, solo $100. Toma la decisión que tu yo del futuro te va a agradecer.
+                    </p>
+                    <div class="final-cta-buttons">
+                        <a href="https://go.hotmart.com/S99672631V?ap=7ba0" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-xl">
+                            <i class="fas fa-rocket"></i> Empezar ahora
+                        </a>
+                        <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-xl">
+                            <i class="fab fa-telegram"></i> Unirme al Telegram
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#top" class="nav-logo footer-logo">
+                        <img src="assets/logo.png" alt="CHMODX" class="brand-logo brand-logo-footer">
+                        <span class="brand-name">CHMOD<span class="brand-x">X</span></span>
+                    </a>
+                    <p class="footer-description">
+                        Formamos a la próxima generación de programadores. Aprende Python con un método claro,
+                        práctico y pensado para que avances de verdad.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="https://go.hotmart.com/S99672631V?ap=7ba0" target="_blank" rel="noopener noreferrer" aria-label="Tienda"><i class="fas fa-store"></i></a>
+                        <a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noopener noreferrer" aria-label="TIOBE"><i class="fas fa-chart-line"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Curso</h4>
+                    <ul>
+                        <li><a href="#temario">Temario</a></li>
+                        <li><a href="#opiniones">Opiniones</a></li>
+                        <li><a href="#oferta">Precio</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Recursos</h4>
+                    <ul>
+                        <li><a href="https://go.hotmart.com/S99672631V?ap=7ba0" target="_blank" rel="noopener noreferrer">Comprar curso</a></li>
+                        <li><a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer">Canal de Telegram</a></li>
+                        <li><a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noopener noreferrer">TIOBE Index</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 CHMODX. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky mobile CTA -->
+    <div class="sticky-cta" id="stickyCta">
+        <div class="sticky-price">
+            <span class="sticky-old">$450</span>
+            <span class="sticky-new">$100</span>
+        </div>
+        <a href="https://go.hotmart.com/S99672631V?ap=7ba0" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+            <i class="fas fa-bolt"></i> Comprar
+        </a>
+    </div>
+
+    <!-- Back to top -->
+    <button class="back-to-top" id="backToTop" aria-label="Volver arriba">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
