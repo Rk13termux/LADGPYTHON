@@ -873,6 +873,7 @@ section { padding: 96px 0; position: relative; }
     position: relative;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .avatar-frame {
@@ -882,6 +883,32 @@ section { padding: 96px 0; position: relative; }
     padding: 6px;
     background: var(--grad-brand);
     box-shadow: var(--shadow-lg), var(--glow-brand);
+    /* crea contexto de apilado: la foto y su respaldo quedan DEBAJO del marco */
+    z-index: 1;
+    animation: avatarPulse 4.5s ease-in-out infinite;
+}
+
+/* Halo animado del marco (por delante de la imagen) */
+.avatar-frame::before {
+    content: "";
+    position: absolute;
+    inset: -10px;
+    border-radius: 50%;
+    background: var(--grad-brand);
+    opacity: .35;
+    filter: blur(18px);
+    z-index: -1;
+    animation: avatarHalo 4.5s ease-in-out infinite;
+}
+
+@keyframes avatarPulse {
+    0%, 100% { box-shadow: var(--shadow-lg), 0 0 40px rgba(0,230,118,.22); }
+    50%      { box-shadow: var(--shadow-lg), 0 0 75px rgba(0,230,118,.5); }
+}
+
+@keyframes avatarHalo {
+    0%, 100% { transform: scale(1);    opacity: .28; }
+    50%      { transform: scale(1.06); opacity: .45; }
 }
 
 .avatar-img,
@@ -913,6 +940,7 @@ section { padding: 96px 0; position: relative; }
     bottom: 6px;
     right: 50%;
     transform: translateX(150px);
+    z-index: 10; /* por delante del marco y de la foto */
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -923,7 +951,7 @@ section { padding: 96px 0; position: relative; }
     font-size: 13px;
     font-weight: 700;
     color: var(--text);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-md), 0 0 22px rgba(0,230,118,.25);
 }
 
 .instructor-badge i { color: var(--brand); }
