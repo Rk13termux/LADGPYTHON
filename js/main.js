@@ -191,10 +191,12 @@
 
     /* ----------------------------------------------------------------
        Navegadores internos (TikTok, Instagram, Facebook...)
-       Los WebView de esas apps bloquean go.hotmart.com y t.me. Aqui el
-       enlace se entrega al sistema operativo (que lo abre fuera del
-       WebView) y, si la app no lo permite, se explica al visitante
-       como salir y se le ofrece copiar el enlace.
+       Los WebView de esas apps bloquean go.hotmart.com y t.me, e incluso
+       rechazan los intentos de abrir otra aplicación (el sistema responde
+       "la acción no se puede completar"). Por eso no se intenta salir:
+       el curso se cobra con el checkout incrustado dentro de la propia
+       página y, para lo que no se puede incrustar (Telegram), se explica
+       cómo abrirlo en el navegador y se ofrece copiar el enlace.
        ---------------------------------------------------------------- */
     var APPS_INTERNAS = [
         { nombre: 'TikTok',    menu: true,  re: /TikTok|BytedanceWebview|musical_ly|Bytedance|Aweme|com\.zhiliaoapp/i },
@@ -211,6 +213,10 @@
     var AVISO_KEY = 'chmodx_inapp_aviso';
     var aviso = { url: '', tipo: '', deeplink: '' };
     var appInterna = null;
+
+    // Permite probar el pago incrustado desde un navegador normal:
+    // chmodxcode.pro/?pago=1
+    var pagoForzado = /[?&]pago=1\b/.test(location.search);
 
     function detectarNavegadorInterno() {
         var ua = navigator.userAgent || '';
@@ -238,52 +244,110 @@
         return '';
     }
 
-    /* Convierte una URL https en un intent: el WebView no la carga, se la
-       entrega al sistema y este la abre en el navegador real del usuario.
-       Si se indica un paquete, Android abre esa app concreta (Chrome);
-       si no, deja que la abra el navegador predeterminado. */
-    function urlIntent(url, paquete) {
-        return 'intent://' + url.replace(/^https?:\/\//i, '') +
-               '#Intent;scheme=https' +
-               (paquete ? ';package=' + paquete : '') +
-               ';action=android.intent.action.VIEW' +
-               ';category=android.intent.category.BROWSABLE;end';
+    /* ----------------------------------------------------------------
+       Pago sin salir de la página (checkout incrustado de Hotmart).
+       El navegador interno de TikTok bloquea go.hotmart.com igual que
+       bloquea t.me: cualquier salto acaba en un aviso del sistema. Así
+       que, en vez de intentar salir, se trae el checkout oficial de
+       Hotmart dentro de un iframe. Al no haber navegación externa no hay
+       nada que la app pueda bloquear y el pago se completa en la misma
+       pantalla. La oferta y la referencia salen del propio enlace de
+       venta (go.hotmart.com/S99672631V -> pay.hotmart.com/R63702137B).
+       ---------------------------------------------------------------- */
+    var OFERTA_HOTMART = '6xhye5kp';
+    var REF_HOTMART = 'S99672631V';
+    var LIB_CHECKOUT = 'https://checkout.hotmart.com/lib/hotmart-checkout-elements.js';
+    var ESPERA_CHECKOUT = 15000;     // margen amplio: en móvil y con el CDN
+                                     // en frío la librería puede tardar
+
+    var capaCheckout = null;         // instancia de overlayCheckout
+    var anclaCheckout = null;        // botón oculto al que se engancha
+    var relojCheckout = null;        // temporizador de la carga en curso
+    var cargandoCheckout = false;
+    var pendientesCheckout = [];     // quien espera el resultado
+
+    function montarCheckout() {
+        anclaCheckout = document.createElement('button');
+        anclaCheckout.type = 'button';
+        anclaCheckout.id = 'hotmartCheckoutAnchor';
+        anclaCheckout.setAttribute('aria-hidden', 'true');
+        anclaCheckout.tabIndex = -1;
+        anclaCheckout.style.cssText =
+            'position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none';
+        document.body.appendChild(anclaCheckout);
+
+        capaCheckout = window.checkoutElements.init('overlayCheckout', {
+            offer: OFERTA_HOTMART,
+            locale: 'es',
+            // Hotmart toma estas claves como parámetros del iframe; con
+            // 'ref' la venta queda registrada en el mismo enlace que el botón
+            prefilledInfo: { ref: REF_HOTMART }
+        });
+        capaCheckout.mount(anclaCheckout);
     }
 
-    var ESPERA_INTENT = 700;   // margen para que el sistema abra la otra app
+    /* La librería se carga solo cuando alguien pulse un botón de compra
+       desde un navegador interno: nunca al abrir la página, para no
+       castigar la velocidad de todos los visitantes. */
+    function cargarCheckout(alTerminar) {
+        if (capaCheckout) { alTerminar(true); return; }
 
-    /* Saca al visitante del WebView en Android. Primero se fuerza Chrome,
-       como pediste; si el telefono no lo tiene instalado, se reintenta sin
-       fijar aplicacion para que lo abra el navegador predeterminado. Si aun
-       asi la pagina sigue visible, se llama a alFallar. */
-    function abrirFueraDelWebView(url, alFallar) {
-        var destino = url || (location.origin + location.pathname);
-        var seFue = false;
-        var paso = 0;
+        pendientesCheckout.push(alTerminar);
+        if (cargandoCheckout) return;
+        cargandoCheckout = true;
 
-        var marco = function () {
-            if (document.visibilityState === 'hidden') seFue = true;
+        var terminado = false;
+        var terminar = function (ok) {
+            if (terminado) return;
+            terminado = true;
+            cargandoCheckout = false;
+            clearTimeout(relojCheckout);
+            relojCheckout = null;
+            var lista = pendientesCheckout.slice();
+            pendientesCheckout.length = 0;
+            for (var i = 0; i < lista.length; i++) lista[i](ok);
         };
-        document.addEventListener('visibilitychange', marco);
-        window.addEventListener('pagehide', marco);
 
-        var intento = function () {
-            if (seFue) return;
-            window.location.href = urlIntent(destino, paso === 0 ? 'com.android.chrome' : '');
-            paso++;
+        relojCheckout = setTimeout(function () { terminar(false); }, ESPERA_CHECKOUT);
 
-            if (paso < 2) {                 // reintento sin paquete
-                setTimeout(intento, ESPERA_INTENT);
-                return;
+        var s = document.createElement('script');
+        s.src = LIB_CHECKOUT;
+        s.async = true;
+        s.onload = function () {
+            try {
+                if (!window.checkoutElements) { terminar(false); return; }
+                montarCheckout();
+                terminar(true);
+            } catch (e) {
+                terminar(false);
             }
-            setTimeout(function () {        // ni Chrome ni el predeterminado
-                document.removeEventListener('visibilitychange', marco);
-                window.removeEventListener('pagehide', marco);
-                if (!seFue && alFallar) alFallar();
-            }, ESPERA_INTENT);
         };
+        s.onerror = function () { terminar(false); };
+        document.head.appendChild(s);
+    }
 
-        intento();
+    /* Abre el pago incrustado. Si la librería no llega a cargar, llama a
+       alFallar para que se muestre el aviso con el enlace para copiar.
+       Mientras carga se muestra un indicador: el checkout tarda unos
+       segundos y el botón, solo, no daría ninguna señal. */
+    function mostrarCargandoPago(mostrar) {
+        var caja = document.getElementById('pagoCargando');
+        if (caja) caja.hidden = !mostrar;
+    }
+
+    function abrirCheckout(alFallar) {
+        mostrarCargandoPago(true);
+        cargarCheckout(function (ok) {
+            mostrarCargandoPago(false);
+            if (ok) {
+                try {
+                    cerrarAviso();
+                    anclaCheckout.click();    // la capa escucha el clic
+                    return;
+                } catch (e) { /* se cae al aviso */ }
+            }
+            if (alFallar) alFallar();
+        });
     }
 
     function enlaceMasCercano(nodo) {
@@ -368,7 +432,6 @@
         var modal = document.getElementById('inappModal');
         if (!modal) return;
 
-        var esAndroid = /Android/i.test(navigator.userAgent || '');
         var destino = url || aviso.url || (location.origin + location.pathname);
         var tipoFinal = tipo || aviso.tipo || '';
 
@@ -376,8 +439,29 @@
         if (tipoFinal) aviso.tipo = tipoFinal;
         if (deeplink) aviso.deeplink = deeplink;
 
-        var elApp = document.getElementById('inappApp');
-        if (elApp) elApp.textContent = appInterna ? appInterna.nombre : 'una aplicación';
+        // El aviso se adapta a lo que se intentaba abrir: el curso sí se
+        // puede pagar aquí dentro, Telegram no.
+        var esCurso = tipoFinal !== 'telegram';
+        var nombreApp = appInterna ? appInterna.nombre : 'una aplicación';
+
+        var elTitulo = document.getElementById('inappTitle');
+        if (elTitulo) {
+            elTitulo.textContent = esCurso
+                ? 'Paga sin salir de la aplicación'
+                : 'Abre Telegram en tu navegador';
+        }
+
+        var elDesc = document.getElementById('inappDesc');
+        if (elDesc) {
+            elDesc.innerHTML = 'Estás dentro de <strong id="inappApp"></strong>. ' + (esCurso
+                ? 'Su navegador interno bloquea la página de pago, pero puedes pagar aquí '
+                  + 'mismo o copiar el enlace y abrirlo en Chrome.'
+                : 'Su navegador interno bloquea los enlaces a Telegram, así que copia '
+                  + 'el enlace y ábrelo en Chrome.');
+            // el nombre se escribe con textContent para no inyectar nada
+            var elApp = document.getElementById('inappApp');
+            if (elApp) elApp.textContent = nombreApp;
+        }
 
         var elUrl = document.getElementById('inappUrl');
         if (elUrl) elUrl.textContent = destino;
@@ -389,7 +473,7 @@
             if (itemMenu) itemMenu.style.display = (appInterna && appInterna.menu) ? '' : 'none';
         }
 
-        var btnTry = document.getElementById('inappTry');
+        var btnPagar = document.getElementById('inappPay');
         var btnTg = document.getElementById('inappTg');
         var btnCopiar = document.getElementById('inappCopy');
 
@@ -399,11 +483,12 @@
             estado.textContent = '';
         }
 
-        // En Android el intent si saca al usuario al navegador real.
-        // En iOS no existe un mecanismo equivalente, asi que se prioriza copiar.
-        if (btnTry) btnTry.hidden = !esAndroid;
+        // Para el curso el camino corto es pagar aquí; para Telegram solo
+        // queda copiar, así que ahí el botón principal es el de copiar.
+        if (btnPagar) btnPagar.hidden = !esCurso;
+        if (btnTg) btnTg.hidden = esCurso;
         if (btnCopiar) {
-            if (esAndroid) {
+            if (esCurso) {
                 btnCopiar.classList.remove('btn-primary');
                 btnCopiar.classList.add('btn-outline');
             } else {
@@ -411,9 +496,6 @@
                 btnCopiar.classList.add('btn-primary');
             }
         }
-        // el canal sirve de alternativa de contacto en cualquier caso,
-        // aunque el enlace pulsado fuera el del curso
-        if (btnTg) btnTg.hidden = false;
 
         modal.classList.add('open');
         modal.setAttribute('aria-hidden', 'false');
@@ -432,39 +514,6 @@
         document.body.style.overflow = '';
     }
 
-    /* Intenta sacar al visitante del WebView. Si la app lo bloquea, la
-       pagina sigue visible y entonces se muestra el aviso. */
-    function salirDelWebView(url, tipo, deeplink) {
-        var esAndroid = /Android/i.test(navigator.userAgent || '');
-        var avisar = function () { mostrarAviso(url, tipo, deeplink); };
-
-        if (esAndroid) {
-            abrirFueraDelWebView(url, avisar);
-            return;
-        }
-
-        // iOS: el WebView no deja lanzar otra app, solo se puede intentar
-        // el esquema nativo de Telegram
-        var salio = false;
-        var marco = function () {
-            if (document.visibilityState === 'hidden') salio = true;
-        };
-        document.addEventListener('visibilitychange', marco);
-        window.addEventListener('pagehide', marco);
-
-        if (tipo === 'telegram' && deeplink) {
-            window.location.href = deeplink;
-            setTimeout(function () {
-                document.removeEventListener('visibilitychange', marco);
-                window.removeEventListener('pagehide', marco);
-                if (!salio && document.visibilityState === 'visible') avisar();
-            }, 1400);
-            return;
-        }
-
-        setTimeout(function () { if (!salio) avisar(); }, 260);
-    }
-
     function initEnlacesExternos() {
         appInterna = detectarNavegadorInterno();
         var modal = document.getElementById('inappModal');
@@ -479,21 +528,15 @@
 
             // Botones del aviso. Se usa onclick para que cada pulsacion
             // reemplace cualquier manejador anterior.
-            //
-            // Equivalencias con el codigo pedido:
-            //   btn-open-browser  -> inappTry
-            //   btn-open-telegram -> inappTg
-            //   btn-copy-link     -> inappCopy
 
-            var btnTry = document.getElementById('inappTry');
-            if (btnTry) {
-                btnTry.onclick = function () {
-                    if (!/Android/i.test(navigator.userAgent || '')) return;
+            var btnPagar = document.getElementById('inappPay');
+            if (btnPagar) {
+                btnPagar.onclick = function () {
                     var estado = document.getElementById('inappStatus');
-                    abrirFueraDelWebView(aviso.url, function () {
+                    abrirCheckout(function () {
                         if (!estado) return;
                         estado.hidden = false;
-                        estado.textContent = 'No se pudo abrir el navegador. Usa los pasos de arriba o copia el enlace.';
+                        estado.textContent = 'No se pudo cargar el pago aquí dentro. Copia el enlace de abajo y ábrelo en Chrome.';
                     });
                 };
             }
@@ -526,7 +569,6 @@
 
         document.addEventListener('click', function (e) {
             if (e.defaultPrevented || e.button > 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-            if (!appInterna) return;                      // navegador normal: nada que hacer
 
             var a = enlaceMasCercano(e.target);
             if (!a) return;
@@ -537,10 +579,25 @@
             var tipo = tipoDeEnlace(url);
             if (!tipo) return;                            // solo los enlaces bloqueados
 
+            // En un navegador normal el enlace funciona solo, así que no se
+            // toca nada. Con ?pago=1 se puede probar el pago incrustado.
+            if (!appInterna && !(pagoForzado && tipo === 'hotmart')) return;
+
             var deeplink = tipo === 'telegram' ? deeplinkDeTelegram(a, url) : '';
 
             e.preventDefault();
-            salirDelWebView(url, tipo, deeplink);
+
+            // El curso se cobra dentro de la propia página: no hay salto que
+            // el navegador interno pueda bloquear. Si la librería no carga,
+            // se muestra el aviso con el enlace para copiar.
+            if (tipo === 'hotmart') {
+                abrirCheckout(function () { mostrarAviso(url, tipo, deeplink); });
+                return;
+            }
+
+            // Telegram no se puede incrustar: se muestra el aviso directamente,
+            // sin intentos que solo sacarían un error del sistema.
+            mostrarAviso(url, tipo, deeplink);
         }, false);
     }
 

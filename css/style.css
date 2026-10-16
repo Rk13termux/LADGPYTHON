@@ -2031,6 +2031,98 @@ section { padding: 96px 0; position: relative; }
     line-height: 1.55;
 }
 
+/* ---------- Espera mientras carga el pago incrustado ---------- */
+.pago-cargando {
+    position: fixed;
+    inset: 0;
+    z-index: 299;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, .82);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+}
+
+/* el atributo hidden debe seguir mandando sobre el flex */
+.pago-cargando[hidden] { display: none !important; }
+
+.pago-cargando-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 26px 32px;
+    border: 1px solid rgba(0, 230, 118, .3);
+    border-radius: 14px;
+    background-color: #0b0b0b;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, .6);
+}
+
+.pago-spinner {
+    width: 34px;
+    height: 34px;
+    border: 3px solid rgba(0, 230, 118, .18);
+    border-top-color: var(--brand);
+    border-radius: 50%;
+    animation: pagoGirar .8s linear infinite;
+}
+
+@keyframes pagoGirar {
+    to { transform: rotate(360deg); }
+}
+
+.pago-cargando-txt {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text);
+}
+
+/* ---------- Checkout incrustado de Hotmart ----------
+   Dentro de TikTok (u otro navegador interno) el pago se hace aqui mismo
+   con el checkout oficial de Hotmart en un iframe: al no haber salto a
+   otro dominio, la app no tiene nada que bloquear.
+
+   La caja de luz la crea la propia libreria de Hotmart y la inserta en el
+   <body> sin z-index, mientras que nuestros elementos fijos usan 80 y 95;
+   por eso se sube de capa explicitamente. Se antepone "body " porque la
+   libreria inyecta sus estilos al final del <head> y, a igualdad de
+   especificidad, ganarian los suyos. La altura del iframe necesita
+   !important porque la libreria la fija en linea (nace con 300 px, que en
+   un movil se queda corta). */
+body .custom-element__lightbox-overlay {
+    z-index: 300;
+    background-color: rgba(0, 0, 0, .86);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+}
+
+body .custom-element__lightbox-modal {
+    z-index: 301;
+    width: 92%;
+    max-width: 560px;
+    background-color: #ffffff;
+    border-radius: 14px;
+    border: 1px solid rgba(0, 230, 118, .35);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, .65);
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+body .custom-element__lightbox-modal .custom-element__iframe {
+    height: 78vh !important;
+    min-height: 78vh !important;
+    width: 100% !important;
+    background-color: #ffffff;
+}
+
+@media (min-width: 620px) {
+    body .custom-element__lightbox-modal .custom-element__iframe {
+        height: 80vh !important;
+        min-height: 80vh !important;
+    }
+}
+
 @media (min-width: 620px) {
     .inapp-modal { align-items: center; }
     .inapp-card { transform: translateY(18px) scale(.97); }

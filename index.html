@@ -21,6 +21,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Pago incrustado: se deja la conexión lista para que, al pulsar
+         comprar dentro de TikTok, el checkout tarde lo mínimo -->
+    <link rel="preconnect" href="https://checkout.hotmart.com">
+    <link rel="preconnect" href="https://pay.hotmart.com">
+    <link rel="dns-prefetch" href="https://checkout.hotmart.com">
+    <link rel="dns-prefetch" href="https://pay.hotmart.com">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
@@ -955,8 +962,10 @@ yo = FuturoDev()
     </footer>
 
     <!-- Aviso para navegadores internos (TikTok, Instagram, Facebook...):
-         sus WebView bloquean go.hotmart.com y t.me, asi que se ofrece
-         salir al navegador del sistema o copiar el enlace -->
+         sus WebView bloquean go.hotmart.com y t.me. El curso se cobra con
+         el checkout incrustado en la propia pagina (asi la app no lo puede
+         bloquear) y los enlaces que no se pueden incrustar se copian para
+         abrirlos en el navegador del sistema -->
     <div class="inapp-modal" id="inappModal" role="dialog" aria-modal="true"
          aria-labelledby="inappTitle" aria-describedby="inappDesc" aria-hidden="true">
         <div class="inapp-backdrop" data-inapp-close></div>
@@ -985,10 +994,10 @@ yo = FuturoDev()
             </ol>
 
             <div class="inapp-actions">
-                <button type="button" class="btn btn-primary inapp-btn" id="inappTry">
-                    <i class="fas fa-up-right-from-square" aria-hidden="true"></i> Abrir en el navegador
+                <button type="button" class="btn btn-primary inapp-btn" id="inappPay">
+                    <i class="fas fa-credit-card" aria-hidden="true"></i> Pagar aquí mismo
                 </button>
-                <button type="button" class="btn btn-telegram inapp-btn" id="inappTg">
+                <button type="button" class="btn btn-telegram inapp-btn" id="inappTg" hidden>
                     <i class="fab fa-telegram" aria-hidden="true"></i> Abrir la app de Telegram
                 </button>
                 <button type="button" class="btn btn-outline inapp-btn" id="inappCopy">
@@ -1002,6 +1011,14 @@ yo = FuturoDev()
                 <span class="inapp-url-label">Enlace</span>
                 <span class="inapp-url" id="inappUrl">chmodxcode.pro</span>
             </p>
+        </div>
+    </div>
+
+    <!-- Espera mientras carga el pago incrustado -->
+    <div class="pago-cargando" id="pagoCargando" role="status" aria-live="polite" hidden>
+        <div class="pago-cargando-box">
+            <span class="pago-spinner" aria-hidden="true"></span>
+            <p class="pago-cargando-txt">Abriendo el pago seguro…</p>
         </div>
     </div>
 
