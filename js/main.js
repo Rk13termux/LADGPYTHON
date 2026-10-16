@@ -239,12 +239,51 @@
     }
 
     /* Convierte una URL https en un intent: el WebView no la carga, se la
-       entrega al sistema y este la abre en el navegador real del usuario. */
-    function urlIntent(url) {
+       entrega al sistema y este la abre en el navegador real del usuario.
+       Si se indica un paquete, Android abre esa app concreta (Chrome);
+       si no, deja que la abra el navegador predeterminado. */
+    function urlIntent(url, paquete) {
         return 'intent://' + url.replace(/^https?:\/\//i, '') +
                '#Intent;scheme=https' +
+               (paquete ? ';package=' + paquete : '') +
                ';action=android.intent.action.VIEW' +
                ';category=android.intent.category.BROWSABLE;end';
+    }
+
+    var ESPERA_INTENT = 700;   // margen para que el sistema abra la otra app
+
+    /* Saca al visitante del WebView en Android. Primero se fuerza Chrome,
+       como pediste; si el telefono no lo tiene instalado, se reintenta sin
+       fijar aplicacion para que lo abra el navegador predeterminado. Si aun
+       asi la pagina sigue visible, se llama a alFallar. */
+    function abrirFueraDelWebView(url, alFallar) {
+        var destino = url || (location.origin + location.pathname);
+        var seFue = false;
+        var paso = 0;
+
+        var marco = function () {
+            if (document.visibilityState === 'hidden') seFue = true;
+        };
+        document.addEventListener('visibilitychange', marco);
+        window.addEventListener('pagehide', marco);
+
+        var intento = function () {
+            if (seFue) return;
+            window.location.href = urlIntent(destino, paso === 0 ? 'com.android.chrome' : '');
+            paso++;
+
+            if (paso < 2) {                 // reintento sin paquete
+                setTimeout(intento, ESPERA_INTENT);
+                return;
+            }
+            setTimeout(function () {        // ni Chrome ni el predeterminado
+                document.removeEventListener('visibilitychange', marco);
+                window.removeEventListener('pagehide', marco);
+                if (!seFue && alFallar) alFallar();
+            }, ESPERA_INTENT);
+        };
+
+        intento();
     }
 
     function enlaceMasCercano(nodo) {
@@ -301,10 +340,18 @@
         var confirmar = function (ok) {
             if (!boton || yaAviso) return;
             yaAviso = true;
-            boton.innerHTML = ok
-                ? '<i class="fas fa-check" aria-hidden="true"></i> Enlace copiado'
-                : '<i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Copia el enlace de abajo';
-            setTimeout(function () { boton.innerHTML = etiqueta; }, 2600);
+            if (ok) {
+                boton.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> ¡Copiado! Pégalo en tu navegador';
+                boton.style.backgroundColor = '#00ff66';
+                boton.style.color = '#000000';
+            } else {
+                boton.innerHTML = '<i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Copia el enlace de abajo';
+            }
+            setTimeout(function () {
+                boton.innerHTML = etiqueta;
+                boton.style.backgroundColor = '';
+                boton.style.color = '';
+            }, 2600);
         };
 
         if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -346,6 +393,12 @@
         var btnTg = document.getElementById('inappTg');
         var btnCopiar = document.getElementById('inappCopy');
 
+        var estado = document.getElementById('inappStatus');
+        if (estado) {
+            estado.hidden = true;
+            estado.textContent = '';
+        }
+
         // En Android el intent si saca al usuario al navegador real.
         // En iOS no existe un mecanismo equivalente, asi que se prioriza copiar.
         if (btnTry) btnTry.hidden = !esAndroid;
@@ -358,7 +411,9 @@
                 btnCopiar.classList.add('btn-primary');
             }
         }
-        if (btnTg) btnTg.hidden = tipoFinal !== 'telegram';
+        // el canal sirve de alternativa de contacto en cualquier caso,
+        // aunque el enlace pulsado fuera el del curso
+        if (btnTg) btnTg.hidden = false;
 
         modal.classList.add('open');
         modal.setAttribute('aria-hidden', 'false');
@@ -381,31 +436,33 @@
        pagina sigue visible y entonces se muestra el aviso. */
     function salirDelWebView(url, tipo, deeplink) {
         var esAndroid = /Android/i.test(navigator.userAgent || '');
-        var salio = false;
+        var avisar = function () { mostrarAviso(url, tipo, deeplink); };
 
+        if (esAndroid) {
+            abrirFueraDelWebView(url, avisar);
+            return;
+        }
+
+        // iOS: el WebView no deja lanzar otra app, solo se puede intentar
+        // el esquema nativo de Telegram
+        var salio = false;
         var marco = function () {
             if (document.visibilityState === 'hidden') salio = true;
         };
         document.addEventListener('visibilitychange', marco);
         window.addEventListener('pagehide', marco);
 
-        if (esAndroid) {
-            window.location.href = urlIntent(url);
-        } else if (tipo === 'telegram' && deeplink) {
+        if (tipo === 'telegram' && deeplink) {
             window.location.href = deeplink;
-        } else {
-            // iOS sin esquema nativo: no hay forma programatica de salir
             setTimeout(function () {
-                if (!salio) mostrarAviso(url, tipo, deeplink);
-            }, 260);
+                document.removeEventListener('visibilitychange', marco);
+                window.removeEventListener('pagehide', marco);
+                if (!salio && document.visibilityState === 'visible') avisar();
+            }, 1400);
             return;
         }
 
-        setTimeout(function () {
-            document.removeEventListener('visibilitychange', marco);
-            window.removeEventListener('pagehide', marco);
-            if (!salio && document.visibilityState === 'visible') mostrarAviso(url, tipo, deeplink);
-        }, 1400);
+        setTimeout(function () { if (!salio) avisar(); }, 260);
     }
 
     function initEnlacesExternos() {
@@ -420,25 +477,40 @@
                 if (e.target && e.target.hasAttribute && e.target.hasAttribute('data-inapp-close')) cerrarAviso();
             });
 
+            // Botones del aviso. Se usa onclick para que cada pulsacion
+            // reemplace cualquier manejador anterior.
+            //
+            // Equivalencias con el codigo pedido:
+            //   btn-open-browser  -> inappTry
+            //   btn-open-telegram -> inappTg
+            //   btn-copy-link     -> inappCopy
+
             var btnTry = document.getElementById('inappTry');
             if (btnTry) {
-                btnTry.addEventListener('click', function () {
-                    if (/Android/i.test(navigator.userAgent || '')) window.location.href = urlIntent(aviso.url);
-                });
+                btnTry.onclick = function () {
+                    if (!/Android/i.test(navigator.userAgent || '')) return;
+                    var estado = document.getElementById('inappStatus');
+                    abrirFueraDelWebView(aviso.url, function () {
+                        if (!estado) return;
+                        estado.hidden = false;
+                        estado.textContent = 'No se pudo abrir el navegador. Usa los pasos de arriba o copia el enlace.';
+                    });
+                };
             }
 
             var btnTg = document.getElementById('inappTg');
             if (btnTg) {
-                btnTg.addEventListener('click', function () {
+                btnTg.onclick = function () {
                     window.location.href = aviso.deeplink || 'tg://resolve?domain=chmodxcode';
-                });
+                };
             }
 
             var btnCopiar = document.getElementById('inappCopy');
             if (btnCopiar) {
-                btnCopiar.addEventListener('click', function () {
-                    copiarAlPortapapeles(aviso.url, btnCopiar);
-                });
+                btnCopiar.onclick = function () {
+                    var destino = aviso.url || (location.origin + location.pathname);
+                    copiarAlPortapapeles(destino, btnCopiar);
+                };
             }
 
             document.addEventListener('keydown', function (e) {

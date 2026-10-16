@@ -2024,6 +2024,13 @@ section { padding: 96px 0; position: relative; }
     word-break: break-all;
 }
 
+.inapp-status {
+    margin: 14px 0 0;
+    color: var(--py-yellow);
+    font-size: 13px;
+    line-height: 1.55;
+}
+
 @media (min-width: 620px) {
     .inapp-modal { align-items: center; }
     .inapp-card { transform: translateY(18px) scale(.97); }
