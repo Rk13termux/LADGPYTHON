@@ -801,18 +801,20 @@ section { padding: 96px 0; position: relative; }
     width: 0;
     border-radius: 8px;
     background: linear-gradient(90deg, #2a2a2a, #3a3a3a);
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 12px;
     transition: width 1.4s cubic-bezier(.22,1,.36,1);
 }
 
+/* El porcentaje vive fuera de la barra: columna fija a la derecha,
+   siempre visible y alineada, sin recortes en anchos pequenos. */
 .chart-bar-value {
+    flex: 0 0 auto;
+    min-width: 52px;
+    text-align: right;
     font-family: 'Fira Code', monospace;
-    font-size: 12px;
+    font-size: 12.5px;
     font-weight: 700;
     color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
 }
 
 .chart-row-top .chart-lang { width: 190px; }
@@ -843,7 +845,8 @@ section { padding: 96px 0; position: relative; }
     box-shadow: 0 0 26px rgba(0,230,118,.45);
 }
 
-.chart-bar-python .chart-bar-value { color: #00130a; font-size: 13px; }
+/* Python es el n.º 1: su porcentaje va en verde para destacarlo */
+.chart-row-top .chart-bar-value { color: var(--brand); font-size: 14px; }
 
 .chart-source {
     text-align: center;
@@ -1795,6 +1798,8 @@ section { padding: 96px 0; position: relative; }
 
     .chart-row { gap: 12px; }
     .chart-lang, .chart-row-top .chart-lang { width: 118px; }
+    .chart-bar-value { min-width: 48px; font-size: 12px; }
+    .chart-row-top .chart-bar-value { font-size: 13px; }
     .chart-name { font-size: 13.5px; }
     .chart-row-top .chart-name { font-size: 14px; }
     .chart-crown { display: none; }
@@ -1844,6 +1849,8 @@ section { padding: 96px 0; position: relative; }
 
     .chart-lang, .chart-row-top .chart-lang { width: 92px; }
     .chart-icon { width: 28px; height: 28px; font-size: 12px; }
+    .chart-bar-value { min-width: 44px; font-size: 11.5px; }
+    .chart-row-top .chart-bar-value { font-size: 12.5px; }
 
     .instructor-stats { grid-template-columns: 1fr; }
     .avatar-frame { width: 210px; height: 210px; }
@@ -1867,6 +1874,8 @@ section { padding: 96px 0; position: relative; }
     .price-old, .price-new {
         flex: 1 1 0;
         min-width: 0;
+        align-items: center;
+        text-align: center;
         border-bottom: 1px dashed rgba(255,255,255,.12);
     }
     .price-new { border-right: none; }
@@ -1876,6 +1885,8 @@ section { padding: 96px 0; position: relative; }
     .offer-price-old, .offer-price-new {
         flex: 1 1 0;
         min-width: 0;
+        align-items: center;
+        text-align: center;
         border-bottom: 1px dashed rgba(255,255,255,.12);
     }
     .offer-price-new { border-right: none; }
