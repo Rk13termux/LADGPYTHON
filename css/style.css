@@ -2024,6 +2024,15 @@ section { padding: 96px 0; position: relative; }
     word-break: break-all;
 }
 
+/* Si el copiado automatico falla, el enlace queda seleccionado y marcado
+   para que al usuario le baste con mantenerlo pulsado y elegir Copiar. */
+.inapp-url.destacar {
+    padding: 2px 6px;
+    border: 1px solid var(--brand-2);
+    border-radius: 6px;
+    background-color: rgba(0, 229, 255, .12);
+}
+
 .inapp-status {
     margin: 14px 0 0;
     color: var(--py-yellow);

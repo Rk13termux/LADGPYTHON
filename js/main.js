@@ -211,8 +211,9 @@
     ];
 
     var AVISO_KEY = 'chmodx_inapp_aviso';
-    var aviso = { url: '', tipo: '', deeplink: '' };
+    var aviso = { url: '', tipo: '' };
     var appInterna = null;
+    var CANAL_TELEGRAM = 'chmodxcode';
 
     // Permite probar el pago incrustado desde un navegador normal:
     // chmodxcode.pro/?pago=1
@@ -358,15 +359,6 @@
         return null;
     }
 
-    /* Deep link nativo de Telegram: se usa el que declare el enlace o,
-       si no lo trae, se deduce de la URL publica. */
-    function deeplinkDeTelegram(a, url) {
-        var propio = a.getAttribute('data-deeplink');
-        if (propio) return propio;
-        var m = /^https?:\/\/(?:t\.me|telegram\.me)\/@?([A-Za-z0-9_]+)/i.exec(url);
-        return m ? 'tg://resolve?domain=' + m[1] : '';
-    }
-
     function avisoYaVisto() {
         try { return sessionStorage.getItem(AVISO_KEY) === '1'; } catch (e) { return false; }
     }
@@ -409,7 +401,20 @@
                 boton.style.backgroundColor = '#00ff66';
                 boton.style.color = '#000000';
             } else {
-                boton.innerHTML = '<i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Copia el enlace de abajo';
+                boton.innerHTML = '<i class="fas fa-hand-pointer" aria-hidden="true"></i> Mantén pulsado el enlace de abajo';
+                // Se deja el enlace seleccionado y resaltado: en un WebView
+                // donde falla el copiado, basta con mantenerlo pulsado.
+                var el = document.getElementById('inappUrl');
+                if (el && window.getSelection && document.createRange) {
+                    try {
+                        var sel = window.getSelection();
+                        var rango = document.createRange();
+                        rango.selectNodeContents(el);
+                        sel.removeAllRanges();
+                        sel.addRange(rango);
+                        el.classList.add('destacar');
+                    } catch (e) {}
+                }
             }
             setTimeout(function () {
                 boton.innerHTML = etiqueta;
@@ -428,7 +433,33 @@
         confirmar(copiarLegado(texto));
     }
 
-    function mostrarAviso(url, tipo, deeplink) {
+    /* Los pasos cambian segun lo que se intentaba abrir. Dentro de un
+       WebView no existe ningun atajo fiable: TikTok, por ejemplo, rechaza
+       tanto intent:// como tg:// con un error del sistema, asi que no se
+       ofrece ningun boton que intente abrir otra aplicacion. */
+    function pasosDelAviso(esCurso) {
+        if (esCurso) {
+            if (appInterna && appInterna.menu) {
+                return [
+                    'Toca el botón de menú <span class="inapp-dots">&#8943;</span> de la esquina superior.',
+                    'Elige <strong>Abrir en el navegador</strong>.',
+                    'Vuelve a pulsar <strong>Comprar ahora</strong>.'
+                ];
+            }
+            return [
+                'Pulsa <strong>Copiar enlace</strong> aquí abajo.',
+                'Abre <strong>Chrome</strong> y pega el enlace en la barra de direcciones.',
+                'Vuelve a pulsar <strong>Comprar ahora</strong> en la página del curso.'
+            ];
+        }
+        return [
+            'Pulsa <strong>Copiar enlace</strong> aquí abajo.',
+            'Abre la aplicación de <strong>Telegram</strong>.',
+            'Pega el enlace en el buscador o escribe <strong>@' + CANAL_TELEGRAM + '</strong>.'
+        ];
+    }
+
+    function mostrarAviso(url, tipo) {
         var modal = document.getElementById('inappModal');
         if (!modal) return;
 
@@ -437,7 +468,6 @@
 
         aviso.url = destino;
         if (tipoFinal) aviso.tipo = tipoFinal;
-        if (deeplink) aviso.deeplink = deeplink;
 
         // El aviso se adapta a lo que se intentaba abrir: el curso sí se
         // puede pagar aquí dentro, Telegram no.
@@ -448,33 +478,39 @@
         if (elTitulo) {
             elTitulo.textContent = esCurso
                 ? 'Paga sin salir de la aplicación'
-                : 'Abre Telegram en tu navegador';
+                : 'Copia el enlace y ábrelo en Telegram';
         }
 
         var elDesc = document.getElementById('inappDesc');
         if (elDesc) {
             elDesc.innerHTML = 'Estás dentro de <strong id="inappApp"></strong>. ' + (esCurso
                 ? 'Su navegador interno bloquea la página de pago, pero puedes pagar aquí '
-                  + 'mismo o copiar el enlace y abrirlo en Chrome.'
-                : 'Su navegador interno bloquea los enlaces a Telegram, así que copia '
-                  + 'el enlace y ábrelo en Chrome.');
+                  + 'mismo, sin salir.'
+                : 'Su navegador no permite abrir Telegram, así que copia el enlace y '
+                  + 'ábrelo desde la aplicación.');
             // el nombre se escribe con textContent para no inyectar nada
             var elApp = document.getElementById('inappApp');
             if (elApp) elApp.textContent = nombreApp;
         }
 
         var elUrl = document.getElementById('inappUrl');
-        if (elUrl) elUrl.textContent = destino;
+        if (elUrl) {
+            elUrl.textContent = destino;
+            elUrl.classList.remove('destacar');
+        }
 
-        // el paso del menu solo tiene sentido en apps con menu propio
         var pasos = document.getElementById('inappSteps');
         if (pasos) {
-            var itemMenu = pasos.querySelector('[data-step="menu"]');
-            if (itemMenu) itemMenu.style.display = (appInterna && appInterna.menu) ? '' : 'none';
+            var lista = pasosDelAviso(esCurso);
+            pasos.innerHTML = '';
+            for (var i = 0; i < lista.length; i++) {
+                var li = document.createElement('li');
+                li.innerHTML = lista[i];
+                pasos.appendChild(li);
+            }
         }
 
         var btnPagar = document.getElementById('inappPay');
-        var btnTg = document.getElementById('inappTg');
         var btnCopiar = document.getElementById('inappCopy');
 
         var estado = document.getElementById('inappStatus');
@@ -486,7 +522,6 @@
         // Para el curso el camino corto es pagar aquí; para Telegram solo
         // queda copiar, así que ahí el botón principal es el de copiar.
         if (btnPagar) btnPagar.hidden = !esCurso;
-        if (btnTg) btnTg.hidden = esCurso;
         if (btnCopiar) {
             if (esCurso) {
                 btnCopiar.classList.remove('btn-primary');
@@ -541,13 +576,6 @@
                 };
             }
 
-            var btnTg = document.getElementById('inappTg');
-            if (btnTg) {
-                btnTg.onclick = function () {
-                    window.location.href = aviso.deeplink || 'tg://resolve?domain=chmodxcode';
-                };
-            }
-
             var btnCopiar = document.getElementById('inappCopy');
             if (btnCopiar) {
                 btnCopiar.onclick = function () {
@@ -564,7 +592,7 @@
         // Aviso informativo: dentro de un WebView casi nada funciona, asi que
         // se explica una vez por sesion.
         if (appInterna && !avisoYaVisto()) {
-            setTimeout(function () { mostrarAviso('', '', ''); }, 1400);
+            setTimeout(function () { mostrarAviso('', ''); }, 1400);
         }
 
         document.addEventListener('click', function (e) {
@@ -583,21 +611,20 @@
             // toca nada. Con ?pago=1 se puede probar el pago incrustado.
             if (!appInterna && !(pagoForzado && tipo === 'hotmart')) return;
 
-            var deeplink = tipo === 'telegram' ? deeplinkDeTelegram(a, url) : '';
-
             e.preventDefault();
 
             // El curso se cobra dentro de la propia página: no hay salto que
             // el navegador interno pueda bloquear. Si la librería no carga,
             // se muestra el aviso con el enlace para copiar.
             if (tipo === 'hotmart') {
-                abrirCheckout(function () { mostrarAviso(url, tipo, deeplink); });
+                abrirCheckout(function () { mostrarAviso(url, tipo); });
                 return;
             }
 
-            // Telegram no se puede incrustar: se muestra el aviso directamente,
-            // sin intentos que solo sacarían un error del sistema.
-            mostrarAviso(url, tipo, deeplink);
+            // Telegram no se puede incrustar y los WebView tampoco dejan
+            // abrirlo, así que se muestra el aviso para copiar el enlace:
+            // ningún botón que dispare un error del sistema.
+            mostrarAviso(url, tipo);
         }, false);
     }
 
