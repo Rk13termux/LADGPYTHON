@@ -210,10 +210,11 @@
         { nombre: 'LINE',      menu: false, re: /\bLine\//i }
     ];
 
-    var AVISO_KEY = 'chmodx_inapp_aviso';
-    var aviso = { url: '', tipo: '' };
+    var aviso = { url: '' };
     var appInterna = null;
     var CANAL_TELEGRAM = 'chmodxcode';
+    var URL_TELEGRAM = 'https://t.me/' + CANAL_TELEGRAM;
+    var URL_CURSO = 'https://go.hotmart.com/S99672631V?ap=7ba0';
 
     // Permite probar el pago incrustado desde un navegador normal:
     // chmodxcode.pro/?pago=1
@@ -327,13 +328,34 @@
         document.head.appendChild(s);
     }
 
-    /* Abre el pago incrustado. Si la librería no llega a cargar, llama a
-       alFallar para que se muestre el aviso con el enlace para copiar.
-       Mientras carga se muestra un indicador: el checkout tarda unos
-       segundos y el botón, solo, no daría ninguna señal. */
+    /* Indicador de espera del pago incrustado. Vuelve siempre al estado de
+       espera; si la libreria no llega, mostrarFalloPago lo convierte en un
+       aviso con el enlace para copiar. */
     function mostrarCargandoPago(mostrar) {
         var caja = document.getElementById('pagoCargando');
-        if (caja) caja.hidden = !mostrar;
+        if (!caja) return;
+        caja.hidden = !mostrar;
+        if (!mostrar) return;
+        var spinner = document.getElementById('pagoSpinner');
+        if (spinner) spinner.hidden = false;
+        var txt = document.getElementById('pagoCargandoTxt');
+        if (txt) txt.textContent = 'Abriendo el pago seguro…';
+        var fallo = document.getElementById('pagoFallo');
+        if (fallo) fallo.hidden = true;
+    }
+
+    /* Respaldo del pago: el widget no cargo, asi que el mismo indicador
+       pasa a explicar que hay que copiar el enlace. */
+    function mostrarFalloPago() {
+        var caja = document.getElementById('pagoCargando');
+        if (!caja) return;
+        caja.hidden = false;
+        var spinner = document.getElementById('pagoSpinner');
+        if (spinner) spinner.hidden = true;
+        var txt = document.getElementById('pagoCargandoTxt');
+        if (txt) txt.textContent = 'No se pudo cargar el pago aquí dentro. Copia el enlace y ábrelo en tu navegador.';
+        var fallo = document.getElementById('pagoFallo');
+        if (fallo) fallo.hidden = false;
     }
 
     function abrirCheckout(alFallar) {
@@ -345,7 +367,7 @@
                     cerrarAviso();
                     anclaCheckout.click();    // la capa escucha el clic
                     return;
-                } catch (e) { /* se cae al aviso */ }
+                } catch (e) { /* se cae al respaldo */ }
             }
             if (alFallar) alFallar();
         });
@@ -357,14 +379,6 @@
             nodo = nodo.parentNode;
         }
         return null;
-    }
-
-    function avisoYaVisto() {
-        try { return sessionStorage.getItem(AVISO_KEY) === '1'; } catch (e) { return false; }
-    }
-
-    function marcarAvisoVisto() {
-        try { sessionStorage.setItem(AVISO_KEY, '1'); } catch (e) {}
     }
 
     /* Copia con los dos mecanismos: la API moderna falla en muchos WebView
@@ -413,6 +427,8 @@
                         sel.removeAllRanges();
                         sel.addRange(rango);
                         el.classList.add('destacar');
+                        // si la tarjeta se desplaza, que el enlace quede a la vista
+                        if (el.scrollIntoView) el.scrollIntoView({ block: 'nearest' });
                     } catch (e) {}
                 }
             }
@@ -433,61 +449,40 @@
         confirmar(copiarLegado(texto));
     }
 
-    /* Los pasos cambian segun lo que se intentaba abrir. Dentro de un
-       WebView no existe ningun atajo fiable: TikTok, por ejemplo, rechaza
-       tanto intent:// como tg:// con un error del sistema, asi que no se
-       ofrece ningun boton que intente abrir otra aplicacion. */
-    function pasosDelAviso(esCurso) {
-        if (esCurso) {
-            if (appInterna && appInterna.menu) {
-                return [
-                    'Toca el botón de menú <span class="inapp-dots">&#8943;</span> de la esquina superior.',
-                    'Elige <strong>Abrir en el navegador</strong>.',
-                    'Vuelve a pulsar <strong>Comprar ahora</strong>.'
-                ];
-            }
-            return [
-                'Pulsa <strong>Copiar enlace</strong> aquí abajo.',
-                'Abre <strong>Chrome</strong> y pega el enlace en la barra de direcciones.',
-                'Vuelve a pulsar <strong>Comprar ahora</strong> en la página del curso.'
-            ];
-        }
+    /* El aviso es solo para el canal de Telegram: el curso se paga dentro
+       de la propia pagina con el widget de Hotmart y no necesita ninguno.
+       Como ningun WebView garantiza abrir otra aplicacion (TikTok rechaza
+       los esquemas de app con un error del sistema), se ofrecen los dos
+       caminos: intentar abrirlo y, si no sale, copiar el enlace. */
+    function pasosDelAviso() {
         return [
-            'Pulsa <strong>Copiar enlace</strong> aquí abajo.',
-            'Abre la aplicación de <strong>Telegram</strong>.',
-            'Pega el enlace en el buscador o escribe <strong>@' + CANAL_TELEGRAM + '</strong>.'
+            'Pulsa <strong>Entrar al canal de Telegram</strong>.',
+            'Si no se abre, pulsa <strong>Copiar enlace</strong>.',
+            'Abre <strong>Telegram</strong> y pega el enlace, o busca <strong>@' + CANAL_TELEGRAM + '</strong>.'
         ];
     }
 
-    function mostrarAviso(url, tipo) {
+    function estadoDelAviso(texto) {
+        var estado = document.getElementById('inappStatus');
+        if (!estado) return;
+        estado.hidden = !texto;
+        estado.textContent = texto || '';
+    }
+
+    function mostrarAviso(url) {
         var modal = document.getElementById('inappModal');
         if (!modal) return;
 
-        var destino = url || aviso.url || (location.origin + location.pathname);
-        var tipoFinal = tipo || aviso.tipo || '';
-
+        var destino = url || aviso.url || URL_TELEGRAM;
         aviso.url = destino;
-        if (tipoFinal) aviso.tipo = tipoFinal;
 
-        // El aviso se adapta a lo que se intentaba abrir: el curso sí se
-        // puede pagar aquí dentro, Telegram no.
-        var esCurso = tipoFinal !== 'telegram';
         var nombreApp = appInterna ? appInterna.nombre : 'una aplicación';
-
-        var elTitulo = document.getElementById('inappTitle');
-        if (elTitulo) {
-            elTitulo.textContent = esCurso
-                ? 'Paga sin salir de la aplicación'
-                : 'Copia el enlace y ábrelo en Telegram';
-        }
 
         var elDesc = document.getElementById('inappDesc');
         if (elDesc) {
-            elDesc.innerHTML = 'Estás dentro de <strong id="inappApp"></strong>. ' + (esCurso
-                ? 'Su navegador interno bloquea la página de pago, pero puedes pagar aquí '
-                  + 'mismo, sin salir.'
-                : 'Su navegador no permite abrir Telegram, así que copia el enlace y '
-                  + 'ábrelo desde la aplicación.');
+            elDesc.innerHTML = 'Estás dentro de <strong id="inappApp"></strong> y su navegador '
+                + 'no permite abrir Telegram. Prueba con el botón azul y, si no se abre, '
+                + 'copia el enlace y pégalo en tu navegador.';
             // el nombre se escribe con textContent para no inyectar nada
             var elApp = document.getElementById('inappApp');
             if (elApp) elApp.textContent = nombreApp;
@@ -501,7 +496,7 @@
 
         var pasos = document.getElementById('inappSteps');
         if (pasos) {
-            var lista = pasosDelAviso(esCurso);
+            var lista = pasosDelAviso();
             pasos.innerHTML = '';
             for (var i = 0; i < lista.length; i++) {
                 var li = document.createElement('li');
@@ -510,35 +505,29 @@
             }
         }
 
-        var btnPagar = document.getElementById('inappPay');
-        var btnCopiar = document.getElementById('inappCopy');
-
-        var estado = document.getElementById('inappStatus');
-        if (estado) {
-            estado.hidden = true;
-            estado.textContent = '';
-        }
-
-        // Para el curso el camino corto es pagar aquí; para Telegram solo
-        // queda copiar, así que ahí el botón principal es el de copiar.
-        if (btnPagar) btnPagar.hidden = !esCurso;
-        if (btnCopiar) {
-            if (esCurso) {
-                btnCopiar.classList.remove('btn-primary');
-                btnCopiar.classList.add('btn-outline');
-            } else {
-                btnCopiar.classList.remove('btn-outline');
-                btnCopiar.classList.add('btn-primary');
-            }
-        }
+        estadoDelAviso('');
 
         modal.classList.add('open');
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
-        marcarAvisoVisto();
 
         var cerrar = document.getElementById('inappClose');
         if (cerrar) setTimeout(function () { cerrar.focus(); }, 260);
+    }
+
+    /* Intenta abrir el canal. Se usa window.open y no un esquema de app
+       (tg://) porque el WebView bloqueado devuelve null en lugar de sacar
+       el error del sistema; en ese caso se copia el enlace y se avisa, de
+       modo que el usuario nunca se queda sin salida. */
+    function abrirTelegram(url) {
+        var destino = url || aviso.url || URL_TELEGRAM;
+        var ventana = null;
+        try { ventana = window.open(destino, '_blank'); } catch (e) { ventana = null; }
+        if (ventana) return;
+
+        estadoDelAviso('La aplicación no dejó abrir Telegram. Copiamos el enlace: pégalo en tu navegador.');
+        var btnCopiar = document.getElementById('inappCopy');
+        copiarAlPortapapeles(destino, btnCopiar);
     }
 
     function cerrarAviso() {
@@ -564,23 +553,15 @@
             // Botones del aviso. Se usa onclick para que cada pulsacion
             // reemplace cualquier manejador anterior.
 
-            var btnPagar = document.getElementById('inappPay');
-            if (btnPagar) {
-                btnPagar.onclick = function () {
-                    var estado = document.getElementById('inappStatus');
-                    abrirCheckout(function () {
-                        if (!estado) return;
-                        estado.hidden = false;
-                        estado.textContent = 'No se pudo cargar el pago aquí dentro. Copia el enlace de abajo y ábrelo en Chrome.';
-                    });
-                };
+            var btnTg = document.getElementById('inappTg');
+            if (btnTg) {
+                btnTg.onclick = function () { abrirTelegram(aviso.url); };
             }
 
             var btnCopiar = document.getElementById('inappCopy');
             if (btnCopiar) {
                 btnCopiar.onclick = function () {
-                    var destino = aviso.url || (location.origin + location.pathname);
-                    copiarAlPortapapeles(destino, btnCopiar);
+                    copiarAlPortapapeles(aviso.url || URL_TELEGRAM, btnCopiar);
                 };
             }
 
@@ -589,14 +570,25 @@
             });
         }
 
-        // Aviso informativo: dentro de un WebView casi nada funciona, asi que
-        // se explica una vez por sesion.
-        if (appInterna && !avisoYaVisto()) {
-            setTimeout(function () { mostrarAviso('', ''); }, 1400);
+        // Respaldo del pago: si el widget no carga, se ofrece el enlace.
+        var pagoCopiar = document.getElementById('pagoCopiar');
+        if (pagoCopiar) {
+            pagoCopiar.onclick = function () { copiarAlPortapapeles(URL_CURSO, pagoCopiar); };
         }
+        var pagoCerrar = document.getElementById('pagoCerrar');
+        if (pagoCerrar) {
+            pagoCerrar.onclick = function () { mostrarCargandoPago(false); };
+        }
+
+        // Sin aviso automatico: la pagina se ve entera desde el primer
+        // segundo para que el visitante la lea y se anime a comprar. La
+        // ventana aparece solo si de verdad se pide Telegram.
 
         document.addEventListener('click', function (e) {
             if (e.defaultPrevented || e.button > 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+            // los enlaces de dentro del aviso van por su cuenta
+            if (modal && modal.contains(e.target)) return;
 
             var a = enlaceMasCercano(e.target);
             if (!a) return;
@@ -613,18 +605,16 @@
 
             e.preventDefault();
 
-            // El curso se cobra dentro de la propia página: no hay salto que
-            // el navegador interno pueda bloquear. Si la librería no carga,
-            // se muestra el aviso con el enlace para copiar.
+            // El curso se cobra dentro de la propia página con el widget de
+            // Hotmart: no hay salto que el navegador pueda bloquear.
             if (tipo === 'hotmart') {
-                abrirCheckout(function () { mostrarAviso(url, tipo); });
+                abrirCheckout(mostrarFalloPago);
                 return;
             }
 
-            // Telegram no se puede incrustar y los WebView tampoco dejan
-            // abrirlo, así que se muestra el aviso para copiar el enlace:
-            // ningún botón que dispare un error del sistema.
-            mostrarAviso(url, tipo);
+            // Telegram no se puede incrustar, así que se abre el aviso con
+            // el intento de apertura y el enlace para copiar.
+            mostrarAviso(url);
         }, false);
     }
 

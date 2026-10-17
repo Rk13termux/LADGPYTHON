@@ -1920,6 +1920,13 @@ section { padding: 96px 0; position: relative; }
     text-transform: uppercase;
 }
 
+/* El aviso es solo del canal de Telegram, asi que el distintivo va en azul */
+.inapp-badge-tg {
+    background: rgba(42, 171, 238, .12);
+    border-color: rgba(42, 171, 238, .32);
+    color: var(--telegram);
+}
+
 .inapp-title {
     margin: 0 40px 12px 0;
     font-size: 24px;
@@ -1939,7 +1946,7 @@ section { padding: 96px 0; position: relative; }
 .inapp-desc strong { color: var(--text); font-weight: 700; }
 
 .inapp-steps {
-    margin: 0 0 22px;
+    margin: 18px 0 0;
     padding: 0;
     list-style: none;
     counter-reset: inapp;
@@ -1974,15 +1981,6 @@ section { padding: 96px 0; position: relative; }
 }
 
 .inapp-steps li strong { color: var(--text); font-weight: 700; }
-
-.inapp-dots {
-    display: inline-block;
-    padding: 0 5px;
-    border-radius: 5px;
-    background: var(--bg-elevated);
-    color: var(--text);
-    font-weight: 800;
-}
 
 .inapp-actions {
     display: flex;
@@ -2061,11 +2059,13 @@ section { padding: 96px 0; position: relative; }
     flex-direction: column;
     align-items: center;
     gap: 16px;
+    width: min(90vw, 340px);
     padding: 26px 32px;
     border: 1px solid rgba(0, 230, 118, .3);
     border-radius: 14px;
     background-color: #0b0b0b;
     box-shadow: 0 20px 50px rgba(0, 0, 0, .6);
+    text-align: center;
 }
 
 .pago-spinner {
@@ -2086,6 +2086,19 @@ section { padding: 96px 0; position: relative; }
     font-size: 14px;
     color: var(--text);
 }
+
+/* Respaldo: el widget no cargo y se ofrece copiar el enlace del curso */
+.pago-cargando-acciones {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-top: 4px;
+}
+
+.pago-cargando-acciones[hidden] { display: none !important; }
+
+.pago-cargando-acciones .btn { width: 100%; justify-content: center; }
 
 /* ---------- Checkout incrustado de Hotmart ----------
    Dentro de TikTok (u otro navegador interno) el pago se hace aqui mismo

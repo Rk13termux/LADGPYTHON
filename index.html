@@ -975,27 +975,21 @@ yo = FuturoDev()
                 <i class="fas fa-xmark" aria-hidden="true"></i>
             </button>
 
-            <span class="inapp-badge">
-                <i class="fas fa-shield-halved" aria-hidden="true"></i> Navegador interno
+            <span class="inapp-badge inapp-badge-tg">
+                <i class="fab fa-telegram" aria-hidden="true"></i> Canal de Telegram
             </span>
 
-            <h2 class="inapp-title" id="inappTitle">Abre esta página en tu navegador</h2>
+            <h2 class="inapp-title" id="inappTitle">Entra al canal de Telegram</h2>
 
             <p class="inapp-desc" id="inappDesc">
-                Estás viendo la página dentro de <strong id="inappApp">una aplicación</strong>.
-                Su navegador interno bloquea la página de pago, pero puedes pagar aquí
-                mismo sin salir.
+                Estás dentro de <strong id="inappApp">una aplicación</strong> y su navegador no
+                permite abrir Telegram. Prueba con el botón azul y, si no se abre, copia el
+                enlace y pégalo en tu navegador.
             </p>
 
-            <ol class="inapp-steps" id="inappSteps">
-                <li data-step="menu">Toca el botón de menú <span class="inapp-dots">&#8943;</span> de la esquina superior.</li>
-                <li data-step="open">Elige <strong>Abrir en el navegador</strong>.</li>
-                <li data-step="back">Vuelve a pulsar el botón que querías usar.</li>
-            </ol>
-
             <div class="inapp-actions">
-                <button type="button" class="btn btn-primary inapp-btn" id="inappPay">
-                    <i class="fas fa-credit-card" aria-hidden="true"></i> Pagar aquí mismo
+                <button type="button" class="btn btn-telegram inapp-btn" id="inappTg">
+                    <i class="fab fa-telegram" aria-hidden="true"></i> Entrar al canal de Telegram
                 </button>
                 <button type="button" class="btn btn-outline inapp-btn" id="inappCopy">
                     <i class="fas fa-copy" aria-hidden="true"></i> Copiar enlace
@@ -1006,16 +1000,28 @@ yo = FuturoDev()
 
             <p class="inapp-url-wrap">
                 <span class="inapp-url-label">Enlace</span>
-                <span class="inapp-url" id="inappUrl">chmodxcode.pro</span>
+                <span class="inapp-url" id="inappUrl">https://t.me/chmodxcode</span>
             </p>
+
+            <ol class="inapp-steps" id="inappSteps">
+                <li>Pulsa <strong>Entrar al canal de Telegram</strong>.</li>
+                <li>Si no se abre, pulsa <strong>Copiar enlace</strong>.</li>
+                <li>Abre <strong>Telegram</strong> y pega el enlace, o busca <strong>@chmodxcode</strong>.</li>
+            </ol>
         </div>
     </div>
 
     <!-- Espera mientras carga el pago incrustado -->
     <div class="pago-cargando" id="pagoCargando" role="status" aria-live="polite" hidden>
         <div class="pago-cargando-box">
-            <span class="pago-spinner" aria-hidden="true"></span>
-            <p class="pago-cargando-txt">Abriendo el pago seguro…</p>
+            <span class="pago-spinner" id="pagoSpinner" aria-hidden="true"></span>
+            <p class="pago-cargando-txt" id="pagoCargandoTxt">Abriendo el pago seguro…</p>
+            <div class="pago-cargando-acciones" id="pagoFallo" hidden>
+                <button type="button" class="btn btn-primary btn-sm" id="pagoCopiar">
+                    <i class="fas fa-copy" aria-hidden="true"></i> Copiar enlace del curso
+                </button>
+                <button type="button" class="btn btn-outline btn-sm" id="pagoCerrar">Cerrar</button>
+            </div>
         </div>
     </div>
 
