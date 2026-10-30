@@ -1,0 +1,269 @@
+# Panel de Administración Pro · CHMODX
+
+Aplicación de escritorio en **Flet (Python)** para gestionar `chmodxcode.pro`:
+CMS con Plantilla Maestra, analíticas de Supabase, leads y publicación
+automatizada por Git.
+
+Interfaz oscura tipo terminal, con los mismos colores del sitio
+(`#00e676`, `#00e5ff`, `#ffd43b`) y cuatro pestañas:
+
+| Pestaña | Qué hace |
+|---|---|
+| **Editor** | Crea repositorios y guías aplicando la Plantilla Maestra de branding, con vista previa en vivo. |
+| **Analíticas** | Lee `page_views` de Supabase y muestra visitas, únicos, conversión, serie diaria y ranking. |
+| **Leads** | Lista los correos capturados, con búsqueda y exportación a CSV. |
+| **Publicación** | Guarda, ejecuta el build del sitio, hace commit y empuja a GitHub. |
+
+---
+
+## 1. Instalación
+
+```bash
+cd /ruta/a/LANDINGPYTHON
+python3 -m pip install -r admin/requirements.txt
+```
+
+Dependencias: `flet`, `flet-desktop`, `httpx`, `python-dotenv`. No hay Node,
+ni bundler, ni base de datos local.
+
+Comprueba que todo está en su sitio **sin abrir la ventana**:
+
+```bash
+python3 -m admin --check
+```
+
+Salida esperada:
+
+```
+Configuración
+  proyecto        /ruta/a/LANDINGPYTHON
+  contenido       ok
+  supabase        configurado
+  ...
+Todo en orden.
+```
+
+---
+
+## 2. Variables de entorno
+
+Copia el ejemplo y rellena los valores:
+
+```bash
+cp admin/.env.example admin/.env
+```
+
+```dotenv
+SUPABASE_URL=https://tu-proyecto.supabase.co
+SUPABASE_ANON_KEY=eyJ...
+SUPABASE_SERVICE_KEY=eyJ...
+```
+
+`admin/.env` está excluido de Git. La app nunca escribe las claves en el
+código ni en los registros; en la barra inferior solo muestra una versión
+enmascarada (`abcd…wxyz`).
+
+### Qué clave usa cada cosa
+
+| Clave | Uso | Riesgo |
+|---|---|---|
+| `SUPABASE_ANON_KEY` | Inserciones desde el sitio público | Bajo: RLS limita a `insert` |
+| `SUPABASE_SERVICE_KEY` | Lectura de tablas desde el panel | Alto: **nunca** en el navegador |
+
+El panel usa `SUPABASE_SERVICE_KEY` si existe y, si no, cae a la anon key.
+Sin la service key, RLS bloqueará las lecturas y verás el aviso 403 en las
+pestañas de datos. Es el comportamiento correcto: la anon key no debe poder
+leer correos ajenos.
+
+Variables opcionales:
+
+```dotenv
+CHMODX_PROJECT_ROOT=/ruta/a/LANDINGPYTHON
+CHMODX_SITE_URL=https://chmodxcode.pro
+CHMODX_GIT_REMOTE=origin
+CHMODX_GIT_BRANCH=main
+CHMODX_BUILD_COMMAND=python3 scripts/build.py
+```
+
+---
+
+## 3. Base de datos
+
+Ejecuta `admin/sql/schema.sql` en **Supabase → SQL Editor**. Crea:
+
+- `page_views` — visitas (path, referrer, device, country, visitor_id, created_at).
+- `leads` — suscriptores (email único, source, status, created_at).
+- RLS activado: el sitio solo puede insertar; la lectura queda para el panel.
+- Vistas opcionales `analytics_daily` y `analytics_pages` para volúmenes grandes.
+
+Ejemplo de inserción desde el sitio:
+
+```js
+await fetch(`${SUPABASE_URL}/rest/v1/page_views`, {
+  method: "POST",
+  headers: {
+    apikey: SUPABASE_ANON_KEY,
+    Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    path: location.pathname,
+    referrer: document.referrer || null,
+    device: matchMedia("(max-width: 768px)").matches ? "mobile" : "desktop",
+    visitor_id: localStorage.getItem("cx_visitor"),
+  }),
+});
+```
+
+---
+
+## 4. Uso
+
+```bash
+python3 -m admin            # ventana de escritorio
+python3 -m admin --web      # interfaz en el navegador (red local)
+```
+
+En modo web puedes entrar desde el móvil: `python3 -m admin --web --host 0.0.0.0 --port 8560`.
+
+### Editor
+
+1. Elige **tipo** (repositorio o guía), **categoría** y **nivel**.
+2. Escribe el título: el slug se genera solo (puedes editarlo).
+3. Redacta el gancho: es la frase que aparece en las tarjetas y en Google.
+4. Pega el contenido Markdown. El botón **Estructura maestra** inserta el
+   esqueleto de secciones si empiezas de cero.
+5. Añade los comandos de Termux en su campo: se envuelven en un bloque `bash`.
+6. Revisa la vista previa: ya incluye lo que se publicará.
+7. **Guardar borrador** escribe `content/repos/<slug>.md` o
+   `content/guias/<slug>.md`. **Guardar y publicar** salta a la pestaña de Git.
+
+También puedes abrir contenido existente con el selector **Abrir existente**.
+
+### Plantilla Maestra
+
+Al guardar, el panel envuelve tu texto con la estructura de marca:
+
+```markdown
+---
+title: "..."
+slug: "..."
+summary: "..."
+category: "..."
+difficulty: "..."
+stack: ["..."]
+tags: ["..."]
+updated: "2026-10-29"
+repo: ""
+featured: false
+order: 99
+license: "MIT"
+---
+
+> **En una frase:** <gancho>
+
+> **Uso responsable:** ...        ← solo en ciberseguridad
+
+<cuerpo escrito por ti>
+
+## Comandos de Termux
+```bash
+<comandos>
+```
+
+## Siguiente paso
+<cierre con enlace a /academia y UTM>
+```
+
+Reglas:
+
+- El gancho y el cierre **no se duplican** si ya existen en el cuerpo.
+- En ciberseguridad se añade el aviso de uso responsable si falta.
+- La sección de comandos solo aparece si hay comandos.
+- El front matter es exactamente el que consume `scripts/build.py`.
+
+### Analíticas y Leads
+
+Ambas pestañas consultan Supabase al abrirse. Si no hay configuración,
+muestran un estado vacío con instrucciones en lugar de romperse.
+
+- **Analíticas**: 7, 30 o 90 días. KPIs, serie diaria, páginas más vistas,
+  origen del tráfico y dispositivos. La agregación se hace en el cliente,
+  así que funciona con el esquema mínimo; para millones de filas usa las
+  vistas `analytics_daily` y `analytics_pages`.
+- **Leads**: búsqueda por correo o fuente, KPIs y exportación a
+  `admin/exports/leads-AAAAMMDD-HHMMSS.csv`.
+
+### Publicación
+
+El botón **Publicar ahora** ejecuta, en este orden y deteniéndose al primer fallo:
+
+1. `python3 scripts/build.py` (opcional, activado por defecto)
+2. `git add -A`
+3. `git commit -m "cms: <título>"`
+4. `git push origin main`
+
+Cada paso se escribe en la consola con su código de salida y duración.
+GitHub Actions toma el relevo y despliega en Pages.
+
+Detalles de seguridad:
+
+- Nunca se usa `shell=True`; los argumentos van como lista.
+- `shlex.split` para el comando de build definido en el entorno.
+- El mensaje de commit se sanea (una línea, sin caracteres de control, sin
+  empezar por `-`).
+- `GIT_TERMINAL_PROMPT=0`: si faltan credenciales, git falla al instante en
+  lugar de quedarse esperando una contraseña.
+- El modo **Simulación** hace `add` y `commit` pero no `push`.
+
+---
+
+## 5. Estructura
+
+```
+admin/
+├── __main__.py        # CLI: --check, --web, --host, --port
+├── app.py             # ventana, cabecera, pestañas, barra de estado
+├── config.py          # .env, Settings, validación, enmascarado de claves
+├── context.py         # estado compartido entre pestañas
+├── theme.py           # tokens de color y tema de Flet
+├── widgets.py         # tarjetas, KPIs, botones, campos, avisos
+├── branding.py        # Plantilla Maestra y copy de marca
+├── content.py         # ContentDraft, front matter, validación, guardado
+├── analytics.py       # agregación de métricas (funciones puras)
+├── supabase_api.py    # cliente REST (httpx)
+├── git_ops.py         # subprocess seguro, estado del repo, publicación
+├── tabs/
+│   ├── editor.py
+│   ├── analytics.py
+│   ├── leads.py
+│   └── publish.py
+├── sql/schema.sql
+├── .env.example
+└── requirements.txt
+```
+
+---
+
+## 6. Problemas frecuentes
+
+| Síntoma | Causa | Solución |
+|---|---|---|
+| `403` en Analíticas | RLS bloquea la lectura | Añade `SUPABASE_SERVICE_KEY` al `.env` |
+| `404` en Analíticas | Tablas sin crear | Ejecuta `admin/sql/schema.sql` |
+| `401` | Clave revocada | Regenera la clave en Supabase |
+| «Ya existe \<slug>.md» | El archivo está en el proyecto | Activa **Sobrescribir si existe** |
+| El build falla al publicar | Front matter o categoría inválidos | Lee el error en la consola; el push no se ejecuta |
+| `git push` falla con «could not read Username» | Sin credenciales | `gh auth login` o configura un token/SSH |
+| La ventana no abre en Linux sin GPU | Flutter necesita OpenGL | Usa `--web` o ejecuta en un escritorio con aceleración |
+
+---
+
+## 7. Desarrollo
+
+```bash
+python3 -m admin --check    # valida configuración, plantilla e interfaz
+```
+
+El comando construye todo el árbol de controles de las cuatro pestañas sin
+abrir ventana: sirve como prueba de humo en cualquier equipo o en CI.

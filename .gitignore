@@ -13,6 +13,11 @@ npm-debug.log*
 
 # Entorno
 .env
+admin/.env
+
+# Panel de administración
+admin/exports/
+admin/assets/fonts/*.ttf
 
 # Python
 __pycache__/

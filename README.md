@@ -34,6 +34,14 @@ No hay tienda tradicional ni carrito. El contenido gratuito atrae, educa y deriv
 │   ├── main.js                    # WebViews, Telegram, checkout Hotmart, contador
 │   └── content.js                 # Copiar código, filtros, TOC, progreso
 ├── assets/                        # Logo y foto del instructor
+├── admin/                         # Panel de Administración Pro (Flet)
+│   ├── app.py                     # Ventana, pestañas y estado
+│   ├── branding.py                # Plantilla Maestra de contenido
+│   ├── content.py                 # Front matter, validación y guardado
+│   ├── supabase_api.py            # Cliente REST de Supabase
+│   ├── git_ops.py                 # Build + commit + push con subprocess
+│   ├── tabs/                      # Editor, Analíticas, Leads, Publicación
+│   └── sql/schema.sql             # Tablas y políticas RLS
 ├── sitemap.xml                    # Generado
 ├── robots.txt                     # Generado
 ├── CNAME                          # chmodxcode.pro
@@ -131,6 +139,26 @@ El build valida campos obligatorios, slugs duplicados y categorías desconocidas
 ### 5. Publicar
 
 Commit y push a `main`. El workflow ejecuta el build y despliega en GitHub Pages.
+
+---
+
+## Panel de Administración Pro
+
+`admin/` es una aplicación de escritorio en **Flet** que automatiza todo el flujo de publicación:
+
+```bash
+python3 -m pip install -r admin/requirements.txt
+cp admin/.env.example admin/.env      # SUPABASE_URL + claves
+python3 -m admin                      # abre la ventana
+python3 -m admin --check              # diagnóstico sin interfaz
+```
+
+- **Editor**: formulario con Plantilla Maestra, vista previa y guardado directo en `content/`.
+- **Analíticas**: visitas, únicos y conversión leídos de Supabase.
+- **Leads**: correos capturados, con búsqueda y exportación a CSV.
+- **Publicación**: `scripts/build.py` + `git add` + `git commit` + `git push`, con consola en vivo.
+
+Documentación completa en [`admin/README.md`](admin/README.md).
 
 ---
 
