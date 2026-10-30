@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <meta name="robots" content="index,follow">
+    <title>Entornos virtuales en Python: la guía que evita el caos de dependencias | CHMODX</title>
+    <meta name="description" content="Cómo funcionan venv, pip y las dependencias, por qué los proyectos se rompen al cambiar de máquina y cómo fijar versiones sin dolor.">
+    <link rel="canonical" href="https://chmodxcode.pro/guias/entornos-virtuales-python/">
+
+    <link rel="icon" type="image/png" href="/assets/logo.png">
+    <link rel="apple-touch-icon" href="/assets/logo.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="CHMODX">
+    <meta property="og:title" content="Entornos virtuales en Python: la guía que evita el caos de dependencias | CHMODX">
+    <meta property="og:description" content="Cómo funcionan venv, pip y las dependencias, por qué los proyectos se rompen al cambiar de máquina y cómo fijar versiones sin dolor.">
+    <meta property="og:url" content="https://chmodxcode.pro/guias/entornos-virtuales-python/">
+    <meta property="og:image" content="https://chmodxcode.pro/assets/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Entornos virtuales en Python: la guía que evita el caos de dependencias | CHMODX">
+    <meta name="twitter:description" content="Cómo funcionan venv, pip y las dependencias, por qué los proyectos se rompen al cambiar de máquina y cómo fijar versiones sin dolor.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/site.css">
+    
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Entornos virtuales en Python: la guía que evita el caos de dependencias",
+  "description": "Cómo funcionan venv, pip y las dependencias, por qué los proyectos se rompen al cambiar de máquina y cómo fijar versiones sin dolor.",
+  "dateModified": "2026-10-22",
+  "inLanguage": "es",
+  "url": "https://chmodxcode.pro/guias/entornos-virtuales-python/",
+  "mainEntityOfPage": "https://chmodxcode.pro/guias/entornos-virtuales-python/",
+  "author": {
+    "@type": "Organization",
+    "name": "CHMODX"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CHMODX",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://chmodxcode.pro/assets/logo.png"
+    }
+  },
+  "keywords": "python, venv, pip, dependencias"
+}
+</script>
+</head>
+<body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <header class="header site-header">
+        <nav class="navbar" aria-label="Navegación principal">
+            <div class="container nav-container">
+                <a href="/" class="nav-logo" aria-label="CHMODX, inicio">
+                    <img src="/assets/logo.png" alt="" class="brand-logo" width="42" height="42">
+                    <span class="brand-name">CHMOD<span class="brand-x">X</span></span>
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="/repositorios/" class="">Repositorios</a></li>
+                    <li><a href="/guias/" class="is-active">Guías</a></li>
+                    <li><a href="/academia/" class="">Academia</a></li>
+                </ul>
+
+                <div class="nav-cta">
+                    <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="nav-telegram-link" aria-label="Canal de Telegram">
+                        <i class="fab fa-telegram" aria-hidden="true"></i>
+                    </a>
+                    <a href="/academia/" class="btn btn-primary btn-sm">
+                        <i class="fas fa-bolt" aria-hidden="true"></i> Academia
+                    </a>
+                </div>
+
+                <button type="button" class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="/repositorios/">Repositorios</a>
+                <a href="/guias/">Guías</a>
+                <a href="/academia/">Academia Python Pro</a>
+                <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-telegram">Canal de Telegram</a>
+                <a href="/academia/" class="btn btn-primary">Ver la academia</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="contenido">
+        <div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
+
+<div class="container">
+    <nav class="breadcrumb article-breadcrumb" aria-label="Miga de pan">
+        <a href="/">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <a href="/guias/">Guías</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Entornos virtuales en Python: la guía que evita el caos…</span>
+    </nav>
+</div>
+
+<header class="article-hero">
+    <div class="container">
+        <span class="badge badge-python"><i class="fab fa-python" aria-hidden="true"></i> Python</span>
+        <h1 class="article-title">Entornos virtuales en Python: la guía que evita el caos de dependencias</h1>
+        <p class="article-summary">Cómo funcionan venv, pip y las dependencias, por qué los proyectos se rompen al cambiar de máquina y cómo fijar versiones sin dolor.</p>
+        <div class="article-meta">
+            <span><i class="far fa-calendar" aria-hidden="true"></i> Actualizado el 22 oct 2026</span>
+            <span><i class="far fa-clock" aria-hidden="true"></i> 8 min de lectura</span>
+            <span><i class="fas fa-signal" aria-hidden="true"></i> Nivel Principiante</span>
+            <span><i class="fas fa-user-pen" aria-hidden="true"></i> Equipo CHMODX</span>
+        </div>
+        <div class="tag-list">
+            <span class="tag">python</span><span class="tag">venv</span><span class="tag">pip</span><span class="tag">dependencias</span>
+        </div>
+    </div>
+</header>
+
+<div class="container article-shell">
+    <article class="article-main">
+        <div class="article-body">
+            <h2 id="el-problema-real">El problema real</h2>
+<p>Un proyecto funciona en tu equipo y falla en el servidor. O deja de funcionar después de instalar otra librería. Casi siempre el culpable es el mismo: dependencias globales compartidas entre proyectos que necesitan versiones distintas.</p>
+<p>La solución no es memorizar comandos. Es entender qué aísla un entorno virtual.</p>
+<h2 id="que-hace-venv">Qué hace <code>venv</code></h2>
+<p><code>venv</code> crea una carpeta con:</p>
+<ul>
+<li>Un enlace o copia del intérprete de Python.</li>
+<li>Un directorio <code>site-packages</code> propio.</li>
+<li>Scripts de activación que cambian <code>PATH</code> y <code>sys.prefix</code>.</li>
+</ul>
+<p>Cuando activas el entorno, <code>python</code> y <code>pip</code> apuntan a esa carpeta. El Python del sistema queda intacto.</p>
+<h2 id="crear-y-activar">Crear y activar</h2>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">cd mi-proyecto
+python3 -m venv .venv
+source .venv/bin/activate</code></pre></div>
+<aside class="cta-code" data-cta="code" data-content="entornos-virtuales-python" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Academia Python Pro</strong> Copiar un script resuelve una tarea. Entender cada línea te permite resolver la siguiente. La academia construye esa base paso a paso.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=entornos-virtuales-python&utm_content=bloque-1" class="btn btn-primary btn-sm">Ver la academia <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
+<p>En Windows:</p>
+<div class="code-block"><div class="code-head"><span class="code-lang">powershell</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-powershell">py -m venv .venv
+.venv\Scripts\activate</code></pre></div>
+<p>Comprueba que estás dentro:</p>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">which python
+python -c "import sys; print(sys.prefix)"</code></pre></div>
+<p>La ruta debe terminar en <code>.venv</code>.</p>
+<h2 id="instalar-dependencias">Instalar dependencias</h2>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">pip install requests
+pip freeze &gt; requirements.txt</code></pre></div>
+<p><code>requirements.txt</code> guarda las versiones exactas. Sin él, otra persona instala “la última” y puede recibir una versión incompatible.</p>
+<p>Para reproducir el entorno:</p>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt</code></pre></div>
+<aside class="cta-code" data-cta="code" data-content="entornos-virtuales-python" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Academia Python Pro</strong> Este bloque funciona hoy. Con estructura, pruebas y buenas prácticas seguirá funcionando dentro de un año. Eso se aprende con método.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=entornos-virtuales-python&utm_content=bloque-2" class="btn btn-primary btn-sm">Ver la academia <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
+<h2 id="requirements-txt-no-siempre-es-suficiente"><code>requirements.txt</code> no siempre es suficiente</h2>
+<p><code>pip freeze</code> incluye dependencias transitivas y fija todo. Es reproducible, pero difícil de mantener. Alternativas:</p>
+<ul>
+<li><code>pyproject.toml</code> con dependencias directas y un rango de versiones.</li>
+<li><code>pip-tools</code> para generar un archivo bloqueado desde un archivo fuente.</li>
+<li><code>uv</code> o <code>poetry</code> si necesitas resolución rápida y lockfiles.</li>
+</ul>
+<p>Para proyectos pequeños, <code>requirements.txt</code> es suficiente. Para bibliotecas publicadas, usa <code>pyproject.toml</code>.</p>
+<h2 id="errores-que-conviene-evitar">Errores que conviene evitar</h2>
+<ol>
+<li><strong>Crear el entorno dentro de una carpeta sincronizada con la nube.</strong> Miles de archivos pequeños y conflictos garantizados.</li>
+<li><strong>Versionar <code>.venv</code> en Git.</strong> Añade <code>.venv/</code> a <code>.gitignore</code>.</li>
+<li><strong>Instalar con <code>sudo pip</code>.</strong> Mezcla paquetes del sistema y puede romper la distribución.</li>
+<li><strong>Activar el entorno y olvidarlo.</strong> Revisa <code>sys.prefix</code> cuando algo se comporte de forma extraña.</li>
+<li><strong>No fijar la versión de Python.</strong> Un proyecto escrito para 3.12 puede fallar en 3.8.</li>
+</ol>
+<h2 id="un-flujo-de-trabajo-limpio">Un flujo de trabajo limpio</h2>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash"># 1. Clonar
+git clone https://github.com/usuario/proyecto.git
+cd proyecto
+
+# 2. Crear entorno
+python3 -m venv .venv
+source .venv/bin/activate
+
+# 3. Instalar dependencias
+pip install -r requirements.txt
+
+# 4. Verificar
+python -m pytest</code></pre></div>
+<p>Si el paso 4 falla, el problema está en el proyecto o en la versión de Python, no en tu máquina.</p>
+<h2 id="cuando-no-usar-un-entorno-virtual">Cuándo no usar un entorno virtual</h2>
+<p>Casi nunca. La excepción son contenedores donde el aislamiento ya existe, o scripts de un solo archivo sin dependencias externas. Incluso ahí, un entorno evita sorpresas.</p>
+<h2 id="siguiente-paso">Siguiente paso</h2>
+<p>Aislar dependencias resuelve la mitad del problema. La otra mitad es escribir código que otra persona pueda entender, probar y ejecutar sin adivinar.</p>
+        </div>
+
+        <section class="cta-end" aria-labelledby="ctaEndTitle"><div class="cta-end-copy"><span class="eyebrow">Academia Python Pro</span><h2 id="ctaEndTitle">¿Quieres convertir esto en una habilidad completa?</h2><p>Pasa de los scripts sueltos a proyectos completos con estructura y pruebas.</p></div><div class="cta-end-actions"><a href="/academia/?utm_source=contenido&utm_medium=cta_final&utm_campaign=entornos-virtuales-python&utm_content=fin-guia" class="btn btn-primary btn-lg"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Entrar a la Academia</a><a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-outline"><i class="fab fa-telegram" aria-hidden="true"></i> Resolver dudas</a></div></section>
+
+        <section class="related" aria-labelledby="relatedTitle">
+            <h2 id="relatedTitle">Sigue aprendiendo</h2>
+            <div class="card-grid card-grid-3">
+                <a class="content-card" href="/guias/expresiones-regulares-python/" data-category="python" data-search="expresiones regulares en python sin memorizar símbolos una ruta práctica por re, grupos, búsquedas y sustituciones con ejemplos que puedes ejecutar y modificar. python intermedio python regex texto re"><div class="card-top"><span class="badge badge-python"><i class="fab fa-python" aria-hidden="true"></i> Python</span><span class="card-level">Intermedio</span></div><h2 class="card-title">Expresiones regulares en Python sin memorizar símbolos</h2><p class="card-summary">Una ruta práctica por re, grupos, búsquedas y sustituciones con ejemplos que puedes ejecutar y modificar.</p><div class="card-tags"><span class="tag">python</span><span class="tag">regex</span><span class="tag">texto</span></div><div class="card-foot"><span><i class="far fa-clock" aria-hidden="true"></i> 10 min</span><span class="card-cta">Leer guía <i class="fas fa-arrow-right" aria-hidden="true"></i></span></div></a><a class="content-card" href="/guias/termux-desde-cero/" data-category="termux" data-search="termux desde cero: convierte tu android en un entorno de desarrollo instalación, permisos, paquetes esenciales y primer proyecto en python. una puesta a punto completa sin depender de una computadora. termux principiante android python entorno terminal"><div class="card-top"><span class="badge badge-termux"><i class="fas fa-terminal" aria-hidden="true"></i> Termux</span><span class="card-level">Principiante</span></div><h2 class="card-title">Termux desde cero: convierte tu Android en un entorno de desarrollo</h2><p class="card-summary">Instalación, permisos, paquetes esenciales y primer proyecto en Python. Una puesta a punto completa sin depender de una computadora.</p><div class="card-tags"><span class="tag">android</span><span class="tag">python</span><span class="tag">entorno</span></div><div class="card-foot"><span><i class="far fa-clock" aria-hidden="true"></i> 9 min</span><span class="card-cta">Leer guía <i class="fas fa-arrow-right" aria-hidden="true"></i></span></div></a><a class="content-card" href="/guias/endurecer-ssh-linux/" data-category="ciberseguridad" data-search="endurecer ssh en linux: de la configuración por defecto a un acceso defendible claves, usuarios, fail2ban y ajustes de sshd para reducir la superficie de ataque de un servidor expuesto a internet. ciberseguridad intermedio ssh linux hardening servidores"><div class="card-top"><span class="badge badge-ciberseguridad"><i class="fas fa-shield-halved" aria-hidden="true"></i> Ciberseguridad</span><span class="card-level">Intermedio</span></div><h2 class="card-title">Endurecer SSH en Linux: de la configuración por defecto a un acceso defendible</h2><p class="card-summary">Claves, usuarios, fail2ban y ajustes de sshd para reducir la superficie de ataque de un servidor expuesto a internet.</p><div class="card-tags"><span class="tag">ssh</span><span class="tag">linux</span><span class="tag">hardening</span></div><div class="card-foot"><span><i class="far fa-clock" aria-hidden="true"></i> 11 min</span><span class="card-cta">Leer guía <i class="fas fa-arrow-right" aria-hidden="true"></i></span></div></a>
+            </div>
+        </section>
+    </article>
+
+    <aside class="article-side">
+        <nav class="toc" aria-label="En esta página"><p class="toc-title">En esta página</p><ol><li class="toc-l2"><a href="#el-problema-real">El problema real</a></li><li class="toc-l2"><a href="#que-hace-venv">Qué hace venv</a></li><li class="toc-l2"><a href="#crear-y-activar">Crear y activar</a></li><li class="toc-l2"><a href="#instalar-dependencias">Instalar dependencias</a></li><li class="toc-l2"><a href="#requirements-txt-no-siempre-es-suficiente">requirements.txt no siempre es suficiente</a></li><li class="toc-l2"><a href="#errores-que-conviene-evitar">Errores que conviene evitar</a></li><li class="toc-l2"><a href="#un-flujo-de-trabajo-limpio">Un flujo de trabajo limpio</a></li><li class="toc-l2"><a href="#cuando-no-usar-un-entorno-virtual">Cuándo no usar un entorno virtual</a></li><li class="toc-l2"><a href="#siguiente-paso">Siguiente paso</a></li></ol></nav>
+
+        <aside class="sidebar-card sidebar-academy"><span class="sidebar-kicker">Academia Python Pro</span><h2>Ordena lo que ya practicas</h2><p>19 módulos, proyectos reales y acceso de por vida. La ruta completa para pasar de copiar comandos a tomar decisiones.</p><ul class="sidebar-list"><li><i class="fas fa-check" aria-hidden="true"></i> Python desde cero</li><li><i class="fas fa-check" aria-hidden="true"></i> Proyectos y certificado</li><li><i class="fas fa-check" aria-hidden="true"></i> Comunidad en Telegram</li></ul><a href="/academia/?utm_source=contenido&utm_medium=sidebar&utm_campaign=entornos-virtuales-python&utm_content=guia" class="btn btn-primary btn-sm">Ver el temario</a><span class="sidebar-note">Pago seguro con Hotmart</span></aside>
+
+        <aside class="sidebar-card sidebar-tg"><span class="sidebar-kicker"><i class="fab fa-telegram" aria-hidden="true"></i> Comunidad</span><h2>Canal de Telegram</h2><p>Nuevos repositorios, scripts y avisos. Acceso gratuito y sin spam.</p><a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-telegram btn-sm">Entrar al canal</a></aside>
+    </aside>
+</div>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="/" class="nav-logo footer-logo" aria-label="CHMODX, inicio">
+                    <img src="/assets/logo.png" alt="" class="brand-logo brand-logo-footer" width="48" height="48">
+                    <span class="brand-name">CHMOD<span class="brand-x">X</span></span>
+                </a>
+                <p class="footer-description">
+                    Repositorios, scripts y guías para aprender haciendo. Ciberseguridad ética,
+                    Python y Termux con contenido técnico verificable.
+                </p>
+                <div class="footer-social">
+                    <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a>
+                    <a href="/academia/" aria-label="Academia Python Pro"><i class="fas fa-graduation-cap" aria-hidden="true"></i></a>
+                    <a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noopener noreferrer" aria-label="Índice TIOBE"><i class="fas fa-chart-line" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contenido</h4>
+                <a href="/repositorios/">Repositorios</a>
+                <a href="/guias/">Guías técnicas</a>
+                <a href="/">Hub CHMODX</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Comunidad</h4>
+                <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer">Canal de Telegram</a>
+                <a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noopener noreferrer">Índice TIOBE</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Academia</h4>
+                <a href="/academia/">Python 3 de 0 a MASTER</a>
+                <a href="/academia/#temario">Temario</a>
+                <a href="/academia/#oferta">Precio y acceso</a>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p>&copy; 2026 CHMODX. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <div class="sticky-cta" id="stickyCta"><div class="sticky-price"><span class="sticky-old">$450</span><span class="sticky-new">$100</span><span class="sticky-off"><i class="fas fa-fire" aria-hidden="true"></i> 78% OFF</span></div><a href="/academia/?utm_source=contenido&utm_medium=sticky&utm_campaign=entornos-virtuales-python" class="btn btn-primary btn-sm"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Academia</a></div>
+
+    <button type="button" class="back-to-top" id="backToTop" aria-label="Volver arriba">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <div class="inapp-modal" id="inappModal" role="dialog" aria-modal="true"
+         aria-labelledby="inappTitle" aria-describedby="inappDesc" aria-hidden="true">
+        <div class="inapp-backdrop" data-inapp-close></div>
+
+        <div class="inapp-card">
+            <button type="button" class="inapp-close" id="inappClose" aria-label="Cerrar aviso">
+                <i class="fas fa-xmark" aria-hidden="true"></i>
+            </button>
+
+            <span class="inapp-badge inapp-badge-tg">
+                <i class="fab fa-telegram" aria-hidden="true"></i> Canal de Telegram
+            </span>
+
+            <h2 class="inapp-title" id="inappTitle">Entra al canal de Telegram</h2>
+
+            <p class="inapp-desc" id="inappDesc">
+                Estás dentro de <strong id="inappApp">una aplicación</strong> y su navegador no
+                permite abrir Telegram. Prueba con el botón azul y, si no se abre, copia el
+                enlace y pégalo en tu navegador.
+            </p>
+
+            <div class="inapp-actions">
+                <button type="button" class="btn btn-telegram inapp-btn" id="inappTg">
+                    <i class="fab fa-telegram" aria-hidden="true"></i> Entrar al canal de Telegram
+                </button>
+                <button type="button" class="btn btn-outline inapp-btn" id="inappCopy">
+                    <i class="fas fa-copy" aria-hidden="true"></i> Copiar enlace
+                </button>
+            </div>
+
+            <p class="inapp-status" id="inappStatus" role="status" hidden></p>
+
+            <p class="inapp-url-wrap">
+                <span class="inapp-url-label">Enlace</span>
+                <span class="inapp-url" id="inappUrl">https://t.me/chmodxcode</span>
+            </p>
+
+            <ol class="inapp-steps" id="inappSteps">
+                <li>Pulsa <strong>Entrar al canal de Telegram</strong>.</li>
+                <li>Si no se abre, pulsa <strong>Copiar enlace</strong>.</li>
+                <li>Abre <strong>Telegram</strong> y pega el enlace, o busca <strong>@chmodxcode</strong>.</li>
+            </ol>
+        </div>
+    </div>
+
+    <script src="/js/main.js" defer></script>
+    <script src="/js/content.js" defer></script>
+    
+</body>
+</html>

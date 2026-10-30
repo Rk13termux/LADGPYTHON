@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <meta name="robots" content="index,follow">
+    <title>Termux desde cero: convierte tu Android en un entorno de desarrollo | CHMODX</title>
+    <meta name="description" content="Instalación, permisos, paquetes esenciales y primer proyecto en Python. Una puesta a punto completa sin depender de una computadora.">
+    <link rel="canonical" href="https://chmodxcode.pro/guias/termux-desde-cero/">
+
+    <link rel="icon" type="image/png" href="/assets/logo.png">
+    <link rel="apple-touch-icon" href="/assets/logo.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="CHMODX">
+    <meta property="og:title" content="Termux desde cero: convierte tu Android en un entorno de desarrollo | CHMODX">
+    <meta property="og:description" content="Instalación, permisos, paquetes esenciales y primer proyecto en Python. Una puesta a punto completa sin depender de una computadora.">
+    <meta property="og:url" content="https://chmodxcode.pro/guias/termux-desde-cero/">
+    <meta property="og:image" content="https://chmodxcode.pro/assets/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Termux desde cero: convierte tu Android en un entorno de desarrollo | CHMODX">
+    <meta name="twitter:description" content="Instalación, permisos, paquetes esenciales y primer proyecto en Python. Una puesta a punto completa sin depender de una computadora.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/site.css">
+    
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Termux desde cero: convierte tu Android en un entorno de desarrollo",
+  "description": "Instalación, permisos, paquetes esenciales y primer proyecto en Python. Una puesta a punto completa sin depender de una computadora.",
+  "dateModified": "2026-10-23",
+  "inLanguage": "es",
+  "url": "https://chmodxcode.pro/guias/termux-desde-cero/",
+  "mainEntityOfPage": "https://chmodxcode.pro/guias/termux-desde-cero/",
+  "author": {
+    "@type": "Organization",
+    "name": "CHMODX"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CHMODX",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://chmodxcode.pro/assets/logo.png"
+    }
+  },
+  "keywords": "android, python, entorno, terminal"
+}
+</script>
+</head>
+<body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <header class="header site-header">
+        <nav class="navbar" aria-label="Navegación principal">
+            <div class="container nav-container">
+                <a href="/" class="nav-logo" aria-label="CHMODX, inicio">
+                    <img src="/assets/logo.png" alt="" class="brand-logo" width="42" height="42">
+                    <span class="brand-name">CHMOD<span class="brand-x">X</span></span>
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="/repositorios/" class="">Repositorios</a></li>
+                    <li><a href="/guias/" class="is-active">Guías</a></li>
+                    <li><a href="/academia/" class="">Academia</a></li>
+                </ul>
+
+                <div class="nav-cta">
+                    <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="nav-telegram-link" aria-label="Canal de Telegram">
+                        <i class="fab fa-telegram" aria-hidden="true"></i>
+                    </a>
+                    <a href="/academia/" class="btn btn-primary btn-sm">
+                        <i class="fas fa-bolt" aria-hidden="true"></i> Academia
+                    </a>
+                </div>
+
+                <button type="button" class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="/repositorios/">Repositorios</a>
+                <a href="/guias/">Guías</a>
+                <a href="/academia/">Academia Python Pro</a>
+                <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-telegram">Canal de Telegram</a>
+                <a href="/academia/" class="btn btn-primary">Ver la academia</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="contenido">
+        <div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
+
+<div class="container">
+    <nav class="breadcrumb article-breadcrumb" aria-label="Miga de pan">
+        <a href="/">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <a href="/guias/">Guías</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Termux desde cero: convierte tu Android en un entorno d…</span>
+    </nav>
+</div>
+
+<header class="article-hero">
+    <div class="container">
+        <span class="badge badge-termux"><i class="fas fa-terminal" aria-hidden="true"></i> Termux</span>
+        <h1 class="article-title">Termux desde cero: convierte tu Android en un entorno de desarrollo</h1>
+        <p class="article-summary">Instalación, permisos, paquetes esenciales y primer proyecto en Python. Una puesta a punto completa sin depender de una computadora.</p>
+        <div class="article-meta">
+            <span><i class="far fa-calendar" aria-hidden="true"></i> Actualizado el 23 oct 2026</span>
+            <span><i class="far fa-clock" aria-hidden="true"></i> 9 min de lectura</span>
+            <span><i class="fas fa-signal" aria-hidden="true"></i> Nivel Principiante</span>
+            <span><i class="fas fa-user-pen" aria-hidden="true"></i> Equipo CHMODX</span>
+        </div>
+        <div class="tag-list">
+            <span class="tag">android</span><span class="tag">python</span><span class="tag">entorno</span><span class="tag">terminal</span>
+        </div>
+    </div>
+</header>
+
+<div class="container article-shell">
+    <article class="article-main">
+        <div class="article-body">
+            <h2 id="por-que-termux">Por qué Termux</h2>
+<p>Termux es un emulador de terminal para Android que ejecuta un sistema Linux sin necesidad de root. No es una app de juguete: permite instalar Python, Git, compiladores, servidores y herramientas de red.</p>
+<p>Sirve para aprender, para automatizar tareas y para llevar un laboratorio portátil. No sustituye a un ordenador para proyectos grandes, pero cubre mucho más de lo que parece.</p>
+<h2 id="instalacion-correcta">Instalación correcta</h2>
+<p>Descarga Termux desde <strong>F-Droid</strong> o desde el repositorio oficial en GitHub. La versión de Google Play está abandonada y falla al actualizar paquetes.</p>
+<p>Después de instalarlo, abre la app y actualiza la base:</p>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">pkg update -y &amp;&amp; pkg upgrade -y</code></pre></div>
+<p>Si aparece un error de repositorio, revisa la fecha y la conexión antes de reinstalar. Termux firma sus paquetes y una build antigua no puede mezclarse con los repositorios actuales.</p>
+<h2 id="permisos-de-almacenamiento">Permisos de almacenamiento</h2>
+<p>Por defecto, Termux vive en su propio espacio aislado. Para acceder a Descargas, Documentos o imágenes necesitas habilitar el almacenamiento compartido:</p>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">termux-setup-storage</code></pre></div>
+<p>Android mostrará un diálogo de permisos. Al aceptarlo, aparece <code>~/storage/shared</code>, que apunta al almacenamiento común del teléfono.</p>
+<blockquote><p><strong>Importante:</strong> no muevas el directorio de Termux ni lo edites desde otras apps. Puedes corromper permisos y rutas internas.</p></blockquote>
+<h2 id="paquetes-esenciales">Paquetes esenciales</h2>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">pkg install -y python git nano openssh ripgrep</code></pre></div>
+<ul>
+<li><code>python</code>: intérprete y <code>pip</code>.</li>
+<li><code>git</code>: control de versiones.</li>
+<li><code>nano</code>: editor sencillo para empezar.</li>
+<li><code>openssh</code>: cliente SSH para conectarte a servidores.</li>
+<li><code>ripgrep</code>: búsqueda rápida dentro de archivos.</li>
+</ul>
+<h2 id="tu-primer-proyecto">Tu primer proyecto</h2>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">mkdir -p ~/proyectos/hola
+cd ~/proyectos/hola
+python -m venv .venv
+source .venv/bin/activate</code></pre></div>
+<aside class="cta-code" data-cta="code" data-content="termux-desde-cero" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Academia Python Pro</strong> Tu Android puede ser un laboratorio completo. En la academia montamos el entorno, los proyectos y el flujo de trabajo desde cero.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=termux-desde-cero&utm_content=bloque-1" class="btn btn-primary btn-sm">Ver la academia <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
+<p>Crea <code>main.py</code>:</p>
+<div class="code-block"><div class="code-head"><span class="code-lang">python</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-python">from datetime import datetime
+
+def saludo(nombre: str) -&gt; str:
+    hora = datetime.now().strftime("%H:%M")
+    return f"Hola, {nombre}. Son las {hora} y esto corre en Android."
+
+if __name__ == "__main__":
+    print(saludo("programador"))</code></pre></div>
+<aside class="cta-code" data-cta="code" data-content="termux-desde-cero" data-lang="python"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Academia Python Pro</strong> Instalar herramientas es el primer paso. Usarlas con orden, versiones y respaldo es lo que evita perder el trabajo. La academia cubre ese flujo.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=termux-desde-cero&utm_content=bloque-2" class="btn btn-primary btn-sm">Ver la academia <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
+<p>Ejecuta:</p>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">python main.py</code></pre></div>
+<h2 id="entornos-virtuales-por-que-son-obligatorios">Entornos virtuales: por qué son obligatorios</h2>
+<p>Termux mezcla paquetes del sistema con paquetes de Python. Instalar todo con <code>pip</code> global puede romper dependencias del propio Termux. Un entorno virtual aísla cada proyecto y permite borrarlo sin consecuencias.</p>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">python -m venv .venv
+source .venv/bin/activate
+pip install requests</code></pre></div>
+<p>Cuando termines, <code>deactivate</code> vuelve al Python del sistema.</p>
+<h2 id="atajos-que-ahorran-tiempo">Atajos que ahorran tiempo</h2>
+<p>Añade alias a <code>~/.bashrc</code>:</p>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">alias py="source ~/venvs/base/bin/activate"
+alias ll="ls -lah"
+alias gs="git status"</code></pre></div>
+<p>Recarga la configuración:</p>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">source ~/.bashrc</code></pre></div>
+<h2 id="errores-frecuentes">Errores frecuentes</h2>
+<div class="table-wrap"><table><thead><tr><th>Síntoma</th><th>Causa probable</th><th>Solución</th></tr></thead><tbody><tr><td><code>pkg: not found</code></td><td>Build de Google Play</td><td>Instalar desde F-Droid</td></tr><tr><td><code>Permission denied</code></td><td>Falta <code>chmod +x</code></td><td><code>chmod +x script.sh</code></td></tr><tr><td><code>No space left on device</code></td><td>Almacenamiento lleno</td><td><code>pkg clean</code> y borrar entornos viejos</td></tr><tr><td><code>pip</code> compila durante minutos</td><td>Falta toolchain</td><td><code>pkg install build-essential</code></td></tr><tr><td>El proceso muere en segundo plano</td><td>Gestión de batería de Android</td><td>Mantener Termux activo o usar servicio en primer plano</td></tr></tbody></table></div>
+<h2 id="que-puedes-hacer-despues">Qué puedes hacer después</h2>
+<ul>
+<li>Automatizar copias de archivos.</li>
+<li>Ejecutar una API con FastAPI.</li>
+<li>Conectarte por SSH a un servidor.</li>
+<li>Programar tareas con <code>cron</code> o <code>termux-job-scheduler</code>.</li>
+<li>Practicar ciberseguridad en un laboratorio propio.</li>
+</ul>
+<h2 id="siguiente-paso">Siguiente paso</h2>
+<p>Termux deja de ser un experimento cuando lo usas para construir algo real. Si quieres una ruta ordenada, con proyectos y corrección de errores, la Academia Python Pro cubre el entorno completo.</p>
+        </div>
+
+        <section class="cta-end" aria-labelledby="ctaEndTitle"><div class="cta-end-copy"><span class="eyebrow">Academia Python Pro</span><h2 id="ctaEndTitle">¿Quieres convertir esto en una habilidad completa?</h2><p>Convierte tu móvil en un entorno de desarrollo serio, no en un experimento.</p></div><div class="cta-end-actions"><a href="/academia/?utm_source=contenido&utm_medium=cta_final&utm_campaign=termux-desde-cero&utm_content=fin-guia" class="btn btn-primary btn-lg"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Entrar a la Academia</a><a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-outline"><i class="fab fa-telegram" aria-hidden="true"></i> Resolver dudas</a></div></section>
+
+        <section class="related" aria-labelledby="relatedTitle">
+            <h2 id="relatedTitle">Sigue aprendiendo</h2>
+            <div class="card-grid card-grid-3">
+                <a class="content-card" href="/guias/entornos-virtuales-python/" data-category="python" data-search="entornos virtuales en python: la guía que evita el caos de dependencias cómo funcionan venv, pip y las dependencias, por qué los proyectos se rompen al cambiar de máquina y cómo fijar versiones sin dolor. python principiante python venv pip dependencias"><div class="card-top"><span class="badge badge-python"><i class="fab fa-python" aria-hidden="true"></i> Python</span><span class="card-level">Principiante</span></div><h2 class="card-title">Entornos virtuales en Python: la guía que evita el caos de dependencias</h2><p class="card-summary">Cómo funcionan venv, pip y las dependencias, por qué los proyectos se rompen al cambiar de máquina y cómo fijar versiones sin dolor.</p><div class="card-tags"><span class="tag">python</span><span class="tag">venv</span><span class="tag">pip</span></div><div class="card-foot"><span><i class="far fa-clock" aria-hidden="true"></i> 8 min</span><span class="card-cta">Leer guía <i class="fas fa-arrow-right" aria-hidden="true"></i></span></div></a><a class="content-card" href="/guias/endurecer-ssh-linux/" data-category="ciberseguridad" data-search="endurecer ssh en linux: de la configuración por defecto a un acceso defendible claves, usuarios, fail2ban y ajustes de sshd para reducir la superficie de ataque de un servidor expuesto a internet. ciberseguridad intermedio ssh linux hardening servidores"><div class="card-top"><span class="badge badge-ciberseguridad"><i class="fas fa-shield-halved" aria-hidden="true"></i> Ciberseguridad</span><span class="card-level">Intermedio</span></div><h2 class="card-title">Endurecer SSH en Linux: de la configuración por defecto a un acceso defendible</h2><p class="card-summary">Claves, usuarios, fail2ban y ajustes de sshd para reducir la superficie de ataque de un servidor expuesto a internet.</p><div class="card-tags"><span class="tag">ssh</span><span class="tag">linux</span><span class="tag">hardening</span></div><div class="card-foot"><span><i class="far fa-clock" aria-hidden="true"></i> 11 min</span><span class="card-cta">Leer guía <i class="fas fa-arrow-right" aria-hidden="true"></i></span></div></a><a class="content-card" href="/guias/expresiones-regulares-python/" data-category="python" data-search="expresiones regulares en python sin memorizar símbolos una ruta práctica por re, grupos, búsquedas y sustituciones con ejemplos que puedes ejecutar y modificar. python intermedio python regex texto re"><div class="card-top"><span class="badge badge-python"><i class="fab fa-python" aria-hidden="true"></i> Python</span><span class="card-level">Intermedio</span></div><h2 class="card-title">Expresiones regulares en Python sin memorizar símbolos</h2><p class="card-summary">Una ruta práctica por re, grupos, búsquedas y sustituciones con ejemplos que puedes ejecutar y modificar.</p><div class="card-tags"><span class="tag">python</span><span class="tag">regex</span><span class="tag">texto</span></div><div class="card-foot"><span><i class="far fa-clock" aria-hidden="true"></i> 10 min</span><span class="card-cta">Leer guía <i class="fas fa-arrow-right" aria-hidden="true"></i></span></div></a>
+            </div>
+        </section>
+    </article>
+
+    <aside class="article-side">
+        <nav class="toc" aria-label="En esta página"><p class="toc-title">En esta página</p><ol><li class="toc-l2"><a href="#por-que-termux">Por qué Termux</a></li><li class="toc-l2"><a href="#instalacion-correcta">Instalación correcta</a></li><li class="toc-l2"><a href="#permisos-de-almacenamiento">Permisos de almacenamiento</a></li><li class="toc-l2"><a href="#paquetes-esenciales">Paquetes esenciales</a></li><li class="toc-l2"><a href="#tu-primer-proyecto">Tu primer proyecto</a></li><li class="toc-l2"><a href="#entornos-virtuales-por-que-son-obligatorios">Entornos virtuales: por qué son obligatorios</a></li><li class="toc-l2"><a href="#atajos-que-ahorran-tiempo">Atajos que ahorran tiempo</a></li><li class="toc-l2"><a href="#errores-frecuentes">Errores frecuentes</a></li><li class="toc-l2"><a href="#que-puedes-hacer-despues">Qué puedes hacer después</a></li><li class="toc-l2"><a href="#siguiente-paso">Siguiente paso</a></li></ol></nav>
+
+        <aside class="sidebar-card sidebar-academy"><span class="sidebar-kicker">Academia Python Pro</span><h2>Ordena lo que ya practicas</h2><p>19 módulos, proyectos reales y acceso de por vida. La ruta completa para pasar de copiar comandos a tomar decisiones.</p><ul class="sidebar-list"><li><i class="fas fa-check" aria-hidden="true"></i> Python desde cero</li><li><i class="fas fa-check" aria-hidden="true"></i> Proyectos y certificado</li><li><i class="fas fa-check" aria-hidden="true"></i> Comunidad en Telegram</li></ul><a href="/academia/?utm_source=contenido&utm_medium=sidebar&utm_campaign=termux-desde-cero&utm_content=guia" class="btn btn-primary btn-sm">Ver el temario</a><span class="sidebar-note">Pago seguro con Hotmart</span></aside>
+
+        <aside class="sidebar-card sidebar-tg"><span class="sidebar-kicker"><i class="fab fa-telegram" aria-hidden="true"></i> Comunidad</span><h2>Canal de Telegram</h2><p>Nuevos repositorios, scripts y avisos. Acceso gratuito y sin spam.</p><a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-telegram btn-sm">Entrar al canal</a></aside>
+    </aside>
+</div>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="/" class="nav-logo footer-logo" aria-label="CHMODX, inicio">
+                    <img src="/assets/logo.png" alt="" class="brand-logo brand-logo-footer" width="48" height="48">
+                    <span class="brand-name">CHMOD<span class="brand-x">X</span></span>
+                </a>
+                <p class="footer-description">
+                    Repositorios, scripts y guías para aprender haciendo. Ciberseguridad ética,
+                    Python y Termux con contenido técnico verificable.
+                </p>
+                <div class="footer-social">
+                    <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a>
+                    <a href="/academia/" aria-label="Academia Python Pro"><i class="fas fa-graduation-cap" aria-hidden="true"></i></a>
+                    <a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noopener noreferrer" aria-label="Índice TIOBE"><i class="fas fa-chart-line" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contenido</h4>
+                <a href="/repositorios/">Repositorios</a>
+                <a href="/guias/">Guías técnicas</a>
+                <a href="/">Hub CHMODX</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Comunidad</h4>
+                <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer">Canal de Telegram</a>
+                <a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noopener noreferrer">Índice TIOBE</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Academia</h4>
+                <a href="/academia/">Python 3 de 0 a MASTER</a>
+                <a href="/academia/#temario">Temario</a>
+                <a href="/academia/#oferta">Precio y acceso</a>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p>&copy; 2026 CHMODX. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <div class="sticky-cta" id="stickyCta"><div class="sticky-price"><span class="sticky-old">$450</span><span class="sticky-new">$100</span><span class="sticky-off"><i class="fas fa-fire" aria-hidden="true"></i> 78% OFF</span></div><a href="/academia/?utm_source=contenido&utm_medium=sticky&utm_campaign=termux-desde-cero" class="btn btn-primary btn-sm"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Academia</a></div>
+
+    <button type="button" class="back-to-top" id="backToTop" aria-label="Volver arriba">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <div class="inapp-modal" id="inappModal" role="dialog" aria-modal="true"
+         aria-labelledby="inappTitle" aria-describedby="inappDesc" aria-hidden="true">
+        <div class="inapp-backdrop" data-inapp-close></div>
+
+        <div class="inapp-card">
+            <button type="button" class="inapp-close" id="inappClose" aria-label="Cerrar aviso">
+                <i class="fas fa-xmark" aria-hidden="true"></i>
+            </button>
+
+            <span class="inapp-badge inapp-badge-tg">
+                <i class="fab fa-telegram" aria-hidden="true"></i> Canal de Telegram
+            </span>
+
+            <h2 class="inapp-title" id="inappTitle">Entra al canal de Telegram</h2>
+
+            <p class="inapp-desc" id="inappDesc">
+                Estás dentro de <strong id="inappApp">una aplicación</strong> y su navegador no
+                permite abrir Telegram. Prueba con el botón azul y, si no se abre, copia el
+                enlace y pégalo en tu navegador.
+            </p>
+
+            <div class="inapp-actions">
+                <button type="button" class="btn btn-telegram inapp-btn" id="inappTg">
+                    <i class="fab fa-telegram" aria-hidden="true"></i> Entrar al canal de Telegram
+                </button>
+                <button type="button" class="btn btn-outline inapp-btn" id="inappCopy">
+                    <i class="fas fa-copy" aria-hidden="true"></i> Copiar enlace
+                </button>
+            </div>
+
+            <p class="inapp-status" id="inappStatus" role="status" hidden></p>
+
+            <p class="inapp-url-wrap">
+                <span class="inapp-url-label">Enlace</span>
+                <span class="inapp-url" id="inappUrl">https://t.me/chmodxcode</span>
+            </p>
+
+            <ol class="inapp-steps" id="inappSteps">
+                <li>Pulsa <strong>Entrar al canal de Telegram</strong>.</li>
+                <li>Si no se abre, pulsa <strong>Copiar enlace</strong>.</li>
+                <li>Abre <strong>Telegram</strong> y pega el enlace, o busca <strong>@chmodxcode</strong>.</li>
+            </ol>
+        </div>
+    </div>
+
+    <script src="/js/main.js" defer></script>
+    <script src="/js/content.js" defer></script>
+    
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <meta name="robots" content="index,follow">
+    <title>API mínima con FastAPI en Termux | CHMODX</title>
+    <meta name="description" content="Levanta una API funcional desde el móvil con FastAPI y Uvicorn, expón un endpoint y pruébalo sin salir de Android.">
+    <link rel="canonical" href="https://chmodxcode.pro/repositorios/api-fastapi-termux/">
+
+    <link rel="icon" type="image/png" href="/assets/logo.png">
+    <link rel="apple-touch-icon" href="/assets/logo.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="CHMODX">
+    <meta property="og:title" content="API mínima con FastAPI en Termux | CHMODX">
+    <meta property="og:description" content="Levanta una API funcional desde el móvil con FastAPI y Uvicorn, expón un endpoint y pruébalo sin salir de Android.">
+    <meta property="og:url" content="https://chmodxcode.pro/repositorios/api-fastapi-termux/">
+    <meta property="og:image" content="https://chmodxcode.pro/assets/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="API mínima con FastAPI en Termux | CHMODX">
+    <meta name="twitter:description" content="Levanta una API funcional desde el móvil con FastAPI y Uvicorn, expón un endpoint y pruébalo sin salir de Android.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/site.css">
+    
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "API mínima con FastAPI en Termux",
+  "description": "Levanta una API funcional desde el móvil con FastAPI y Uvicorn, expón un endpoint y pruébalo sin salir de Android.",
+  "dateModified": "2026-10-12",
+  "inLanguage": "es",
+  "url": "https://chmodxcode.pro/repositorios/api-fastapi-termux/",
+  "codeRepository": "https://github.com/chmodxcode",
+  "programmingLanguage": "Termux, FastAPI, Uvicorn, Python 3",
+  "author": {
+    "@type": "Organization",
+    "name": "CHMODX"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CHMODX"
+  }
+}
+</script>
+</head>
+<body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <header class="header site-header">
+        <nav class="navbar" aria-label="Navegación principal">
+            <div class="container nav-container">
+                <a href="/" class="nav-logo" aria-label="CHMODX, inicio">
+                    <img src="/assets/logo.png" alt="" class="brand-logo" width="42" height="42">
+                    <span class="brand-name">CHMOD<span class="brand-x">X</span></span>
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="/repositorios/" class="is-active">Repositorios</a></li>
+                    <li><a href="/guias/" class="">Guías</a></li>
+                    <li><a href="/academia/" class="">Academia</a></li>
+                </ul>
+
+                <div class="nav-cta">
+                    <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="nav-telegram-link" aria-label="Canal de Telegram">
+                        <i class="fab fa-telegram" aria-hidden="true"></i>
+                    </a>
+                    <a href="/academia/" class="btn btn-primary btn-sm">
+                        <i class="fas fa-bolt" aria-hidden="true"></i> Academia
+                    </a>
+                </div>
+
+                <button type="button" class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="/repositorios/">Repositorios</a>
+                <a href="/guias/">Guías</a>
+                <a href="/academia/">Academia Python Pro</a>
+                <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-telegram">Canal de Telegram</a>
+                <a href="/academia/" class="btn btn-primary">Ver la academia</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="contenido">
+        <div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
+
+<div class="container">
+    <nav class="breadcrumb article-breadcrumb" aria-label="Miga de pan">
+        <a href="/">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <a href="/repositorios/">Repositorios</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">API mínima con FastAPI en Termux</span>
+    </nav>
+</div>
+
+<header class="article-hero repo-hero">
+    <div class="container">
+        <span class="badge badge-termux"><i class="fas fa-terminal" aria-hidden="true"></i> Termux</span>
+        <h1 class="article-title">API mínima con FastAPI en Termux</h1>
+        <p class="article-summary">Levanta una API funcional desde el móvil con FastAPI y Uvicorn, expón un endpoint y pruébalo sin salir de Android.</p>
+
+        <dl class="repo-meta">
+            <div><dt>Dificultad</dt><dd>Intermedio</dd></div>
+            <div><dt>Stack</dt><dd>Termux, FastAPI, Uvicorn, Python 3</dd></div>
+            <div><dt>Actualizado</dt><dd>12 oct 2026</dd></div>
+            <div><dt>Licencia</dt><dd>MIT</dd></div>
+        </dl>
+
+        <div class="repo-actions">
+            <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fab fa-telegram" aria-hidden="true"></i> Acceder al código en Telegram</a>
+            <a href="/repositorios/" class="btn btn-outline">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i> Volver al catálogo
+            </a>
+        </div>
+
+        <div class="tag-list">
+            <span class="tag">api</span><span class="tag">android</span><span class="tag">servidor</span><span class="tag">fastapi</span>
+        </div>
+    </div>
+</header>
+
+<div class="container article-shell">
+    <article class="article-main">
+        <div class="callout"><i class="fas fa-circle-info" aria-hidden="true"></i><p><strong>Antes de ejecutar:</strong> revisa el código, haz una copia de seguridad y prueba en un entorno aislado. Los ejemplos son educativos.</p></div>
+
+        <div class="article-body">
+            <h2 id="objetivo">Objetivo</h2>
+<p>Tener una API escuchando en <code>http://127.0.0.1:8000</code> desde Termux, con documentación automática y un endpoint que devuelva datos en JSON.</p>
+<blockquote><p><strong>Nota:</strong> el servidor queda accesible solo dentro del dispositivo. No expongas servicios a internet sin autenticación, TLS y un proxy inverso.</p></blockquote>
+<h2 id="instalacion">Instalación</h2>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">pkg update -y
+pkg install -y python
+python -m venv ~/venvs/api
+source ~/venvs/api/bin/activate
+pip install fastapi uvicorn</code></pre></div>
+<aside class="cta-code" data-cta="code" data-content="api-fastapi-termux" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Academia Python Pro</strong> Tu Android puede ser un laboratorio completo. En la academia montamos el entorno, los proyectos y el flujo de trabajo desde cero.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=api-fastapi-termux&utm_content=bloque-1" class="btn btn-primary btn-sm">Ver la academia <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
+<h2 id="el-codigo">El código</h2>
+<p>Crea <code>main.py</code>:</p>
+<div class="code-block"><div class="code-head"><span class="code-lang">python</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-python">from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI(title="API CHMODX", version="0.1.0")
+
+class Nota(BaseModel):
+    titulo: str
+    contenido: str
+
+notas: list[Nota] = []
+
+@app.get("/salud")
+def salud() -&gt; dict[str, str]:
+    return {"estado": "ok"}
+
+@app.get("/notas")
+def listar() -&gt; list[Nota]:
+    return notas
+
+@app.post("/notas", status_code=201)
+def crear(nota: Nota) -&gt; Nota:
+    notas.append(nota)
+    return nota</code></pre></div>
+<aside class="cta-code" data-cta="code" data-content="api-fastapi-termux" data-lang="python"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Academia Python Pro</strong> Instalar herramientas es el primer paso. Usarlas con orden, versiones y respaldo es lo que evita perder el trabajo. La academia cubre ese flujo.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=api-fastapi-termux&utm_content=bloque-2" class="btn btn-primary btn-sm">Ver la academia <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
+<h2 id="arrancar-el-servidor">Arrancar el servidor</h2>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">uvicorn main:app --host 127.0.0.1 --port 8000 --reload</code></pre></div>
+<p>Abre <code>http://127.0.0.1:8000/docs</code> en el navegador del teléfono. FastAPI genera la documentación interactiva a partir del código.</p>
+<h2 id="probar-los-endpoints">Probar los endpoints</h2>
+<p>En otra sesión de Termux:</p>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">curl http://127.0.0.1:8000/salud
+
+curl -X POST http://127.0.0.1:8000/notas \
+  -H "Content-Type: application/json" \
+  -d '{"titulo":"Primera nota","contenido":"Funciona desde Android"}'
+
+curl http://127.0.0.1:8000/notas</code></pre></div>
+<aside class="cta-code" data-cta="code" data-content="api-fastapi-termux" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Academia Python Pro</strong> Termux deja de ser un experimento cuando lo usas para construir. La academia te da la ruta para que cada comando tenga un propósito.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=api-fastapi-termux&utm_content=bloque-3" class="btn btn-primary btn-sm">Ver la academia <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
+<h2 id="que-demuestra-este-ejemplo">Qué demuestra este ejemplo</h2>
+<ul>
+<li>Termux puede ejecutar un servidor ASGI real, no solo scripts sueltos.</li>
+<li>FastAPI valida el cuerpo de la petición con Pydantic sin código extra.</li>
+<li>La documentación interactiva sirve como contrato vivo de la API.</li>
+</ul>
+<h2 id="limitaciones-reales">Limitaciones reales</h2>
+<ul>
+<li><code>--reload</code> consume recursos; úsalo solo mientras desarrollas.</li>
+<li>El almacenamiento en memoria se pierde al reiniciar el proceso.</li>
+<li>Sin base de datos ni autenticación, esto es un laboratorio, no producción.</li>
+<li>Android puede suspender el proceso en segundo plano. Para pruebas largas, mantén Termux en primer plano o usa un servicio de primer plano.</li>
+</ul>
+<h2 id="siguiente-paso">Siguiente paso</h2>
+<p>Pasar de un endpoint de prueba a una API mantenible exige capas, validación, persistencia y despliegue. Es exactamente el tipo de proyecto que se trabaja en la Academia.</p>
+        </div>
+
+        <section class="cta-end" aria-labelledby="ctaEndTitle"><div class="cta-end-copy"><span class="eyebrow">Academia Python Pro</span><h2 id="ctaEndTitle">¿Quieres convertir esto en una habilidad completa?</h2><p>Convierte tu móvil en un entorno de desarrollo serio, no en un experimento.</p></div><div class="cta-end-actions"><a href="/academia/?utm_source=contenido&utm_medium=cta_final&utm_campaign=api-fastapi-termux&utm_content=fin-repositorio" class="btn btn-primary btn-lg"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Entrar a la Academia</a><a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-outline"><i class="fab fa-telegram" aria-hidden="true"></i> Resolver dudas</a></div></section>
+
+        <section class="related" aria-labelledby="relatedTitle">
+            <h2 id="relatedTitle">Otros repositorios que te pueden servir</h2>
+            <div class="card-grid card-grid-3">
+                <a class="content-card" href="/repositorios/termux-bootstrap/" data-category="termux" data-search="bootstrap de termux para programar en android script de instalación que deja termux listo para python, git y editores, con almacenamiento compartido y un entorno virtual reutilizable. termux principiante android entorno automatización setup termux bash python 3 git"><div class="card-top"><span class="badge badge-termux"><i class="fas fa-terminal" aria-hidden="true"></i> Termux</span><span class="card-level">Principiante</span></div><h2 class="card-title">Bootstrap de Termux para programar en Android</h2><p class="card-summary">Script de instalación que deja Termux listo para Python, Git y editores, con almacenamiento compartido y un entorno virtual reutilizable.</p><div class="card-tags"><span class="tag">android</span><span class="tag">entorno</span><span class="tag">automatización</span></div><div class="card-foot"><span><i class="fas fa-code-branch" aria-hidden="true"></i> Termux</span><span class="card-cta">Ver repositorio <i class="fas fa-arrow-right" aria-hidden="true"></i></span></div></a><a class="content-card" href="/repositorios/escaner-puertos-python/" data-category="ciberseguridad" data-search="escáner de puertos con python y sockets un script educativo para entender cómo funciona un escaneo tcp, qué devuelve cada estado y por qué el reconocimiento es la primera fase de una auditoría. ciberseguridad intermedio reconocimiento redes sockets auditoría python 3 sockets tcp"><div class="card-top"><span class="badge badge-ciberseguridad"><i class="fas fa-shield-halved" aria-hidden="true"></i> Ciberseguridad</span><span class="card-level">Intermedio</span></div><h2 class="card-title">Escáner de puertos con Python y sockets</h2><p class="card-summary">Un script educativo para entender cómo funciona un escaneo TCP, qué devuelve cada estado y por qué el reconocimiento es la primera fase de una auditoría.</p><div class="card-tags"><span class="tag">reconocimiento</span><span class="tag">redes</span><span class="tag">sockets</span></div><div class="card-foot"><span><i class="fas fa-code-branch" aria-hidden="true"></i> Python 3</span><span class="card-cta">Ver repositorio <i class="fas fa-arrow-right" aria-hidden="true"></i></span></div></a><a class="content-card" href="/repositorios/organizador-archivos-python/" data-category="automatizacion" data-search="organizador de archivos con python script para clasificar automáticamente descargas y carpetas desordenadas por tipo de archivo, con simulación previa y registro de cambios. automatización principiante automatización archivos productividad script python 3 pathlib shutil"><div class="card-top"><span class="badge badge-automatizacion"><i class="fas fa-robot" aria-hidden="true"></i> Automatización</span><span class="card-level">Principiante</span></div><h2 class="card-title">Organizador de archivos con Python</h2><p class="card-summary">Script para clasificar automáticamente descargas y carpetas desordenadas por tipo de archivo, con simulación previa y registro de cambios.</p><div class="card-tags"><span class="tag">automatización</span><span class="tag">archivos</span><span class="tag">productividad</span></div><div class="card-foot"><span><i class="fas fa-code-branch" aria-hidden="true"></i> Python 3</span><span class="card-cta">Ver repositorio <i class="fas fa-arrow-right" aria-hidden="true"></i></span></div></a>
+            </div>
+        </section>
+    </article>
+
+    <aside class="article-side">
+        <nav class="toc" aria-label="En esta página"><p class="toc-title">En esta página</p><ol><li class="toc-l2"><a href="#objetivo">Objetivo</a></li><li class="toc-l2"><a href="#instalacion">Instalación</a></li><li class="toc-l2"><a href="#el-codigo">El código</a></li><li class="toc-l2"><a href="#arrancar-el-servidor">Arrancar el servidor</a></li><li class="toc-l2"><a href="#probar-los-endpoints">Probar los endpoints</a></li><li class="toc-l2"><a href="#que-demuestra-este-ejemplo">Qué demuestra este ejemplo</a></li><li class="toc-l2"><a href="#limitaciones-reales">Limitaciones reales</a></li><li class="toc-l2"><a href="#siguiente-paso">Siguiente paso</a></li></ol></nav>
+
+        <aside class="sidebar-card sidebar-academy"><span class="sidebar-kicker">Academia Python Pro</span><h2>Ordena lo que ya practicas</h2><p>19 módulos, proyectos reales y acceso de por vida. La ruta completa para pasar de copiar comandos a tomar decisiones.</p><ul class="sidebar-list"><li><i class="fas fa-check" aria-hidden="true"></i> Python desde cero</li><li><i class="fas fa-check" aria-hidden="true"></i> Proyectos y certificado</li><li><i class="fas fa-check" aria-hidden="true"></i> Comunidad en Telegram</li></ul><a href="/academia/?utm_source=contenido&utm_medium=sidebar&utm_campaign=api-fastapi-termux&utm_content=repositorio" class="btn btn-primary btn-sm">Ver el temario</a><span class="sidebar-note">Pago seguro con Hotmart</span></aside>
+
+        <aside class="sidebar-card sidebar-tg"><span class="sidebar-kicker"><i class="fab fa-telegram" aria-hidden="true"></i> Comunidad</span><h2>Canal de Telegram</h2><p>Nuevos repositorios, scripts y avisos. Acceso gratuito y sin spam.</p><a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-telegram btn-sm">Entrar al canal</a></aside>
+    </aside>
+</div>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="/" class="nav-logo footer-logo" aria-label="CHMODX, inicio">
+                    <img src="/assets/logo.png" alt="" class="brand-logo brand-logo-footer" width="48" height="48">
+                    <span class="brand-name">CHMOD<span class="brand-x">X</span></span>
+                </a>
+                <p class="footer-description">
+                    Repositorios, scripts y guías para aprender haciendo. Ciberseguridad ética,
+                    Python y Termux con contenido técnico verificable.
+                </p>
+                <div class="footer-social">
+                    <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a>
+                    <a href="/academia/" aria-label="Academia Python Pro"><i class="fas fa-graduation-cap" aria-hidden="true"></i></a>
+                    <a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noopener noreferrer" aria-label="Índice TIOBE"><i class="fas fa-chart-line" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contenido</h4>
+                <a href="/repositorios/">Repositorios</a>
+                <a href="/guias/">Guías técnicas</a>
+                <a href="/">Hub CHMODX</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Comunidad</h4>
+                <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer">Canal de Telegram</a>
+                <a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noopener noreferrer">Índice TIOBE</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Academia</h4>
+                <a href="/academia/">Python 3 de 0 a MASTER</a>
+                <a href="/academia/#temario">Temario</a>
+                <a href="/academia/#oferta">Precio y acceso</a>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p>&copy; 2026 CHMODX. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <div class="sticky-cta" id="stickyCta"><div class="sticky-price"><span class="sticky-old">$450</span><span class="sticky-new">$100</span><span class="sticky-off"><i class="fas fa-fire" aria-hidden="true"></i> 78% OFF</span></div><a href="/academia/?utm_source=contenido&utm_medium=sticky&utm_campaign=api-fastapi-termux" class="btn btn-primary btn-sm"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Academia</a></div>
+
+    <button type="button" class="back-to-top" id="backToTop" aria-label="Volver arriba">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <div class="inapp-modal" id="inappModal" role="dialog" aria-modal="true"
+         aria-labelledby="inappTitle" aria-describedby="inappDesc" aria-hidden="true">
+        <div class="inapp-backdrop" data-inapp-close></div>
+
+        <div class="inapp-card">
+            <button type="button" class="inapp-close" id="inappClose" aria-label="Cerrar aviso">
+                <i class="fas fa-xmark" aria-hidden="true"></i>
+            </button>
+
+            <span class="inapp-badge inapp-badge-tg">
+                <i class="fab fa-telegram" aria-hidden="true"></i> Canal de Telegram
+            </span>
+
+            <h2 class="inapp-title" id="inappTitle">Entra al canal de Telegram</h2>
+
+            <p class="inapp-desc" id="inappDesc">
+                Estás dentro de <strong id="inappApp">una aplicación</strong> y su navegador no
+                permite abrir Telegram. Prueba con el botón azul y, si no se abre, copia el
+                enlace y pégalo en tu navegador.
+            </p>
+
+            <div class="inapp-actions">
+                <button type="button" class="btn btn-telegram inapp-btn" id="inappTg">
+                    <i class="fab fa-telegram" aria-hidden="true"></i> Entrar al canal de Telegram
+                </button>
+                <button type="button" class="btn btn-outline inapp-btn" id="inappCopy">
+                    <i class="fas fa-copy" aria-hidden="true"></i> Copiar enlace
+                </button>
+            </div>
+
+            <p class="inapp-status" id="inappStatus" role="status" hidden></p>
+
+            <p class="inapp-url-wrap">
+                <span class="inapp-url-label">Enlace</span>
+                <span class="inapp-url" id="inappUrl">https://t.me/chmodxcode</span>
+            </p>
+
+            <ol class="inapp-steps" id="inappSteps">
+                <li>Pulsa <strong>Entrar al canal de Telegram</strong>.</li>
+                <li>Si no se abre, pulsa <strong>Copiar enlace</strong>.</li>
+                <li>Abre <strong>Telegram</strong> y pega el enlace, o busca <strong>@chmodxcode</strong>.</li>
+            </ol>
+        </div>
+    </div>
+
+    <script src="/js/main.js" defer></script>
+    <script src="/js/content.js" defer></script>
+    
+</body>
+</html>

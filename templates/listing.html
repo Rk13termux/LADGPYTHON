@@ -1,0 +1,58 @@
+<section class="listing-hero">
+    <div class="listing-glow" aria-hidden="true"></div>
+    <div class="container">
+        <nav class="breadcrumb" aria-label="Miga de pan">
+            <a href="/">Inicio</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">{{BREADCRUMB}}</span>
+        </nav>
+        <span class="eyebrow">{{EYEBROW}}</span>
+        <h1 class="listing-title">{{TITLE}}</h1>
+        <p class="listing-intro">{{INTRO}}</p>
+        <div class="listing-meta">
+            <span><i class="fas fa-layer-group" aria-hidden="true"></i> {{COUNT}} publicaciones</span>
+            <span><i class="fas fa-rotate" aria-hidden="true"></i> Actualizado con Git</span>
+        </div>
+    </div>
+</section>
+
+<section class="listing-body">
+    <div class="container">
+        <div class="filter-bar">
+            <div class="search-box">
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <label class="sr-only" for="contentSearch">Buscar en {{BREADCRUMB}}</label>
+                <input type="search" id="contentSearch" placeholder="Filtrar por título, etiqueta o tecnología…" value="{{QUERY}}" autocomplete="off">
+            </div>
+            <div class="chips" id="contentChips" role="group" aria-label="Filtrar por categoría">
+                {{CHIPS}}
+            </div>
+        </div>
+
+        <p class="result-count" id="contentCount" aria-live="polite">{{COUNT}} resultados</p>
+
+        <div class="card-grid" id="contentList">
+            {{CARDS}}
+        </div>
+
+        <div class="empty-state" id="contentEmpty" hidden>
+            <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+            <h2>Sin resultados</h2>
+            <p>Prueba con otra palabra o quita el filtro de categoría.</p>
+            <a href="{{SELF}}" class="btn btn-outline">Ver todo</a>
+        </div>
+    </div>
+</section>
+
+<section class="cta-band">
+    <div class="container cta-band-inner">
+        <div>
+            <span class="eyebrow">Siguiente paso</span>
+            <h2>¿Quieres una ruta completa en lugar de piezas sueltas?</h2>
+            <p>La Academia Python Pro ordena los fundamentos, los proyectos y la práctica en un solo camino.</p>
+        </div>
+        <a href="/academia/?utm_source={{UTM_SOURCE}}&utm_medium=cta_band&utm_campaign=listado" class="btn btn-primary btn-lg">
+            <i class="fas fa-graduation-cap" aria-hidden="true"></i> Ver la academia
+        </a>
+    </div>
+</section>

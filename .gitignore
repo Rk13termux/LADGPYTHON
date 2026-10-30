@@ -13,3 +13,8 @@ npm-debug.log*
 
 # Entorno
 .env
+
+# Python
+__pycache__/
+*.pyc
+.venv/

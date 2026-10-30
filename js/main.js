@@ -622,8 +622,12 @@
        Init
        ---------------------------------------------------------------- */
     document.addEventListener('DOMContentLoaded', function () {
-        updateCountdowns();
-        setInterval(updateCountdowns, 1000);
+        // El contador solo existe en la Academia. En el hub no se toca
+        // localStorage para no crear una oferta donde no hay venta.
+        if (document.querySelector('.countdown-value')) {
+            updateCountdowns();
+            setInterval(updateCountdowns, 1000);
+        }
 
         initReveal();
         initStickyCta();

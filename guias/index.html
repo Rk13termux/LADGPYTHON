@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <meta name="robots" content="index,follow">
+    <title>Guías técnicas de Python, Termux y ciberseguridad | CHMODX</title>
+    <meta name="description" content="Fundamentos, comandos y errores frecuentes explicados sin relleno. Para entender lo que ejecutas, no solo para copiarlo.">
+    <link rel="canonical" href="https://chmodxcode.pro/guias/">
+
+    <link rel="icon" type="image/png" href="/assets/logo.png">
+    <link rel="apple-touch-icon" href="/assets/logo.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CHMODX">
+    <meta property="og:title" content="Guías técnicas de Python, Termux y ciberseguridad | CHMODX">
+    <meta property="og:description" content="Fundamentos, comandos y errores frecuentes explicados sin relleno. Para entender lo que ejecutas, no solo para copiarlo.">
+    <meta property="og:url" content="https://chmodxcode.pro/guias/">
+    <meta property="og:image" content="https://chmodxcode.pro/assets/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Guías técnicas de Python, Termux y ciberseguridad | CHMODX">
+    <meta name="twitter:description" content="Fundamentos, comandos y errores frecuentes explicados sin relleno. Para entender lo que ejecutas, no solo para copiarlo.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/site.css">
+    
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Guías técnicas de Python, Termux y ciberseguridad",
+  "description": "Fundamentos, comandos y errores frecuentes explicados sin relleno. Para entender lo que ejecutas, no solo para copiarlo.",
+  "url": "https://chmodxcode.pro/guias/",
+  "inLanguage": "es",
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": "https://chmodxcode.pro/"
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "numberOfItems": 5,
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Termux desde cero: convierte tu Android en un entorno de desarrollo",
+        "url": "https://chmodxcode.pro/guias/termux-desde-cero/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Entornos virtuales en Python: la guía que evita el caos de dependencias",
+        "url": "https://chmodxcode.pro/guias/entornos-virtuales-python/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Endurecer SSH en Linux: de la configuración por defecto a un acceso defendible",
+        "url": "https://chmodxcode.pro/guias/endurecer-ssh-linux/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Expresiones regulares en Python sin memorizar símbolos",
+        "url": "https://chmodxcode.pro/guias/expresiones-regulares-python/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "name": "Nmap sin mitos: qué hace, qué no hace y cómo usarlo con responsabilidad",
+        "url": "https://chmodxcode.pro/guias/nmap-uso-responsable/"
+      }
+    ]
+  }
+}
+</script>
+</head>
+<body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <header class="header site-header">
+        <nav class="navbar" aria-label="Navegación principal">
+            <div class="container nav-container">
+                <a href="/" class="nav-logo" aria-label="CHMODX, inicio">
+                    <img src="/assets/logo.png" alt="" class="brand-logo" width="42" height="42">
+                    <span class="brand-name">CHMOD<span class="brand-x">X</span></span>
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="/repositorios/" class="">Repositorios</a></li>
+                    <li><a href="/guias/" class="is-active">Guías</a></li>
+                    <li><a href="/academia/" class="">Academia</a></li>
+                </ul>
+
+                <div class="nav-cta">
+                    <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="nav-telegram-link" aria-label="Canal de Telegram">
+                        <i class="fab fa-telegram" aria-hidden="true"></i>
+                    </a>
+                    <a href="/academia/" class="btn btn-primary btn-sm">
+                        <i class="fas fa-bolt" aria-hidden="true"></i> Academia
+                    </a>
+                </div>
+
+                <button type="button" class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="/repositorios/">Repositorios</a>
+                <a href="/guias/">Guías</a>
+                <a href="/academia/">Academia Python Pro</a>
+                <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-telegram">Canal de Telegram</a>
+                <a href="/academia/" class="btn btn-primary">Ver la academia</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="contenido">
+        <section class="listing-hero">
+    <div class="listing-glow" aria-hidden="true"></div>
+    <div class="container">
+        <nav class="breadcrumb" aria-label="Miga de pan">
+            <a href="/">Inicio</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">Guías</span>
+        </nav>
+        <span class="eyebrow">Guías técnicas</span>
+        <h1 class="listing-title">Guías técnicas de Python, Termux y ciberseguridad</h1>
+        <p class="listing-intro">Fundamentos, comandos y errores frecuentes explicados sin relleno. Para entender lo que ejecutas, no solo para copiarlo.</p>
+        <div class="listing-meta">
+            <span><i class="fas fa-layer-group" aria-hidden="true"></i> 5 publicaciones</span>
+            <span><i class="fas fa-rotate" aria-hidden="true"></i> Actualizado con Git</span>
+        </div>
+    </div>
+</section>
+
+<section class="listing-body">
+    <div class="container">
+        <div class="filter-bar">
+            <div class="search-box">
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <label class="sr-only" for="contentSearch">Buscar en Guías</label>
+                <input type="search" id="contentSearch" placeholder="Filtrar por título, etiqueta o tecnología…" value="" autocomplete="off">
+            </div>
+            <div class="chips" id="contentChips" role="group" aria-label="Filtrar por categoría">
+                <a class="chip is-active" href="/guias/" data-filter-category="all">Todas <span>5</span></a><a class="chip" href="/guias/?categoria=ciberseguridad" data-filter-category="ciberseguridad">Ciberseguridad <span>2</span></a><a class="chip" href="/guias/?categoria=python" data-filter-category="python">Python <span>2</span></a><a class="chip" href="/guias/?categoria=termux" data-filter-category="termux">Termux <span>1</span></a>
+            </div>
+        </div>
+
+        <p class="result-count" id="contentCount" aria-live="polite">5 resultados</p>
+
+        <div class="card-grid" id="contentList">
+            <a class="content-card" href="/guias/termux-desde-cero/" data-category="termux" data-search="termux desde cero: convierte tu android en un entorno de desarrollo instalación, permisos, paquetes esenciales y primer proyecto en python. una puesta a punto completa sin depender de una computadora. termux principiante android python entorno terminal"><div class="card-top"><span class="badge badge-termux"><i class="fas fa-terminal" aria-hidden="true"></i> Termux</span><span class="card-level">Principiante</span></div><h2 class="card-title">Termux desde cero: convierte tu Android en un entorno de desarrollo</h2><p class="card-summary">Instalación, permisos, paquetes esenciales y primer proyecto en Python. Una puesta a punto completa sin depender de una computadora.</p><div class="card-tags"><span class="tag">android</span><span class="tag">python</span><span class="tag">entorno</span></div><div class="card-foot"><span><i class="far fa-clock" aria-hidden="true"></i> 9 min</span><span class="card-cta">Leer guía <i class="fas fa-arrow-right" aria-hidden="true"></i></span></div></a><a class="content-card" href="/guias/entornos-virtuales-python/" data-category="python" data-search="entornos virtuales en python: la guía que evita el caos de dependencias cómo funcionan venv, pip y las dependencias, por qué los proyectos se rompen al cambiar de máquina y cómo fijar versiones sin dolor. python principiante python venv pip dependencias"><div class="card-top"><span class="badge badge-python"><i class="fab fa-python" aria-hidden="true"></i> Python</span><span class="card-level">Principiante</span></div><h2 class="card-title">Entornos virtuales en Python: la guía que evita el caos de dependencias</h2><p class="card-summary">Cómo funcionan venv, pip y las dependencias, por qué los proyectos se rompen al cambiar de máquina y cómo fijar versiones sin dolor.</p><div class="card-tags"><span class="tag">python</span><span class="tag">venv</span><span class="tag">pip</span></div><div class="card-foot"><span><i class="far fa-clock" aria-hidden="true"></i> 8 min</span><span class="card-cta">Leer guía <i class="fas fa-arrow-right" aria-hidden="true"></i></span></div></a><a class="content-card" href="/guias/endurecer-ssh-linux/" data-category="ciberseguridad" data-search="endurecer ssh en linux: de la configuración por defecto a un acceso defendible claves, usuarios, fail2ban y ajustes de sshd para reducir la superficie de ataque de un servidor expuesto a internet. ciberseguridad intermedio ssh linux hardening servidores"><div class="card-top"><span class="badge badge-ciberseguridad"><i class="fas fa-shield-halved" aria-hidden="true"></i> Ciberseguridad</span><span class="card-level">Intermedio</span></div><h2 class="card-title">Endurecer SSH en Linux: de la configuración por defecto a un acceso defendible</h2><p class="card-summary">Claves, usuarios, fail2ban y ajustes de sshd para reducir la superficie de ataque de un servidor expuesto a internet.</p><div class="card-tags"><span class="tag">ssh</span><span class="tag">linux</span><span class="tag">hardening</span></div><div class="card-foot"><span><i class="far fa-clock" aria-hidden="true"></i> 11 min</span><span class="card-cta">Leer guía <i class="fas fa-arrow-right" aria-hidden="true"></i></span></div></a><a class="content-card" href="/guias/expresiones-regulares-python/" data-category="python" data-search="expresiones regulares en python sin memorizar símbolos una ruta práctica por re, grupos, búsquedas y sustituciones con ejemplos que puedes ejecutar y modificar. python intermedio python regex texto re"><div class="card-top"><span class="badge badge-python"><i class="fab fa-python" aria-hidden="true"></i> Python</span><span class="card-level">Intermedio</span></div><h2 class="card-title">Expresiones regulares en Python sin memorizar símbolos</h2><p class="card-summary">Una ruta práctica por re, grupos, búsquedas y sustituciones con ejemplos que puedes ejecutar y modificar.</p><div class="card-tags"><span class="tag">python</span><span class="tag">regex</span><span class="tag">texto</span></div><div class="card-foot"><span><i class="far fa-clock" aria-hidden="true"></i> 10 min</span><span class="card-cta">Leer guía <i class="fas fa-arrow-right" aria-hidden="true"></i></span></div></a><a class="content-card" href="/guias/nmap-uso-responsable/" data-category="ciberseguridad" data-search="nmap sin mitos: qué hace, qué no hace y cómo usarlo con responsabilidad descubrimiento de hosts, escaneo de servicios y lectura de resultados. una introducción práctica con límites legales claros. ciberseguridad principiante nmap reconocimiento redes ética"><div class="card-top"><span class="badge badge-ciberseguridad"><i class="fas fa-shield-halved" aria-hidden="true"></i> Ciberseguridad</span><span class="card-level">Principiante</span></div><h2 class="card-title">Nmap sin mitos: qué hace, qué no hace y cómo usarlo con responsabilidad</h2><p class="card-summary">Descubrimiento de hosts, escaneo de servicios y lectura de resultados. Una introducción práctica con límites legales claros.</p><div class="card-tags"><span class="tag">nmap</span><span class="tag">reconocimiento</span><span class="tag">redes</span></div><div class="card-foot"><span><i class="far fa-clock" aria-hidden="true"></i> 9 min</span><span class="card-cta">Leer guía <i class="fas fa-arrow-right" aria-hidden="true"></i></span></div></a>
+        </div>
+
+        <div class="empty-state" id="contentEmpty" hidden>
+            <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+            <h2>Sin resultados</h2>
+            <p>Prueba con otra palabra o quita el filtro de categoría.</p>
+            <a href="/guias/" class="btn btn-outline">Ver todo</a>
+        </div>
+    </div>
+</section>
+
+<section class="cta-band">
+    <div class="container cta-band-inner">
+        <div>
+            <span class="eyebrow">Siguiente paso</span>
+            <h2>¿Quieres una ruta completa en lugar de piezas sueltas?</h2>
+            <p>La Academia Python Pro ordena los fundamentos, los proyectos y la práctica en un solo camino.</p>
+        </div>
+        <a href="/academia/?utm_source=listado_guias&utm_medium=cta_band&utm_campaign=listado" class="btn btn-primary btn-lg">
+            <i class="fas fa-graduation-cap" aria-hidden="true"></i> Ver la academia
+        </a>
+    </div>
+</section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="/" class="nav-logo footer-logo" aria-label="CHMODX, inicio">
+                    <img src="/assets/logo.png" alt="" class="brand-logo brand-logo-footer" width="48" height="48">
+                    <span class="brand-name">CHMOD<span class="brand-x">X</span></span>
+                </a>
+                <p class="footer-description">
+                    Repositorios, scripts y guías para aprender haciendo. Ciberseguridad ética,
+                    Python y Termux con contenido técnico verificable.
+                </p>
+                <div class="footer-social">
+                    <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a>
+                    <a href="/academia/" aria-label="Academia Python Pro"><i class="fas fa-graduation-cap" aria-hidden="true"></i></a>
+                    <a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noopener noreferrer" aria-label="Índice TIOBE"><i class="fas fa-chart-line" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contenido</h4>
+                <a href="/repositorios/">Repositorios</a>
+                <a href="/guias/">Guías técnicas</a>
+                <a href="/">Hub CHMODX</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Comunidad</h4>
+                <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer">Canal de Telegram</a>
+                <a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noopener noreferrer">Índice TIOBE</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Academia</h4>
+                <a href="/academia/">Python 3 de 0 a MASTER</a>
+                <a href="/academia/#temario">Temario</a>
+                <a href="/academia/#oferta">Precio y acceso</a>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p>&copy; 2026 CHMODX. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    
+
+    <button type="button" class="back-to-top" id="backToTop" aria-label="Volver arriba">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <div class="inapp-modal" id="inappModal" role="dialog" aria-modal="true"
+         aria-labelledby="inappTitle" aria-describedby="inappDesc" aria-hidden="true">
+        <div class="inapp-backdrop" data-inapp-close></div>
+
+        <div class="inapp-card">
+            <button type="button" class="inapp-close" id="inappClose" aria-label="Cerrar aviso">
+                <i class="fas fa-xmark" aria-hidden="true"></i>
+            </button>
+
+            <span class="inapp-badge inapp-badge-tg">
+                <i class="fab fa-telegram" aria-hidden="true"></i> Canal de Telegram
+            </span>
+
+            <h2 class="inapp-title" id="inappTitle">Entra al canal de Telegram</h2>
+
+            <p class="inapp-desc" id="inappDesc">
+                Estás dentro de <strong id="inappApp">una aplicación</strong> y su navegador no
+                permite abrir Telegram. Prueba con el botón azul y, si no se abre, copia el
+                enlace y pégalo en tu navegador.
+            </p>
+
+            <div class="inapp-actions">
+                <button type="button" class="btn btn-telegram inapp-btn" id="inappTg">
+                    <i class="fab fa-telegram" aria-hidden="true"></i> Entrar al canal de Telegram
+                </button>
+                <button type="button" class="btn btn-outline inapp-btn" id="inappCopy">
+                    <i class="fas fa-copy" aria-hidden="true"></i> Copiar enlace
+                </button>
+            </div>
+
+            <p class="inapp-status" id="inappStatus" role="status" hidden></p>
+
+            <p class="inapp-url-wrap">
+                <span class="inapp-url-label">Enlace</span>
+                <span class="inapp-url" id="inappUrl">https://t.me/chmodxcode</span>
+            </p>
+
+            <ol class="inapp-steps" id="inappSteps">
+                <li>Pulsa <strong>Entrar al canal de Telegram</strong>.</li>
+                <li>Si no se abre, pulsa <strong>Copiar enlace</strong>.</li>
+                <li>Abre <strong>Telegram</strong> y pega el enlace, o busca <strong>@chmodxcode</strong>.</li>
+            </ol>
+        </div>
+    </div>
+
+    <script src="/js/main.js" defer></script>
+    <script src="/js/content.js" defer></script>
+    
+</body>
+</html>

@@ -1,0 +1,64 @@
+<div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
+
+<div class="container">
+    <nav class="breadcrumb article-breadcrumb" aria-label="Miga de pan">
+        <a href="/">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <a href="/repositorios/">Repositorios</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{{SHORT_TITLE}}</span>
+    </nav>
+</div>
+
+<header class="article-hero repo-hero">
+    <div class="container">
+        <span class="badge badge-{{CATEGORY}}"><i class="{{CATEGORY_ICON}}" aria-hidden="true"></i> {{CATEGORY_LABEL}}</span>
+        <h1 class="article-title">{{TITLE}}</h1>
+        <p class="article-summary">{{SUMMARY}}</p>
+
+        <dl class="repo-meta">
+            <div><dt>Dificultad</dt><dd>{{DIFFICULTY}}</dd></div>
+            <div><dt>Stack</dt><dd>{{STACK}}</dd></div>
+            <div><dt>Actualizado</dt><dd>{{DATE_HUMAN}}</dd></div>
+            <div><dt>Licencia</dt><dd>{{LICENSE}}</dd></div>
+        </dl>
+
+        <div class="repo-actions">
+            {{REPO_ACTION}}
+            <a href="/repositorios/" class="btn btn-outline">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i> Volver al catálogo
+            </a>
+        </div>
+
+        <div class="tag-list">
+            {{TAGS}}
+        </div>
+    </div>
+</header>
+
+<div class="container article-shell">
+    <article class="article-main">
+        {{SAFETY}}
+
+        <div class="article-body">
+            {{BODY}}
+        </div>
+
+        {{END_CTA}}
+
+        <section class="related" aria-labelledby="relatedTitle">
+            <h2 id="relatedTitle">Otros repositorios que te pueden servir</h2>
+            <div class="card-grid card-grid-3">
+                {{RELATED}}
+            </div>
+        </section>
+    </article>
+
+    <aside class="article-side">
+        {{TOC}}
+
+        {{SIDEBAR_ACADEMY}}
+
+        {{SIDEBAR_TELEGRAM}}
+    </aside>
+</div>

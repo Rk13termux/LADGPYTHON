@@ -1,0 +1,203 @@
+<section class="hub-hero">
+    <div class="hub-glow hub-glow-1" aria-hidden="true"></div>
+    <div class="hub-glow hub-glow-2" aria-hidden="true"></div>
+
+    <div class="container hub-hero-grid">
+        <div class="hub-copy">
+            <span class="pill"><i class="fas fa-terminal" aria-hidden="true"></i> Comunidad técnica CHMODX</span>
+
+            <h1 class="hub-title">
+                Aprende con <span class="grad">código real</span>,<br>
+                no con teoría suelta
+            </h1>
+
+            <p class="hub-sub">
+                Repositorios de <strong>ciberseguridad</strong>, scripts de <strong>Python</strong> y guías de
+                <strong>Termux</strong> explicados paso a paso. Copia, ejecuta y entiende cada comando.
+                Cuando quieras el método completo, la <a href="/academia/">Academia Python Pro</a> te espera.
+            </p>
+
+            <form class="hero-search" action="/repositorios/" method="get" role="search">
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <label class="sr-only" for="hubSearch">Buscar repositorios y guías</label>
+                <input type="search" id="hubSearch" name="q" placeholder="Busca nmap, termux, hashes, sockets…" autocomplete="off">
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </form>
+
+            <div class="hub-actions">
+                <a href="/repositorios/" class="btn btn-primary btn-lg">
+                    <i class="fas fa-code-branch" aria-hidden="true"></i> Explorar repositorios
+                </a>
+                <a href="/guias/" class="btn btn-outline btn-lg">
+                    <i class="fas fa-book-open" aria-hidden="true"></i> Leer las guías
+                </a>
+            </div>
+
+            <ul class="hub-checks">
+                <li><i class="fas fa-check" aria-hidden="true"></i> Contenido gratuito y sin registro</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Enfoque práctico y ético</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Actualizado desde Git</li>
+            </ul>
+        </div>
+
+        <div class="hub-visual" aria-hidden="true">
+            <div class="term-window">
+                <div class="term-head">
+                    <span class="window-dot dot-red"></span>
+                    <span class="window-dot dot-yellow"></span>
+                    <span class="window-dot dot-green"></span>
+                    <span class="term-title">chmodx@hub: ~</span>
+                </div>
+                <div class="term-body">
+                    <p><span class="term-prompt">~ $</span> ls contenido/</p>
+                    <p class="term-out">ciberseguridad/&nbsp;&nbsp;python/&nbsp;&nbsp;termux/&nbsp;&nbsp;automatizacion/</p>
+                    <p><span class="term-prompt">~ $</span> cat siguiente_paso.txt</p>
+                    <p class="term-out term-accent">Aprende. Copia. Entiende. Construye.</p>
+                    <p><span class="term-prompt">~ $</span> <span class="term-cursor"></span></p>
+                </div>
+            </div>
+
+            <div class="float-card float-card-1">
+                <i class="fab fa-python" aria-hidden="true"></i>
+                <div><strong>{{REPO_COUNT}}</strong><span>repositorios</span></div>
+            </div>
+            <div class="float-card float-card-2">
+                <i class="fas fa-book-open" aria-hidden="true"></i>
+                <div><strong>{{GUIDE_COUNT}}</strong><span>guías</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="stat-strip">
+            <div class="stat-item"><i class="fas fa-code-branch" aria-hidden="true"></i><span><strong>{{REPO_COUNT}}</strong> repositorios</span></div>
+            <div class="stat-item"><i class="fas fa-book-open" aria-hidden="true"></i><span><strong>{{GUIDE_COUNT}}</strong> guías técnicas</span></div>
+            <div class="stat-item"><i class="fas fa-layer-group" aria-hidden="true"></i><span><strong>{{CATEGORY_COUNT}}</strong> áreas de estudio</span></div>
+            <div class="stat-item"><i class="fas fa-shield-halved" aria-hidden="true"></i><span>Ética y <strong>uso responsable</strong></span></div>
+        </div>
+    </div>
+</section>
+
+<section class="hub-section">
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <span class="eyebrow">Repositorios destacados</span>
+                <h2 class="section-title">Código listo para <span class="grad">clonar</span></h2>
+                <p class="section-sub">Scripts funcionales, con requisitos, límites y explicación de cada decisión.</p>
+            </div>
+            <a href="/repositorios/" class="section-link">Ver todos <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+        <div class="card-grid">
+            {{FEATURED_REPOS}}
+        </div>
+    </div>
+</section>
+
+<section class="hub-section hub-section-soft">
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <span class="eyebrow">Guías recientes</span>
+                <h2 class="section-title">Entiende el <span class="grad">porqué</span></h2>
+                <p class="section-sub">Fundamentos, comandos y errores frecuentes para que no copies a ciegas.</p>
+            </div>
+            <a href="/guias/" class="section-link">Ver todas <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+        <div class="card-grid">
+            {{LATEST_GUIDES}}
+        </div>
+    </div>
+</section>
+
+<section class="hub-section">
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <span class="eyebrow">Explora por área</span>
+                <h2 class="section-title">Cuatro caminos, <span class="grad">un mismo método</span></h2>
+                <p class="section-sub">Elige el área que necesitas hoy y avanza sin perderte en tutoriales aleatorios.</p>
+            </div>
+        </div>
+        <div class="cat-grid">
+            {{CATEGORY_CARDS}}
+        </div>
+    </div>
+</section>
+
+<section class="hub-section hub-section-soft">
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <span class="eyebrow">Ruta de aprendizaje</span>
+                <h2 class="section-title">De la curiosidad al <span class="grad">criterio</span></h2>
+                <p class="section-sub">Un orden posible para que cada pieza tenga sentido.</p>
+            </div>
+        </div>
+        <ol class="path-grid">
+            <li class="path-step">
+                <span class="path-num">01</span>
+                <h3>Explora y ejecuta</h3>
+                <p>Elige un repositorio, revisa los requisitos y ejecútalo en un entorno propio. Sin atajos.</p>
+                <a href="/repositorios/">Ir a los repositorios <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            </li>
+            <li class="path-step">
+                <span class="path-num">02</span>
+                <h3>Entiende el porqué</h3>
+                <p>Lee la guía asociada, rompe algo a propósito y vuelve a levantarlo. Ahí empieza el aprendizaje real.</p>
+                <a href="/guias/">Leer las guías <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            </li>
+            <li class="path-step">
+                <span class="path-num">03</span>
+                <h3>Da el salto</h3>
+                <p>Si quieres una ruta completa, con proyectos y acompañamiento, la Academia ordena todo lo que ya practicas.</p>
+                <a href="/academia/">Conocer la academia <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            </li>
+        </ol>
+    </div>
+</section>
+
+<section class="academy-band">
+    <div class="academy-band-glow" aria-hidden="true"></div>
+    <div class="container academy-band-inner">
+        <div class="academy-band-copy">
+            <span class="eyebrow">Academia Python Pro</span>
+            <h2 class="section-title">Del script suelto al <span class="grad">criterio profesional</span></h2>
+            <p>
+                Los repositorios te dan piezas. La academia te da el método: 19 módulos en video,
+                proyectos reales, bases de datos, interfaces gráficas y Termux, con acceso de por vida.
+            </p>
+            <ul class="academy-list">
+                <li><i class="fas fa-check" aria-hidden="true"></i> Ruta completa de Python 3 desde cero</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Proyectos guiados y certificado final</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Comunidad y soporte en Telegram</li>
+            </ul>
+        </div>
+
+        <div class="academy-offer">
+            <span class="academy-offer-label">Acceso completo</span>
+            <div class="academy-price">
+                <span class="academy-old">$450</span>
+                <span class="academy-new">$100</span>
+            </div>
+            <span class="academy-save"><i class="fas fa-fire" aria-hidden="true"></i> 78% OFF · Ahorras $350</span>
+            <a href="/academia/?utm_source=hub&utm_medium=banner&utm_campaign=academia" class="btn btn-primary btn-lg">
+                Ver el temario completo
+            </a>
+            <span class="academy-note"><i class="fas fa-lock" aria-hidden="true"></i> Pago seguro procesado por Hotmart</span>
+        </div>
+    </div>
+</section>
+
+<section class="tg-band">
+    <div class="container tg-band-inner">
+        <div class="tg-band-copy">
+            <span class="tg-badge"><i class="fab fa-telegram" aria-hidden="true"></i> Canal gratuito</span>
+            <h2>Nuevos repositorios y avisos en Telegram</h2>
+            <p>Scripts, recursos y actualizaciones del hub. Sin spam y sin costo.</p>
+        </div>
+        <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-telegram btn-lg">
+            <i class="fab fa-telegram" aria-hidden="true"></i> Entrar al canal
+        </a>
+    </div>
+</section>
