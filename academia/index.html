@@ -861,6 +861,22 @@ yo = FuturoDev()
                         <span class="resource-link">Entrar al canal <i class="fas fa-arrow-right"></i></span>
                     </a>
                 </div>
+
+                <form class="lead-form lead-form-wide" data-cx-lead data-cx-source="academia" novalidate>
+                    <div class="lead-copy-inline">
+                        <strong>Recibe el próximo repositorio</strong>
+                        <span>Un correo cuando publiquemos algo nuevo. Sin spam.</span>
+                    </div>
+                    <div class="lead-field">
+                        <label class="sr-only" for="leadEmailAcademia">Correo electrónico</label>
+                        <input type="email" id="leadEmailAcademia" name="email" placeholder="tu@correo.com"
+                               autocomplete="email" inputmode="email" required>
+                        <input type="text" name="website" data-cx-honeypot class="lead-honeypot"
+                               tabindex="-1" autocomplete="off" aria-hidden="true">
+                        <button type="submit" class="btn btn-primary">Suscribirme</button>
+                    </div>
+                    <p class="lead-status" data-cx-status role="status"></p>
+                </form>
             </div>
         </section>
 
@@ -1130,5 +1146,8 @@ yo = FuturoDev()
     </button>
 
     <script src="/js/main.js"></script>
+    <script src="/js/supabase-config.js" defer></script>
+    <script src="/js/tracking.js" defer></script>
+    <script src="/js/leads.js" defer></script>
 </body>
 </html>

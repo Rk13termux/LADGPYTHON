@@ -196,7 +196,7 @@ class AnalyticsTab:
                     f"{summary.academy_views:,}".replace(",", "."),
                     icon=ft.Icons.SCHOOL,
                     accent=t.YELLOW,
-                    hint="páginas bajo /academia",
+                    hint=f"{summary.academy_from_cta} desde un CTA",
                 ),
                 widgets.kpi(
                     "Conversión",
@@ -297,7 +297,7 @@ class AnalyticsTab:
             )
         )
 
-        self.body.controls = [
+        blocks: list[ft.Control] = [
             kpis,
             chart_card,
             ft.Row(
@@ -309,8 +309,74 @@ class AnalyticsTab:
                 vertical_alignment=ft.CrossAxisAlignment.START,
             ),
         ]
+
+        if summary.has_utm:
+            blocks.append(self._cta_card(summary))
+        elif summary.rows:
+            blocks.append(
+                widgets.card(
+                    ft.Row(
+                        [
+                            ft.Icon(ft.Icons.INFO_OUTLINE, size=15, color=t.YELLOW),
+                            ft.Text(
+                                "Aún no hay datos de atribución. Ejecuta "
+                                "admin/sql/002_tracking.sql para medir qué artículo "
+                                "y qué CTA llevan a la academia.",
+                                size=12,
+                                color=t.MUTED,
+                                expand=True,
+                            ),
+                        ],
+                        spacing=10,
+                    ),
+                    border_color=t.alpha(t.YELLOW, 0.30),
+                )
+            )
+
+        self.body.controls = blocks
         self._safe_update(self.updated_text)
         self._safe_update(self.body)
+
+    def _cta_card(self, summary: AnalyticsSummary) -> ft.Control:
+        maximum = max(count for _, count in summary.cta_blocks) or 1
+        rows = [
+            widgets.bar_row(label, count, maximum, accent=t.YELLOW, width=210)
+            for label, count in summary.cta_blocks
+        ]
+
+        footer: list[ft.Control] = []
+        if summary.cta_campaigns:
+            top = summary.cta_campaigns[0]
+            footer.append(
+                ft.Text(
+                    f"Artículo que más convierte: {top[0]} ({top[1]})",
+                    size=11,
+                    color=t.DIM,
+                )
+            )
+
+        return widgets.card(
+            ft.Column(
+                [
+                    ft.Row(
+                        [
+                            ft.Text(
+                                "Qué CTA lleva a la academia",
+                                size=13,
+                                weight=ft.FontWeight.W_700,
+                                color=t.TEXT,
+                            ),
+                            ft.Container(expand=True),
+                            widgets.pill(f"{summary.academy_from_cta} llegadas", color=t.YELLOW),
+                        ],
+                        vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                    ),
+                    ft.Column(rows, spacing=10),
+                    *footer,
+                ],
+                spacing=16,
+            )
+        )
 
     # ------------------------------------------------------------------ gráfico
     def _chart(self, days: list[tuple[str, int]]) -> ft.Control:

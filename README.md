@@ -200,6 +200,24 @@ Los enlaces internos (`/academia/`, `/repositorios/`, `/guias/`) nunca se interc
 
 ---
 
+## Analítica y captura de leads
+
+El sitio envía sus propios datos a Supabase, sin servicios de terceros:
+
+| Archivo | Función |
+|---|---|
+| `js/supabase-config.js` | Generado por el build con la URL y la clave pública |
+| `js/tracking.js` | Una fila en `page_views` por página vista (visitante, sesión, dispositivo, UTM) |
+| `js/leads.js` | Conecta los formularios `data-cx-lead` con la tabla `leads` |
+
+La clave pública viaja al navegador a propósito: RLS solo permite `insert`.
+La clave de servicio queda en `admin/.env`, excluido de Git, y solo la usa el
+panel de escritorio para leer.
+
+Sin credenciales configuradas el script se desactiva y el sitio sigue igual.
+
+---
+
 ## SEO
 
 Cada página generada incluye:

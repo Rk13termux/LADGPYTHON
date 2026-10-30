@@ -89,12 +89,43 @@ CHMODX_BUILD_COMMAND=python3 scripts/build.py
 
 ## 3. Base de datos
 
-Ejecuta `admin/sql/schema.sql` en **Supabase → SQL Editor**. Crea:
+Ejecuta en este orden, en **Supabase → SQL Editor**:
+
+1. `admin/sql/schema.sql` — tablas, índices, RLS y vistas.
+2. `admin/sql/002_tracking.sql` — columnas de atribución (`session_id`, UTM, idioma).
+
+Crea:
 
 - `page_views` — visitas (path, referrer, device, country, visitor_id, created_at).
 - `leads` — suscriptores (email único, source, status, created_at).
 - RLS activado: el sitio solo puede insertar; la lectura queda para el panel.
 - Vistas opcionales `analytics_daily` y `analytics_pages` para volúmenes grandes.
+
+### Captura desde la web
+
+La web es estática: el navegador escribe directamente en Supabase con la clave
+pública (`sb_publishable_…`), y RLS solo le permite insertar.
+
+1. `scripts/build.py` genera `js/supabase-config.js` con `SUPABASE_URL` y
+   `SUPABASE_ANON_KEY` (desde el entorno o desde `admin/.env`). El archivo está
+   en `.gitignore`: la clave es pública por diseño, pero no se versiona.
+2. `js/tracking.js` registra una fila por página vista con visitante, sesión,
+   dispositivo, idioma y UTM. Si las columnas de UTM aún no existen, reintenta
+   con el esquema base para no perder la visita.
+3. `js/leads.js` conecta cualquier `<form data-cx-lead>` y hace `POST` a `leads`.
+   Un 409 (correo repetido) se trata como éxito.
+4. Sin `SUPABASE_URL`/`SUPABASE_ANON_KEY`, el script se desactiva solo y el
+   sitio funciona igual.
+
+En GitHub Actions las credenciales llegan por **variables del repositorio**
+(Settings → Secrets and variables → Actions → Variables):
+
+| Variable | Valor |
+|---|---|
+| `SUPABASE_URL` | Project URL |
+| `SUPABASE_ANON_KEY` | clave pública (`sb_publishable_…`) |
+
+La `SUPABASE_SERVICE_KEY` **nunca** se usa en el build ni viaja al navegador.
 
 Ejemplo de inserción desde el sitio:
 

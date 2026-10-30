@@ -251,6 +251,28 @@
     </div>
 </section>
 
+<section class="lead-band">
+    <div class="container lead-band-inner">
+        <div class="lead-copy">
+            <span class="eyebrow">Avisos por correo</span>
+            <h2 class="section-title">El próximo <span class="grad">repositorio</span>, en tu bandeja</h2>
+            <p>Un correo cuando publiquemos algo nuevo. Sin cursos, sin ruido y sin compartir tu dirección con nadie.</p>
+        </div>
+
+        <form class="lead-form" data-cx-lead data-cx-source="hub" novalidate>
+            <div class="lead-field">
+                <label class="sr-only" for="leadEmailHub">Correo electrónico</label>
+                <input type="email" id="leadEmailHub" name="email" placeholder="tu@correo.com"
+                       autocomplete="email" inputmode="email" required>
+                <input type="text" name="website" data-cx-honeypot class="lead-honeypot"
+                       tabindex="-1" autocomplete="off" aria-hidden="true">
+                <button type="submit" class="btn btn-primary">Suscribirme</button>
+            </div>
+            <p class="lead-status" data-cx-status role="status"></p>
+        </form>
+    </div>
+</section>
+
 <section class="academy-band">
     <div class="academy-band-glow" aria-hidden="true"></div>
     <div class="container academy-band-inner">
@@ -395,6 +417,9 @@
 
     <script src="/js/main.js" defer></script>
     <script src="/js/content.js" defer></script>
+    <script src="/js/supabase-config.js" defer></script>
+    <script src="/js/tracking.js" defer></script>
+    <script src="/js/leads.js" defer></script>
     
 </body>
 </html>

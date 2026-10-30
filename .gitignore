@@ -19,6 +19,9 @@ admin/.env
 admin/exports/
 admin/assets/fonts/*.ttf
 
+# Configuración pública generada por scripts/build.py
+js/supabase-config.js
+
 # Python
 __pycache__/
 *.pyc

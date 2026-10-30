@@ -16,6 +16,10 @@ import httpx
 class SupabaseError(RuntimeError):
     """Error de configuración o de respuesta de Supabase."""
 
+    def __init__(self, message: str, status: int | None = None) -> None:
+        super().__init__(message)
+        self.status = status
+
 
 @dataclass(frozen=True)
 class TableStatus:
@@ -70,7 +74,10 @@ class SupabaseClient:
             raise SupabaseError(f"No se pudo conectar con Supabase: {exc}") from exc
 
         if response.status_code >= 400:
-            raise SupabaseError(_friendly_error(response.status_code, response.text, table))
+            raise SupabaseError(
+                _friendly_error(response.status_code, response.text, table),
+                response.status_code,
+            )
 
         try:
             data = response.json()
@@ -106,18 +113,32 @@ class SupabaseClient:
                 statuses.append(TableStatus(table, True, "accesible"))
         return statuses
 
+    FULL_COLUMNS = (
+        "path,referrer,device,country,visitor_id,created_at,"
+        "session_id,utm_source,utm_medium,utm_campaign,utm_content,language"
+    )
+    BASE_COLUMNS = "path,referrer,device,country,visitor_id,created_at"
+
     def page_views(self, days: int = 30, *, limit: int = 20000) -> list[dict[str, Any]]:
-        """Filas de visitas de los últimos ``days`` días."""
+        """Filas de visitas de los últimos ``days`` días.
+
+        Si la base aún no tiene las columnas de UTM (migración 002), se
+        reintenta con el esquema base en lugar de romper la pestaña.
+        """
         since = datetime.now(timezone.utc) - timedelta(days=days)
-        return self._get(
-            "page_views",
-            {
-                "select": "path,referrer,device,country,visitor_id,created_at",
-                "created_at": f"gte.{since.isoformat()}",
-                "order": "created_at.desc",
-                "limit": str(limit),
-            },
-        )
+        params = {
+            "select": self.FULL_COLUMNS,
+            "created_at": f"gte.{since.isoformat()}",
+            "order": "created_at.desc",
+            "limit": str(limit),
+        }
+        try:
+            return self._get("page_views", params)
+        except SupabaseError as exc:
+            if exc.status == 400:
+                params["select"] = self.BASE_COLUMNS
+                return self._get("page_views", params)
+            raise
 
     def leads(self, *, search: str = "", limit: int = 500) -> list[dict[str, Any]]:
         """Suscriptores capturados, del más reciente al más antiguo."""

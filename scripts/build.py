@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import html
 import json
+import os
 import re
 import shutil
 from datetime import date, datetime
@@ -816,6 +817,58 @@ def clean_slug_dirs(folder: Path, valid_slugs: set[str]) -> None:
             print(f"  eliminado {child.relative_to(ROOT)}")
 
 
+# ---------------------------------------------------------------------------
+# Configuración pública de Supabase
+# ---------------------------------------------------------------------------
+def _read_env_file(path: Path) -> dict[str, str]:
+    """Lee un .env sin dependencias externas."""
+    values: dict[str, str] = {}
+    if not path.is_file():
+        return values
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, _, value = line.partition("=")
+        values[key.strip()] = value.strip().strip('"').strip("'")
+    return values
+
+
+def supabase_credentials() -> tuple[str, str]:
+    """URL y clave pública. Solo estas dos viajan al navegador.
+
+    Prioridad: entorno (CI) → admin/.env (desarrollo local). La clave de
+    servicio nunca se lee aquí: no debe llegar al HTML.
+    """
+    url = os.environ.get("SUPABASE_URL", "").strip().rstrip("/")
+    key = (
+        os.environ.get("SUPABASE_ANON_KEY")
+        or os.environ.get("SUPABASE_PUBLISHABLE_KEY")
+        or ""
+    ).strip()
+
+    if not (url and key):
+        local = _read_env_file(ROOT / "admin" / ".env")
+        url = url or local.get("SUPABASE_URL", "").strip().rstrip("/")
+        key = key or local.get("SUPABASE_ANON_KEY", "").strip()
+
+    return url, key
+
+
+def write_supabase_config() -> None:
+    """Genera js/supabase-config.js con la configuración pública.
+
+    Si faltan credenciales se escribe un archivo vacío: el script de captura
+    se desactiva solo y el sitio sigue funcionando igual.
+    """
+    url, key = supabase_credentials()
+    payload = (
+        "/* Generado por scripts/build.py. No editar a mano. */\n"
+        f"window.CX_CONFIG = {{ url: {json.dumps(url)}, key: {json.dumps(key)} }};\n"
+    )
+    write(ROOT / "js" / "supabase-config.js", payload)
+
+
 def build_sitemap(repos: list[dict[str, Any]], guides: list[dict[str, Any]]) -> None:
     entries: list[tuple[str, str, str]] = [
         ("/", max([item["updated"] for item in repos + guides] or [date.today().isoformat()]), "1.0"),
@@ -893,6 +946,9 @@ def main() -> None:
 
     for item in guides:
         write(ROOT / "guias" / item["slug"] / "index.html", build_article(item, guides))
+
+    print("Generando configuración de analítica…")
+    write_supabase_config()
 
     print("Generando índice JSON…")
     index = {
