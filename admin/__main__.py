@@ -56,6 +56,24 @@ def check() -> int:
     else:
         print(f"  error           {repo.error}")
 
+    print("\nIA (OmniRoute)")
+    from .omniroute import OmniRouteClient, OmniRouteConfig
+
+    omni = OmniRouteClient(
+        OmniRouteConfig(
+            base_url=settings.omniroute_url,
+            api_key=settings.omniroute_key,
+            model=settings.omniroute_model,
+            timeout=3.0,
+        )
+    )
+    ok, detail = omni.health()
+    print(f"  endpoint        {settings.omniroute_url}")
+    print(f"  modelo          {settings.omniroute_model}")
+    print(f"  estado          {'disponible' if ok else 'no disponible'}")
+    if not ok:
+        notes.append(f"OmniRoute: {detail}")
+
     print("\nPlantilla maestra")
     draft = ContentDraft(
         kind="repos",

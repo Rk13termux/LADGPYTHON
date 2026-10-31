@@ -56,6 +56,9 @@ class Settings:
     git_remote: str = "origin"
     git_branch: str = "main"
     build_command: str = "python3 scripts/build.py"
+    omniroute_url: str = "http://127.0.0.1:20128/v1"
+    omniroute_key: str = ""
+    omniroute_model: str = "auto"
     env_files: tuple[Path, ...] = ()
 
     # ------------------------------------------------------------------ estado
@@ -139,5 +142,11 @@ def load_settings() -> Settings:
         build_command=os.environ.get(
             "CHMODX_BUILD_COMMAND", "python3 scripts/build.py"
         ).strip(),
+        omniroute_url=os.environ.get(
+            "OMNIROUTE_BASE_URL", "http://127.0.0.1:20128/v1"
+        ).strip()
+        or "http://127.0.0.1:20128/v1",
+        omniroute_key=os.environ.get("OMNIROUTE_API_KEY", "").strip(),
+        omniroute_model=os.environ.get("OMNIROUTE_MODEL", "auto").strip() or "auto",
         env_files=tuple(loaded),
     )

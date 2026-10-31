@@ -437,6 +437,41 @@ def empty_state(
     )
 
 
+def selectable_chip(
+    label: str,
+    selected: bool,
+    on_click: Callable[[ft.Event], None],
+    *,
+    icon: str | None = None,
+) -> ft.Container:
+    """Píldora seleccionable para cambiar de modo o de periodo."""
+    controls: list[ft.Control] = []
+    color = t.ON_BRAND if selected else t.MUTED
+    if icon:
+        controls.append(ft.Icon(icon, size=13, color=color))
+    controls.append(
+        ft.Text(label, size=12, weight=ft.FontWeight.W_600, color=color)
+    )
+    return ft.Container(
+        content=ft.Row(controls, spacing=6, tight=True),
+        padding=ft.Padding.symmetric(horizontal=13, vertical=8),
+        bgcolor=t.BRAND if selected else t.alpha("#FFFFFF", 0.03),
+        border=ft.Border.all(1, t.BRAND if selected else t.BORDER),
+        border_radius=ft.BorderRadius.all(999),
+        on_click=on_click,
+        ink=True,
+    )
+
+
+def set_chip_selected(chip: ft.Container, selected: bool) -> None:
+    """Aplica el estado visual a una píldora creada con selectable_chip."""
+    chip.bgcolor = t.BRAND if selected else t.alpha("#FFFFFF", 0.03)
+    chip.border = ft.Border.all(1, t.BRAND if selected else t.BORDER)
+    if isinstance(chip.content, ft.Row):
+        for control in chip.content.controls:
+            control.color = t.ON_BRAND if selected else t.MUTED
+
+
 def safe_update(control: ft.Control) -> None:
     """Actualiza un control ignorando los fallos si aún no está montado."""
     try:
@@ -455,26 +490,24 @@ def toast(page: ft.Page, message: str, *, kind: str = "ok") -> None:
     }
     color, icon_name = palette.get(kind, palette["ok"])
     icon = getattr(ft.Icons, icon_name.upper().replace("-", "_"), ft.Icons.INFO)
+    on_color = t.ON_BRAND if kind == "ok" else t.TEXT
 
-    page.show_dialog(
-        ft.SnackBar(
-            content=ft.Row(
-                [
-                    ft.Icon(icon, size=16, color=t.ON_BRAND if kind == "ok" else color),
-                    ft.Text(
-                        message,
-                        size=12.5,
-                        color=t.ON_BRAND if kind == "ok" else t.TEXT,
-                        weight=ft.FontWeight.W_600,
-                    ),
-                ],
-                spacing=9,
-                tight=True,
-            ),
-            bgcolor=color if kind == "ok" else t.SURFACE_ALT,
-            duration=3200,
-            behavior=ft.SnackBarBehavior.FLOATING,
-            margin=ft.Margin.only(bottom=18, left=18, right=18),
-            shape=ft.RoundedRectangleBorder(radius=10),
-        )
+    snack = ft.SnackBar(
+        content=ft.Row(
+            [
+                ft.Icon(icon, size=16, color=on_color),
+                ft.Text(message, size=12.5, color=on_color, weight=ft.FontWeight.W_600),
+            ],
+            spacing=9,
+            tight=True,
+        ),
+        bgcolor=color if kind == "ok" else t.SURFACE_ALT,
+        duration=3200,
+        behavior=ft.SnackBarBehavior.FLOATING,
+        margin=ft.Margin.only(bottom=18, left=18, right=18),
+        shape=ft.RoundedRectangleBorder(radius=10),
     )
+    try:
+        page.show_dialog(snack)
+    except (AssertionError, RuntimeError, AttributeError):
+        pass

@@ -153,7 +153,7 @@ python3 -m admin                      # abre la ventana
 python3 -m admin --check              # diagnóstico sin interfaz
 ```
 
-- **Editor**: formulario con Plantilla Maestra, vista previa y guardado directo en `content/`.
+- **Editor**: manual, con IA (OmniRoute) o importando un `.md`, siempre con Plantilla Maestra, vista previa y guardado directo en `content/`.
 - **Analíticas**: visitas, únicos y conversión leídos de Supabase.
 - **Leads**: correos capturados, con búsqueda y exportación a CSV.
 - **Publicación**: `scripts/build.py` + `git add` + `git commit` + `git push`, con consola en vivo.

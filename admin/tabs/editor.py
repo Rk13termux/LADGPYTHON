@@ -12,10 +12,25 @@ from ..content import (
     SaveError,
     existing_files,
     load_document,
+    parse_document,
     save_draft,
     slugify,
 )
+from ..omniroute import (
+    LENGTH_WORDS,
+    TONE_WORDS,
+    OmniRouteClient,
+    OmniRouteConfig,
+    OmniRouteError,
+)
 from ..context import AppContext
+
+
+MODES = [
+    ("manual", "Manual", ft.Icons.EDIT),
+    ("ai", "Con IA", ft.Icons.AUTO_AWESOME),
+    ("import", "Importar .md", ft.Icons.UPLOAD_FILE),
+]
 
 
 class EditorTab:
@@ -161,6 +176,83 @@ class EditorTab:
             on_change=self._on_any_change,
         )
 
+        # ---------------------------------------------------------- modos
+        self.mode = "manual"
+        self._generating = False
+        self.mode_chips = {
+            key: widgets.selectable_chip(
+                label,
+                key == self.mode,
+                lambda _event, k=key: self._set_mode(k),
+                icon=icon,
+            )
+            for key, label, icon in MODES
+        }
+
+        # ---------------------------------------------------------- con IA
+        self.ai_model = widgets.field(
+            "Modelo",
+            value=self.ctx.settings.omniroute_model,
+            helper="auto deja que OmniRoute elija",
+        )
+        self.ai_model.width = 180
+        self.ai_tone = widgets.dropdown(
+            "Tono", [(name, name) for name in TONE_WORDS], "Técnico y directo", None
+        )
+        self.ai_length = widgets.dropdown(
+            "Longitud", [(name, name) for name in LENGTH_WORDS], "Media (~1000 palabras)", None
+        )
+        self.ai_brief = widgets.field(
+            "Idea o encargo",
+            hint="Ej.: Un script que organice descargas por tipo de archivo y explique cada paso.",
+            multiline=True,
+            min_lines=3,
+            max_lines=5,
+        )
+        self.ai_button = widgets.primary_button(
+            "Generar borrador", ft.Icons.AUTO_AWESOME, self._on_generate
+        )
+        self.ai_status = ft.Text("", size=11.5, color=t.DIM)
+        self.ai_panel = ft.Container(
+            content=widgets.card(
+                ft.Column(
+                    [
+                        ft.Row([self.ai_model, self.ai_tone, self.ai_length], spacing=12),
+                        self.ai_brief,
+                        ft.Row(
+                            [self.ai_button, ft.Container(expand=True), self.ai_status],
+                            vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                        ),
+                    ],
+                    spacing=12,
+                ),
+                border_color=t.alpha(t.CYAN, 0.28),
+            ),
+            visible=False,
+        )
+
+        # ---------------------------------------------------------- importar
+        self.file_picker = ft.FilePicker()
+        self.import_button = widgets.primary_button(
+            "Elegir archivo .md", ft.Icons.UPLOAD_FILE, self._on_pick_file
+        )
+        self.import_status = ft.Text(
+            "Acepta .md con o sin front matter. Si no lo tiene, se toma el primer H1 como título.",
+            size=11.5,
+            color=t.DIM,
+        )
+        self.import_panel = ft.Container(
+            content=widgets.card(
+                ft.Row(
+                    [self.import_button, ft.Container(expand=True), self.import_status],
+                    spacing=14,
+                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                ),
+                border_color=t.alpha(t.YELLOW, 0.25),
+            ),
+            visible=False,
+        )
+
     # ------------------------------------------------------------------ layout
     def _compose(self) -> ft.Control:
         header = widgets.panel_header(
@@ -180,6 +272,9 @@ class EditorTab:
                 ),
             ],
         )
+
+        mode_bar = ft.Row(list(self.mode_chips.values()), spacing=8)
+        panels = ft.Column([self.ai_panel, self.import_panel], spacing=12)
 
         form = ft.Column(
             [
@@ -264,6 +359,8 @@ class EditorTab:
         return ft.Column(
             [
                 header,
+                mode_bar,
+                panels,
                 ft.Row(
                     [form, preview_panel],
                     spacing=20,
@@ -317,33 +414,7 @@ class EditorTab:
             self.ctx.toast(f"No se pudo leer el archivo: {exc}", "error")
             return
 
-        self.kind.value = draft.kind
-        self.title.value = draft.title
-        self.summary.value = draft.summary
-        self.category.value = draft.category
-        self.level.value = draft.level
-        self.slug.value = draft.slug
-        self.body.value = draft.body
-        self.commands.value = ""
-        self.tags.value = draft.tags
-        self.stack.value = draft.stack
-        self.repo_url.value = draft.repo_url
-        self.license.value = draft.license
-        self.featured.value = draft.featured
-        self.order.value = str(draft.order)
-        self._slug_touched = True
-        self.overwrite.value = True
-
-        for control in (
-            self.kind, self.title, self.summary, self.category, self.level,
-            self.slug, self.body, self.commands, self.tags, self.stack,
-            self.repo_url, self.license, self.featured, self.order, self.overwrite,
-        ):
-            control.update()
-
-        self.repo_only.visible = draft.kind == "repos"
-        self.repo_only.update()
-        self._refresh_preview()
+        self._fill_form(draft, keep_slug=True, overwrite=True)
         self.ctx.toast(f"Cargado {path.name}", "info")
 
     def _insert_skeleton(self, _event: ft.Event) -> None:
@@ -371,6 +442,194 @@ class EditorTab:
         self.featured.update()
         self.overwrite.update()
         self._refresh_preview()
+
+    # ------------------------------------------------------------------ modos
+    def on_mount(self) -> None:
+        """Registra el selector de archivos cuando la vista ya está montada."""
+        try:
+            self.ctx.page.services.append(self.file_picker)
+        except (AttributeError, RuntimeError):
+            pass
+
+    def _set_mode(self, key: str) -> None:
+        self.mode = key
+        for name, chip in self.mode_chips.items():
+            widgets.set_chip_selected(chip, name == key)
+            widgets.safe_update(chip)
+        self.ai_panel.visible = key == "ai"
+        self.import_panel.visible = key == "import"
+        widgets.safe_update(self.ai_panel)
+        widgets.safe_update(self.import_panel)
+
+    def _fill_form(self, draft: ContentDraft, *, keep_slug: bool, overwrite: bool) -> None:
+        """Vuelca un borrador en el formulario."""
+        self.kind.value = draft.kind if draft.kind in branding.KINDS else "repos"
+        self.title.value = draft.title
+        self.summary.value = draft.summary
+        self.category.value = (
+            draft.category if draft.category in branding.CATEGORIES else "python"
+        )
+        self.level.value = (
+            draft.level if draft.level in branding.LEVELS else "Principiante"
+        )
+        self.slug.value = draft.final_slug
+        self.body.value = draft.body
+        self.commands.value = draft.commands
+        self.tags.value = draft.tags
+        self.stack.value = draft.stack
+        self.repo_url.value = draft.repo_url
+        self.license.value = draft.license or "MIT"
+        self.featured.value = draft.featured
+        self.order.value = str(draft.order)
+        self.overwrite.value = overwrite
+        self._slug_touched = keep_slug
+
+        for control in (
+            self.kind, self.title, self.summary, self.category, self.level,
+            self.slug, self.body, self.commands, self.tags, self.stack,
+            self.repo_url, self.license, self.featured, self.order, self.overwrite,
+        ):
+            widgets.safe_update(control)
+
+        self.repo_only.visible = self.kind.value == "repos"
+        widgets.safe_update(self.repo_only)
+        self._refresh_preview()
+
+    # ------------------------------------------------------------------ con IA
+    def _set_ai_status(self, message: str, kind: str = "info") -> None:
+        colors = {
+            "info": t.DIM,
+            "pending": t.CYAN,
+            "ok": t.BRAND,
+            "warn": t.YELLOW,
+            "error": t.DANGER,
+        }
+        self.ai_status.value = message
+        self.ai_status.color = colors.get(kind, t.DIM)
+        widgets.safe_update(self.ai_status)
+
+    def _on_generate(self, _event: ft.Event) -> None:
+        brief = (self.ai_brief.value or "").strip()
+        if len(brief) < 12:
+            self._set_ai_status("Escribe al menos una frase con la idea.", "error")
+            return
+        if self._generating:
+            return
+
+        self._generating = True
+        self.ai_button.disabled = True
+        widgets.safe_update(self.ai_button)
+        self._set_ai_status("Generando con OmniRoute… puede tardar unos segundos.", "pending")
+        self.ctx.page.run_thread(self._generate_worker, brief)
+
+    def _generate_worker(self, brief: str) -> None:
+        settings = self.ctx.settings
+        config = OmniRouteConfig(
+            base_url=settings.omniroute_url,
+            api_key=settings.omniroute_key,
+            model=(self.ai_model.value or settings.omniroute_model or "auto").strip(),
+        )
+        client = OmniRouteClient(config)
+
+        try:
+            data = client.generate(
+                brief,
+                kind_label=branding.KINDS.get(self.kind.value or "repos", "Repositorio"),
+                category_label=branding.CATEGORIES.get(
+                    self.category.value or "python", branding.CATEGORIES["python"]
+                ).label,
+                level=self.level.value or "Principiante",
+                tone=self.ai_tone.value or "Técnico y directo",
+                length=self.ai_length.value or "Media (~1000 palabras)",
+            )
+        except OmniRouteError as exc:
+            self._finish_generation(None, str(exc))
+            return
+        except Exception as exc:  # noqa: BLE001 - la UI nunca debe colgarse
+            self._finish_generation(None, f"Error inesperado: {exc}")
+            return
+
+        self._finish_generation(data, None)
+
+    def _finish_generation(self, data: dict | None, error: str | None) -> None:
+        self._generating = False
+        self.ai_button.disabled = False
+        widgets.safe_update(self.ai_button)
+
+        if error or not data:
+            self._set_ai_status(error or "OmniRoute no devolvió contenido.", "error")
+            self.ctx.toast("No se pudo generar el borrador.", "error")
+            return
+
+        draft = ContentDraft(
+            kind=self.kind.value or "repos",
+            title=data["title"],
+            summary=data["summary"],
+            category=self.category.value or "python",
+            level=self.level.value or "Principiante",
+            body=data["body"],
+            commands=data["commands"],
+            tags=", ".join(data["tags"]),
+            stack=", ".join(data["stack"]),
+        )
+        self._fill_form(draft, keep_slug=False, overwrite=False)
+
+        if data.get("fallback"):
+            self._set_ai_status(
+                "Respuesta sin JSON válido: se usó el texto completo como cuerpo.", "warn"
+            )
+        else:
+            self._set_ai_status(
+                f"Borrador listo ({len(data['body'])} caracteres). Revísalo antes de guardar.",
+                "ok",
+            )
+        self.ctx.toast("Borrador generado.", "ok")
+
+    # ------------------------------------------------------------------ importar
+    def _set_import_status(self, message: str, kind: str = "info") -> None:
+        colors = {"info": t.DIM, "ok": t.BRAND, "error": t.DANGER}
+        self.import_status.value = message
+        self.import_status.color = colors.get(kind, t.DIM)
+        widgets.safe_update(self.import_status)
+
+    async def _on_pick_file(self, _event: ft.Event) -> None:
+        try:
+            files = await self.file_picker.pick_files(
+                dialog_title="Elegir un archivo Markdown",
+                allowed_extensions=["md", "markdown", "txt"],
+                allow_multiple=False,
+                with_data=True,
+            )
+        except Exception as exc:  # noqa: BLE001
+            self._set_import_status(f"No se pudo abrir el selector: {exc}", "error")
+            return
+
+        if not files:
+            return
+
+        chosen = files[0]
+        try:
+            if chosen.bytes:
+                text = chosen.bytes.decode("utf-8", errors="replace")
+            elif chosen.path:
+                text = Path(chosen.path).read_text(encoding="utf-8", errors="replace")
+            else:
+                raise OSError("el archivo llegó vacío")
+        except (OSError, UnicodeDecodeError) as exc:
+            self._set_import_status(f"No se pudo leer el archivo: {exc}", "error")
+            return
+
+        try:
+            draft = parse_document(text, chosen.name or "documento.md")
+        except Exception as exc:  # noqa: BLE001
+            self._set_import_status(f"Markdown no válido: {exc}", "error")
+            return
+
+        self._fill_form(draft, keep_slug=True, overwrite=True)
+        self._set_import_status(
+            f"Importado {chosen.name} · {len(text)} caracteres", "ok"
+        )
+        self.ctx.toast(f"Importado {chosen.name}", "ok")
 
     # ------------------------------------------------------------------ preview
     def _refresh_preview(self, update: bool = True) -> None:

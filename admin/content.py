@@ -339,24 +339,46 @@ def split_front_matter(text: str) -> tuple[dict[str, object], str]:
 HOOK_PREFIX = "> **En una frase:**"
 
 
-def load_document(path: Path) -> ContentDraft:
-    """Reconstruye un borrador a partir de un archivo publicado."""
-    meta, body = split_front_matter(path.read_text(encoding="utf-8"))
+def parse_document(text: str, filename: str = "documento.md", *, kind: str | None = None) -> ContentDraft:
+    """Reconstruye un borrador a partir de un Markdown, con o sin front matter."""
+    meta, body = split_front_matter(text)
 
     if body.startswith(HOOK_PREFIX):
         body = body[len(HOOK_PREFIX):].lstrip()
 
-    kind = "repos" if path.parent.name == "repos" else "guias"
+    if not meta:
+        # Markdown suelto: el primer H1 hace de título.
+        lines = body.splitlines()
+        title = ""
+        for index, line in enumerate(lines):
+            if line.startswith("# "):
+                title = line[2:].strip()
+                body = "\n".join(lines[:index] + lines[index + 1:]).strip()
+                break
+        if not title:
+            stem = Path(filename).stem.replace("-", " ").replace("_", " ").strip()
+            title = stem[:1].upper() + stem[1:] if stem else "Sin título"
+        return ContentDraft(
+            kind=kind or "repos",
+            title=title,
+            summary="",
+            category="python",
+            level="Principiante",
+            slug=slugify(title),
+            body=body,
+        )
+
     tags = meta.get("tags") or []
     stack = meta.get("stack") or []
+    detected_kind = kind or ("guias" if "level" in meta else "repos")
 
-    draft = ContentDraft(
-        kind=kind,
-        title=str(meta.get("title") or path.stem),
+    return ContentDraft(
+        kind=detected_kind,
+        title=str(meta.get("title") or Path(filename).stem),
         summary=str(meta.get("summary") or ""),
         category=str(meta.get("category") or "python"),
         level=str(meta.get("level") or meta.get("difficulty") or "Principiante"),
-        slug=str(meta.get("slug") or path.stem),
+        slug=str(meta.get("slug") or slugify(str(meta.get("title") or Path(filename).stem))),
         body=body,
         tags=", ".join(str(tag) for tag in tags) if isinstance(tags, list) else str(tags),
         stack=", ".join(str(item) for item in stack) if isinstance(stack, list) else str(stack),
@@ -366,4 +388,9 @@ def load_document(path: Path) -> ContentDraft:
         order=int(meta.get("order") or 99),
         updated=str(meta.get("updated") or date.today().isoformat()),
     )
-    return draft
+
+
+def load_document(path: Path) -> ContentDraft:
+    """Reconstruye un borrador a partir de un archivo del proyecto."""
+    kind = "repos" if path.parent.name == "repos" else "guias"
+    return parse_document(path.read_text(encoding="utf-8"), path.name, kind=kind)

@@ -171,6 +171,59 @@ En modo web puedes entrar desde el móvil: `python3 -m admin --web --host 0.0.0.
 
 También puedes abrir contenido existente con el selector **Abrir existente**.
 
+### Tres formas de crear contenido
+
+El selector de la parte superior cambia el modo:
+
+| Modo | Qué hace |
+|---|---|
+| **Manual** | Formulario clásico, sin ayudas. |
+| **Con IA** | OmniRoute redacta el borrador a partir de una idea. |
+| **Importar .md** | Carga un archivo del disco, con o sin front matter. |
+
+#### Con IA
+
+Requiere OmniRoute en marcha:
+
+```bash
+omniroute serve --daemon
+```
+
+Escribe la idea, elige tono y longitud y pulsa **Generar borrador**. El modelo
+devuelve un JSON con título, gancho, etiquetas, stack, cuerpo y comandos; el
+panel lo vuelca en el formulario, que sigue siendo editable antes de guardar.
+
+- El prompt fija la voz editorial: español neutro, sin voseo, sin emojis y con
+  las cinco secciones de la plantilla.
+- Se solicita `response_format: json_object`; si el proveedor no lo admite, se
+  reintenta sin él.
+- Si la respuesta no es JSON válido se reintenta con instrucción estricta y,
+  como último recurso, el texto completo se conserva como cuerpo.
+- Si un modelo de razonamiento agota el presupuesto de tokens, se reintenta con
+  el doble.
+
+Variables (todas opcionales):
+
+```dotenv
+OMNIROUTE_BASE_URL=http://127.0.0.1:20128/v1
+OMNIROUTE_API_KEY=
+OMNIROUTE_MODEL=auto
+```
+
+`python3 -m admin --check` comprueba si el servidor responde.
+
+> **Seguridad:** por defecto OmniRoute escucha en `0.0.0.0:20128` sin clave.
+> En una red no confiable conviene arrancarlo solo en local
+> (`OMNIROUTE_SERVER_HOST=127.0.0.1 omniroute serve --daemon`) o exigir clave
+> con `REQUIRE_API_KEY=true` y rellenar `OMNIROUTE_API_KEY`.
+
+#### Importar .md
+
+Acepta `.md`, `.markdown` y `.txt`. Si el archivo trae front matter se respetan
+título, slug, resumen, categoría, etiquetas y stack. Si no lo trae, el primer
+`# H1` hace de título y el resto es el cuerpo. La importación activa
+**Sobrescribir si existe**.
+
 ### Plantilla Maestra
 
 Al guardar, el panel envuelve tu texto con la estructura de marca:
