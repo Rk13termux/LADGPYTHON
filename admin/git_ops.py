@@ -51,6 +51,7 @@ def run_command(
     *,
     name: str | None = None,
     timeout: int = 180,
+    extra_env: dict[str, str] | None = None,
 ) -> StepResult:
     """Ejecuta un comando y devuelve su resultado sin lanzar excepciones."""
     label = name or " ".join(args[:3])
@@ -59,6 +60,8 @@ def run_command(
     # GIT_TERMINAL_PROMPT=0 hace que git falle al instante si no hay
     # credenciales, en lugar de quedarse esperando una contraseña.
     env = {**os.environ, "GIT_TERMINAL_PROMPT": "0", "GIT_PAGER": "cat"}
+    if extra_env:
+        env.update(extra_env)
 
     try:
         completed = subprocess.run(  # noqa: S603 - args es una lista, sin shell
@@ -160,6 +163,44 @@ def _split_build(command: str) -> list[str]:
         return []
 
 
+def push_command(remote: str, branch: str, token: str = "") -> tuple[list[str], dict[str, str]]:
+    """Construye el comando de push y el entorno necesario.
+
+    Con token se inyecta un credential helper efímero: el valor viaja por
+    variable de entorno, nunca en la URL ni en los argumentos del proceso.
+    """
+    args = ["git"]
+    env: dict[str, str] = {}
+
+    if token:
+        args += [
+            "-c",
+            "credential.helper=",
+            "-c",
+            'credential.helper=!f() { echo "username=x-access-token"; '
+            'echo "password=$GIT_TOKEN"; }; f',
+        ]
+        env["GIT_TOKEN"] = token
+
+    args += ["push", remote, branch]
+    return args, env
+
+
+AUTH_ERROR_HINTS = (
+    "invalid username or token",
+    "authentication failed",
+    "could not read username",
+    "permission denied (publickey)",
+    "support for password authentication",
+    "terminal prompts disabled",
+)
+
+
+def looks_like_auth_error(output: str) -> bool:
+    text = (output or "").lower()
+    return any(hint in text for hint in AUTH_ERROR_HINTS)
+
+
 def publish(
     root: Path,
     *,
@@ -169,6 +210,7 @@ def publish(
     build_command: str = "python3 scripts/build.py",
     run_build: bool = True,
     dry_run: bool = False,
+    token: str = "",
 ) -> Iterator[StepResult]:
     """Genera el sitio, hace commit y empuja. Cede un resultado por paso."""
     commit_message = sanitize_message(message)
@@ -214,9 +256,5 @@ def publish(
         )
         return
 
-    yield run_command(
-        ["git", "push", remote, branch],
-        root,
-        name="git push",
-        timeout=180,
-    )
+    args, env = push_command(remote, branch, token)
+    yield run_command(args, root, name="git push", timeout=180, extra_env=env)

@@ -199,11 +199,17 @@ class PublishTab:
         self.repo_pill_holder.content = widgets.pill(label, color=color)
         self._safe_update(self.repo_pill_holder)
 
+        token_ok = bool(self.ctx.settings.git_token)
         rows = [
             self._state_line("Rama", f"{repo.branch} → {repo.remote}/{self.ctx.settings.git_branch}"),
             self._state_line("Archivos modificados", str(repo.dirty_files)),
             self._state_line("Commits por subir", str(repo.ahead)),
             self._state_line("Último commit", repo.last_commit or "—"),
+            self._state_line(
+                "Token de Git",
+                "configurado" if token_ok else "sin configurar · el push puede fallar",
+                accent=None if token_ok else t.YELLOW,
+            ),
         ]
         self.state_rows.controls = rows
         self._safe_update(self.state_rows)
@@ -228,14 +234,14 @@ class PublishTab:
             self._safe_update(control)
 
     @staticmethod
-    def _state_line(label: str, value: str) -> ft.Control:
+    def _state_line(label: str, value: str, accent: str | None = None) -> ft.Control:
         return ft.Row(
             [
                 ft.Text(label, size=11.5, color=t.DIM, width=150),
                 ft.Text(
                     value,
                     size=11.5,
-                    color=t.MUTED,
+                    color=accent or t.MUTED,
                     font_family=t.mono_font(),
                     expand=True,
                     overflow=ft.TextOverflow.ELLIPSIS,
@@ -305,6 +311,7 @@ class PublishTab:
                 build_command=settings.build_command,
                 run_build=bool(self.run_build.value),
                 dry_run=bool(self.dry_run.value),
+                token=settings.git_token,
             ):
                 self._log(result.name, "cmd")
                 for line in (result.output or "").splitlines():
@@ -312,6 +319,13 @@ class PublishTab:
                         self._log(line.rstrip(), "info")
                 self._log(result.summary, "ok" if result.ok else "error")
                 if not result.ok:
+                    if git_ops.looks_like_auth_error(result.output):
+                        self._log(
+                            "El remoto rechazó las credenciales. Añade "
+                            "CHMODX_GIT_TOKEN a admin/.env (token con permiso "
+                            "de repo) o ejecuta: gh auth login",
+                            "warn",
+                        )
                     success = False
                     break
         except Exception as exc:  # noqa: BLE001 - nunca dejar la UI colgada

@@ -55,6 +55,7 @@ class Settings:
     site_url: str = "https://chmodxcode.pro"
     git_remote: str = "origin"
     git_branch: str = "main"
+    git_token: str = ""
     build_command: str = "python3 scripts/build.py"
     omniroute_url: str = "http://127.0.0.1:20128/v1"
     omniroute_key: str = ""
@@ -139,6 +140,12 @@ def load_settings() -> Settings:
         site_url=os.environ.get("CHMODX_SITE_URL", "https://chmodxcode.pro").strip().rstrip("/"),
         git_remote=os.environ.get("CHMODX_GIT_REMOTE", "origin").strip() or "origin",
         git_branch=os.environ.get("CHMODX_GIT_BRANCH", "main").strip() or "main",
+        git_token=(
+            os.environ.get("CHMODX_GIT_TOKEN")
+            or os.environ.get("GITHUB_TOKEN")
+            or os.environ.get("GH_TOKEN")
+            or ""
+        ).strip(),
         build_command=os.environ.get(
             "CHMODX_BUILD_COMMAND", "python3 scripts/build.py"
         ).strip(),
