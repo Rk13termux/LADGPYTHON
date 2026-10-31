@@ -185,6 +185,41 @@
       "reading": 3,
       "search": "api mínima con fastapi en termux levanta una api funcional desde el móvil con fastapi y uvicorn, expón un endpoint y pruébalo sin salir de android. termux intermedio api android servidor fastapi termux fastapi uvicorn python 3",
       "short_title": "API mínima con FastAPI en Termux"
+    },
+    {
+      "kind": "repos",
+      "slug": "shannon-pentester-de-ia-que-lee-tu-codigo-y-ejecuta-los-ataques",
+      "title": "Shannon: pentester de IA que lee tu código y ejecuta los ataques",
+      "summary": "Clona KeygraphHQ/shannon, apunta el agente a tu repo y a una URL de staging, y obtén un informe con exploits reproducibles.",
+      "category": "python",
+      "category_label": "Python",
+      "category_icon": "fab fa-python",
+      "updated": "2026-10-30",
+      "date_human": "30 oct 2026",
+      "date_ord": 739919,
+      "tags": [
+        "pentesting",
+        "ia",
+        "python",
+        "docker",
+        "api"
+      ],
+      "stack": [
+        "Python 3",
+        "Docker Compose",
+        "KeygraphHQ/shannon",
+        "Anthropic Claude API",
+        "OWASP Juice Shop"
+      ],
+      "featured": false,
+      "order": 99,
+      "repo": "",
+      "license": "MIT",
+      "url": "/repositorios/shannon-pentester-de-ia-que-lee-tu-codigo-y-ejecuta-los-ataques/",
+      "difficulty": "Principiante",
+      "reading": 6,
+      "search": "shannon: pentester de ia que lee tu código y ejecuta los ataques clona keygraphhq/shannon, apunta el agente a tu repo y a una url de staging, y obtén un informe con exploits reproducibles. python principiante pentesting ia python docker api python 3 docker compose keygraphhq/shannon anthropic claude api owasp juice shop",
+      "short_title": "Shannon: pentester de IA que lee tu código y ejecuta lo…"
     }
   ],
   "guias": [
