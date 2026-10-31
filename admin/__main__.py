@@ -85,12 +85,12 @@ def check() -> int:
         tags="prueba, plantilla",
         stack="Python 3",
     )
-    document = draft.document(settings.site_url)
+    document = draft.document()
     checks = {
         "front matter": document.startswith("---\n"),
         "gancho": "> **En una frase:**" in document,
         "comandos": "```bash" in document,
-        "cierre": "## Siguiente paso" in document,
+        "sin cierre duplicado": "## Siguiente paso" not in document,
         "slug": draft.final_slug == "prueba-de-plantilla-maestra",
     }
     for label, ok in checks.items():

@@ -112,7 +112,3 @@ Mover archivos es una operación destructiva desde el punto de vista del usuario
 - Detectar archivos duplicados con `hashlib`.
 - Ignorar carpetas concretas con una lista de exclusión.
 - Enviar un resumen a Telegram al terminar.
-
-## Siguiente paso
-
-Automatizar una tarea puntual es fácil. Diseñar scripts que puedas mantener, probar y reutilizar durante años es otra cosa.

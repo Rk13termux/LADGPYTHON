@@ -92,7 +92,3 @@ Cargar un archivo de varios gigabytes en memoria con `read()` puede agotar la RA
 ## Límites
 
 Un hash verifica integridad, no autenticidad. Si un atacante controla tanto el archivo como el hash publicado, la comparación no sirve. Para confiar en el origen necesitas firmas digitales o un canal seguro.
-
-## Siguiente paso
-
-La verificación es una pieza pequeña de una cadena de confianza. Aprender a construir y auditar esa cadena completa es parte del trabajo profesional.

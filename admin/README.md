@@ -273,17 +273,17 @@ license: "MIT"
 ```bash
 <comandos>
 ```
-
-## Siguiente paso
-<cierre con enlace a /academia y UTM>
 ```
 
 Reglas:
 
-- El gancho y el cierre **no se duplican** si ya existen en el cuerpo.
+- El gancho **no se duplica** si ya existe en el cuerpo.
 - En ciberseguridad se añade el aviso de uso responsable si falta.
 - La sección de comandos solo aparece si hay comandos.
 - El front matter es exactamente el que consume `scripts/build.py`.
+- **La plantilla no añade ningún cierre comercial.** El artículo termina con
+  el bloque `cta-end` que genera `scripts/build.py` y con las tarjetas de
+  contenido relacionado. Una sola llamada a la acción por página.
 
 ### Analíticas y Leads
 

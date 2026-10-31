@@ -739,7 +739,6 @@ class EditorTab:
     # ------------------------------------------------------------------ preview
     def _refresh_preview(self, update: bool = True) -> None:
         draft = self.draft()
-        site = self.ctx.settings.site_url
 
         if self.live_preview.value:
             if not draft.title.strip() and not draft.body.strip():
@@ -747,7 +746,7 @@ class EditorTab:
                     "_Escribe el título y el contenido para ver aquí la vista previa._"
                 )
             else:
-                self.preview_md.value = draft.body_markdown(site)
+                self.preview_md.value = draft.body_markdown()
             stats = draft.stats()
             self.preview_meta.value = (
                 f"{stats['palabras']} palabras · {stats['lectura']} · "
@@ -806,7 +805,6 @@ class EditorTab:
             path = save_draft(
                 draft,
                 self.ctx.settings.project_root,
-                self.ctx.settings.site_url,
                 allow_overwrite=bool(self.overwrite.value),
             )
         except SaveError as exc:

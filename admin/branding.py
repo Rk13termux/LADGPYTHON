@@ -110,21 +110,6 @@ def commands_section(commands: str) -> str:
     )
 
 
-def closing_section(category: str, slug: str, site_url: str) -> str:
-    """Cierre estándar con el puente hacia la academia."""
-    data = CATEGORIES.get(category, CATEGORIES["python"])
-    href = (
-        f"{site_url}/academia/?utm_source=contenido&utm_medium=cierre"
-        f"&utm_campaign={slug}&utm_content=plantilla-maestra"
-    )
-    return (
-        "## Siguiente paso\n\n"
-        f"{data.closing}\n\n"
-        f"Si quieres la ruta completa, con proyectos revisados y corrección de errores, "
-        f"puedes ver el temario en [Academia Python Pro]({href})."
-    )
-
-
 # --------------------------------------------------------------------------- #
 # Esqueleto editable
 # --------------------------------------------------------------------------- #
@@ -178,18 +163,12 @@ def master_skeleton(kind: str, category: str) -> str:
 # --------------------------------------------------------------------------- #
 # Ensamblado
 # --------------------------------------------------------------------------- #
-HAS_CLOSING = "## Siguiente paso"
-
-
 def compose_body(
     *,
     summary: str,
     body: str,
     category: str,
-    slug: str,
-    site_url: str,
     commands: str = "",
-    kind: str = "repos",
 ) -> str:
     """Aplica la Plantilla Maestra al contenido escrito por la persona.
 
@@ -197,7 +176,10 @@ def compose_body(
     - Siempre abre con el gancho de una frase.
     - En ciberseguridad añade el aviso de uso responsable si no está.
     - Añade la sección de comandos solo si hay comandos.
-    - Cierra con el bloque de marca si el autor no escribió su propio cierre.
+
+    No añade ningún cierre comercial: de eso se encarga la plantilla de la
+    página (bloque ``cta-end``) y las tarjetas de contenido relacionado. Así
+    cada artículo termina con una sola llamada a la acción.
     """
     parts: list[str] = [hook_line(summary)]
 
@@ -210,8 +192,5 @@ def compose_body(
 
     if commands.strip():
         parts.append(commands_section(commands))
-
-    if HAS_CLOSING.lower() not in clean_body.lower():
-        parts.append(closing_section(category, slug, site_url))
 
     return "\n\n".join(parts).strip() + "\n"

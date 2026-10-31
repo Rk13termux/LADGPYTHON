@@ -101,7 +101,3 @@ pip install pandas matplotlib
 ```
 
 Evita instalar paquetes globales con `pip` fuera del entorno virtual: Termux mezcla rutas de sistema y es fácil romper dependencias.
-
-## Siguiente paso
-
-Tener el entorno es solo el principio. La parte difícil es aprender a usarlo con método: proyectos, control de versiones y despliegue real.

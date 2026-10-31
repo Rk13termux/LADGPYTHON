@@ -126,7 +126,3 @@ source ~/.bashrc
 - Conectarte por SSH a un servidor.
 - Programar tareas con `cron` o `termux-job-scheduler`.
 - Practicar ciberseguridad en un laboratorio propio.
-
-## Siguiente paso
-
-Termux deja de ser un experimento cuando lo usas para construir algo real. Si quieres una ruta ordenada, con proyectos y corrección de errores, la Academia Python Pro cubre el entorno completo.

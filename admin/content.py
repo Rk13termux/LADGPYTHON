@@ -146,20 +146,17 @@ class ContentDraft:
         lines.append("---")
         return "\n".join(lines)
 
-    def body_markdown(self, site_url: str) -> str:
+    def body_markdown(self) -> str:
         return branding.compose_body(
             summary=self.summary,
             body=self.body,
             category=self.category,
-            slug=self.final_slug,
-            site_url=site_url,
             commands=self.commands,
-            kind=self.kind,
         )
 
-    def document(self, site_url: str) -> str:
+    def document(self) -> str:
         """Documento completo listo para escribir en disco."""
-        return f"{self.front_matter()}\n\n{self.body_markdown(site_url)}"
+        return f"{self.front_matter()}\n\n{self.body_markdown()}"
 
     def filename(self) -> str:
         return f"{self.final_slug}.md"
@@ -247,7 +244,6 @@ class SaveError(RuntimeError):
 def save_draft(
     draft: ContentDraft,
     project_root: Path,
-    site_url: str,
     *,
     allow_overwrite: bool = False,
 ) -> Path:
@@ -261,7 +257,7 @@ def save_draft(
         raise SaveError(f"{target.name} ya existe. Activa 'sobrescribir' para reemplazarlo.")
 
     target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text(draft.document(site_url), encoding="utf-8")
+    target.write_text(draft.document(), encoding="utf-8")
     return target
 
 

@@ -93,7 +93,3 @@ curl http://127.0.0.1:8000/notas
 - El almacenamiento en memoria se pierde al reiniciar el proceso.
 - Sin base de datos ni autenticación, esto es un laboratorio, no producción.
 - Android puede suspender el proceso en segundo plano. Para pruebas largas, mantén Termux en primer plano o usa un servicio de primer plano.
-
-## Siguiente paso
-
-Pasar de un endpoint de prueba a una API mantenible exige capas, validación, persistencia y despliegue. Es exactamente el tipo de proyecto que se trabaja en la Academia.

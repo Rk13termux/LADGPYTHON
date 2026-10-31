@@ -98,7 +98,3 @@ No confundas “sin respuesta” con “seguro”. Un firewall puede ocultar un 
 5. Contrasta versiones con fuentes oficiales.
 6. Documenta hallazgos y limitaciones.
 7. Propón remediación, no solo el hallazgo.
-
-## Siguiente paso
-
-Saber lanzar un escaneo es el nivel más bajo de la competencia. Lo valioso es interpretar el contexto, priorizar riesgos y comunicar decisiones. Ese criterio se entrena con método y práctica guiada.

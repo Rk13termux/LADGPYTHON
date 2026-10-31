@@ -117,7 +117,3 @@ Salida esperada en un equipo con SSH y un servidor web activos:
 - No detecta servicios ni versiones: para eso necesitas Nmap u otras herramientas.
 - Un firewall puede responder de formas que confundan la clasificación.
 - El escaneo con muchos hilos puede saturar equipos pequeños. Baja `workers` si es necesario.
-
-## Siguiente paso
-
-Entender un escaneo es útil. Interpretarlo dentro de una auditoría completa, con alcance, evidencias y reporte, es lo que separa una prueba casera de un trabajo profesional.

@@ -144,7 +144,3 @@ sudo journalctl -u ssh --since "10 minutes ago"
 - Abrir el puerto SSH a todo internet sin necesidad.
 - Copiar configuraciones de internet sin entender cada directiva.
 - No monitorizar los logs después del cambio.
-
-## Siguiente paso
-
-Endurecer SSH es una capa. La seguridad de un servidor se construye con inventario, actualizaciones, mínimos privilegios y revisión continua. Aprender ese método completo es lo que marca la diferencia.

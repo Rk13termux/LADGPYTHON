@@ -109,7 +109,3 @@ Si el paso 4 falla, el problema está en el proyecto o en la versión de Python,
 ## Cuándo no usar un entorno virtual
 
 Casi nunca. La excepción son contenedores donde el aislamiento ya existe, o scripts de un solo archivo sin dependencias externas. Incluso ahí, un entorno evita sorpresas.
-
-## Siguiente paso
-
-Aislar dependencias resuelve la mitad del problema. La otra mitad es escribir código que otra persona pueda entender, probar y ejecutar sin adivinar.
