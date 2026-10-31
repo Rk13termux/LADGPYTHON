@@ -188,6 +188,41 @@
     },
     {
       "kind": "repos",
+      "slug": "shannon-pentester-de-ia-en-typescript-para-auditar-apps-web-y-apis",
+      "title": "Shannon: pentester de IA en TypeScript para auditar apps web y APIs",
+      "summary": "Cómo instalar y ejecutar Shannon, el agente en TypeScript que lee tu código, mapea la superficie de ataque y lanza pruebas de penetración.",
+      "category": "ciberseguridad",
+      "category_label": "Ciberseguridad",
+      "category_icon": "fas fa-shield-halved",
+      "updated": "2026-10-30",
+      "date_human": "30 oct 2026",
+      "date_ord": 739919,
+      "tags": [
+        "ciberseguridad",
+        "pentesting",
+        "typescript",
+        "ia",
+        "api"
+      ],
+      "stack": [
+        "TypeScript",
+        "Node.js",
+        "npm",
+        "Docker",
+        "LLM API"
+      ],
+      "featured": false,
+      "order": 99,
+      "repo": "",
+      "license": "MIT",
+      "url": "/repositorios/shannon-pentester-de-ia-en-typescript-para-auditar-apps-web-y-apis/",
+      "difficulty": "Avanzado",
+      "reading": 5,
+      "search": "shannon: pentester de ia en typescript para auditar apps web y apis cómo instalar y ejecutar shannon, el agente en typescript que lee tu código, mapea la superficie de ataque y lanza pruebas de penetración. ciberseguridad avanzado ciberseguridad pentesting typescript ia api typescript node.js npm docker llm api",
+      "short_title": "Shannon: pentester de IA en TypeScript para auditar app…"
+    },
+    {
+      "kind": "repos",
       "slug": "shannon-pentester-de-ia-que-lee-tu-codigo-y-ejecuta-los-ataques",
       "title": "Shannon: pentester de IA que lee tu código y ejecuta los ataques",
       "summary": "Clona KeygraphHQ/shannon, apunta el agente a tu repo y a una URL de staging, y obtén un informe con exploits reproducibles.",
