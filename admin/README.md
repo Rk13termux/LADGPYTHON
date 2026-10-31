@@ -10,6 +10,7 @@ Interfaz oscura tipo terminal, con los mismos colores del sitio
 | Pestaña | Qué hace |
 |---|---|
 | **Editor** | Crea repositorios y guías aplicando la Plantilla Maestra de branding, con vista previa en vivo. |
+| **Contenido** | Lista todo lo publicado; permite editarlo, verlo en el sitio o eliminarlo. |
 | **Analíticas** | Lee `page_views` de Supabase y muestra visitas, únicos, conversión, serie diaria y ranking. |
 | **Leads** | Lista los correos capturados, con búsqueda y exportación a CSV. |
 | **Publicación** | Guarda, ejecuta el build del sitio, hace commit y empuja a GitHub. |
@@ -170,6 +171,24 @@ En modo web puedes entrar desde el móvil: `python3 -m admin --web --host 0.0.0.
    `content/guias/<slug>.md`. **Guardar y publicar** salta a la pestaña de Git.
 
 También puedes abrir contenido existente con el selector **Abrir existente**.
+
+### Biblioteca de contenido
+
+La pestaña **Contenido** lee `content/repos` y `content/guias` y muestra cada
+publicación con su tipo, categoría, nivel, fecha y acciones:
+
+| Acción | Qué hace |
+|---|---|
+| **Editar** | Carga el archivo en el editor y salta a esa pestaña. |
+| **Ver en el sitio** | Abre la URL pública en el navegador. |
+| **Eliminar** | Borra el `.md` tras confirmarlo. La página sigue visible hasta que publiques. |
+
+La búsqueda filtra por título, slug o categoría; las píldoras filtran por tipo.
+El botón **Nuevo** abre el editor en blanco.
+
+Eliminar no hace commit: el cambio queda pendiente en el árbol de trabajo y se
+sube desde **Publicación**, que además ejecuta el build y limpia la carpeta
+generada del slug eliminado.
 
 ### Tres formas de crear contenido
 

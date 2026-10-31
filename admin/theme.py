@@ -104,6 +104,17 @@ def build_theme() -> ft.Theme:
             error_container="#2A0A0A",
             on_error_container=DANGER,
         ),
+        dialog_theme=ft.DialogTheme(
+            bgcolor=SURFACE_ALT,
+            barrier_color=alpha("#000000", 0.74),
+            shape=ft.RoundedRectangleBorder(radius=16),
+            elevation=0,
+            title_text_style=ft.TextStyle(
+                size=17, weight=ft.FontWeight.W_700, color=TEXT
+            ),
+            content_text_style=ft.TextStyle(size=13, color=MUTED),
+            actions_padding=ft.Padding.only(left=24, right=24, bottom=20, top=4),
+        ),
         divider_color=BORDER_SOFT,
         hint_color=DIM,
         splash_color=ft.Colors.with_opacity(0.08, BRAND),

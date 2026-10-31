@@ -154,6 +154,7 @@ python3 -m admin --check              # diagnóstico sin interfaz
 ```
 
 - **Editor**: manual, con IA (OmniRoute) o importando un `.md`, siempre con Plantilla Maestra, vista previa y guardado directo en `content/`.
+- **Contenido**: biblioteca de lo publicado, con edición, vista previa en el sitio y borrado.
 - **Analíticas**: visitas, únicos y conversión leídos de Supabase.
 - **Leads**: correos capturados, con búsqueda y exportación a CSV.
 - **Publicación**: `scripts/build.py` + `git add` + `git commit` + `git push`, con consola en vivo.

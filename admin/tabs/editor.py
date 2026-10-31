@@ -466,7 +466,7 @@ class EditorTab:
     def _existing_options(self) -> list[tuple[str, str]]:
         options: list[tuple[str, str]] = []
         for kind, label in (("repos", "Repo"), ("guias", "Guía")):
-            for path in existing_files(self.ctx.settings.project_root, kind)[:12]:
+            for path in existing_files(self.ctx.settings.project_root, kind):
                 options.append((str(path), f"{label} · {path.stem}"))
         return options
 
@@ -531,6 +531,22 @@ class EditorTab:
         self.featured.update()
         self.overwrite.update()
         self._refresh_preview()
+
+    # ------------------------------------------------------------------ carga
+    def load_path(self, path: Path) -> None:
+        """Abre una publicación existente en el formulario."""
+        try:
+            draft = load_document(path)
+        except (OSError, ValueError) as exc:
+            self.ctx.toast(f"No se pudo leer el archivo: {exc}", "error")
+            return
+        self._fill_form(draft, keep_slug=True, overwrite=True)
+        self.ctx.toast(f"Editando {path.name}", "info")
+
+    def new_document(self) -> None:
+        """Vacía el formulario para empezar una publicación nueva."""
+        self._reset(None)  # type: ignore[arg-type]
+        self._set_mode("manual")
 
     # ------------------------------------------------------------------ modos
     def on_mount(self) -> None:

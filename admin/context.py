@@ -13,6 +13,13 @@ from .config import Settings
 from .content import ContentDraft
 from .supabase_api import SupabaseClient
 
+# Índices de las pestañas, en el orden en que se montan.
+TAB_EDITOR = 0
+TAB_CONTENT = 1
+TAB_ANALYTICS = 2
+TAB_LEADS = 3
+TAB_PUBLISH = 4
+
 
 @dataclass
 class AppContext:
@@ -25,8 +32,9 @@ class AppContext:
     saved_path: Path | None = None
     publish_requests: list[ContentDraft] = field(default_factory=list)
 
-    # Callback que instala la app para cambiar de pestaña.
+    # Callbacks que instala la app.
     go_to_tab: Callable[[int], None] | None = None
+    open_editor: Callable[[Path | None], None] | None = None
 
     # ------------------------------------------------------------------ avisos
     def toast(self, message: str, kind: str = "ok") -> None:
@@ -37,4 +45,4 @@ class AppContext:
         """Guarda el borrador y salta a la pestaña de publicación."""
         self.pending_draft = draft
         if self.go_to_tab:
-            self.go_to_tab(3)
+            self.go_to_tab(TAB_PUBLISH)

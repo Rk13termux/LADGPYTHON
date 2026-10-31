@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from pathlib import Path
 
 import flet as ft
 
@@ -10,7 +11,9 @@ from . import __version__, theme as t, widgets
 from .config import Settings, load_settings, mask_secret
 from .context import AppContext
 from .supabase_api import SupabaseClient, SupabaseError
+from .context import TAB_CONTENT, TAB_EDITOR, TAB_PUBLISH
 from .tabs.analytics import AnalyticsTab
+from .tabs.content import ContentTab
 from .tabs.editor import EditorTab
 from .tabs.leads import LeadsTab
 from .tabs.publish import PublishTab
@@ -37,12 +40,20 @@ class AdminApp:
                 self.supabase_error = str(exc)
 
         self.editor = EditorTab(self.ctx)
+        self.content = ContentTab(self.ctx)
         self.analytics = AnalyticsTab(self.ctx)
         self.leads = LeadsTab(self.ctx)
         self.publish = PublishTab(self.ctx)
-        self.tabs_list = [self.editor, self.analytics, self.leads, self.publish]
+        self.tabs_list = [
+            self.editor,
+            self.content,
+            self.analytics,
+            self.leads,
+            self.publish,
+        ]
 
         self.ctx.go_to_tab = self.go_to_tab
+        self.ctx.open_editor = self.open_editor
 
     # ------------------------------------------------------------------ montaje
     def mount(self) -> None:
@@ -159,6 +170,7 @@ class AdminApp:
         bar = ft.TabBar(
             tabs=[
                 ft.Tab(label="Editor", icon=ft.Icons.EDIT_NOTE),
+                ft.Tab(label="Contenido", icon=ft.Icons.LIBRARY_BOOKS),
                 ft.Tab(label="Analíticas", icon=ft.Icons.INSIGHTS),
                 ft.Tab(label="Leads", icon=ft.Icons.EMAIL),
                 ft.Tab(label="Publicación", icon=ft.Icons.CLOUD_UPLOAD),
@@ -189,7 +201,9 @@ class AdminApp:
 
     def _on_tab_change(self, event: ft.Event) -> None:
         index = self.tabs.selected_index or 0
-        if index == 3:
+        if index == TAB_CONTENT:
+            self.content.reload()
+        elif index == TAB_PUBLISH:
             self.publish.sync()
 
     def go_to_tab(self, index: int) -> None:
@@ -200,8 +214,18 @@ class AdminApp:
             self.tabs.update()
         except (AssertionError, RuntimeError):
             pass
-        if index == 3:
+        if index == TAB_CONTENT:
+            self.content.reload()
+        elif index == TAB_PUBLISH:
             self.publish.sync()
+
+    def open_editor(self, path: Path | None) -> None:
+        """Abre una publicación en el editor, o una hoja en blanco."""
+        if path is None:
+            self.editor.new_document()
+        else:
+            self.editor.load_path(path)
+        self.go_to_tab(TAB_EDITOR)
 
     # ------------------------------------------------------------------ estado
     def _status_bar(self) -> ft.Control:
