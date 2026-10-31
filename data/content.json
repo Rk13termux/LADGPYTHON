@@ -220,41 +220,6 @@
       "reading": 5,
       "search": "shannon: pentester de ia en typescript para auditar apps web y apis cómo instalar y ejecutar shannon, el agente en typescript que lee tu código, mapea la superficie de ataque y lanza pruebas de penetración. ciberseguridad avanzado ciberseguridad pentesting typescript ia api typescript node.js npm docker llm api",
       "short_title": "Shannon: pentester de IA en TypeScript para auditar app…"
-    },
-    {
-      "kind": "repos",
-      "slug": "shannon-pentester-de-ia-que-lee-tu-codigo-y-ejecuta-los-ataques",
-      "title": "Shannon: pentester de IA que lee tu código y ejecuta los ataques",
-      "summary": "Clona KeygraphHQ/shannon, apunta el agente a tu repo y a una URL de staging, y obtén un informe con exploits reproducibles.",
-      "category": "python",
-      "category_label": "Python",
-      "category_icon": "fab fa-python",
-      "updated": "2026-10-30",
-      "date_human": "30 oct 2026",
-      "date_ord": 739919,
-      "tags": [
-        "pentesting",
-        "ia",
-        "python",
-        "docker",
-        "api"
-      ],
-      "stack": [
-        "Python 3",
-        "Docker Compose",
-        "KeygraphHQ/shannon",
-        "Anthropic Claude API",
-        "OWASP Juice Shop"
-      ],
-      "featured": false,
-      "order": 99,
-      "repo": "",
-      "license": "MIT",
-      "url": "/repositorios/shannon-pentester-de-ia-que-lee-tu-codigo-y-ejecuta-los-ataques/",
-      "difficulty": "Principiante",
-      "reading": 6,
-      "search": "shannon: pentester de ia que lee tu código y ejecuta los ataques clona keygraphhq/shannon, apunta el agente a tu repo y a una url de staging, y obtén un informe con exploits reproducibles. python principiante pentesting ia python docker api python 3 docker compose keygraphhq/shannon anthropic claude api owasp juice shop",
-      "short_title": "Shannon: pentester de IA que lee tu código y ejecuta lo…"
     }
   ],
   "guias": [
@@ -341,34 +306,6 @@
       "reading": 11,
       "search": "endurecer ssh en linux: de la configuración por defecto a un acceso defendible claves, usuarios, fail2ban y ajustes de sshd para reducir la superficie de ataque de un servidor expuesto a internet. ciberseguridad intermedio ssh linux hardening servidores",
       "short_title": "Endurecer SSH en Linux: de la configuración por defecto…"
-    },
-    {
-      "kind": "guias",
-      "slug": "expresiones-regulares-python",
-      "title": "Expresiones regulares en Python sin memorizar símbolos",
-      "summary": "Una ruta práctica por re, grupos, búsquedas y sustituciones con ejemplos que puedes ejecutar y modificar.",
-      "category": "python",
-      "category_label": "Python",
-      "category_icon": "fab fa-python",
-      "updated": "2026-10-17",
-      "date_human": "17 oct 2026",
-      "date_ord": 739906,
-      "tags": [
-        "python",
-        "regex",
-        "texto",
-        "re"
-      ],
-      "stack": [],
-      "featured": false,
-      "order": 4,
-      "repo": "",
-      "license": "MIT",
-      "url": "/guias/expresiones-regulares-python/",
-      "level": "Intermedio",
-      "reading": 10,
-      "search": "expresiones regulares en python sin memorizar símbolos una ruta práctica por re, grupos, búsquedas y sustituciones con ejemplos que puedes ejecutar y modificar. python intermedio python regex texto re",
-      "short_title": "Expresiones regulares en Python sin memorizar símbolos"
     },
     {
       "kind": "guias",
