@@ -290,7 +290,26 @@ El botón **Publicar ahora** ejecuta, en este orden y deteniéndose al primer fa
 Cada paso se escribe en la consola con su código de salida y duración.
 GitHub Actions toma el relevo y despliega en Pages.
 
-Detalles de seguridad:
+#### Credenciales del push
+
+El panel no depende de que Git tenga credenciales guardadas. Añade un token
+con permiso de escritura a `admin/.env`:
+
+```dotenv
+CHMODX_GIT_TOKEN=ghp_...
+```
+
+Se usa mediante un `credential.helper` efímero y una variable de entorno: el
+token nunca se escribe en la URL, ni en `.git/config`, ni en la consola del
+panel. Si el remoto lo rechaza, la consola muestra una pista con la solución.
+
+La tarjeta **Repositorio** indica si el token está configurado. Sin él, el
+commit local funciona pero el push falla con `Invalid username or token`.
+
+> El commit se hace con `git add -A`, así que arrastra cualquier cambio del
+> árbol de trabajo. Publica con el árbol limpio si no quieres mezclar.
+
+#### Seguridad
 
 - Nunca se usa `shell=True`; los argumentos van como lista.
 - `shlex.split` para el comando de build definido en el entorno.
