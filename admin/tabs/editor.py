@@ -26,6 +26,56 @@ from ..omniroute import (
 from ..context import AppContext
 
 
+def _preview_style() -> ft.MarkdownStyleSheet:
+    """Estilo oscuro para el Markdown de la vista previa."""
+    return ft.MarkdownStyleSheet(
+        p_text_style=ft.TextStyle(size=13.5, color=t.MUTED, height=1.55),
+        a_text_style=ft.TextStyle(
+            size=13.5, color=t.CYAN, decoration=ft.TextDecoration.UNDERLINE
+        ),
+        em_text_style=ft.TextStyle(size=13.5, italic=True, color=t.MUTED),
+        strong_text_style=ft.TextStyle(
+            size=13.5, color=t.TEXT, weight=ft.FontWeight.W_700
+        ),
+        h1_text_style=ft.TextStyle(
+            size=20, color=t.TEXT, weight=ft.FontWeight.W_700
+        ),
+        h2_text_style=ft.TextStyle(
+            size=16.5, color=t.TEXT, weight=ft.FontWeight.W_700
+        ),
+        h3_text_style=ft.TextStyle(
+            size=14.5, color=t.TEXT, weight=ft.FontWeight.W_600
+        ),
+        code_text_style=ft.TextStyle(
+            size=12, color=t.BRAND, font_family=t.mono_font()
+        ),
+        blockquote_text_style=ft.TextStyle(size=13, color=t.MUTED, italic=True),
+        blockquote_padding=ft.Padding.symmetric(horizontal=12, vertical=8),
+        blockquote_decoration=ft.BoxDecoration(
+            bgcolor=t.alpha(t.BRAND, 0.06),
+            border=ft.Border.only(left=ft.BorderSide(2, t.BRAND)),
+            border_radius=ft.BorderRadius.only(top_right=8, bottom_right=8),
+        ),
+        codeblock_padding=ft.Padding.all(12),
+        codeblock_decoration=ft.BoxDecoration(
+            bgcolor="#070707",
+            border=ft.Border.all(1, t.BORDER),
+            border_radius=ft.BorderRadius.all(8),
+        ),
+        list_bullet_text_style=ft.TextStyle(size=13, color=t.BRAND),
+        table_head_text_style=ft.TextStyle(
+            size=12, color=t.TEXT, weight=ft.FontWeight.W_700
+        ),
+        table_body_text_style=ft.TextStyle(size=12, color=t.MUTED),
+        table_cells_padding=ft.Padding.symmetric(horizontal=8, vertical=6),
+        horizontal_rule_decoration=ft.BoxDecoration(bgcolor=t.BORDER),
+    )
+
+
+def _section_label(text: str) -> ft.Text:
+    return ft.Text(text.upper(), size=9.5, weight=ft.FontWeight.W_700, color=t.DIM)
+
+
 MODES = [
     ("manual", "Manual", ft.Icons.EDIT),
     ("ai", "Con IA", ft.Icons.AUTO_AWESOME),
@@ -109,7 +159,10 @@ class EditorTab:
         )
         self.license = widgets.field("Licencia", value="MIT")
         self.order = widgets.field("Orden", value="99")
-        self.order.width = 96
+        self.order.width = 88
+        self.license.expand = True
+        # En un Column, expand empuja en vertical: solo el nivel lo necesita fuera de un Row.
+        self.level.expand = False
 
         self.featured = ft.Switch(
             label="Destacar en el hub",
@@ -119,7 +172,7 @@ class EditorTab:
             on_change=self._on_any_change,
         )
 
-        self.repo_only = ft.Row(
+        self.repo_only = ft.Column(
             [self.stack, self.repo_url, self.license], spacing=12, visible=True
         )
 
@@ -127,20 +180,21 @@ class EditorTab:
             "Contenido Markdown",
             hint="Escribe el cuerpo. La plantilla maestra añade gancho, comandos y cierre.",
             multiline=True,
-            min_lines=16,
-            max_lines=38,
+            min_lines=6,
+            max_lines=None,
             on_change=self._on_any_change,
-            helper="Admite títulos ##, listas, tablas y bloques de código. No pegues el front matter.",
         )
+        self.body.expand = True
+        self.body.fit_parent_size = True
         self.commands = widgets.field(
             "Comandos de Termux",
             hint="pkg update -y\npkg install -y python git",
             multiline=True,
-            min_lines=5,
-            max_lines=10,
+            min_lines=3,
+            max_lines=None,
             on_change=self._on_any_change,
-            helper="Se envuelven en un bloque bash bajo la sección de comandos.",
         )
+        self.commands.fit_parent_size = True
 
         self.overwrite = ft.Switch(
             label="Sobrescribir si existe",
@@ -165,6 +219,8 @@ class EditorTab:
             selectable=True,
             extension_set=ft.MarkdownExtensionSet.GITHUB_FLAVORED,
             auto_follow_links=False,
+            code_theme=ft.MarkdownCodeTheme.ATELIER_CAVE_DARK,
+            md_style_sheet=_preview_style(),
         )
         self.preview_meta = ft.Text("—", size=11, color=t.DIM)
         self.preview_path = ft.Text("", size=11.5, color=t.CYAN, font_family=t.mono_font())
@@ -195,7 +251,7 @@ class EditorTab:
             value=self.ctx.settings.omniroute_model,
             helper="auto deja que OmniRoute elija",
         )
-        self.ai_model.width = 180
+        self.ai_model.expand = False
         self.ai_tone = widgets.dropdown(
             "Tono", [(name, name) for name in TONE_WORDS], "Técnico y directo", None
         )
@@ -213,20 +269,22 @@ class EditorTab:
             "Generar borrador", ft.Icons.AUTO_AWESOME, self._on_generate
         )
         self.ai_status = ft.Text("", size=11.5, color=t.DIM)
+        self.ai_button.expand = True
         self.ai_panel = ft.Container(
             content=widgets.card(
                 ft.Column(
                     [
-                        ft.Row([self.ai_model, self.ai_tone, self.ai_length], spacing=12),
                         self.ai_brief,
-                        ft.Row(
-                            [self.ai_button, ft.Container(expand=True), self.ai_status],
-                            vertical_alignment=ft.CrossAxisAlignment.CENTER,
-                        ),
+                        self.ai_tone,
+                        self.ai_length,
+                        self.ai_model,
+                        ft.Row([self.ai_button], spacing=0),
+                        self.ai_status,
                     ],
-                    spacing=12,
+                    spacing=10,
                 ),
                 border_color=t.alpha(t.CYAN, 0.28),
+                padding=14,
             ),
             visible=False,
         )
@@ -241,14 +299,15 @@ class EditorTab:
             size=11.5,
             color=t.DIM,
         )
+        self.import_button.expand = True
         self.import_panel = ft.Container(
             content=widgets.card(
-                ft.Row(
-                    [self.import_button, ft.Container(expand=True), self.import_status],
-                    spacing=14,
-                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                ft.Column(
+                    [ft.Row([self.import_button], spacing=0), self.import_status],
+                    spacing=10,
                 ),
                 border_color=t.alpha(t.YELLOW, 0.25),
+                padding=14,
             ),
             visible=False,
         )
@@ -273,53 +332,85 @@ class EditorTab:
             ],
         )
 
-        mode_bar = ft.Row(list(self.mode_chips.values()), spacing=8)
-        panels = ft.Column([self.ai_panel, self.import_panel], spacing=12)
-
-        form = ft.Column(
+        # ------------------------------------------------ columna 1 · opciones
+        options = ft.Column(
             [
-                ft.Row([self.kind, self.category, self.level], spacing=12),
+                _section_label("Modo"),
+                ft.Row(
+                    list(self.mode_chips.values()),
+                    spacing=6,
+                    run_spacing=6,
+                    wrap=True,
+                ),
+                self.ai_panel,
+                self.import_panel,
+                widgets.divider(),
+                _section_label("Identidad"),
                 self.title,
                 self.summary,
-                ft.Row([self.slug, self.tags], spacing=12),
+                self.slug,
+                ft.Row([self.kind, self.category], spacing=10),
+                self.level,
+                self.tags,
                 self.repo_only,
-                self.body,
-                self.commands,
+                _section_label("Publicación"),
                 ft.Row(
-                    [self.featured, self.overwrite, self.order],
-                    spacing=18,
+                    [self.order, self.license],
+                    spacing=10,
                     vertical_alignment=ft.CrossAxisAlignment.CENTER,
                 ),
+                self.featured,
+                self.overwrite,
             ],
-            spacing=14,
+            spacing=12,
+            width=340,
             scroll=ft.ScrollMode.AUTO,
+            horizontal_alignment=ft.CrossAxisAlignment.STRETCH,
+        )
+
+        # --------------------------------------------- columna 2 · editor .md
+        editor_column = ft.Column(
+            [
+                ft.Row(
+                    [
+                        _section_label("Contenido Markdown"),
+                        ft.Container(expand=True),
+                        widgets.badge("Markdown", color=t.CYAN),
+                    ],
+                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                ),
+                self.body,
+                ft.Row(
+                    [
+                        _section_label("Comandos de Termux"),
+                        ft.Container(expand=True),
+                        ft.Text("se envuelven en un bloque bash", size=10.5, color=t.DIM),
+                    ],
+                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                ),
+                ft.Container(content=self.commands, height=110),
+            ],
+            spacing=10,
             expand=6,
         )
 
-        preview_panel = ft.Column(
+        # ------------------------------------------- columna 3 · vista previa
+        preview_column = ft.Column(
             [
-                widgets.card(
-                    ft.Row(
-                        [
-                            ft.Text(
-                                "Vista previa",
-                                size=13,
-                                weight=ft.FontWeight.W_700,
-                                color=t.TEXT,
-                            ),
-                            ft.Container(expand=True),
-                            self.live_preview,
-                        ],
-                        vertical_alignment=ft.CrossAxisAlignment.CENTER,
-                    ),
-                    padding=(14, 10),
+                ft.Row(
+                    [
+                        _section_label("Vista previa"),
+                        ft.Container(expand=True),
+                        self.live_preview,
+                    ],
+                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
                 ),
                 ft.Container(
                     content=ft.Column(
                         [self.preview_md], scroll=ft.ScrollMode.AUTO, expand=True
                     ),
                     expand=True,
-                    padding=ft.Padding.symmetric(horizontal=22, vertical=18),
+                    padding=ft.Padding.symmetric(horizontal=20, vertical=16),
                     bgcolor=t.SURFACE,
                     border=ft.Border.all(1, t.BORDER),
                     border_radius=ft.BorderRadius.all(14),
@@ -329,7 +420,7 @@ class EditorTab:
                     spacing=10,
                 ),
             ],
-            spacing=12,
+            spacing=10,
             expand=5,
         )
 
@@ -359,17 +450,15 @@ class EditorTab:
         return ft.Column(
             [
                 header,
-                mode_bar,
-                panels,
                 ft.Row(
-                    [form, preview_panel],
-                    spacing=20,
+                    [options, editor_column, preview_column],
+                    spacing=16,
                     expand=True,
-                    vertical_alignment=ft.CrossAxisAlignment.START,
+                    vertical_alignment=ft.CrossAxisAlignment.STRETCH,
                 ),
                 action_bar,
             ],
-            spacing=16,
+            spacing=14,
             expand=True,
         )
 
@@ -637,7 +726,12 @@ class EditorTab:
         site = self.ctx.settings.site_url
 
         if self.live_preview.value:
-            self.preview_md.value = draft.body_markdown(site)
+            if not draft.title.strip() and not draft.body.strip():
+                self.preview_md.value = (
+                    "_Escribe el título y el contenido para ver aquí la vista previa._"
+                )
+            else:
+                self.preview_md.value = draft.body_markdown(site)
             stats = draft.stats()
             self.preview_meta.value = (
                 f"{stats['palabras']} palabras · {stats['lectura']} · "
