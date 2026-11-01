@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <meta name="robots" content="index,follow">
+    <title>Manual de comandos de Termux: 260 comandos para convertir Android en un laboratorio | CHMODX</title>
+    <meta name="description" content="Más de 250 comandos organizados en 10 capítulos: fundamentos, interfaz de Android, hardware, comunicación, procesos, texto, scripting, archivos, redes y diagnóstico. Con explicaciones, ejemplos y combinaciones listas para usar.">
+    <link rel="canonical" href="https://chmodxcode.pro/guias/manual-comandos-termux/">
+
+    <link rel="icon" type="image/png" href="/assets/logo.png">
+    <link rel="apple-touch-icon" href="/assets/logo.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="CHMODX">
+    <meta property="og:title" content="Manual de comandos de Termux: 260 comandos para convertir Android en un laboratorio | CHMODX">
+    <meta property="og:description" content="Más de 250 comandos organizados en 10 capítulos: fundamentos, interfaz de Android, hardware, comunicación, procesos, texto, scripting, archivos, redes y diagnóstico. Con explicaciones, ejemplos y combinaciones listas para usar.">
+    <meta property="og:url" content="https://chmodxcode.pro/guias/manual-comandos-termux/">
+    <meta property="og:image" content="https://chmodxcode.pro/assets/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Manual de comandos de Termux: 260 comandos para convertir Android en un laboratorio | CHMODX">
+    <meta name="twitter:description" content="Más de 250 comandos organizados en 10 capítulos: fundamentos, interfaz de Android, hardware, comunicación, procesos, texto, scripting, archivos, redes y diagnóstico. Con explicaciones, ejemplos y combinaciones listas para usar.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/site.css">
+    
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Manual de comandos de Termux: 260 comandos para convertir Android en un laboratorio",
+  "description": "Más de 250 comandos organizados en 10 capítulos: fundamentos, interfaz de Android, hardware, comunicación, procesos, texto, scripting, archivos, redes y diagnóstico. Con explicaciones, ejemplos y combinaciones listas para usar.",
+  "dateModified": "2026-10-31",
+  "inLanguage": "es",
+  "url": "https://chmodxcode.pro/guias/manual-comandos-termux/",
+  "mainEntityOfPage": "https://chmodxcode.pro/guias/manual-comandos-termux/",
+  "author": {
+    "@type": "Organization",
+    "name": "CHMODX"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CHMODX",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://chmodxcode.pro/assets/logo.png"
+    }
+  },
+  "keywords": "termux, android, linux, terminal, comandos, bash, scripting"
+}
+</script>
+</head>
+<body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <header class="header site-header">
+        <nav class="navbar" aria-label="Navegación principal">
+            <div class="container nav-container">
+                <a href="/" class="nav-logo" aria-label="CHMODX, inicio">
+                    <img src="/assets/logo.png" alt="" class="brand-logo" width="42" height="42">
+                    <span class="brand-name">CHMOD<span class="brand-x">X</span></span>
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="/repositorios/" class="">Repositorios</a></li>
+                    <li><a href="/guias/" class="is-active">Guías</a></li>
+                    <li><a href="/academia/" class="">Academia</a></li>
+                </ul>
+
+                <div class="nav-cta">
+                    <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="nav-telegram-link" aria-label="Canal de Telegram">
+                        <i class="fab fa-telegram" aria-hidden="true"></i>
+                    </a>
+                    <a href="/academia/" class="btn btn-primary btn-sm">
+                        <i class="fas fa-bolt" aria-hidden="true"></i> Academia
+                    </a>
+                </div>
+
+                <button type="button" class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="/repositorios/">Repositorios</a>
+                <a href="/guias/">Guías</a>
+                <a href="/academia/">Academia Python Pro</a>
+                <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-telegram">Canal de Telegram</a>
+                <a href="/academia/" class="btn btn-primary">Ver la academia</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="contenido">
+        <div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
+
+<div class="container">
+    <nav class="breadcrumb article-breadcrumb" aria-label="Miga de pan">
+        <a href="/">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <a href="/guias/">Guías</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Manual de comandos de Termux: 260 comandos para convert…</span>
+    </nav>
+</div>
+
+<header class="article-hero">
+    <div class="container">
+        <span class="badge badge-termux"><i class="fas fa-terminal" aria-hidden="true"></i> Termux</span>
+        <h1 class="article-title">Manual de comandos de Termux: 260 comandos para convertir Android en un laboratorio</h1>
+        <p class="article-summary">Más de 250 comandos organizados en 10 capítulos: fundamentos, interfaz de Android, hardware, comunicación, procesos, texto, scripting, archivos, redes y diagnóstico. Con explicaciones, ejemplos y combinaciones listas para usar.</p>
+        <div class="article-meta">
+            <span><i class="far fa-calendar" aria-hidden="true"></i> Actualizado el 31 oct 2026</span>
+            <span><i class="far fa-clock" aria-hidden="true"></i> 40 min de lectura</span>
+            <span><i class="fas fa-signal" aria-hidden="true"></i> Nivel Intermedio</span>
+            <span><i class="fas fa-user-pen" aria-hidden="true"></i> Equipo CHMODX</span>
+        </div>
+        <div class="tag-list">
+            <span class="tag">termux</span><span class="tag">android</span><span class="tag">linux</span><span class="tag">terminal</span><span class="tag">comandos</span><span class="tag">bash</span>
+        </div>
+    </div>
+</header>
+
+<div class="container article-shell">
+    <article class="article-main">
+        <div class="article-body">
+            <h2 id="introduccion">Introducción</h2>
+<p>Termux es un emulador de terminal para Android que ejecuta un sistema Linux real sin necesidad de root. No es una app de juguete: permite instalar Python, Git, compiladores, servidores web, herramientas de red y utilidades del ecosistema GNU. Con él, un teléfono se convierte en un laboratorio portátil.</p>
+<p>Este manual reúne más de 300 comandos organizados en 10 capítulos, desde la instalación de paquetes hasta el diagnóstico del sistema. Cada entrada explica qué hace el comando y, cuando tiene sentido, cómo se combina con otros.</p>
+<h3 id="convenciones-usadas">Convenciones usadas</h3>
+<ul>
+<li><code>&lt;paquete&gt;</code>, <code>&lt;archivo&gt;</code>, <code>&lt;URL&gt;</code> y similares son marcadores: sustitúyelos por el valor real.</li>
+<li>Los comandos se ejecutan dentro de Termux, salvo que se indique lo contrario.</li>
+<li>Muchos comandos de la API de Android requieren el paquete <code>termux-api</code> y su app complementaria instalada.</li>
+<li>Un comando que termina en <code>&amp;</code> se ejecuta en segundo plano; sin él, el terminal queda bloqueado hasta que termine.</li>
+</ul>
+<h3 id="antes-de-empezar">Antes de empezar</h3>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">pkg update -y &amp;&amp; pkg upgrade -y
+pkg install termux-api
+termux-setup-storage</code></pre></div>
+<aside class="cta-code" data-cta="code" data-content="manual-comandos-termux" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Academia Python Pro</strong> Tu Android puede ser un laboratorio completo. En la academia montamos el entorno, los proyectos y el flujo de trabajo desde cero.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=manual-comandos-termux&utm_content=bloque-1" class="btn btn-primary btn-sm">Ver la academia <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
+<p>La primera línea actualiza los repositorios y los paquetes. La segunda instala la API que habla con Android. La tercera pide permiso para acceder al almacenamiento compartido y crea <code>~/storage/shared</code>.</p>
+<blockquote><p>Descarga Termux desde <strong>F-Droid</strong> o desde el repositorio oficial en GitHub. La versión de Google Play está abandonada y falla al actualizar paquetes.</p></blockquote>
+<h2 id="indice">Índice</h2>
+<ol>
+<li><a href="#1-la-base-de-termux">La base de Termux</a></li>
+<li><a href="#2-interacción-con-la-interfaz-de-android">Interacción con la interfaz de Android</a></li>
+<li><a href="#3-acceso-al-hardware-del-dispositivo">Acceso al hardware del dispositivo</a></li>
+<li><a href="#4-comunicación-y-conectividad">Comunicación y conectividad</a></li>
+<li><a href="#5-procesos-trabajos-y-sesiones">Procesos, trabajos y sesiones</a></li>
+<li><a href="#6-manipulación-avanzada-de-archivos-y-texto">Manipulación avanzada de archivos y texto</a></li>
+<li><a href="#7-scripting-y-automatización">Scripting y automatización</a></li>
+<li><a href="#8-almacenamiento-y-archivos-comprimidos">Almacenamiento y archivos comprimidos</a></li>
+<li><a href="#9-redes-y-conexiones-seguras">Redes y conexiones seguras</a></li>
+<li><a href="#10-internos-del-sistema-y-diagnóstico">Internos del sistema y diagnóstico</a></li>
+</ol>
+<h2 id="1-la-base-de-termux">1. La base de Termux</h2>
+<p>Todo empieza aquí. Estos comandos gestionan el entorno, instalan herramientas y permiten navegar por el sistema de archivos. Dominarlos es el primer paso.</p>
+<div class="table-wrap"><table><thead><tr><th>Comando</th><th>Explicación</th></tr></thead><tbody><tr><td><code>pkg update</code></td><td>Actualiza la lista de paquetes disponibles en los repositorios suscritos.</td></tr><tr><td><code>pkg upgrade</code></td><td>Actualiza todos los paquetes instalados a su versión más reciente.</td></tr><tr><td><code>pkg install &lt;paquete&gt;</code></td><td>Instala un paquete concreto, por ejemplo <code>termux-api</code>.</td></tr><tr><td><code>pkg uninstall &lt;paquete&gt;</code></td><td>Elimina un paquete del sistema.</td></tr><tr><td><code>pkg reinstall &lt;paquete&gt;</code></td><td>Reinstala un paquete; útil para reparar instalaciones rotas.</td></tr><tr><td><code>pkg list-installed</code></td><td>Muestra todos los paquetes instalados.</td></tr><tr><td><code>pkg search &lt;consulta&gt;</code></td><td>Busca paquetes disponibles.</td></tr><tr><td><code>pkg show &lt;paquete&gt;</code></td><td>Muestra información detallada de un paquete.</td></tr><tr><td><code>pkg files &lt;paquete&gt;</code></td><td>Lista todos los archivos que instaló un paquete.</td></tr><tr><td><code>termux-setup-storage</code></td><td>Solicita permiso para acceder al almacenamiento compartido del dispositivo.</td></tr><tr><td><code>pwd</code></td><td>Muestra la ruta completa del directorio actual.</td></tr><tr><td><code>ls</code></td><td>Lista los archivos y carpetas del directorio actual.</td></tr><tr><td><code>cd</code></td><td>Cambia de directorio (<code>cd ..</code> sube un nivel, <code>cd ~</code> va a home).</td></tr><tr><td><code>clear</code></td><td>Limpia la pantalla del terminal.</td></tr><tr><td><code>exit</code></td><td>Cierra la sesión actual de Termux.</td></tr><tr><td><code>mkdir &lt;nombre&gt;</code></td><td>Crea un directorio nuevo.</td></tr><tr><td><code>touch &lt;archivo&gt;</code></td><td>Crea un archivo vacío.</td></tr><tr><td><code>rm &lt;archivo&gt;</code></td><td>Elimina un archivo. Usa <code>rm -r &lt;directorio&gt;</code> para borrar un directorio.</td></tr><tr><td><code>cp &lt;origen&gt; &lt;destino&gt;</code></td><td>Copia un archivo o directorio.</td></tr><tr><td><code>mv &lt;origen&gt; &lt;destino&gt;</code></td><td>Mueve o renombra un archivo o directorio.</td></tr><tr><td><code>whoami</code></td><td>Muestra el nombre de usuario actual (por ejemplo, <code>u0_a123</code>).</td></tr><tr><td><code>uname -o</code></td><td>Muestra el sistema operativo (Android).</td></tr><tr><td><code>df -h</code></td><td>Muestra el uso de disco en formato legible.</td></tr><tr><td><code>top</code></td><td>Muestra una vista en vivo de los procesos y el uso de recursos.</td></tr><tr><td><code>ping &lt;host&gt;</code></td><td>Comprueba la conectividad de red con un servidor (por ejemplo, <code>ping google.com</code>).</td></tr><tr><td><code>ifconfig</code></td><td>Muestra la información de las interfaces de red y la dirección IP.</td></tr></tbody></table></div>
+<blockquote><p><strong>Tip:</strong> antes de instalar nada, ejecuta <code>pkg update</code>. Un repositorio desactualizado es la causa más frecuente de errores al instalar paquetes.</p></blockquote>
+<h2 id="2-interaccion-con-la-interfaz-de-android">2. Interacción con la interfaz de Android</h2>
+<p>Estos comandos, sobre todo los de <code>termux-api</code>, sacan los scripts del terminal y los conectan con la interfaz gráfica de Android. Crean el puente entre la línea de comandos y el entorno visual.</p>
+<div class="table-wrap"><table><thead><tr><th>Comando</th><th>Explicación</th></tr></thead><tbody><tr><td><code>termux-toast "mensaje"</code></td><td>Muestra una notificación pequeña y temporal (un "toast").</td></tr><tr><td><code>termux-dialog</code></td><td>Crea un cuadro de diálogo para pedir texto al usuario.</td></tr><tr><td><code>termux-dialog checkbox -v "Op1,Op2"</code></td><td>Crea un diálogo con casillas de selección.</td></tr><tr><td><code>termux-dialog confirm -t "¿Pregunta?"</code></td><td>Crea un diálogo con botones "Sí" y "No".</td></tr><tr><td><code>termux-dialog counter -r "1,10,5"</code></td><td>Crea un diálogo para elegir un número en un rango (mín, máx, inicio).</td></tr><tr><td><code>termux-dialog date</code></td><td>Crea un diálogo con selector de fecha.</td></tr><tr><td><code>termux-dialog radio -v "Opción1,Opción2"</code></td><td>Crea un diálogo con opciones de radio (solo una seleccionable).</td></tr><tr><td><code>termux-dialog sheet -v "Elemento1,Elemento2"</code></td><td>Crea una hoja inferior con elementos seleccionables.</td></tr><tr><td><code>termux-dialog spinner -v "Valor1,Valor2"</code></td><td>Crea un diálogo con menú desplegable.</td></tr><tr><td><code>termux-dialog speech -t "Di algo"</code></td><td>Abre un diálogo para entrada de voz.</td></tr><tr><td><code>termux-dialog time</code></td><td>Crea un diálogo con selector de hora.</td></tr><tr><td><code>termux-notification --title "Alerta"</code></td><td>Publica una notificación en el panel de Android.</td></tr><tr><td><code>termux-notification-remove &lt;id&gt;</code></td><td>Elimina una notificación creada por Termux.</td></tr><tr><td><code>termux-clipboard-get</code></td><td>Imprime el contenido actual del portapapeles.</td></tr><tr><td><code>termux-clipboard-set "texto"</code></td><td>Coloca texto en el portapapeles del sistema.</td></tr><tr><td><code>termux-open &lt;URL&gt;</code></td><td>Abre una URL en el navegador por defecto.</td></tr><tr><td><code>termux-open &lt;archivo&gt;</code></td><td>Abre un archivo con su aplicación de Android por defecto.</td></tr><tr><td><code>termux-share &lt;archivo&gt;</code></td><td>Abre el diálogo de compartir de Android para un archivo.</td></tr><tr><td><code>termux-wallpaper -f &lt;imagen&gt;</code></td><td>Establece el fondo de pantalla desde un archivo local.</td></tr><tr><td><code>termux-wallpaper -u &lt;URL&gt;</code></td><td>Establece el fondo de pantalla desde una URL.</td></tr><tr><td><code>termux-get-prop &lt;propiedad&gt;</code></td><td>Obtiene el valor de una propiedad del sistema Android.</td></tr><tr><td><code>termux-vibrate</code></td><td>Vibra el dispositivo un breve periodo.</td></tr><tr><td><code>termux-vibrate -d &lt;milisegundos&gt;</code></td><td>Vibra el dispositivo durante un tiempo determinado.</td></tr><tr><td><code>termux-vibrate -f</code></td><td>Fuerza la vibración aunque el dispositivo esté en silencio.</td></tr><tr><td><code>termux-job-scheduler</code></td><td>Programa un script para que se ejecute más tarde, aunque Termux esté cerrado.</td></tr><tr><td><code>logcat -d</code></td><td>Vuelca el registro del sistema Android en la consola y sale.</td></tr></tbody></table></div>
+<blockquote><p><strong>Tip:</strong> combina <code>termux-dialog</code> con <code>jq</code> para parsear la respuesta JSON en tus scripts. Es la base de cualquier interfaz de texto para Android.</p></blockquote>
+<h2 id="3-acceso-al-hardware-del-dispositivo">3. Acceso al hardware del dispositivo</h2>
+<p>Ve más allá del software y controla los componentes físicos. La API de Termux da acceso directo a la cámara, el flash, los sensores y más, convirtiendo el teléfono en una herramienta programable del mundo real.</p>
+<div class="table-wrap"><table><thead><tr><th>Comando</th><th>Explicación</th></tr></thead><tbody><tr><td><code>termux-battery-status</code></td><td>Devuelve un objeto JSON con nivel de batería, temperatura y salud.</td></tr><tr><td><code>termux-camera-info</code></td><td>Devuelve datos JSON sobre las cámaras disponibles.</td></tr><tr><td><code>termux-camera-photo -c 0 imagen.jpg</code></td><td>Toma una foto con la cámara indicada (por ejemplo, la 0) y la guarda.</td></tr><tr><td><code>termux-torch on</code></td><td>Enciende la linterna.</td></tr><tr><td><code>termux-torch off</code></td><td>Apaga la linterna.</td></tr><tr><td><code>termux-sensor</code></td><td>Lista todos los sensores disponibles y sus nombres.</td></tr><tr><td><code>termux-sensor -s "accelerometer"</code></td><td>Empieza a transmitir datos en vivo de un sensor concreto.</td></tr><tr><td><code>termux-sensor -n 1 -d 500</code></td><td>Obtiene una sola lectura de todos los sensores con retardo.</td></tr><tr><td><code>termux-sensor -c</code></td><td>Limpia (detiene) todos los listeners de sensores activos.</td></tr><tr><td><code>termux-tts-engines</code></td><td>Lista los motores de texto a voz (TTS) disponibles.</td></tr><tr><td><code>termux-tts-speak "Hola desde Termux"</code></td><td>Usa el motor TTS por defecto para hablar en voz alta.</td></tr><tr><td><code>termux-tts-speak -e &lt;motor&gt; "Texto"</code></td><td>Habla usando un motor TTS específico.</td></tr><tr><td><code>termux-tts-speak -p &lt;tono&gt;</code></td><td>Habla con un tono vocal concreto (por ejemplo, <code>1.5</code> para más agudo).</td></tr><tr><td><code>termux-tts-speak -r &lt;velocidad&gt;</code></td><td>Habla a una velocidad concreta (por ejemplo, <code>0.5</code> para más lento).</td></tr><tr><td><code>termux-microphone-record</code></td><td>Empieza a grabar audio desde el micrófono.</td></tr><tr><td><code>termux-microphone-record -f rec.wav -l 5</code></td><td>Graba 5 segundos y guarda en un archivo.</td></tr><tr><td><code>termux-microphone-record -q</code></td><td>Detiene la grabación actual.</td></tr><tr><td><code>termux-media-player play &lt;archivo&gt;</code></td><td>Reproduce un archivo multimedia (audio o vídeo).</td></tr><tr><td><code>termux-media-player pause</code></td><td>Pausa la reproducción actual.</td></tr><tr><td><code>termux-media-player stop</code></td><td>Detiene la reproducción actual.</td></tr><tr><td><code>termux-media-player info</code></td><td>Muestra información del medio en reproducción.</td></tr><tr><td><code>termux-volume</code></td><td>Lista todos los flujos de audio y sus niveles de volumen.</td></tr><tr><td><code>termux-volume &lt;flujo&gt; &lt;nivel&gt;</code></td><td>Ajusta el volumen de un flujo concreto (por ejemplo, <code>termux-volume music 10</code>).</td></tr><tr><td><code>termux-fingerprint</code></td><td>Pide autenticación por huella y devuelve éxito o fallo.</td></tr><tr><td><code>termux-infrared-frequencies</code></td><td>Obtiene las frecuencias portadoras de infrarrojos disponibles (en dispositivos compatibles).</td></tr><tr><td><code>termux-infrared-transmit -f &lt;freq&gt; &lt;patrón&gt;</code></td><td>Transmite un patrón de infrarrojos.</td></tr></tbody></table></div>
+<blockquote><p><strong>Tip:</strong> <code>termux-battery-status</code> combinado con un bucle <code>while</code> y <code>sleep</code> permite monitorizar la batería y enviar una notificación cuando baja de un umbral.</p></blockquote>
+<h2 id="4-comunicacion-y-conectividad">4. Comunicación y conectividad</h2>
+<p>Automatiza y gestiona las funciones de comunicación del dispositivo. Estos comandos de la API permiten enviar SMS, iniciar llamadas, consultar contactos y controlar las conexiones Wi-Fi, todo desde tus scripts.</p>
+<div class="table-wrap"><table><thead><tr><th>Comando</th><th>Explicación</th></tr></thead><tbody><tr><td><code>termux-telephony-call &lt;número&gt;</code></td><td>Inicia una llamada al número indicado.</td></tr><tr><td><code>termux-telephony-cellinfo</code></td><td>Devuelve datos JSON sobre las torres de telefonía cercanas.</td></tr><tr><td><code>termux-telephony-deviceinfo</code></td><td>Devuelve datos JSON sobre las capacidades de telefonía del dispositivo.</td></tr><tr><td><code>termux-contact-list</code></td><td>Devuelve una lista JSON de todos los contactos del dispositivo.</td></tr><tr><td><code>termux-sms-list</code></td><td>Devuelve una lista JSON de los SMS recientes.</td></tr><tr><td><code>termux-sms-list -l 50</code></td><td>Lista los últimos 50 SMS.</td></tr><tr><td><code>termux-sms-send -n &lt;número&gt; "Msg"</code></td><td>Envía un SMS a un número concreto.</td></tr><tr><td><code>termux-sms-send -n &lt;n1,n2&gt; "Hola"</code></td><td>Envía un SMS a varios números a la vez.</td></tr><tr><td><code>termux-wifi-connectioninfo</code></td><td>Devuelve datos JSON de la conexión Wi-Fi actual (SSID, IP, etc.).</td></tr><tr><td><code>termux-wifi-scaninfo</code></td><td>Devuelve una lista JSON de las redes Wi-Fi cercanas.</td></tr><tr><td><code>termux-wifi-enable true</code></td><td>Enciende el Wi-Fi.</td></tr><tr><td><code>termux-wifi-enable false</code></td><td>Apaga el Wi-Fi.</td></tr><tr><td><code>termux-location</code></td><td>Devuelve datos JSON con la última ubicación GPS conocida.</td></tr><tr><td><code>termux-location -p &lt;proveedor&gt;</code></td><td>Obtiene la ubicación de un proveedor concreto (<code>gps</code>, <code>network</code> o <code>passive</code>).</td></tr><tr><td><code>termux-location -r &lt;tipo&gt;</code></td><td>Especifica una actualización única (<code>once</code>) o continua (<code>last</code>).</td></tr><tr><td><code>termux-download &lt;URL&gt;</code></td><td>Descarga un archivo usando el gestor de descargas de Android.</td></tr><tr><td><code>termux-download -t "Título" &lt;URL&gt;</code></td><td>Descarga un archivo con un título personalizado en la notificación.</td></tr><tr><td><code>netstat</code></td><td>Muestra conexiones de red, tablas de enrutamiento y estadísticas de interfaces.</td></tr><tr><td><code>ip addr</code></td><td>Comando moderno para mostrar direcciones IP e información de interfaces.</td></tr><tr><td><code>ip route</code></td><td>Muestra la tabla de enrutamiento IP actual.</td></tr><tr><td><code>ss</code></td><td>Utilidad para investigar sockets (sustituto moderno de <code>netstat</code>).</td></tr><tr><td><code>proot</code></td><td>Emula <code>chroot</code>, permitiendo ejecutar programas con un directorio raíz distinto.</td></tr><tr><td><code>proot-distro install &lt;alias&gt;</code></td><td>Instala una distribución Linux completa (por ejemplo, Ubuntu) dentro de Termux.</td></tr><tr><td><code>proot-distro login &lt;alias&gt;</code></td><td>Abre una shell dentro de la distribución instalada.</td></tr><tr><td><code>proot-distro list</code></td><td>Muestra las distribuciones disponibles e instaladas.</td></tr><tr><td><code>wget &lt;URL&gt;</code></td><td>Herramienta no interactiva para descargar archivos de la web.</td></tr></tbody></table></div>
+<blockquote><p><strong>Aviso:</strong> <code>termux-sms-send</code> y <code>termux-telephony-call</code> requieren permisos de SMS y teléfono. Revócalos cuando no los necesites.</p></blockquote>
+<h2 id="5-procesos-trabajos-y-sesiones">5. Procesos, trabajos y sesiones</h2>
+<p>Pasa de usuario casual a usuario avanzado. Aprende a gestionar tareas en ejecución, mantener scripts vivos en segundo plano y personalizar la sesión de shell para máxima eficiencia.</p>
+<div class="table-wrap"><table><thead><tr><th>Comando</th><th>Explicación</th></tr></thead><tbody><tr><td><code>ps aux</code></td><td>Lista todos los procesos del usuario con detalles.</td></tr><tr><td><code>kill &lt;PID&gt;</code></td><td>Termina un proceso de forma ordenada usando su PID.</td></tr><tr><td><code>kill -9 &lt;PID&gt;</code></td><td>Mata de forma forzada un proceso bloqueado o congelado.</td></tr><tr><td><code>pkill &lt;nombre&gt;</code></td><td>Mata un proceso por su nombre en lugar de por PID.</td></tr><tr><td><code>pgrep &lt;nombre&gt;</code></td><td>Busca un proceso por nombre e imprime su PID.</td></tr><tr><td><code>jobs</code></td><td>Muestra las tareas en segundo plano de la sesión actual.</td></tr><tr><td><code>Ctrl+Z</code></td><td>Suspende el proceso en primer plano y lo mueve al segundo plano.</td></tr><tr><td><code>bg</code></td><td>Reanuda un trabajo suspendido y lo mantiene en segundo plano.</td></tr><tr><td><code>fg %&lt;número&gt;</code></td><td>Trae un trabajo del segundo plano al primer plano.</td></tr><tr><td><code>comando &amp;</code></td><td>Añadir <code>&amp;</code> a cualquier comando lo inicia directamente en segundo plano.</td></tr><tr><td><code>disown</code></td><td>Desvincula un trabajo del segundo plano de la sesión para que no se mate al salir.</td></tr><tr><td><code>termux-wake-lock</code></td><td>Evita que el dispositivo entre en suspensión profunda; esencial para servidores.</td></tr><tr><td><code>termux-wake-unlock</code></td><td>Libera el bloqueo de suspensión y permite que el dispositivo duerma.</td></tr><tr><td><code>termux-reload-settings</code></td><td>Aplica los cambios de <code>~/.termux/termux.properties</code> sin reiniciar.</td></tr><tr><td><code>termux-info</code></td><td>Muestra información de diagnóstico de la instalación de Termux.</td></tr><tr><td><code>env</code></td><td>Imprime todas las variables de entorno.</td></tr><tr><td><code>export VAR="valor"</code></td><td>Define una variable de entorno para la sesión actual.</td></tr><tr><td><code>unset VAR</code></td><td>Elimina una variable de entorno.</td></tr><tr><td><code>alias atajo='comando largo'</code></td><td>Crea un atajo de comando personalizado.</td></tr><tr><td><code>unalias atajo</code></td><td>Elimina un alias creado previamente.</td></tr><tr><td><code>source &lt;archivo&gt;</code></td><td>Ejecuta los comandos de un archivo en la shell actual.</td></tr><tr><td><code>history</code></td><td>Muestra la lista de comandos usados recientemente.</td></tr><tr><td><code>uptime</code></td><td>Muestra el tiempo de actividad del sistema y las cargas medias.</td></tr><tr><td><code>dmesg</code></td><td>Imprime mensajes del búfer del kernel, para diagnóstico de hardware.</td></tr><tr><td><code>nohup &lt;comando&gt; &amp;</code></td><td>Ejecuta un comando que ignora la señal de cierre y sobrevive al salir.</td></tr><tr><td><code>htop</code></td><td>Vista interactiva de procesos y uso de recursos (<code>pkg install htop</code>).</td></tr></tbody></table></div>
+<blockquote><p><strong>Tip:</strong> cualquier proceso que deba sobrevivir al cerrar Termux necesita <code>termux-wake-lock</code> y, si es posible, <code>disown</code> o <code>nohup</code>.</p></blockquote>
+<h2 id="6-manipulacion-avanzada-de-archivos-y-texto">6. Manipulación avanzada de archivos y texto</h2>
+<p>Aquí está el verdadero poder de la shell. Estas utilidades nativas son la piedra angular de la línea de comandos: permiten buscar, filtrar y transformar texto y archivos con precisión y velocidad.</p>
+<div class="table-wrap"><table><thead><tr><th>Comando</th><th>Explicación</th></tr></thead><tbody><tr><td><code>grep &lt;"patrón"&gt; &lt;archivo&gt;</code></td><td>Busca un patrón de texto concreto dentro de un archivo.</td></tr><tr><td><code>grep -r &lt;"patrón"&gt; &lt;directorio&gt;</code></td><td>Busca un patrón de forma recursiva en todos los archivos de un directorio.</td></tr><tr><td><code>grep -i &lt;"patrón"&gt; &lt;archivo&gt;</code></td><td>Búsqueda sin distinguir mayúsculas y minúsculas.</td></tr><tr><td><code>find &lt;dir&gt; -name "&lt;archivo&gt;"</code></td><td>Busca archivos por nombre dentro de una jerarquía de directorios.</td></tr><tr><td><code>find . -type f -mtime -1</code></td><td>Encuentra archivos (<code>-type f</code>) en el directorio actual (<code>.</code>) modificados en el último día.</td></tr><tr><td><code>sed 's/viejo/nuevo/g' &lt;archivo&gt;</code></td><td>Editor de flujo que busca y reemplaza texto.</td></tr><tr><td><code>awk '{print $1}' &lt;archivo&gt;</code></td><td>Lenguaje de escaneo de patrones. Este ejemplo imprime la primera palabra de cada línea.</td></tr><tr><td><code>cut -c 1-10 &lt;archivo&gt;</code></td><td>Recorta e imprime los primeros 10 caracteres de cada línea.</td></tr><tr><td><code>cut -d',' -f2 &lt;archivo.csv&gt;</code></td><td>Extrae el segundo campo (<code>-f2</code>) de un CSV usando coma como delimitador.</td></tr><tr><td><code>tr 'a-z' 'A-Z' &lt; &lt;archivo&gt;</code></td><td>Traduce caracteres. Este ejemplo convierte el contenido a mayúsculas.</td></tr><tr><td><code>sort &lt;archivo&gt;</code></td><td>Ordena las líneas de un archivo de texto alfabéticamente.</td></tr><tr><td><code>sort -n &lt;archivo&gt;</code></td><td>Ordena las líneas numéricamente.</td></tr><tr><td><code>uniq &lt;archivo&gt;</code></td><td>Descarta todas menos una de las líneas idénticas consecutivas (usar después de <code>sort</code>).</td></tr><tr><td><code>wc &lt;archivo&gt;</code></td><td>Cuenta líneas, palabras y caracteres de un archivo.</td></tr><tr><td><code>diff &lt;archivo1&gt; &lt;archivo2&gt;</code></td><td>Compara dos archivos línea por línea y muestra las diferencias.</td></tr><tr><td><code>head -n 20 &lt;archivo&gt;</code></td><td>Muestra las primeras 20 líneas de un archivo.</td></tr><tr><td><code>tail -n 20 &lt;archivo&gt;</code></td><td>Muestra las últimas 20 líneas de un archivo.</td></tr><tr><td><code>tail -f &lt;archivo.log&gt;</code></td><td>"Sigue" un archivo, mostrando las líneas nuevas a medida que se añaden.</td></tr><tr><td><code>tee &lt;archivo&gt;</code></td><td>Lee la entrada y la escribe a la vez en pantalla y en un archivo.</td></tr><tr><td><code>ln -s &lt;objetivo&gt; &lt;enlace&gt;</code></td><td>Crea un enlace simbólico (acceso directo) a un archivo o directorio.</td></tr><tr><td><code>stat &lt;archivo&gt;</code></td><td>Muestra información detallada de un archivo (tamaño, permisos, etc.).</td></tr><tr><td><code>file &lt;archivo&gt;</code></td><td>Determina e imprime el tipo de un archivo (texto ASCII, imagen JPEG, etc.).</td></tr><tr><td><code>strings &lt;binario&gt;</code></td><td>Imprime las secuencias de caracteres legibles de un archivo binario.</td></tr><tr><td><code>hexdump -C &lt;archivo&gt;</code></td><td>Muestra el contenido del archivo en hexadecimal y ASCII.</td></tr><tr><td><code>base64 &lt;archivo&gt;</code></td><td>Codifica un archivo a texto Base64.</td></tr><tr><td><code>base64 -d &lt;archivo.b64&gt;</code></td><td>Decodifica un archivo Base64 a su forma binaria original.</td></tr></tbody></table></div>
+<blockquote><p><strong>Tip:</strong> la combinación <code>grep ... | sort | uniq -c | sort -rn</code> es el patrón clásico para contar ocurrencias y ordenarlas de mayor a menor.</p></blockquote>
+<h2 id="7-scripting-y-automatizacion">7. Scripting y automatización</h2>
+<p>Combina comandos individuales en scripts potentes para automatizar tareas repetitivas. Este capítulo cubre los bloques esenciales de la programación en shell: entrada del usuario, lógica y control del flujo de ejecución.</p>
+<div class="table-wrap"><table><thead><tr><th>Comando</th><th>Explicación</th></tr></thead><tbody><tr><td><code>read variable</code></td><td>Pausa un script para esperar entrada del usuario y la guarda en una variable.</td></tr><tr><td><code>echo "mensaje"</code></td><td>Imprime texto en el terminal; esencial para la retroalimentación en scripts.</td></tr><tr><td><code>printf "formato" "texto"</code></td><td>Forma más potente de imprimir texto con formato.</td></tr><tr><td><code>sleep &lt;segundos&gt;</code></td><td>Pausa la ejecución de un script durante un número de segundos.</td></tr><tr><td><code>[ -f "archivo.txt" ]</code></td><td>Expresión <code>test</code> para comprobar condiciones; base de las sentencias <code>if</code>.</td></tr><tr><td><code>xargs</code></td><td>Construye y ejecuta comandos a partir de la entrada estándar.</td></tr><tr><td><code>$(comando)</code></td><td>Sustitución de comando. Ejecuta un comando y sustituye su salida.</td></tr><tr><td><code>&gt;</code> (redirección)</td><td>Redirige la salida de un comando a un archivo, sobrescribiéndolo.</td></tr><tr><td><code>&gt;&gt;</code> (añadir)</td><td>Redirige la salida y la añade al final de un archivo.</td></tr><tr><td><code>&lt;</code> (entrada)</td><td>Usa un archivo como entrada para un comando.</td></tr><tr><td><code>2&gt;</code> (error)</td><td>Redirige solo los mensajes de error (stderr) a un archivo.</td></tr><tr><td><code>&amp;&gt;</code> (todo)</td><td>Redirige la salida estándar y el error al mismo archivo.</td></tr><tr><td><code>&amp;&amp;</code> (AND)</td><td>Ejecuta el segundo comando solo si el primero tiene éxito.</td></tr><tr><td><code>;</code> (separador)</td><td>Ejecuta los comandos en secuencia, sin importar éxito o fracaso.</td></tr><tr><td><code>basename /ruta/al/archivo.txt</code></td><td>Elimina la ruta del directorio y deja solo el nombre del archivo (<code>archivo.txt</code>).</td></tr><tr><td><code>dirname /ruta/al/archivo.txt</code></td><td>Elimina el nombre del archivo y deja solo la ruta del directorio (<code>/ruta/al</code>).</td></tr><tr><td><code>getopt</code></td><td>Analiza opciones de línea de comandos en scripts.</td></tr><tr><td><code>termux-job-scheduler -s &lt;script&gt;</code></td><td>Programa un script para que se ejecute periódicamente, aunque Termux esté inactivo.</td></tr><tr><td><code>termux-dialog | jq '.text'</code></td><td>Patrón de scripting para obtener y parsear entrada del usuario.</td></tr><tr><td><code>true</code></td><td>Comando que no hace nada y siempre tiene éxito (código de salida 0).</td></tr><tr><td><code>false</code></td><td>Comando que no hace nada y siempre falla (código de salida 1).</td></tr><tr><td><code>sh &lt;script.sh&gt;</code></td><td>Ejecuta un script de shell.</td></tr><tr><td><code>chmod +x &lt;script.sh&gt;</code></td><td>Hace ejecutable un script, para poder lanzarlo directamente con <code>./script.sh</code>.</td></tr><tr><td><code>seq &lt;inicio&gt; &lt;fin&gt;</code></td><td>Imprime una secuencia de números; útil en bucles <code>for</code>.</td></tr><tr><td><code>|</code> (tubería)</td><td>Conecta la salida de un comando con la entrada de otro.</td></tr><tr><td><code>||</code> (OR)</td><td>Ejecuta el segundo comando solo si el primero falla.</td></tr></tbody></table></div>
+<blockquote><p><strong>Tip:</strong> en scripts, usa siempre <code>set -e</code> para que el script se detenga ante el primer error. Es la mejor red de seguridad que puedes añadir.</p></blockquote>
+<h2 id="8-almacenamiento-y-archivos-comprimidos">8. Almacenamiento y archivos comprimidos</h2>
+<p>Gestiona archivos, archivos comprimidos y permisos de forma efectiva. Este capítulo cubre las herramientas esenciales para comprimir y descomprimir datos, entender el uso de disco y controlar el acceso a los archivos.</p>
+<div class="table-wrap"><table><thead><tr><th>Comando</th><th>Explicación</th></tr></thead><tbody><tr><td><code>chmod &lt;permisos&gt; &lt;archivo&gt;</code></td><td>Cambia los permisos de acceso de un archivo (lectura, escritura, ejecución).</td></tr><tr><td><code>chmod 755 &lt;archivo&gt;</code></td><td>Conjunto común para ejecutables (propietario: rwx, grupo/otros: r-x).</td></tr><tr><td><code>chown &lt;usuario&gt;:&lt;grupo&gt; &lt;archivo&gt;</code></td><td>Cambia el propietario y el grupo de un archivo (útil en entornos proot).</td></tr><tr><td><code>du -h</code></td><td>Muestra el uso de disco de archivos y directorios en formato legible.</td></tr><tr><td><code>du -sh &lt;directorio&gt;</code></td><td>Muestra el tamaño total de un solo directorio (<code>-s</code> para resumen).</td></tr><tr><td><code>tar -czvf &lt;archivo.tar.gz&gt; &lt;dir&gt;</code></td><td>Crea un archivo comprimido (c: crear, z: gzip, v: detallado, f: archivo).</td></tr><tr><td><code>tar -xzvf &lt;archivo.tar.gz&gt;</code></td><td>Extrae un archivo comprimido (x: extraer).</td></tr><tr><td><code>tar -tvf &lt;archivo.tar.gz&gt;</code></td><td>Lista el contenido de un archivo sin extraerlo (t: listar).</td></tr><tr><td><code>gzip &lt;archivo&gt;</code></td><td>Comprime un archivo, sustituyéndolo por su versión <code>.gz</code>.</td></tr><tr><td><code>gunzip &lt;archivo.gz&gt;</code></td><td>Descomprime un archivo <code>.gz</code>.</td></tr><tr><td><code>zip &lt;archivo.zip&gt; &lt;archivos&gt;</code></td><td>Crea un archivo <code>.zip</code>.</td></tr><tr><td><code>unzip &lt;archivo.zip&gt;</code></td><td>Extrae archivos de un archivo <code>.zip</code>.</td></tr><tr><td><code>bzip2 &lt;archivo&gt;</code></td><td>Comprime un archivo con el algoritmo bzip2.</td></tr><tr><td><code>bunzip2 &lt;archivo.bz2&gt;</code></td><td>Descomprime un archivo <code>.bz2</code>.</td></tr><tr><td><code>xz &lt;archivo&gt;</code></td><td>Comprime un archivo con el algoritmo xz (alta compresión).</td></tr><tr><td><code>unxz &lt;archivo.xz&gt;</code></td><td>Descomprime un archivo <code>.xz</code>.</td></tr><tr><td><code>termux-storage-get &lt;archivo&gt;</code></td><td>Usa el selector de archivos del sistema para copiar un archivo al directorio actual.</td></tr><tr><td><code>ls -l</code></td><td>Listado largo: muestra permisos, propietario, tamaño y fecha.</td></tr><tr><td><code>ls -a</code></td><td>Lista todos los archivos, incluidos los ocultos (que empiezan por punto).</td></tr><tr><td><code>ls -lh</code></td><td>Combina listado largo con tamaños legibles.</td></tr><tr><td><code>df -hT</code></td><td>Muestra el espacio en disco por sistema de archivos, incluyendo su tipo (<code>-T</code>).</td></tr><tr><td><code>mount</code></td><td>Muestra todos los sistemas de archivos montados.</td></tr><tr><td><code>readlink -f &lt;archivo&gt;</code></td><td>Sigue un enlace simbólico hasta encontrar la ruta real del archivo original.</td></tr><tr><td><code>dd if=/dev/zero of=dummy bs=1M</code></td><td>Comando de bajo nivel para crear un archivo de tamaño concreto para pruebas.</td></tr><tr><td><code>shred &lt;archivo&gt;</code></td><td>Elimina de forma segura un archivo sobrescribiéndolo varias veces.</td></tr><tr><td><code>pwd -L</code></td><td>Imprime el directorio de trabajo lógico (respetando los enlaces simbólicos).</td></tr></tbody></table></div>
+<blockquote><p><strong>Tip:</strong> <code>tar -czvf</code> y <code>tar -xzvf</code> son los dos comandos que usarás el 90 % de las veces. Memoriza la <code>c</code> (crear) y la <code>x</code> (extraer); el resto es siempre igual.</p></blockquote>
+<h2 id="9-redes-y-conexiones-seguras">9. Redes y conexiones seguras</h2>
+<p>Ve más allá de <code>ping</code>. Este capítulo cubre las herramientas para acceso remoto seguro, transferencia robusta de archivos y diagnóstico de red en profundidad, convirtiendo Termux en un cliente completo de administración de redes.</p>
+<div class="table-wrap"><table><thead><tr><th>Comando</th><th>Explicación</th></tr></thead><tbody><tr><td><code>ssh &lt;usuario@host&gt;</code></td><td>Cliente Secure Shell para iniciar sesión en un servidor remoto de forma segura.</td></tr><tr><td><code>sshd</code></td><td>El demonio del servidor OpenSSH; ejecútalo para poder hacer <code>ssh</code> a tu dispositivo Termux.</td></tr><tr><td><code>ssh-keygen</code></td><td>Genera un par de claves criptográficas para acceso SSH sin contraseña.</td></tr><tr><td><code>ssh-copy-id &lt;usuario@host&gt;</code></td><td>Copia tu clave pública a un servidor para habilitar el acceso sin contraseña.</td></tr><tr><td><code>scp &lt;usuario@host:remoto/archivo&gt; &lt;local&gt;</code></td><td>Copia archivos de forma segura a través de SSH.</td></tr><tr><td><code>sftp &lt;usuario@host&gt;</code></td><td>Programa interactivo de transferencia segura de archivos sobre SSH.</td></tr><tr><td><code>rsync -avh &lt;origen&gt; &lt;destino&gt;</code></td><td>Herramienta potente para sincronizar archivos y directorios de forma eficiente.</td></tr><tr><td><code>curl &lt;URL&gt;</code></td><td>Herramienta versátil para transferir datos desde o hacia un servidor (descargar, probar APIs).</td></tr><tr><td><code>curl -L &lt;URL&gt;</code></td><td>Indica a curl que siga las redirecciones HTTP.</td></tr><tr><td><code>curl -o &lt;archivo&gt; &lt;URL&gt;</code></td><td>Guarda la salida en un archivo concreto.</td></tr><tr><td><code>wget &lt;URL&gt;</code></td><td>Utilidad sencilla y no interactiva para descargar archivos de la web.</td></tr><tr><td><code>wget -c &lt;URL&gt;</code></td><td>Continúa la descarga de un archivo parcial.</td></tr><tr><td><code>wget -r &lt;URL&gt;</code></td><td>Descarga un sitio web de forma recursiva.</td></tr><tr><td><code>telnet &lt;host&gt; &lt;puerto&gt;</code></td><td>Herramienta sin cifrado para comprobar si un puerto de red está abierto.</td></tr><tr><td><code>hostname</code></td><td>Muestra el nombre de host de red del dispositivo.</td></tr><tr><td><code>ip -s link</code></td><td>Muestra estadísticas detalladas de las interfaces de red (bytes, errores).</td></tr><tr><td><code>arp</code></td><td>Muestra la caché ARP (Protocolo de Resolución de Direcciones) del sistema.</td></tr><tr><td><code>termux-contact-list | jq</code></td><td>Patrón de API para obtener y parsear datos (por ejemplo, búsquedas de contactos).</td></tr><tr><td><code>termux-wifi-scaninfo | jq</code></td><td>Patrón de API para obtener y parsear información de redes Wi-Fi cercanas.</td></tr><tr><td><code>ping -c 5 google.com</code></td><td>Hace ping a un host 5 veces (<code>-c 5</code>) y luego se detiene.</td></tr><tr><td><code>whois &lt;dominio.com&gt;</code></td><td>Obtiene información de registro de un nombre de dominio.</td></tr><tr><td><code>dig &lt;dominio.com&gt;</code></td><td>Utilidad potente de consulta DNS.</td></tr><tr><td><code>nslookup &lt;dominio.com&gt;</code></td><td>Otra herramienta para consultar servidores DNS.</td></tr><tr><td><code>netstat -r</code></td><td>Muestra la tabla de enrutamiento del kernel.</td></tr><tr><td><code>netstat -i</code></td><td>Muestra una tabla de todas las interfaces de red.</td></tr><tr><td><code>lsof -i</code></td><td>Lista los procesos que están usando la red.</td></tr></tbody></table></div>
+<blockquote><p><strong>Tip:</strong> la combinación <code>ssh-keygen</code> + <code>ssh-copy-id</code> es el primer paso para automatizar tareas en servidores remotos sin escribir la contraseña cada vez.</p></blockquote>
+<h2 id="10-internos-del-sistema-y-diagnostico">10. Internos del sistema y diagnóstico</h2>
+<p>Para el usuario experto. Estos comandos permiten mirar bajo el capó del entorno Termux y del sistema Android subyacente, con herramientas potentes para depuración, inspección y configuración avanzada.</p>
+<div class="table-wrap"><table><thead><tr><th>Comando</th><th>Explicación</th></tr></thead><tbody><tr><td><code>termux-chroot</code></td><td>Configura un entorno chroot tradicional de estilo Linux.</td></tr><tr><td><code>login</code></td><td>Comando que proporciona una shell de login limpia; se usa a menudo después de <code>termux-chroot</code>.</td></tr><tr><td><code>id</code></td><td>Muestra información de usuario y grupo.</td></tr><tr><td><code>getprop</code></td><td>Muestra una lista enorme de propiedades del sistema Android.</td></tr><tr><td><code>getprop | grep model</code></td><td>Ejemplo práctico: filtrar propiedades para encontrar el modelo del dispositivo.</td></tr><tr><td><code>logcat</code></td><td>Vuelca un registro de los mensajes del sistema Android; invaluable para depurar.</td></tr><tr><td><code>logcat -s "TAG"</code></td><td>Filtra la salida de logcat para mostrar solo mensajes con una etiqueta concreta.</td></tr><tr><td><code>ldd &lt;binario&gt;</code></td><td>Imprime las dependencias de bibliotecas compartidas de un programa.</td></tr><tr><td><code>strace &lt;comando&gt;</code></td><td>Traza las llamadas al sistema y las señales, mostrando lo que hace un programa.</td></tr><tr><td><code>uname -a</code></td><td>Imprime toda la información del sistema (kernel, arquitectura, etc.).</td></tr><tr><td><code>arch</code></td><td>Imprime la arquitectura de la máquina (por ejemplo, <code>aarch64</code>).</td></tr><tr><td><code>free -h</code></td><td>Muestra la memoria RAM libre y usada en formato legible.</td></tr><tr><td><code>vmstat</code></td><td>Informa sobre procesos, memoria, paginación y actividad de la CPU.</td></tr><tr><td><code>termux-api-start</code></td><td>Script para asegurar que el proceso en segundo plano de <code>termux-api</code> esté en ejecución.</td></tr><tr><td><code>termux-notification-list</code></td><td>Recupera una lista JSON de todas las notificaciones activas publicadas por Termux.</td></tr><tr><td><code>pkg policy</code></td><td>Muestra información sobre versiones de paquetes y prioridades de repositorios.</td></tr><tr><td><code>pkg clean</code></td><td>Limpia la caché de archivos de paquetes descargados (<code>.deb</code>).</td></tr><tr><td><code>pkg autoclean</code></td><td>Elimina los archivos de paquetes antiguos que ya no se pueden descargar.</td></tr><tr><td><code>TERM=xterm-256color</code></td><td>Define la variable <code>TERM</code> para habilitar el soporte completo de color en programas de consola.</td></tr><tr><td><code>reset</code></td><td>Restablece el terminal a su estado por defecto, corrigiendo una pantalla corrupta.</td></tr><tr><td><code>stty -a</code></td><td>Muestra todas las configuraciones del terminal actual.</td></tr><tr><td><code>set -x</code></td><td>Activa el modo de depuración en un script de shell, imprimiendo cada comando.</td></tr><tr><td><code>set +x</code></td><td>Desactiva el modo de depuración.</td></tr><tr><td><code>hash</code></td><td>Muestra una lista de ubicaciones de comandos en caché para la sesión actual de shell.</td></tr><tr><td><code>type &lt;comando&gt;</code></td><td>Indica cómo se interpretaría un comando (alias, integrado, archivo).</td></tr><tr><td><code>bind -p</code></td><td>Lista todas las combinaciones de teclas y macros disponibles en la shell.</td></tr></tbody></table></div>
+<h2 id="combinaciones-utiles">Combinaciones útiles</h2>
+<p>Estos patrones aparecen una y otra vez en la práctica. Memorizarlos ahorra horas.</p>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash"># Monitorizar la batería y avisar cuando baja del 20 %
+while true; do
+  level=$(termux-battery-status | jq -r '.percentage')
+  if [ "$level" -lt 20 ]; then
+    termux-notification --title "Batería baja" --content "Nivel: ${level}%"
+  fi
+  sleep 300
+done</code></pre></div>
+<aside class="cta-code" data-cta="code" data-content="manual-comandos-termux" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Academia Python Pro</strong> Instalar herramientas es el primer paso. Usarlas con orden, versiones y respaldo es lo que evita perder el trabajo. La academia cubre ese flujo.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=manual-comandos-termux&utm_content=bloque-2" class="btn btn-primary btn-sm">Ver la academia <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash"># Copia de seguridad rápida del directorio home a shared storage
+tar -czvf ~/storage/shared/backup-$(date +%F).tar.gz ~ --exclude='*/.cache'</code></pre></div>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash"># Servidor SSH para entrar al teléfono desde el ordenador
+pkg install openssh
+sshd
+# En el ordenador: ssh -p 8022 u0_a123@&lt;ip-del-telefono&gt;</code></pre></div>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash"># Convertir un texto a mayúsculas y guardarlo
+tr 'a-z' 'A-Z' &lt; entrada.txt &gt; salida.txt</code></pre></div>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash"># Buscar un patrón en todos los archivos .py del proyecto
+grep -rn "TODO" --include="*.py" .</code></pre></div>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash"># Contar cuántas veces aparece cada palabra en un archivo
+tr ' ' '\n' &lt; archivo.txt | sort | uniq -c | sort -rn | head</code></pre></div>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash"># Enviar un SMS a todos los contactos de un grupo (ejemplo simplificado)
+for num in $(termux-contact-list | jq -r '.[].number'); do
+  termux-sms-send -n "$num" "Mensaje automático"
+done</code></pre></div>
+<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash"># Mantener un script vivo aunque cierres Termux
+termux-wake-lock
+nohup ./mi_servidor.sh &gt; servidor.log 2&gt;&amp;1 &amp;
+disown</code></pre></div>
+<h2 id="cierre">Cierre</h2>
+<p>Termux no es un terminal de juguete: es un sistema Linux completo en el bolsillo. Los 260 comandos de este manual cubren el 95 % de lo que necesitarás en el día a día, desde instalar un paquete hasta montar un servidor SSH, automatizar envíos de SMS o diagnosticar el kernel.</p>
+<p>El resto es práctica: abre Termux, prueba un comando nuevo cada día y escribe tus propios scripts. La mejor forma de aprender la shell es romper cosas en un entorno donde no hay nada que perder.</p>
+<blockquote><p><strong>Siguiente paso:</strong> si quieres ir más allá de los comandos sueltos y montar un entorno de desarrollo completo con Python, Git y proyectos reales, puedes ver el temario en <a href="/academia/?utm_source=contenido&amp;amp;utm_medium=cierre&amp;amp;utm_campaign=manual-comandos-termux&amp;amp;utm_content=plantilla-maestra">Academia Python Pro</a>.</p></blockquote>
+        </div>
+
+        <section class="cta-end" aria-labelledby="ctaEndTitle"><div class="cta-end-copy"><span class="eyebrow">Academia Python Pro</span><h2 id="ctaEndTitle">¿Quieres convertir esto en una habilidad completa?</h2><p>Convierte tu móvil en un entorno de desarrollo serio, no en un experimento.</p></div><div class="cta-end-actions"><a href="/academia/?utm_source=contenido&utm_medium=cta_final&utm_campaign=manual-comandos-termux&utm_content=fin-guia" class="btn btn-primary btn-lg"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Entrar a la Academia</a><a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-outline"><i class="fab fa-telegram" aria-hidden="true"></i> Resolver dudas</a></div></section>
+
+        <section class="related" aria-labelledby="relatedTitle">
+            <h2 id="relatedTitle">Sigue aprendiendo</h2>
+            <div class="card-grid card-grid-3">
+                <a class="content-card" href="/guias/termux-desde-cero/" data-category="termux" data-search="termux desde cero: convierte tu android en un entorno de desarrollo instalación, permisos, paquetes esenciales y primer proyecto en python. una puesta a punto completa sin depender de una computadora. termux principiante android python entorno terminal"><div class="card-top"><span class="badge badge-termux"><i class="fas fa-terminal" aria-hidden="true"></i> Termux</span><span class="card-level">Principiante</span></div><h2 class="card-title">Termux desde cero: convierte tu Android en un entorno de desarrollo</h2><p class="card-summary">Instalación, permisos, paquetes esenciales y primer proyecto en Python. Una puesta a punto completa sin depender de una computadora.</p><div class="card-tags"><span class="tag">android</span><span class="tag">python</span><span class="tag">entorno</span></div><div class="card-foot"><span><i class="far fa-clock" aria-hidden="true"></i> 9 min</span><span class="card-cta">Leer guía <i class="fas fa-arrow-right" aria-hidden="true"></i></span></div></a><a class="content-card" href="/guias/entornos-virtuales-python/" data-category="python" data-search="entornos virtuales en python: la guía que evita el caos de dependencias cómo funcionan venv, pip y las dependencias, por qué los proyectos se rompen al cambiar de máquina y cómo fijar versiones sin dolor. python principiante python venv pip dependencias"><div class="card-top"><span class="badge badge-python"><i class="fab fa-python" aria-hidden="true"></i> Python</span><span class="card-level">Principiante</span></div><h2 class="card-title">Entornos virtuales en Python: la guía que evita el caos de dependencias</h2><p class="card-summary">Cómo funcionan venv, pip y las dependencias, por qué los proyectos se rompen al cambiar de máquina y cómo fijar versiones sin dolor.</p><div class="card-tags"><span class="tag">python</span><span class="tag">venv</span><span class="tag">pip</span></div><div class="card-foot"><span><i class="far fa-clock" aria-hidden="true"></i> 8 min</span><span class="card-cta">Leer guía <i class="fas fa-arrow-right" aria-hidden="true"></i></span></div></a><a class="content-card" href="/guias/endurecer-ssh-linux/" data-category="ciberseguridad" data-search="endurecer ssh en linux: de la configuración por defecto a un acceso defendible claves, usuarios, fail2ban y ajustes de sshd para reducir la superficie de ataque de un servidor expuesto a internet. ciberseguridad intermedio ssh linux hardening servidores"><div class="card-top"><span class="badge badge-ciberseguridad"><i class="fas fa-shield-halved" aria-hidden="true"></i> Ciberseguridad</span><span class="card-level">Intermedio</span></div><h2 class="card-title">Endurecer SSH en Linux: de la configuración por defecto a un acceso defendible</h2><p class="card-summary">Claves, usuarios, fail2ban y ajustes de sshd para reducir la superficie de ataque de un servidor expuesto a internet.</p><div class="card-tags"><span class="tag">ssh</span><span class="tag">linux</span><span class="tag">hardening</span></div><div class="card-foot"><span><i class="far fa-clock" aria-hidden="true"></i> 11 min</span><span class="card-cta">Leer guía <i class="fas fa-arrow-right" aria-hidden="true"></i></span></div></a>
+            </div>
+        </section>
+    </article>
+
+    <aside class="article-side">
+        <nav class="toc" aria-label="En esta página"><p class="toc-title">En esta página</p><ol><li class="toc-l2"><a href="#introduccion">Introducción</a></li><li class="toc-l3"><a href="#convenciones-usadas">Convenciones usadas</a></li><li class="toc-l3"><a href="#antes-de-empezar">Antes de empezar</a></li><li class="toc-l2"><a href="#indice">Índice</a></li><li class="toc-l2"><a href="#1-la-base-de-termux">1. La base de Termux</a></li><li class="toc-l2"><a href="#2-interaccion-con-la-interfaz-de-android">2. Interacción con la interfaz de Android</a></li><li class="toc-l2"><a href="#3-acceso-al-hardware-del-dispositivo">3. Acceso al hardware del dispositivo</a></li><li class="toc-l2"><a href="#4-comunicacion-y-conectividad">4. Comunicación y conectividad</a></li><li class="toc-l2"><a href="#5-procesos-trabajos-y-sesiones">5. Procesos, trabajos y sesiones</a></li><li class="toc-l2"><a href="#6-manipulacion-avanzada-de-archivos-y-texto">6. Manipulación avanzada de archivos y texto</a></li><li class="toc-l2"><a href="#7-scripting-y-automatizacion">7. Scripting y automatización</a></li><li class="toc-l2"><a href="#8-almacenamiento-y-archivos-comprimidos">8. Almacenamiento y archivos comprimidos</a></li><li class="toc-l2"><a href="#9-redes-y-conexiones-seguras">9. Redes y conexiones seguras</a></li><li class="toc-l2"><a href="#10-internos-del-sistema-y-diagnostico">10. Internos del sistema y diagnóstico</a></li><li class="toc-l2"><a href="#combinaciones-utiles">Combinaciones útiles</a></li><li class="toc-l2"><a href="#cierre">Cierre</a></li></ol></nav>
+
+        <aside class="sidebar-card sidebar-academy"><span class="sidebar-kicker">Academia Python Pro</span><h2>Ordena lo que ya practicas</h2><p>19 módulos, proyectos reales y acceso de por vida. La ruta completa para pasar de copiar comandos a tomar decisiones.</p><ul class="sidebar-list"><li><i class="fas fa-check" aria-hidden="true"></i> Python desde cero</li><li><i class="fas fa-check" aria-hidden="true"></i> Proyectos y certificado</li><li><i class="fas fa-check" aria-hidden="true"></i> Comunidad en Telegram</li></ul><a href="/academia/?utm_source=contenido&utm_medium=sidebar&utm_campaign=manual-comandos-termux&utm_content=guia" class="btn btn-primary btn-sm">Ver el temario</a><span class="sidebar-note">Pago seguro con Hotmart</span></aside>
+
+        <aside class="sidebar-card sidebar-tg"><span class="sidebar-kicker"><i class="fab fa-telegram" aria-hidden="true"></i> Comunidad</span><h2>Canal de Telegram</h2><p>Nuevos repositorios, scripts y avisos. Acceso gratuito y sin spam.</p><a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-telegram btn-sm">Entrar al canal</a></aside>
+    </aside>
+</div>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="/" class="nav-logo footer-logo" aria-label="CHMODX, inicio">
+                    <img src="/assets/logo.png" alt="" class="brand-logo brand-logo-footer" width="48" height="48">
+                    <span class="brand-name">CHMOD<span class="brand-x">X</span></span>
+                </a>
+                <p class="footer-description">
+                    Repositorios, scripts y guías para aprender haciendo. Ciberseguridad ética,
+                    Python y Termux con contenido técnico verificable.
+                </p>
+                <div class="footer-social">
+                    <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a>
+                    <a href="/academia/" aria-label="Academia Python Pro"><i class="fas fa-graduation-cap" aria-hidden="true"></i></a>
+                    <a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noopener noreferrer" aria-label="Índice TIOBE"><i class="fas fa-chart-line" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contenido</h4>
+                <a href="/repositorios/">Repositorios</a>
+                <a href="/guias/">Guías técnicas</a>
+                <a href="/">Hub CHMODX</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Comunidad</h4>
+                <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer">Canal de Telegram</a>
+                <a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noopener noreferrer">Índice TIOBE</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Academia</h4>
+                <a href="/academia/">Python 3 de 0 a MASTER</a>
+                <a href="/academia/#temario">Temario</a>
+                <a href="/academia/#oferta">Precio y acceso</a>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p>&copy; 2026 CHMODX. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <div class="sticky-cta" id="stickyCta"><div class="sticky-price"><span class="sticky-old">$450</span><span class="sticky-new">$100</span><span class="sticky-off"><i class="fas fa-fire" aria-hidden="true"></i> 78% OFF</span></div><a href="/academia/?utm_source=contenido&utm_medium=sticky&utm_campaign=manual-comandos-termux" class="btn btn-primary btn-sm"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Academia</a></div>
+
+    <button type="button" class="back-to-top" id="backToTop" aria-label="Volver arriba">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <div class="inapp-modal" id="inappModal" role="dialog" aria-modal="true"
+         aria-labelledby="inappTitle" aria-describedby="inappDesc" aria-hidden="true">
+        <div class="inapp-backdrop" data-inapp-close></div>
+
+        <div class="inapp-card">
+            <button type="button" class="inapp-close" id="inappClose" aria-label="Cerrar aviso">
+                <i class="fas fa-xmark" aria-hidden="true"></i>
+            </button>
+
+            <span class="inapp-badge inapp-badge-tg">
+                <i class="fab fa-telegram" aria-hidden="true"></i> Canal de Telegram
+            </span>
+
+            <h2 class="inapp-title" id="inappTitle">Entra al canal de Telegram</h2>
+
+            <p class="inapp-desc" id="inappDesc">
+                Estás dentro de <strong id="inappApp">una aplicación</strong> y su navegador no
+                permite abrir Telegram. Prueba con el botón azul y, si no se abre, copia el
+                enlace y pégalo en tu navegador.
+            </p>
+
+            <div class="inapp-actions">
+                <button type="button" class="btn btn-telegram inapp-btn" id="inappTg">
+                    <i class="fab fa-telegram" aria-hidden="true"></i> Entrar al canal de Telegram
+                </button>
+                <button type="button" class="btn btn-outline inapp-btn" id="inappCopy">
+                    <i class="fas fa-copy" aria-hidden="true"></i> Copiar enlace
+                </button>
+            </div>
+
+            <p class="inapp-status" id="inappStatus" role="status" hidden></p>
+
+            <p class="inapp-url-wrap">
+                <span class="inapp-url-label">Enlace</span>
+                <span class="inapp-url" id="inappUrl">https://t.me/chmodxcode</span>
+            </p>
+
+            <ol class="inapp-steps" id="inappSteps">
+                <li>Pulsa <strong>Entrar al canal de Telegram</strong>.</li>
+                <li>Si no se abre, pulsa <strong>Copiar enlace</strong>.</li>
+                <li>Abre <strong>Telegram</strong> y pega el enlace, o busca <strong>@chmodxcode</strong>.</li>
+            </ol>
+        </div>
+    </div>
+
+    <script src="/js/main.js" defer></script>
+    <script src="/js/content.js" defer></script>
+    <script src="/js/supabase-config.js" defer></script>
+    <script src="/js/tracking.js" defer></script>
+    <script src="/js/leads.js" defer></script>
+    
+</body>
+</html>
