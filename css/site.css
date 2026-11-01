@@ -1289,7 +1289,7 @@ ul, ol { margin: 0; }
     overflow: hidden;
     border: 1px solid var(--border);
     border-radius: 12px;
-    background: #0a0e14;
+    background: #000000;
     box-shadow: 0 8px 28px rgba(0, 0, 0, .35);
 }
 
@@ -1299,7 +1299,7 @@ ul, ol { margin: 0; }
     gap: 10px;
     padding: 9px 12px;
     border-bottom: 1px solid var(--border-soft);
-    background: #0e131b;
+    background: #0a0a0a;
 }
 
 .code-dots {
@@ -1364,7 +1364,7 @@ ul, ol { margin: 0; }
     font-size: 13px;
     line-height: 1.7;
     tab-size: 4;
-    background: #0a0e14;
+    background: #000000;
 }
 
 .code-block pre code,

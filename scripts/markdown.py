@@ -219,13 +219,18 @@ def render(
                 "html": "markup", "xml": "markup", "svg": "markup",
                 "md": "markdown", "dockerfile": "docker",
                 "sql": "sql", "json": "json",
-                "texto": "none", "text": "none", "output": "none",
-                "salida": "none", "tree": "none", "plain": "none",
-                "plaintext": "none", "none": "none",
+                "dotenv": "ini", "env": "ini",
+                "powershell": "powershell", "ps1": "powershell",
+                "texto": "clike", "text": "clike", "output": "clike",
+                "salida": "clike", "tree": "clike", "plain": "clike",
+                "plaintext": "clike", "none": "clike",
             }
-            lang = LANG_ALIASES.get(raw_lang, raw_lang or "none")
-            if lang == "none":
-                lang = "texto"
+            lang = LANG_ALIASES.get(raw_lang, raw_lang or "clike")
+            if lang not in ("python", "bash", "javascript", "typescript", "json",
+                            "yaml", "sql", "ini", "docker", "toml", "go", "rust",
+                            "markup", "css", "clike", "markdown", "powershell",
+                            "ini"):
+                lang = "clike"
             i += 1
             buffer: list[str] = []
             while i < len(lines) and not lines[i].startswith("```"):
@@ -237,7 +242,7 @@ def render(
             code = html.escape("\n".join(buffer), quote=False)
             _known = {"markup", "css", "clike", "javascript", "python", "bash",
                       "json", "yaml", "sql", "ini", "docker", "toml", "go", "rust",
-                      "typescript", "markdown"}
+                      "typescript", "markdown", "powershell"}
             _clean = re.sub(r"[^\w+-]", "", lang) or "texto"
             lang_class = _clean if _clean in _known else "texto"
             if lang_class:
