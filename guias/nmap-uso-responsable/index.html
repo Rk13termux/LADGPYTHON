@@ -27,6 +27,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
     
     <script type="application/ld+json">
 {
@@ -133,28 +135,28 @@
 <p>No es una herramienta de ataque. Es una herramienta de <strong>observación</strong>. La diferencia entre un diagnóstico y un delito está en el permiso.</p>
 <blockquote><p><strong>Límite legal:</strong> escanea solo equipos propios o redes sobre las que tengas autorización escrita. Escanear infraestructura ajena puede violar leyes de acceso no autorizado, incluso si no explotas nada.</p></blockquote>
 <h2 id="instalacion">Instalación</h2>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">sudo apt update
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">sudo apt update
 sudo apt install -y nmap
 nmap --version</code></pre></div>
 <aside class="cta-code" data-cta="code" data-content="nmap-uso-responsable" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Practicar comandos sueltos no te prepara para una auditoría. En el Curso de Python 3 de 0 a Master trabajas alcance, evidencia y reporte con método.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=nmap-uso-responsable&utm_content=bloque-1" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
 <p>En Termux:</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">pkg install -y nmap</code></pre></div>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">pkg install -y nmap</code></pre></div>
 <h2 id="descubrir-hosts-en-tu-red-local">Descubrir hosts en tu red local</h2>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">ip route
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">ip route
 nmap -sn 192.168.1.0/24</code></pre></div>
 <p><code>-sn</code> hace un ping scan: no escanea puertos, solo comprueba qué direcciones responden. Es útil para inventariar tu propia red.</p>
 <h2 id="escaneo-basico-de-puertos">Escaneo básico de puertos</h2>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">nmap -sT -p 1-1000 192.168.1.10</code></pre></div>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">nmap -sT -p 1-1000 192.168.1.10</code></pre></div>
 <ul>
 <li><code>-sT</code> usa conexión TCP completa. Funciona sin privilegios, pero es más lento y ruidoso.</li>
 <li><code>-p</code> limita el rango de puertos.</li>
 <li>Sin <code>-sS</code>, no necesitas <code>sudo</code>.</li>
 </ul>
 <h2 id="detectar-servicios-y-versiones">Detectar servicios y versiones</h2>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">nmap -sV -p 22,80,443 192.168.1.10</code></pre></div>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">nmap -sV -p 22,80,443 192.168.1.10</code></pre></div>
 <p>La salida indica el servicio probable y su versión. Esa información es el punto de partida para comprobar si hay actualizaciones pendientes.</p>
 <h2 id="guardar-resultados">Guardar resultados</h2>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">nmap -sV -oN escaneo.txt 192.168.1.10
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">nmap -sV -oN escaneo.txt 192.168.1.10
 nmap -sV -oX escaneo.xml 192.168.1.10</code></pre></div>
 <p>Guardar evidencia importa. Un hallazgo sin fecha, alcance y salida reproducible no sirve en una auditoría.</p>
 <h2 id="como-leer-la-salida">Cómo leer la salida</h2>
@@ -296,6 +298,22 @@ nmap -sV -oX escaneo.xml 192.168.1.10</code></pre></div>
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-clike.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-ini.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-toml.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-go.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" defer></script>
     <script src="/js/main.js" defer></script>
     <script src="/js/content.js" defer></script>
     <script src="/js/supabase-config.js" defer></script>

@@ -27,6 +27,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
     
     <script type="application/ld+json">
 {
@@ -149,7 +151,7 @@
 <blockquote><p><strong>Nota:</strong> algunos comandos requieren confirmar permisos de almacenamiento en Android. Acepta el diálogo cuando aparezca.</p></blockquote>
 <h2 id="el-script">El script</h2>
 <p>Guarda el siguiente contenido como <code>bootstrap.sh</code> dentro de Termux:</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">#!/data/data/com.termux/files/usr/bin/bash
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">#!/data/data/com.termux/files/usr/bin/bash
 set -euo pipefail
 
 echo "==&gt; Actualizando paquetes base"
@@ -172,15 +174,15 @@ grep -q "alias py=" "$HOME/.bashrc" 2&gt;/dev/null || \
 echo "==&gt; Listo. Cierra y abre Termux, luego ejecuta: py"</code></pre></div>
 <aside class="cta-code" data-cta="code" data-content="termux-bootstrap" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Tu Android puede ser un laboratorio completo. En el Curso de Python 3 de 0 a Master montamos el entorno, los proyectos y el flujo de trabajo desde cero.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=termux-bootstrap&utm_content=bloque-1" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
 <h2 id="ejecucion">Ejecución</h2>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">chmod +x bootstrap.sh
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">chmod +x bootstrap.sh
 ./bootstrap.sh</code></pre></div>
 <p>Al terminar, cierra la sesión y abre Termux de nuevo:</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">py
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">py
 python --version
 git --version</code></pre></div>
 <aside class="cta-code" data-cta="code" data-content="termux-bootstrap" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Instalar herramientas es el primer paso. Usarlas con orden, versiones y respaldo es lo que evita perder el trabajo. El Curso de Python 3 de 0 a Master cubre ese flujo.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=termux-bootstrap&utm_content=bloque-2" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
 <h2 id="verificacion-rapida">Verificación rápida</h2>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">python -c "import sys; print(sys.prefix)"
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">python -c "import sys; print(sys.prefix)"
 which git rg nano
 ls ~/storage/shared</code></pre></div>
 <aside class="cta-code" data-cta="code" data-content="termux-bootstrap" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Termux deja de ser un experimento cuando lo usas para construir. El Curso de Python 3 de 0 a Master te da la ruta para que cada comando tenga un propósito.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=termux-bootstrap&utm_content=bloque-3" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
@@ -189,7 +191,7 @@ ls ~/storage/shared</code></pre></div>
 <div class="table-wrap"><table><thead><tr><th>Error</th><th>Causa</th><th>Solución</th></tr></thead><tbody><tr><td><code>pkg: command not found</code></td><td>Termux de Google Play</td><td>Reinstalar desde F-Droid</td></tr><tr><td><code>Permission denied</code> al ejecutar</td><td>Falta el bit de ejecución</td><td><code>chmod +x bootstrap.sh</code></td></tr><tr><td><code>termux-setup-storage</code> no abre el diálogo</td><td>Permiso denegado antes</td><td>Revisar permisos de la app en Ajustes</td></tr><tr><td><code>pip</code> intenta compilar C</td><td>Falta toolchain</td><td><code>pkg install build-essential</code></td></tr></tbody></table></div>
 <h2 id="personalizacion">Personalización</h2>
 <p>Añade tus propias herramientas al bloque de instalación. Por ejemplo, para trabajar con datos:</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">pkg install -y python-numpy
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">pkg install -y python-numpy
 pip install pandas matplotlib</code></pre></div>
 <p>Evita instalar paquetes globales con <code>pip</code> fuera del entorno virtual: Termux mezcla rutas de sistema y es fácil romper dependencias.</p>
         </div>
@@ -310,6 +312,22 @@ pip install pandas matplotlib</code></pre></div>
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-clike.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-ini.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-toml.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-go.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" defer></script>
     <script src="/js/main.js" defer></script>
     <script src="/js/content.js" defer></script>
     <script src="/js/supabase-config.js" defer></script>

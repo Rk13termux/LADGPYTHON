@@ -27,6 +27,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
     
     <script type="application/ld+json">
 {
@@ -139,7 +141,7 @@
 <li>Un comando que termina en <code>&amp;</code> se ejecuta en segundo plano; sin él, el terminal queda bloqueado hasta que termine.</li>
 </ul>
 <h3 id="antes-de-empezar">Antes de empezar</h3>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">pkg update -y &amp;&amp; pkg upgrade -y
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">pkg update -y &amp;&amp; pkg upgrade -y
 pkg install termux-api
 termux-setup-storage</code></pre></div>
 <aside class="cta-code" data-cta="code" data-content="manual-comandos-termux" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Tu Android puede ser un laboratorio completo. En el Curso de Python 3 de 0 a Master montamos el entorno, los proyectos y el flujo de trabajo desde cero.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=manual-comandos-termux&utm_content=bloque-1" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
@@ -199,7 +201,7 @@ termux-setup-storage</code></pre></div>
 <div class="table-wrap"><table><thead><tr><th>Comando</th><th>Explicación</th></tr></thead><tbody><tr><td><code>termux-chroot</code></td><td>Configura un entorno chroot tradicional de estilo Linux.</td></tr><tr><td><code>login</code></td><td>Comando que proporciona una shell de login limpia; se usa a menudo después de <code>termux-chroot</code>.</td></tr><tr><td><code>id</code></td><td>Muestra información de usuario y grupo.</td></tr><tr><td><code>getprop</code></td><td>Muestra una lista enorme de propiedades del sistema Android.</td></tr><tr><td><code>getprop | grep model</code></td><td>Ejemplo práctico: filtrar propiedades para encontrar el modelo del dispositivo.</td></tr><tr><td><code>logcat</code></td><td>Vuelca un registro de los mensajes del sistema Android; invaluable para depurar.</td></tr><tr><td><code>logcat -s "TAG"</code></td><td>Filtra la salida de logcat para mostrar solo mensajes con una etiqueta concreta.</td></tr><tr><td><code>ldd &lt;binario&gt;</code></td><td>Imprime las dependencias de bibliotecas compartidas de un programa.</td></tr><tr><td><code>strace &lt;comando&gt;</code></td><td>Traza las llamadas al sistema y las señales, mostrando lo que hace un programa.</td></tr><tr><td><code>uname -a</code></td><td>Imprime toda la información del sistema (kernel, arquitectura, etc.).</td></tr><tr><td><code>arch</code></td><td>Imprime la arquitectura de la máquina (por ejemplo, <code>aarch64</code>).</td></tr><tr><td><code>free -h</code></td><td>Muestra la memoria RAM libre y usada en formato legible.</td></tr><tr><td><code>vmstat</code></td><td>Informa sobre procesos, memoria, paginación y actividad de la CPU.</td></tr><tr><td><code>termux-api-start</code></td><td>Script para asegurar que el proceso en segundo plano de <code>termux-api</code> esté en ejecución.</td></tr><tr><td><code>termux-notification-list</code></td><td>Recupera una lista JSON de todas las notificaciones activas publicadas por Termux.</td></tr><tr><td><code>pkg policy</code></td><td>Muestra información sobre versiones de paquetes y prioridades de repositorios.</td></tr><tr><td><code>pkg clean</code></td><td>Limpia la caché de archivos de paquetes descargados (<code>.deb</code>).</td></tr><tr><td><code>pkg autoclean</code></td><td>Elimina los archivos de paquetes antiguos que ya no se pueden descargar.</td></tr><tr><td><code>TERM=xterm-256color</code></td><td>Define la variable <code>TERM</code> para habilitar el soporte completo de color en programas de consola.</td></tr><tr><td><code>reset</code></td><td>Restablece el terminal a su estado por defecto, corrigiendo una pantalla corrupta.</td></tr><tr><td><code>stty -a</code></td><td>Muestra todas las configuraciones del terminal actual.</td></tr><tr><td><code>set -x</code></td><td>Activa el modo de depuración en un script de shell, imprimiendo cada comando.</td></tr><tr><td><code>set +x</code></td><td>Desactiva el modo de depuración.</td></tr><tr><td><code>hash</code></td><td>Muestra una lista de ubicaciones de comandos en caché para la sesión actual de shell.</td></tr><tr><td><code>type &lt;comando&gt;</code></td><td>Indica cómo se interpretaría un comando (alias, integrado, archivo).</td></tr><tr><td><code>bind -p</code></td><td>Lista todas las combinaciones de teclas y macros disponibles en la shell.</td></tr></tbody></table></div>
 <h2 id="combinaciones-utiles">Combinaciones útiles</h2>
 <p>Estos patrones aparecen una y otra vez en la práctica. Memorizarlos ahorra horas.</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash"># Monitorizar la batería y avisar cuando baja del 20 %
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash"># Monitorizar la batería y avisar cuando baja del 20 %
 while true; do
   level=$(termux-battery-status | jq -r '.percentage')
   if [ "$level" -lt 20 ]; then
@@ -208,23 +210,23 @@ while true; do
   sleep 300
 done</code></pre></div>
 <aside class="cta-code" data-cta="code" data-content="manual-comandos-termux" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Instalar herramientas es el primer paso. Usarlas con orden, versiones y respaldo es lo que evita perder el trabajo. El Curso de Python 3 de 0 a Master cubre ese flujo.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=manual-comandos-termux&utm_content=bloque-2" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash"># Copia de seguridad rápida del directorio home a shared storage
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash"># Copia de seguridad rápida del directorio home a shared storage
 tar -czvf ~/storage/shared/backup-$(date +%F).tar.gz ~ --exclude='*/.cache'</code></pre></div>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash"># Servidor SSH para entrar al teléfono desde el ordenador
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash"># Servidor SSH para entrar al teléfono desde el ordenador
 pkg install openssh
 sshd
 # En el ordenador: ssh -p 8022 u0_a123@&lt;ip-del-telefono&gt;</code></pre></div>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash"># Convertir un texto a mayúsculas y guardarlo
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash"># Convertir un texto a mayúsculas y guardarlo
 tr 'a-z' 'A-Z' &lt; entrada.txt &gt; salida.txt</code></pre></div>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash"># Buscar un patrón en todos los archivos .py del proyecto
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash"># Buscar un patrón en todos los archivos .py del proyecto
 grep -rn "TODO" --include="*.py" .</code></pre></div>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash"># Contar cuántas veces aparece cada palabra en un archivo
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash"># Contar cuántas veces aparece cada palabra en un archivo
 tr ' ' '\n' &lt; archivo.txt | sort | uniq -c | sort -rn | head</code></pre></div>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash"># Enviar un SMS a todos los contactos de un grupo (ejemplo simplificado)
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash"># Enviar un SMS a todos los contactos de un grupo (ejemplo simplificado)
 for num in $(termux-contact-list | jq -r '.[].number'); do
   termux-sms-send -n "$num" "Mensaje automático"
 done</code></pre></div>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash"># Mantener un script vivo aunque cierres Termux
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash"># Mantener un script vivo aunque cierres Termux
 termux-wake-lock
 nohup ./mi_servidor.sh &gt; servidor.log 2&gt;&amp;1 &amp;
 disown</code></pre></div>
@@ -350,6 +352,22 @@ disown</code></pre></div>
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-clike.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-ini.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-toml.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-go.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" defer></script>
     <script src="/js/main.js" defer></script>
     <script src="/js/content.js" defer></script>
     <script src="/js/supabase-config.js" defer></script>

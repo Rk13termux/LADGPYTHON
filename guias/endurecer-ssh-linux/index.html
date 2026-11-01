@@ -27,6 +27,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
     
     <script type="application/ld+json">
 {
@@ -138,20 +140,20 @@
 </ul>
 <blockquote><p><strong>Alcance:</strong> esta guía asume un servidor Linux propio o un laboratorio autorizado. No apliques cambios a sistemas de terceros.</p></blockquote>
 <h2 id="1-comprobar-la-configuracion-actual">1. Comprobar la configuración actual</h2>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">sudo sshd -T | grep -Ei 'port|permitrootlogin|passwordauthentication|pubkeyauthentication'</code></pre></div>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">sudo sshd -T | grep -Ei 'port|permitrootlogin|passwordauthentication|pubkeyauthentication'</code></pre></div>
 <p>Guarda una copia del archivo antes de editar:</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak</code></pre></div>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak</code></pre></div>
 <h2 id="2-usar-claves-en-lugar-de-contrasenas">2. Usar claves en lugar de contraseñas</h2>
 <p>En tu equipo local:</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">ssh-keygen -t ed25519 -a 100 -C "tu-correo@ejemplo.com"
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">ssh-keygen -t ed25519 -a 100 -C "tu-correo@ejemplo.com"
 ssh-copy-id usuario@servidor</code></pre></div>
 <p>Verifica que puedes entrar sin contraseña <strong>antes</strong> de desactivar el acceso por contraseña:</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">ssh -o PreferredAuthentications=publickey usuario@servidor</code></pre></div>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">ssh -o PreferredAuthentications=publickey usuario@servidor</code></pre></div>
 <h2 id="3-ajustes-minimos-de-sshdconfig">3. Ajustes mínimos de <code>sshd_config</code></h2>
 <p>Edita el archivo con cuidado:</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">sudo nano /etc/ssh/sshd_config</code></pre></div>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">sudo nano /etc/ssh/sshd_config</code></pre></div>
 <p>Aplica estos valores:</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">ini</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-ini">PermitRootLogin no
+<div class="code-block" data-lang="ini"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">ini</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-ini">PermitRootLogin no
 PasswordAuthentication no
 KbdInteractiveAuthentication no
 PubkeyAuthentication yes
@@ -161,31 +163,31 @@ X11Forwarding no
 AllowUsers usuario</code></pre></div>
 <aside class="cta-code" data-cta="code" data-content="endurecer-ssh-linux" data-lang="ini"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Practicar comandos sueltos no te prepara para una auditoría. En el Curso de Python 3 de 0 a Master trabajas alcance, evidencia y reporte con método.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=endurecer-ssh-linux&utm_content=bloque-1" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
 <p>Valida la sintaxis antes de reiniciar:</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">sudo sshd -t</code></pre></div>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">sudo sshd -t</code></pre></div>
 <p>Si no devuelve nada, la sintaxis es correcta. Reinicia el servicio:</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">sudo systemctl restart ssh</code></pre></div>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">sudo systemctl restart ssh</code></pre></div>
 <h2 id="4-cortafuegos-coherente">4. Cortafuegos coherente</h2>
 <p>En Ubuntu con UFW:</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">sudo ufw allow OpenSSH
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">sudo ufw allow OpenSSH
 sudo ufw enable
 sudo ufw status verbose</code></pre></div>
 <aside class="cta-code" data-cta="code" data-content="endurecer-ssh-linux" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Este comando es una pieza. Entender el contexto, el riesgo y la remediación es lo que convierte una prueba en un trabajo profesional.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=endurecer-ssh-linux&utm_content=bloque-2" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
 <p>Si cambiaste el puerto, abre el nuevo antes de cerrar el anterior. Nunca ejecutes <code>ufw enable</code> sin haber permitido SSH.</p>
 <h2 id="5-limitar-intentos-con-fail2ban">5. Limitar intentos con fail2ban</h2>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">sudo apt install fail2ban
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">sudo apt install fail2ban
 sudo systemctl enable --now fail2ban</code></pre></div>
 <p>Una configuración mínima en <code>/etc/fail2ban/jail.local</code>:</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">ini</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-ini">[sshd]
+<div class="code-block" data-lang="ini"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">ini</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-ini">[sshd]
 enabled = true
 port = ssh
 maxretry = 5
 findtime = 10m
 bantime = 1h</code></pre></div>
 <p>Comprueba el estado:</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">sudo fail2ban-client status sshd</code></pre></div>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">sudo fail2ban-client status sshd</code></pre></div>
 <h2 id="6-verificacion-final">6. Verificación final</h2>
 <p>Desde una sesión nueva:</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">ssh -v usuario@servidor</code></pre></div>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">ssh -v usuario@servidor</code></pre></div>
 <p>Revisa que:</p>
 <ul>
 <li>La autenticación por clave funciona.</li>
@@ -193,7 +195,7 @@ bantime = 1h</code></pre></div>
 <li><code>root</code> no puede entrar directamente.</li>
 <li>Los logs registran los intentos fallidos.</li>
 </ul>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">sudo journalctl -u ssh --since "10 minutes ago"</code></pre></div>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">sudo journalctl -u ssh --since "10 minutes ago"</code></pre></div>
 <h2 id="errores-que-dejan-servidores-inseguros">Errores que dejan servidores inseguros</h2>
 <ul>
 <li>Desactivar contraseñas antes de probar la clave.</li>
@@ -320,6 +322,22 @@ bantime = 1h</code></pre></div>
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-clike.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-ini.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-toml.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-go.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" defer></script>
     <script src="/js/main.js" defer></script>
     <script src="/js/content.js" defer></script>
     <script src="/js/supabase-config.js" defer></script>

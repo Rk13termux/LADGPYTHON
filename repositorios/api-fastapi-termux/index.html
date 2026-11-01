@@ -27,6 +27,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
     
     <script type="application/ld+json">
 {
@@ -139,7 +141,7 @@
 <p>Tener una API escuchando en <code>http://127.0.0.1:8000</code> desde Termux, con documentación automática y un endpoint que devuelva datos en JSON.</p>
 <blockquote><p><strong>Nota:</strong> el servidor queda accesible solo dentro del dispositivo. No expongas servicios a internet sin autenticación, TLS y un proxy inverso.</p></blockquote>
 <h2 id="instalacion">Instalación</h2>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">pkg update -y
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">pkg update -y
 pkg install -y python
 python -m venv ~/venvs/api
 source ~/venvs/api/bin/activate
@@ -147,7 +149,7 @@ pip install fastapi uvicorn</code></pre></div>
 <aside class="cta-code" data-cta="code" data-content="api-fastapi-termux" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Tu Android puede ser un laboratorio completo. En el Curso de Python 3 de 0 a Master montamos el entorno, los proyectos y el flujo de trabajo desde cero.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=api-fastapi-termux&utm_content=bloque-1" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
 <h2 id="el-codigo">El código</h2>
 <p>Crea <code>main.py</code>:</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">python</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-python">from fastapi import FastAPI
+<div class="code-block" data-lang="python"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">python</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-python">from fastapi import FastAPI
 from pydantic import BaseModel
 
 app = FastAPI(title="API CHMODX", version="0.1.0")
@@ -172,11 +174,11 @@ def crear(nota: Nota) -&gt; Nota:
     return nota</code></pre></div>
 <aside class="cta-code" data-cta="code" data-content="api-fastapi-termux" data-lang="python"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Instalar herramientas es el primer paso. Usarlas con orden, versiones y respaldo es lo que evita perder el trabajo. El Curso de Python 3 de 0 a Master cubre ese flujo.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=api-fastapi-termux&utm_content=bloque-2" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
 <h2 id="arrancar-el-servidor">Arrancar el servidor</h2>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">uvicorn main:app --host 127.0.0.1 --port 8000 --reload</code></pre></div>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">uvicorn main:app --host 127.0.0.1 --port 8000 --reload</code></pre></div>
 <p>Abre <code>http://127.0.0.1:8000/docs</code> en el navegador del teléfono. FastAPI genera la documentación interactiva a partir del código.</p>
 <h2 id="probar-los-endpoints">Probar los endpoints</h2>
 <p>En otra sesión de Termux:</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">curl http://127.0.0.1:8000/salud
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">curl http://127.0.0.1:8000/salud
 
 curl -X POST http://127.0.0.1:8000/notas \
   -H "Content-Type: application/json" \
@@ -315,6 +317,22 @@ curl http://127.0.0.1:8000/notas</code></pre></div>
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-clike.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-ini.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-toml.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-go.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" defer></script>
     <script src="/js/main.js" defer></script>
     <script src="/js/content.js" defer></script>
     <script src="/js/supabase-config.js" defer></script>

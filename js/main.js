@@ -637,3 +637,76 @@
         initEnlacesExternos();
     });
 })();
+
+
+/* ---------- Copiar código de los bloques ---------- */
+(function () {
+    function copiarTexto(texto, confirmar) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(texto).then(
+                function () { confirmar(true); },
+                function () { confirmar(copiarLegado(texto)); }
+            );
+            return;
+        }
+        confirmar(copiarLegado(texto));
+    }
+
+    function copiarLegado(texto) {
+        try {
+            var ta = document.createElement('textarea');
+            ta.value = texto;
+            ta.setAttribute('readonly', '');
+            ta.style.position = 'absolute';
+            ta.style.left = '-9999px';
+            document.body.appendChild(ta);
+            ta.select();
+            var ok = document.execCommand('copy');
+            document.body.removeChild(ta);
+            return ok;
+        } catch (e) { return false; }
+    }
+
+    document.addEventListener('click', function (e) {
+        var btn = e.target && e.target.closest ? e.target.closest('[data-copy-code]') : null;
+        if (!btn) return;
+        var block = btn.closest('.code-block');
+        var code = block ? block.querySelector('pre code') : null;
+        var texto = code ? code.textContent : '';
+        var etiqueta = btn.innerHTML;
+        function confirmar(ok) {
+            btn.classList.remove('is-error');
+            if (ok) {
+                btn.classList.add('is-copied');
+                btn.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Copiado';
+            } else {
+                btn.classList.add('is-error');
+                btn.innerHTML = '<i class="fas fa-times" aria-hidden="true"></i> Error';
+            }
+            setTimeout(function () {
+                btn.classList.remove('is-copied', 'is-error');
+                btn.innerHTML = etiqueta;
+            }, 2000);
+        }
+        copiarTexto(texto, confirmar);
+    });
+
+    function resaltar() {
+        if (window.Prism) {
+            // Gramáticas vacías para pseudo-lenguajes (salida, árboles, texto plano)
+            // para que el plugin de números de línea se aplique también a ellos.
+            window.Prism.languages = window.Prism.languages || {};
+            ['texto', 'none', 'output', 'salida', 'tree', 'console', 'plain', 'plaintext'].forEach(function (l) {
+                if (!window.Prism.languages[l]) window.Prism.languages[l] = {};
+            });
+            if (typeof window.Prism.highlightAll === 'function') {
+                window.Prism.highlightAll();
+            }
+        }
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', resaltar);
+    } else {
+        resaltar();
+    }
+})();

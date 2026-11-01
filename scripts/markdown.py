@@ -209,7 +209,23 @@ def render(
         # Bloques de código
         fence = FENCE_RE.match(line)
         if fence:
-            lang = fence.group(1) or "texto"
+            raw_lang = (fence.group(1) or "texto").strip().lower()
+            display_lang = raw_lang or "texto"
+            LANG_ALIASES = {
+                "py": "python", "python3": "python",
+                "sh": "bash", "shell": "bash", "zsh": "bash", "console": "bash",
+                "js": "javascript", "ts": "typescript",
+                "yml": "yaml", "toml": "ini",
+                "html": "markup", "xml": "markup", "svg": "markup",
+                "md": "markdown", "dockerfile": "docker",
+                "sql": "sql", "json": "json",
+                "texto": "none", "text": "none", "output": "none",
+                "salida": "none", "tree": "none", "plain": "none",
+                "plaintext": "none", "none": "none",
+            }
+            lang = LANG_ALIASES.get(raw_lang, raw_lang or "none")
+            if lang == "none":
+                lang = "texto"
             i += 1
             buffer: list[str] = []
             while i < len(lines) and not lines[i].startswith("```"):
@@ -219,16 +235,25 @@ def render(
                 i += 1
             code_index += 1
             code = html.escape("\n".join(buffer), quote=False)
-            lang_class = re.sub(r"[^\w+-]", "", lang) or "texto"
+            _known = {"markup", "css", "clike", "javascript", "python", "bash",
+                      "json", "yaml", "sql", "ini", "docker", "toml", "go", "rust",
+                      "typescript", "markdown"}
+            _clean = re.sub(r"[^\w+-]", "", lang) or "texto"
+            lang_class = _clean if _clean in _known else "texto"
+            if lang_class:
+                pre_html = f'<pre class="line-numbers"><code class="language-{lang_class}">{code}</code></pre>'
+            else:
+                pre_html = f'<pre class="line-numbers"><code>{code}</code></pre>'
             out.append(
-                '<div class="code-block">'
+                '<div class="code-block" data-lang="' + html.escape(lang_class, quote=True) + '">'
                 '<div class="code-head">'
+                '<span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span>'
                 f'<span class="code-lang">{html.escape(lang)}</span>'
                 '<button type="button" class="code-copy" data-copy-code>'
                 '<i class="far fa-copy" aria-hidden="true"></i> Copiar'
                 "</button>"
                 "</div>"
-                f'<pre><code class="language-{lang_class}">{code}</code></pre>'
+                + pre_html +
                 "</div>"
             )
             if cta and cta_count < max_ctas:

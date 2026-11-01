@@ -27,6 +27,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
     
     <script type="application/ld+json">
 {
@@ -134,15 +136,15 @@
 <h2 id="instalacion-correcta">Instalación correcta</h2>
 <p>Descarga Termux desde <strong>F-Droid</strong> o desde el repositorio oficial en GitHub. La versión de Google Play está abandonada y falla al actualizar paquetes.</p>
 <p>Después de instalarlo, abre la app y actualiza la base:</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">pkg update -y &amp;&amp; pkg upgrade -y</code></pre></div>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">pkg update -y &amp;&amp; pkg upgrade -y</code></pre></div>
 <p>Si aparece un error de repositorio, revisa la fecha y la conexión antes de reinstalar. Termux firma sus paquetes y una build antigua no puede mezclarse con los repositorios actuales.</p>
 <h2 id="permisos-de-almacenamiento">Permisos de almacenamiento</h2>
 <p>Por defecto, Termux vive en su propio espacio aislado. Para acceder a Descargas, Documentos o imágenes necesitas habilitar el almacenamiento compartido:</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">termux-setup-storage</code></pre></div>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">termux-setup-storage</code></pre></div>
 <p>Android mostrará un diálogo de permisos. Al aceptarlo, aparece <code>~/storage/shared</code>, que apunta al almacenamiento común del teléfono.</p>
 <blockquote><p><strong>Importante:</strong> no muevas el directorio de Termux ni lo edites desde otras apps. Puedes corromper permisos y rutas internas.</p></blockquote>
 <h2 id="paquetes-esenciales">Paquetes esenciales</h2>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">pkg install -y python git nano openssh ripgrep</code></pre></div>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">pkg install -y python git nano openssh ripgrep</code></pre></div>
 <ul>
 <li><code>python</code>: intérprete y <code>pip</code>.</li>
 <li><code>git</code>: control de versiones.</li>
@@ -151,13 +153,13 @@
 <li><code>ripgrep</code>: búsqueda rápida dentro de archivos.</li>
 </ul>
 <h2 id="tu-primer-proyecto">Tu primer proyecto</h2>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">mkdir -p ~/proyectos/hola
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">mkdir -p ~/proyectos/hola
 cd ~/proyectos/hola
 python -m venv .venv
 source .venv/bin/activate</code></pre></div>
 <aside class="cta-code" data-cta="code" data-content="termux-desde-cero" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Tu Android puede ser un laboratorio completo. En el Curso de Python 3 de 0 a Master montamos el entorno, los proyectos y el flujo de trabajo desde cero.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=termux-desde-cero&utm_content=bloque-1" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
 <p>Crea <code>main.py</code>:</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">python</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-python">from datetime import datetime
+<div class="code-block" data-lang="python"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">python</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-python">from datetime import datetime
 
 def saludo(nombre: str) -&gt; str:
     hora = datetime.now().strftime("%H:%M")
@@ -167,20 +169,20 @@ if __name__ == "__main__":
     print(saludo("programador"))</code></pre></div>
 <aside class="cta-code" data-cta="code" data-content="termux-desde-cero" data-lang="python"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Instalar herramientas es el primer paso. Usarlas con orden, versiones y respaldo es lo que evita perder el trabajo. El Curso de Python 3 de 0 a Master cubre ese flujo.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=termux-desde-cero&utm_content=bloque-2" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
 <p>Ejecuta:</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">python main.py</code></pre></div>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">python main.py</code></pre></div>
 <h2 id="entornos-virtuales-por-que-son-obligatorios">Entornos virtuales: por qué son obligatorios</h2>
 <p>Termux mezcla paquetes del sistema con paquetes de Python. Instalar todo con <code>pip</code> global puede romper dependencias del propio Termux. Un entorno virtual aísla cada proyecto y permite borrarlo sin consecuencias.</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">python -m venv .venv
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">python -m venv .venv
 source .venv/bin/activate
 pip install requests</code></pre></div>
 <p>Cuando termines, <code>deactivate</code> vuelve al Python del sistema.</p>
 <h2 id="atajos-que-ahorran-tiempo">Atajos que ahorran tiempo</h2>
 <p>Añade alias a <code>~/.bashrc</code>:</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">alias py="source ~/venvs/base/bin/activate"
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">alias py="source ~/venvs/base/bin/activate"
 alias ll="ls -lah"
 alias gs="git status"</code></pre></div>
 <p>Recarga la configuración:</p>
-<div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">source ~/.bashrc</code></pre></div>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">source ~/.bashrc</code></pre></div>
 <h2 id="errores-frecuentes">Errores frecuentes</h2>
 <div class="table-wrap"><table><thead><tr><th>Síntoma</th><th>Causa probable</th><th>Solución</th></tr></thead><tbody><tr><td><code>pkg: not found</code></td><td>Build de Google Play</td><td>Instalar desde F-Droid</td></tr><tr><td><code>Permission denied</code></td><td>Falta <code>chmod +x</code></td><td><code>chmod +x script.sh</code></td></tr><tr><td><code>No space left on device</code></td><td>Almacenamiento lleno</td><td><code>pkg clean</code> y borrar entornos viejos</td></tr><tr><td><code>pip</code> compila durante minutos</td><td>Falta toolchain</td><td><code>pkg install build-essential</code></td></tr><tr><td>El proceso muere en segundo plano</td><td>Gestión de batería de Android</td><td>Mantener Termux activo o usar servicio en primer plano</td></tr></tbody></table></div>
 <h2 id="que-puedes-hacer-despues">Qué puedes hacer después</h2>
@@ -309,6 +311,22 @@ alias gs="git status"</code></pre></div>
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-clike.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-ini.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-toml.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-go.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" defer></script>
     <script src="/js/main.js" defer></script>
     <script src="/js/content.js" defer></script>
     <script src="/js/supabase-config.js" defer></script>
