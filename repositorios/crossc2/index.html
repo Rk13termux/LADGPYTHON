@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <meta name="robots" content="index,follow">
+    <title>CrossC2: Generate CobaltStrike's cross-platform payload | CHMODX</title>
+    <meta name="description" content="Generate CobaltStrike&#x27;s cross-platform payload">
+    <link rel="canonical" href="https://chmodxcode.pro/repositorios/crossc2/">
+
+    <link rel="icon" type="image/png" href="/assets/logo.png">
+    <link rel="apple-touch-icon" href="/assets/logo.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="CHMODX">
+    <meta property="og:title" content="CrossC2: Generate CobaltStrike's cross-platform payload | CHMODX">
+    <meta property="og:description" content="Generate CobaltStrike&#x27;s cross-platform payload">
+    <meta property="og:url" content="https://chmodxcode.pro/repositorios/crossc2/">
+    <meta property="og:image" content="https://chmodxcode.pro/assets/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CrossC2: Generate CobaltStrike's cross-platform payload | CHMODX">
+    <meta name="twitter:description" content="Generate CobaltStrike&#x27;s cross-platform payload">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+    
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "CrossC2: Generate CobaltStrike's cross-platform payload",
+  "description": "Generate CobaltStrike's cross-platform payload",
+  "dateModified": "2026-11-01",
+  "inLanguage": "es",
+  "url": "https://chmodxcode.pro/repositorios/crossc2/",
+  "codeRepository": "https://chmodxcode.pro/repositorios/crossc2/",
+  "programmingLanguage": "Python",
+  "author": {
+    "@type": "Organization",
+    "name": "CHMODX"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CHMODX"
+  }
+}
+</script>
+</head>
+<body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <header class="header site-header">
+        <nav class="navbar" aria-label="Navegación principal">
+            <div class="container nav-container">
+                <a href="/" class="nav-logo" aria-label="CHMODX, inicio">
+                    <img src="/assets/logo.png" alt="" class="brand-logo" width="42" height="42">
+                    <span class="brand-name">CHMOD<span class="brand-x">X</span></span>
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="/repositorios/" class="is-active">Repositorios</a></li>
+                    <li><a href="/guias/" class="">Guías</a></li>
+                    <li><a href="/academia/" class="">Curso de Python</a></li>
+                </ul>
+
+                <div class="nav-cta">
+                    <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="nav-telegram-link" aria-label="Canal de Telegram">
+                        <i class="fab fa-telegram" aria-hidden="true"></i>
+                    </a>
+                    <a href="/academia/" class="btn btn-primary btn-sm">
+                        🐍 Curso de Python
+                    </a>
+                </div>
+
+                <button type="button" class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="/repositorios/">Repositorios</a>
+                <a href="/guias/">Guías</a>
+                <a href="/academia/">Curso de Python 3 de 0 a Master</a>
+                <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-telegram">Canal de Telegram</a>
+                <a href="/academia/" class="btn btn-primary">Ver el curso</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="contenido">
+        <div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
+
+<div class="container">
+    <nav class="breadcrumb article-breadcrumb" aria-label="Miga de pan">
+        <a href="/">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <a href="/repositorios/">Repositorios</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">CrossC2: Generate CobaltStrike's cross-platform payload</span>
+    </nav>
+</div>
+
+<header class="article-hero repo-hero">
+    <div class="container">
+        <span class="badge badge-ciberseguridad"><i class="fas fa-shield-halved" aria-hidden="true"></i> Ciberseguridad</span>
+        <h1 class="article-title">CrossC2: Generate CobaltStrike's cross-platform payload</h1>
+        <p class="article-summary">Generate CobaltStrike's cross-platform payload</p>
+
+        <dl class="repo-meta">
+            <div><dt>Dificultad</dt><dd>Intermedio</dd></div>
+            <div><dt>Stack</dt><dd>Python</dd></div>
+            <div><dt>Actualizado</dt><dd>1 nov 2026</dd></div>
+            <div><dt>Licencia</dt><dd>MIT</dd></div>
+        </dl>
+
+        <div class="repo-actions">
+            <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fab fa-telegram" aria-hidden="true"></i> Acceder al código en Telegram</a>
+            <a href="/repositorios/" class="btn btn-outline">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i> Volver al catálogo
+            </a>
+        </div>
+
+        <div class="tag-list">
+            <span class="tag">initial-access</span><span class="tag">payload-development</span><span class="tag">red-team</span>
+        </div>
+    </div>
+</header>
+
+<div class="container article-shell">
+    <article class="article-main">
+        <div class="callout callout-warn"><i class="fas fa-triangle-exclamation" aria-hidden="true"></i><p><strong>Antes de ejecutar:</strong> usa este código solo en equipos propios o en laboratorios con autorización explícita. El conocimiento técnico no sustituye el permiso legal.</p></div>
+
+        <div class="article-body">
+            <h2 id="que-es-crossc2">Qué es CrossC2</h2>
+<p>CrossC2 es una herramienta de seguridad ofensiva / red team. Generate CobaltStrike's cross-platform payload</p>
+<p>Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.</p>
+<ul>
+<li><strong>Repositorio oficial:</strong> <a href="https://github.com/gloxec/CrossC2">https://github.com/gloxec/CrossC2</a></li>
+<li><strong>Sección del toolkit:</strong> Initial Access → Payload Development</li>
+</ul>
+<h2 id="objetivo-y-funcion">Objetivo y función</h2>
+<p>El objetivo principal de CrossC2 es generate cobaltstrike's cross-platform payload.</p>
+<p>En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.</p>
+<h2 id="instalacion">Instalación</h2>
+<blockquote><p>Download:</p></blockquote>
+<ul>
+<li><strong>CrossC2.cna</strong></li>
+<li><strong>genCrossC2</strong> <code>(If it is a Windows system, download genCrossC2.Win.exe)</code></li>
+<li>choose <code>Script Manager</code>，add <code>CrossC2.cna</code> (If successfully installed, the menu bar will have an additional item <code>CrossC2</code>)</li>
+<li>Modify the <code>genCC2</code> path in the<code> CrossC2.cna</code> script to the <strong>real path</strong></li>
+</ul>
+<div class="code-block" data-lang="clike"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">clike</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-clike">77:    $genCC2 = "/xxx/xx/xx/genCrossC2.MacOS";  # &lt;-------- fix</code></pre></div>
+<blockquote><p>Create listener and copy key:</p></blockquote>
+<p>For some reasons, only HTTPS beacon is currently supported.</p>
+<p><strong>Copy <code>.cobaltstrike.beacon_keys</code> from the cs directory on the server to the local directory.</strong></p>
+<h2 id="uso-basico">Uso básico</h2>
+<p>Consulta el README oficial para la sintaxis exacta. Un flujo típico:</p>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash"># Clonar
+git clone https://github.com/gloxec/CrossC2
+cd crossc2
+
+# Revisar ayuda
+./crossc2 --help 2&gt;/dev/null || python3 -m crossc2 --help 2&gt;/dev/null || true</code></pre></div>
+<aside class="cta-code" data-cta="code" data-content="crossc2" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Practicar comandos sueltos no te prepara para una auditoría. En el Curso de Python 3 de 0 a Master trabajas alcance, evidencia y reporte con método.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=crossc2&utm_content=bloque-1" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
+<blockquote><p>Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.</p></blockquote>
+<h2 id="se-puede-usar-en-termux">¿Se puede usar en Termux?</h2>
+<p>Esta herramienta está pensada para Windows, .NET o entornos de Active Directory. No se instala de forma nativa en Termux; úsala desde una máquina virtual, un contenedor o un laboratorio con Windows/Linux completo.</p>
+<h2 id="buenas-practicas-y-etica">Buenas prácticas y ética</h2>
+<p>Usa CrossC2 únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.</p>
+<h2 id="referencias">Referencias</h2>
+<ul>
+<li>Repositorio: https://github.com/gloxec/CrossC2</li>
+<li>Toolkit de origen: Red Teaming Toolkit</li>
+</ul>
+        </div>
+
+        <section class="cta-end" aria-labelledby="ctaEndTitle"><div class="cta-end-copy"><span class="eyebrow">Curso de Python 3 de 0 a Master</span><h2 id="ctaEndTitle">¿Quieres aprender a programar tus propias herramientas?</h2><p>Domina la lógica y el desarrollo en nuestro Curso de Python 3 de 0 a Master.</p></div><div class="cta-end-actions"><a href="/academia/?utm_source=contenido&utm_medium=cta_final&utm_campaign=crossc2&utm_content=fin-repositorio" class="btn btn-primary btn-lg"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Entrar al curso</a><a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-outline"><i class="fab fa-telegram" aria-hidden="true"></i> Resolver dudas</a></div></section>
+
+        <section class="related" aria-labelledby="relatedTitle">
+            <h2 id="relatedTitle">Otros repositorios que te pueden servir</h2>
+            <div class="card-grid card-grid-3">
+                <a class="content-card" href="/repositorios/escaner-puertos-python/" data-category="ciberseguridad" data-search="escáner de puertos con python y sockets un script educativo para entender cómo funciona un escaneo tcp, qué devuelve cada estado y por qué el reconocimiento es la primera fase de una auditoría. ciberseguridad intermedio reconocimiento redes sockets auditoría python 3 sockets tcp"><div class="card-top"><span class="badge badge-ciberseguridad"><i class="fas fa-shield-halved" aria-hidden="true"></i> Ciberseguridad</span><span class="card-level">Intermedio</span></div><h2 class="card-title">Escáner de puertos con Python y sockets</h2><p class="card-summary">Un script educativo para entender cómo funciona un escaneo TCP, qué devuelve cada estado y por qué el reconocimiento es la primera fase de una auditoría.</p><div class="card-tags"><span class="tag">reconocimiento</span><span class="tag">redes</span><span class="tag">sockets</span></div><div class="card-foot"><span><i class="fas fa-code-branch" aria-hidden="true"></i> Python 3</span><span class="card-cta">Ver repositorio <i class="fas fa-arrow-right" aria-hidden="true"></i></span></div></a><a class="content-card" href="/repositorios/verificador-hashes-python/" data-category="ciberseguridad" data-search="verificador de hashes con python herramienta para calcular y comparar sha-256 de archivos descargados, entender la diferencia con un cifrado y detectar corrupción o manipulación. ciberseguridad principiante hashes integridad criptografía verificación python 3 hashlib cli"><div class="card-top"><span class="badge badge-ciberseguridad"><i class="fas fa-shield-halved" aria-hidden="true"></i> Ciberseguridad</span><span class="card-level">Principiante</span></div><h2 class="card-title">Verificador de hashes con Python</h2><p class="card-summary">Herramienta para calcular y comparar SHA-256 de archivos descargados, entender la diferencia con un cifrado y detectar corrupción o manipulación.</p><div class="card-tags"><span class="tag">hashes</span><span class="tag">integridad</span><span class="tag">criptografía</span></div><div class="card-foot"><span><i class="fas fa-code-branch" aria-hidden="true"></i> Python 3</span><span class="card-cta">Ver repositorio <i class="fas fa-arrow-right" aria-hidden="true"></i></span></div></a><a class="content-card" href="/repositorios/shannon-pentester-de-ia-en-typescript-para-auditar-apps-web-y-apis/" data-category="ciberseguridad" data-search="shannon: pentester de ia en typescript para auditar apps web y apis cómo instalar y ejecutar shannon, el agente en typescript que lee tu código, mapea la superficie de ataque y lanza pruebas de penetración. ciberseguridad avanzado ciberseguridad pentesting typescript ia api typescript node.js npm docker llm api"><div class="card-top"><span class="badge badge-ciberseguridad"><i class="fas fa-shield-halved" aria-hidden="true"></i> Ciberseguridad</span><span class="card-level">Avanzado</span></div><h2 class="card-title">Shannon: pentester de IA en TypeScript para auditar apps web y APIs</h2><p class="card-summary">Cómo instalar y ejecutar Shannon, el agente en TypeScript que lee tu código, mapea la superficie de ataque y lanza pruebas de penetración.</p><div class="card-tags"><span class="tag">ciberseguridad</span><span class="tag">pentesting</span><span class="tag">typescript</span></div><div class="card-foot"><span><i class="fas fa-code-branch" aria-hidden="true"></i> TypeScript</span><span class="card-cta">Ver repositorio <i class="fas fa-arrow-right" aria-hidden="true"></i></span></div></a>
+            </div>
+        </section>
+    </article>
+
+    <aside class="article-side">
+        <nav class="toc" aria-label="En esta página"><p class="toc-title">En esta página</p><ol><li class="toc-l2"><a href="#que-es-crossc2">Qué es CrossC2</a></li><li class="toc-l2"><a href="#objetivo-y-funcion">Objetivo y función</a></li><li class="toc-l2"><a href="#instalacion">Instalación</a></li><li class="toc-l2"><a href="#uso-basico">Uso básico</a></li><li class="toc-l2"><a href="#se-puede-usar-en-termux">¿Se puede usar en Termux?</a></li><li class="toc-l2"><a href="#buenas-practicas-y-etica">Buenas prácticas y ética</a></li><li class="toc-l2"><a href="#referencias">Referencias</a></li></ol></nav>
+
+        <aside class="sidebar-card sidebar-academy"><span class="sidebar-kicker">Curso de Python 3 de 0 a Master</span><h2>Ordena lo que ya practicas</h2><p>19 módulos, proyectos reales y acceso de por vida. La ruta completa para pasar de copiar comandos a tomar decisiones.</p><ul class="sidebar-list"><li><i class="fas fa-check" aria-hidden="true"></i> Python desde cero</li><li><i class="fas fa-check" aria-hidden="true"></i> Proyectos y certificado</li><li><i class="fas fa-check" aria-hidden="true"></i> Comunidad en Telegram</li></ul><a href="/academia/?utm_source=contenido&utm_medium=sidebar&utm_campaign=crossc2&utm_content=repositorio" class="btn btn-primary btn-sm">Ver el temario</a><span class="sidebar-note">Pago seguro con Hotmart</span></aside>
+
+        <aside class="sidebar-card sidebar-tg"><span class="sidebar-kicker"><i class="fab fa-telegram" aria-hidden="true"></i> Comunidad</span><h2>Canal de Telegram</h2><p>Nuevos repositorios, scripts y avisos. Acceso gratuito y sin spam.</p><a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-telegram btn-sm">Entrar al canal</a></aside>
+    </aside>
+</div>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="/" class="nav-logo footer-logo" aria-label="CHMODX, inicio">
+                    <img src="/assets/logo.png" alt="" class="brand-logo brand-logo-footer" width="48" height="48">
+                    <span class="brand-name">CHMOD<span class="brand-x">X</span></span>
+                </a>
+                <p class="footer-description">
+                    Repositorios, scripts y guías para aprender haciendo. Ciberseguridad ética,
+                    Python y Termux con contenido técnico verificable.
+                </p>
+                <div class="footer-social">
+                    <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a>
+                    <a href="/academia/" aria-label="Curso de Python 3 de 0 a Master"><i class="fas fa-graduation-cap" aria-hidden="true"></i></a>
+                    <a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noopener noreferrer" aria-label="Índice TIOBE"><i class="fas fa-chart-line" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contenido</h4>
+                <a href="/repositorios/">Repositorios</a>
+                <a href="/guias/">Guías técnicas</a>
+                <a href="/">Hub CHMODX</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Comunidad</h4>
+                <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer">Canal de Telegram</a>
+                <a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noopener noreferrer">Índice TIOBE</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Curso de Python</h4>
+                <a href="/academia/">Curso de Python 3 de 0 a Master</a>
+                <a href="/academia/#temario">Temario</a>
+                <a href="/academia/#oferta">Precio y acceso</a>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p>&copy; 2026 CHMODX. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <div class="sticky-cta" id="stickyCta"><div class="sticky-price"><span class="sticky-old">$450</span><span class="sticky-new">$100</span><span class="sticky-off"><i class="fas fa-fire" aria-hidden="true"></i> 78% OFF</span></div><a href="/academia/?utm_source=contenido&utm_medium=sticky&utm_campaign=crossc2" class="btn btn-primary btn-sm"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Curso de Python</a></div>
+
+    <button type="button" class="back-to-top" id="backToTop" aria-label="Volver arriba">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <div class="inapp-modal" id="inappModal" role="dialog" aria-modal="true"
+         aria-labelledby="inappTitle" aria-describedby="inappDesc" aria-hidden="true">
+        <div class="inapp-backdrop" data-inapp-close></div>
+
+        <div class="inapp-card">
+            <button type="button" class="inapp-close" id="inappClose" aria-label="Cerrar aviso">
+                <i class="fas fa-xmark" aria-hidden="true"></i>
+            </button>
+
+            <span class="inapp-badge inapp-badge-tg">
+                <i class="fab fa-telegram" aria-hidden="true"></i> Canal de Telegram
+            </span>
+
+            <h2 class="inapp-title" id="inappTitle">Entra al canal de Telegram</h2>
+
+            <p class="inapp-desc" id="inappDesc">
+                Estás dentro de <strong id="inappApp">una aplicación</strong> y su navegador no
+                permite abrir Telegram. Prueba con el botón azul y, si no se abre, copia el
+                enlace y pégalo en tu navegador.
+            </p>
+
+            <div class="inapp-actions">
+                <button type="button" class="btn btn-telegram inapp-btn" id="inappTg">
+                    <i class="fab fa-telegram" aria-hidden="true"></i> Entrar al canal de Telegram
+                </button>
+                <button type="button" class="btn btn-outline inapp-btn" id="inappCopy">
+                    <i class="fas fa-copy" aria-hidden="true"></i> Copiar enlace
+                </button>
+            </div>
+
+            <p class="inapp-status" id="inappStatus" role="status" hidden></p>
+
+            <p class="inapp-url-wrap">
+                <span class="inapp-url-label">Enlace</span>
+                <span class="inapp-url" id="inappUrl">https://t.me/chmodxcode</span>
+            </p>
+
+            <ol class="inapp-steps" id="inappSteps">
+                <li>Pulsa <strong>Entrar al canal de Telegram</strong>.</li>
+                <li>Si no se abre, pulsa <strong>Copiar enlace</strong>.</li>
+                <li>Abre <strong>Telegram</strong> y pega el enlace, o busca <strong>@chmodxcode</strong>.</li>
+            </ol>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-clike.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-ini.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-toml.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-go.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-powershell.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markdown.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" defer></script>
+    <script>
+      window.Prism = window.Prism || {};
+      window.Prism.plugins = window.Prism.plugins || {};
+      window.Prism.plugins.autoloader = {
+        languages_path: "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/"
+      };
+    </script>
+    <script src="/js/main.js" defer></script>
+    <script src="/js/content.js" defer></script>
+    <script src="/js/supabase-config.js" defer></script>
+    <script src="/js/tracking.js" defer></script>
+    <script src="/js/leads.js" defer></script>
+    
+</body>
+</html>
