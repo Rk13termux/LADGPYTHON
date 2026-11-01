@@ -1,13 +1,13 @@
-# CHMODX · Hub de contenido + Academia
+# CHMODX · Hub de contenido + Curso de Python 3 de 0 a Master
 
 Sitio estático de **chmodxcode.pro** reorganizado como un ecosistema modular de contenido técnico:
 
 - **Hub** (`/`): repositorios, guías y rutas de aprendizaje.
 - **Repositorios** (`/repositorios/`): scripts de ciberseguridad, Python y Termux.
 - **Guías** (`/guias/`): artículos técnicos con fundamentos y buenas prácticas.
-- **Academia** (`/academia/`): página de ventas del curso **Python 3 de 0 a MASTER**.
+- **Curso de Python 3 de 0 a Master** (`/academia/`): página de ventas del curso.
 
-No hay tienda tradicional ni carrito. El contenido gratuito atrae, educa y deriva al siguiente paso natural: la Academia Python Pro.
+No hay tienda tradicional ni carrito. El contenido gratuito atrae, educa y deriva al siguiente paso natural: el Curso de Python 3 de 0 a Master.
 
 ---
 
@@ -28,7 +28,7 @@ No hay tienda tradicional ni carrito. El contenido gratuito atrae, educa y deriv
 │   ├── build.py                   # Generador estático
 │   └── markdown.py                # Renderizador Markdown sin dependencias
 ├── css/
-│   ├── style.css                  # Estilos de la Academia
+│   ├── style.css                  # Estilos del curso
 │   └── site.css                   # Estilos del hub y del contenido
 ├── js/
 │   ├── main.js                    # WebViews, Telegram, checkout Hotmart, contador
@@ -170,9 +170,9 @@ Cada pieza de contenido incluye CTAs contextuales, sin venta agresiva:
 | Ubicación | Comportamiento |
 |---|---|
 | Después de cada bloque de código | Banner compacto con copy según la categoría |
-| Barra lateral | Tarjeta de la Academia + tarjeta de Telegram |
-| Final del artículo | CTA principal con dos salidas: Academia y dudas |
-| Barra fija móvil | Precio y acceso a la Academia |
+| Barra lateral | Tarjeta del curso + tarjeta de Telegram |
+| Final del artículo | CTA principal con dos salidas: curso y dudas |
+| Barra fija móvil | Precio y acceso al curso |
 | Catálogo | Banda final con el siguiente paso |
 
 Todos los enlaces internos a `/academia/` llevan UTM:
@@ -183,7 +183,7 @@ Todos los enlaces internos a `/academia/` llevan UTM:
 
 Esto permite medir qué bloque y qué artículo convierten cuando se añada analítica.
 
-La Academia conserva su propio embudo: promesa, prueba social, temario, instructor, opiniones, comunidad, FAQ, oferta y CTA final. El hub añade un puente de recursos gratuitos dentro de esa página.
+El Curso de Python 3 de 0 a Master conserva su propio embudo: promesa, prueba social, temario, instructor, opiniones, comunidad, FAQ, oferta y CTA final. El hub añade un puente de recursos gratuitos dentro de esa página.
 
 ---
 
@@ -229,7 +229,7 @@ Cada página generada incluye:
 - Migas de pan visibles.
 - `sitemap.xml` y `robots.txt`.
 
-La Academia incluye JSON-LD de tipo `Course` con `Offer` en USD.
+El Curso de Python 3 de 0 a Master incluye JSON-LD de tipo `Course` con `Offer` en USD.
 
 ---
 
@@ -242,7 +242,7 @@ Se mantiene la identidad visual existente:
 - Tipografías **Space Grotesk** (títulos), **Inter** (texto) y **Fira Code** (código).
 - Componentes tipo terminal, corchetes y ventanas de código.
 
-`css/site.css` replica los tokens de `css/style.css` para que el hub y la Academia se vean como un mismo producto. Si cambias la paleta, actualiza ambos archivos.
+`css/site.css` replica los tokens de `css/style.css` para que el hub y el curso se vean como un mismo producto. Si cambias la paleta, actualiza ambos archivos.
 
 ---
 

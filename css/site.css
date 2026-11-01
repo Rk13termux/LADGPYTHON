@@ -1,6 +1,6 @@
 /* ==========================================================================
    CHMODX · Hub de contenido
-   Tema oscuro, misma identidad que la Academia (verde, cian y amarillo).
+   Tema oscuro, misma identidad que el curso (verde, cian y amarillo).
    ========================================================================== */
 
 /* ---------- Tokens ---------- */
@@ -826,7 +826,7 @@ ul, ol { margin: 0; }
 .path-step a i { margin-left: 5px; transition: transform .2s ease; }
 .path-step a:hover i { transform: translateX(3px); }
 
-/* ---------- Banda de la Academia ---------- */
+/* ---------- Banda del curso ---------- */
 .academy-band {
     position: relative;
     padding: 84px 0;

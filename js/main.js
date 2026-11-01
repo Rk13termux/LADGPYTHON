@@ -622,7 +622,7 @@
        Init
        ---------------------------------------------------------------- */
     document.addEventListener('DOMContentLoaded', function () {
-        // El contador solo existe en la Academia. En el hub no se toca
+        // El contador solo existe en el curso. En el hub no se toca
         // localStorage para no crear una oferta donde no hay venta.
         if (document.querySelector('.countdown-value')) {
             updateCountdowns();

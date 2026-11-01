@@ -59,33 +59,33 @@ MONTHS = [
 
 CTA_COPY = {
     "ciberseguridad": (
-        "Practicar comandos sueltos no te prepara para una auditoría. En la academia "
+        "Practicar comandos sueltos no te prepara para una auditoría. En el Curso de Python 3 de 0 a Master "
         "trabajas alcance, evidencia y reporte con método.",
         "Este comando es una pieza. Entender el contexto, el riesgo y la remediación "
         "es lo que convierte una prueba en un trabajo profesional.",
         "La diferencia entre un hallazgo y un informe útil está en el criterio. "
-        "En la academia entrenas ese criterio con laboratorios guiados.",
+        "En el Curso de Python 3 de 0 a Master entrenas ese criterio con laboratorios guiados.",
     ),
     "python": (
         "Copiar un script resuelve una tarea. Entender cada línea te permite resolver "
-        "la siguiente. La academia construye esa base paso a paso.",
+        "la siguiente. El Curso de Python 3 de 0 a Master construye esa base paso a paso.",
         "Este bloque funciona hoy. Con estructura, pruebas y buenas prácticas seguirá "
         "funcionando dentro de un año. Eso se aprende con método.",
         "Pasar de scripts sueltos a proyectos mantenibles es el salto que separa al "
-        "aficionado del profesional. La academia te acompaña en ese salto.",
+        "aficionado del profesional. El Curso de Python 3 de 0 a Master te acompaña en ese salto.",
     ),
     "termux": (
-        "Tu Android puede ser un laboratorio completo. En la academia montamos el entorno, "
+        "Tu Android puede ser un laboratorio completo. En el Curso de Python 3 de 0 a Master montamos el entorno, "
         "los proyectos y el flujo de trabajo desde cero.",
         "Instalar herramientas es el primer paso. Usarlas con orden, versiones y respaldo "
-        "es lo que evita perder el trabajo. La academia cubre ese flujo.",
-        "Termux deja de ser un experimento cuando lo usas para construir. La academia "
+        "es lo que evita perder el trabajo. El Curso de Python 3 de 0 a Master cubre ese flujo.",
+        "Termux deja de ser un experimento cuando lo usas para construir. El Curso de Python 3 de 0 a Master "
         "te da la ruta para que cada comando tenga un propósito.",
     ),
     "automatizacion": (
         "Automatizar sin criterio crea deuda técnica. Aprende a diseñar scripts que puedas "
         "mantener, probar y reutilizar durante años.",
-        "Un script que solo tú entiendes es un problema futuro. La academia trabaja "
+        "Un script que solo tú entiendes es un problema futuro. El Curso de Python 3 de 0 a Master trabaja "
         "estructura, pruebas y documentación desde el primer proyecto.",
         "La automatización útil empieza por saber qué no automatizar. Ese criterio "
         "se entrena con casos reales y revisión.",
@@ -377,8 +377,8 @@ def code_cta(category: str, slug: str, index: int, lang: str) -> str:
     return (
         f'<aside class="cta-code" data-cta="code" data-content="{attr(slug)}" data-lang="{attr(lang)}">'
         '<span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span>'
-        f'<p><strong>Academia Python Pro</strong> {e(copy)}</p>'
-        f'<a href="{href}" class="btn btn-primary btn-sm">Ver la academia '
+        f'<p><strong>Curso de Python 3 de 0 a Master</strong> {e(copy)}</p>'
+        f'<a href="{href}" class="btn btn-primary btn-sm">Ver el curso '
         '<i class="fas fa-arrow-right" aria-hidden="true"></i></a>'
         "</aside>"
     )
@@ -414,17 +414,16 @@ def end_cta(item: dict[str, Any], kind: str) -> str:
         f"/academia/?utm_source=contenido&utm_medium=cta_final"
         f"&utm_campaign={item['slug']}&utm_content=fin-{kind}"
     )
-    copy = END_COPY.get(item["category"], END_COPY["python"])
     return (
         '<section class="cta-end" aria-labelledby="ctaEndTitle">'
         '<div class="cta-end-copy">'
-        '<span class="eyebrow">Academia Python Pro</span>'
-        '<h2 id="ctaEndTitle">¿Quieres convertir esto en una habilidad completa?</h2>'
-        f"<p>{e(copy)}</p>"
+        '<span class="eyebrow">Curso de Python 3 de 0 a Master</span>'
+        '<h2 id="ctaEndTitle">¿Quieres aprender a programar tus propias herramientas?</h2>'
+        "<p>Domina la lógica y el desarrollo en nuestro Curso de Python 3 de 0 a Master.</p>"
         "</div>"
         '<div class="cta-end-actions">'
         f'<a href="{href}" class="btn btn-primary btn-lg">'
-        '<i class="fas fa-graduation-cap" aria-hidden="true"></i> Entrar a la Academia'
+        '<i class="fas fa-graduation-cap" aria-hidden="true"></i> Entrar al curso'
         "</a>"
         '<a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-outline">'
         '<i class="fab fa-telegram" aria-hidden="true"></i> Resolver dudas'
@@ -441,7 +440,7 @@ def sidebar_academy(item: dict[str, Any], kind: str) -> str:
     )
     return (
         '<aside class="sidebar-card sidebar-academy">'
-        '<span class="sidebar-kicker">Academia Python Pro</span>'
+        '<span class="sidebar-kicker">Curso de Python 3 de 0 a Master</span>'
         "<h2>Ordena lo que ya practicas</h2>"
         "<p>19 módulos, proyectos reales y acceso de por vida. La ruta completa para pasar "
         "de copiar comandos a tomar decisiones.</p>"
@@ -566,7 +565,7 @@ def sticky_academy(source: str, medium: str, campaign: str) -> str:
         '<span class="sticky-off"><i class="fas fa-fire" aria-hidden="true"></i> 78% OFF</span>'
         "</div>"
         f'<a href="{href}" class="btn btn-primary btn-sm">'
-        '<i class="fas fa-graduation-cap" aria-hidden="true"></i> Academia</a>'
+        '<i class="fas fa-graduation-cap" aria-hidden="true"></i> Curso de Python</a>'
         "</div>"
     )
 
@@ -614,7 +613,7 @@ def build_home(repos: list[dict[str, Any]], guides: list[dict[str, Any]]) -> str
         title="CHMODX · Repositorios, scripts y guías de Python, Termux y ciberseguridad",
         description=(
             "Contenido técnico gratuito para aprender haciendo: repositorios de ciberseguridad, "
-            "scripts de Python y guías de Termux. Cuando quieras el método completo, Academia Python Pro."
+            "scripts de Python y guías de Termux. Cuando quieras el método completo, Curso de Python 3 de 0 a Master."
         ),
         canonical=BASE_URL + "/",
         body=body,

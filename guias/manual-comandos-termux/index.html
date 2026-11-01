@@ -68,7 +68,7 @@
                 <ul class="nav-links">
                     <li><a href="/repositorios/" class="">Repositorios</a></li>
                     <li><a href="/guias/" class="is-active">Guías</a></li>
-                    <li><a href="/academia/" class="">Academia</a></li>
+                    <li><a href="/academia/" class="">Curso de Python</a></li>
                 </ul>
 
                 <div class="nav-cta">
@@ -76,7 +76,7 @@
                         <i class="fab fa-telegram" aria-hidden="true"></i>
                     </a>
                     <a href="/academia/" class="btn btn-primary btn-sm">
-                        <i class="fas fa-bolt" aria-hidden="true"></i> Academia
+                        🐍 Curso de Python
                     </a>
                 </div>
 
@@ -88,9 +88,9 @@
             <div class="mobile-menu" id="mobileMenu">
                 <a href="/repositorios/">Repositorios</a>
                 <a href="/guias/">Guías</a>
-                <a href="/academia/">Academia Python Pro</a>
+                <a href="/academia/">Curso de Python 3 de 0 a Master</a>
                 <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-telegram">Canal de Telegram</a>
-                <a href="/academia/" class="btn btn-primary">Ver la academia</a>
+                <a href="/academia/" class="btn btn-primary">Ver el curso</a>
             </div>
         </nav>
     </header>
@@ -142,7 +142,7 @@
 <div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash">pkg update -y &amp;&amp; pkg upgrade -y
 pkg install termux-api
 termux-setup-storage</code></pre></div>
-<aside class="cta-code" data-cta="code" data-content="manual-comandos-termux" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Academia Python Pro</strong> Tu Android puede ser un laboratorio completo. En la academia montamos el entorno, los proyectos y el flujo de trabajo desde cero.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=manual-comandos-termux&utm_content=bloque-1" class="btn btn-primary btn-sm">Ver la academia <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
+<aside class="cta-code" data-cta="code" data-content="manual-comandos-termux" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Tu Android puede ser un laboratorio completo. En el Curso de Python 3 de 0 a Master montamos el entorno, los proyectos y el flujo de trabajo desde cero.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=manual-comandos-termux&utm_content=bloque-1" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
 <p>La primera línea actualiza los repositorios y los paquetes. La segunda instala la API que habla con Android. La tercera pide permiso para acceder al almacenamiento compartido y crea <code>~/storage/shared</code>.</p>
 <blockquote><p>Descarga Termux desde <strong>F-Droid</strong> o desde el repositorio oficial en GitHub. La versión de Google Play está abandonada y falla al actualizar paquetes.</p></blockquote>
 <h2 id="indice">Índice</h2>
@@ -207,7 +207,7 @@ while true; do
   fi
   sleep 300
 done</code></pre></div>
-<aside class="cta-code" data-cta="code" data-content="manual-comandos-termux" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Academia Python Pro</strong> Instalar herramientas es el primer paso. Usarlas con orden, versiones y respaldo es lo que evita perder el trabajo. La academia cubre ese flujo.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=manual-comandos-termux&utm_content=bloque-2" class="btn btn-primary btn-sm">Ver la academia <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
+<aside class="cta-code" data-cta="code" data-content="manual-comandos-termux" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Instalar herramientas es el primer paso. Usarlas con orden, versiones y respaldo es lo que evita perder el trabajo. El Curso de Python 3 de 0 a Master cubre ese flujo.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=manual-comandos-termux&utm_content=bloque-2" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
 <div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash"># Copia de seguridad rápida del directorio home a shared storage
 tar -czvf ~/storage/shared/backup-$(date +%F).tar.gz ~ --exclude='*/.cache'</code></pre></div>
 <div class="code-block"><div class="code-head"><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre><code class="language-bash"># Servidor SSH para entrar al teléfono desde el ordenador
@@ -231,10 +231,10 @@ disown</code></pre></div>
 <h2 id="cierre">Cierre</h2>
 <p>Termux no es un terminal de juguete: es un sistema Linux completo en el bolsillo. Los 260 comandos de este manual cubren el 95 % de lo que necesitarás en el día a día, desde instalar un paquete hasta montar un servidor SSH, automatizar envíos de SMS o diagnosticar el kernel.</p>
 <p>El resto es práctica: abre Termux, prueba un comando nuevo cada día y escribe tus propios scripts. La mejor forma de aprender la shell es romper cosas en un entorno donde no hay nada que perder.</p>
-<blockquote><p><strong>Siguiente paso:</strong> si quieres ir más allá de los comandos sueltos y montar un entorno de desarrollo completo con Python, Git y proyectos reales, puedes ver el temario en <a href="/academia/?utm_source=contenido&amp;amp;utm_medium=cierre&amp;amp;utm_campaign=manual-comandos-termux&amp;amp;utm_content=plantilla-maestra">Academia Python Pro</a>.</p></blockquote>
+<blockquote><p><strong>Siguiente paso:</strong> si quieres ir más allá de los comandos sueltos y montar un entorno de desarrollo completo con Python, Git y proyectos reales, puedes ver el temario en <a href="/academia/?utm_source=contenido&amp;amp;utm_medium=cierre&amp;amp;utm_campaign=manual-comandos-termux&amp;amp;utm_content=plantilla-maestra">Curso de Python 3 de 0 a Master</a>.</p></blockquote>
         </div>
 
-        <section class="cta-end" aria-labelledby="ctaEndTitle"><div class="cta-end-copy"><span class="eyebrow">Academia Python Pro</span><h2 id="ctaEndTitle">¿Quieres convertir esto en una habilidad completa?</h2><p>Convierte tu móvil en un entorno de desarrollo serio, no en un experimento.</p></div><div class="cta-end-actions"><a href="/academia/?utm_source=contenido&utm_medium=cta_final&utm_campaign=manual-comandos-termux&utm_content=fin-guia" class="btn btn-primary btn-lg"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Entrar a la Academia</a><a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-outline"><i class="fab fa-telegram" aria-hidden="true"></i> Resolver dudas</a></div></section>
+        <section class="cta-end" aria-labelledby="ctaEndTitle"><div class="cta-end-copy"><span class="eyebrow">Curso de Python 3 de 0 a Master</span><h2 id="ctaEndTitle">¿Quieres aprender a programar tus propias herramientas?</h2><p>Domina la lógica y el desarrollo en nuestro Curso de Python 3 de 0 a Master.</p></div><div class="cta-end-actions"><a href="/academia/?utm_source=contenido&utm_medium=cta_final&utm_campaign=manual-comandos-termux&utm_content=fin-guia" class="btn btn-primary btn-lg"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Entrar al curso</a><a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-outline"><i class="fab fa-telegram" aria-hidden="true"></i> Resolver dudas</a></div></section>
 
         <section class="related" aria-labelledby="relatedTitle">
             <h2 id="relatedTitle">Sigue aprendiendo</h2>
@@ -247,7 +247,7 @@ disown</code></pre></div>
     <aside class="article-side">
         <nav class="toc" aria-label="En esta página"><p class="toc-title">En esta página</p><ol><li class="toc-l2"><a href="#introduccion">Introducción</a></li><li class="toc-l3"><a href="#convenciones-usadas">Convenciones usadas</a></li><li class="toc-l3"><a href="#antes-de-empezar">Antes de empezar</a></li><li class="toc-l2"><a href="#indice">Índice</a></li><li class="toc-l2"><a href="#1-la-base-de-termux">1. La base de Termux</a></li><li class="toc-l2"><a href="#2-interaccion-con-la-interfaz-de-android">2. Interacción con la interfaz de Android</a></li><li class="toc-l2"><a href="#3-acceso-al-hardware-del-dispositivo">3. Acceso al hardware del dispositivo</a></li><li class="toc-l2"><a href="#4-comunicacion-y-conectividad">4. Comunicación y conectividad</a></li><li class="toc-l2"><a href="#5-procesos-trabajos-y-sesiones">5. Procesos, trabajos y sesiones</a></li><li class="toc-l2"><a href="#6-manipulacion-avanzada-de-archivos-y-texto">6. Manipulación avanzada de archivos y texto</a></li><li class="toc-l2"><a href="#7-scripting-y-automatizacion">7. Scripting y automatización</a></li><li class="toc-l2"><a href="#8-almacenamiento-y-archivos-comprimidos">8. Almacenamiento y archivos comprimidos</a></li><li class="toc-l2"><a href="#9-redes-y-conexiones-seguras">9. Redes y conexiones seguras</a></li><li class="toc-l2"><a href="#10-internos-del-sistema-y-diagnostico">10. Internos del sistema y diagnóstico</a></li><li class="toc-l2"><a href="#combinaciones-utiles">Combinaciones útiles</a></li><li class="toc-l2"><a href="#cierre">Cierre</a></li></ol></nav>
 
-        <aside class="sidebar-card sidebar-academy"><span class="sidebar-kicker">Academia Python Pro</span><h2>Ordena lo que ya practicas</h2><p>19 módulos, proyectos reales y acceso de por vida. La ruta completa para pasar de copiar comandos a tomar decisiones.</p><ul class="sidebar-list"><li><i class="fas fa-check" aria-hidden="true"></i> Python desde cero</li><li><i class="fas fa-check" aria-hidden="true"></i> Proyectos y certificado</li><li><i class="fas fa-check" aria-hidden="true"></i> Comunidad en Telegram</li></ul><a href="/academia/?utm_source=contenido&utm_medium=sidebar&utm_campaign=manual-comandos-termux&utm_content=guia" class="btn btn-primary btn-sm">Ver el temario</a><span class="sidebar-note">Pago seguro con Hotmart</span></aside>
+        <aside class="sidebar-card sidebar-academy"><span class="sidebar-kicker">Curso de Python 3 de 0 a Master</span><h2>Ordena lo que ya practicas</h2><p>19 módulos, proyectos reales y acceso de por vida. La ruta completa para pasar de copiar comandos a tomar decisiones.</p><ul class="sidebar-list"><li><i class="fas fa-check" aria-hidden="true"></i> Python desde cero</li><li><i class="fas fa-check" aria-hidden="true"></i> Proyectos y certificado</li><li><i class="fas fa-check" aria-hidden="true"></i> Comunidad en Telegram</li></ul><a href="/academia/?utm_source=contenido&utm_medium=sidebar&utm_campaign=manual-comandos-termux&utm_content=guia" class="btn btn-primary btn-sm">Ver el temario</a><span class="sidebar-note">Pago seguro con Hotmart</span></aside>
 
         <aside class="sidebar-card sidebar-tg"><span class="sidebar-kicker"><i class="fab fa-telegram" aria-hidden="true"></i> Comunidad</span><h2>Canal de Telegram</h2><p>Nuevos repositorios, scripts y avisos. Acceso gratuito y sin spam.</p><a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-telegram btn-sm">Entrar al canal</a></aside>
     </aside>
@@ -268,7 +268,7 @@ disown</code></pre></div>
                 </p>
                 <div class="footer-social">
                     <a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a>
-                    <a href="/academia/" aria-label="Academia Python Pro"><i class="fas fa-graduation-cap" aria-hidden="true"></i></a>
+                    <a href="/academia/" aria-label="Curso de Python 3 de 0 a Master"><i class="fas fa-graduation-cap" aria-hidden="true"></i></a>
                     <a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noopener noreferrer" aria-label="Índice TIOBE"><i class="fas fa-chart-line" aria-hidden="true"></i></a>
                 </div>
             </div>
@@ -287,8 +287,8 @@ disown</code></pre></div>
             </div>
 
             <div class="footer-col">
-                <h4>Academia</h4>
-                <a href="/academia/">Python 3 de 0 a MASTER</a>
+                <h4>Curso de Python</h4>
+                <a href="/academia/">Curso de Python 3 de 0 a Master</a>
                 <a href="/academia/#temario">Temario</a>
                 <a href="/academia/#oferta">Precio y acceso</a>
             </div>
@@ -299,7 +299,7 @@ disown</code></pre></div>
         </div>
     </footer>
 
-    <div class="sticky-cta" id="stickyCta"><div class="sticky-price"><span class="sticky-old">$450</span><span class="sticky-new">$100</span><span class="sticky-off"><i class="fas fa-fire" aria-hidden="true"></i> 78% OFF</span></div><a href="/academia/?utm_source=contenido&utm_medium=sticky&utm_campaign=manual-comandos-termux" class="btn btn-primary btn-sm"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Academia</a></div>
+    <div class="sticky-cta" id="stickyCta"><div class="sticky-price"><span class="sticky-old">$450</span><span class="sticky-new">$100</span><span class="sticky-off"><i class="fas fa-fire" aria-hidden="true"></i> 78% OFF</span></div><a href="/academia/?utm_source=contenido&utm_medium=sticky&utm_campaign=manual-comandos-termux" class="btn btn-primary btn-sm"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Curso de Python</a></div>
 
     <button type="button" class="back-to-top" id="backToTop" aria-label="Volver arriba">
         <i class="fas fa-arrow-up" aria-hidden="true"></i>

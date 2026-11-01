@@ -459,4 +459,4 @@ Termux no es un terminal de juguete: es un sistema Linux completo en el bolsillo
 
 El resto es práctica: abre Termux, prueba un comando nuevo cada día y escribe tus propios scripts. La mejor forma de aprender la shell es romper cosas en un entorno donde no hay nada que perder.
 
-> **Siguiente paso:** si quieres ir más allá de los comandos sueltos y montar un entorno de desarrollo completo con Python, Git y proyectos reales, puedes ver el temario en [Academia Python Pro](/academia/?utm_source=contenido&utm_medium=cierre&utm_campaign=manual-comandos-termux&utm_content=plantilla-maestra).
+> **Siguiente paso:** si quieres ir más allá de los comandos sueltos y montar un entorno de desarrollo completo con Python, Git y proyectos reales, puedes ver el temario en [Curso de Python 3 de 0 a Master](/academia/?utm_source=contenido&utm_medium=cierre&utm_campaign=manual-comandos-termux&utm_content=plantilla-maestra).
