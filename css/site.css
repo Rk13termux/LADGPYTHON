@@ -2268,8 +2268,9 @@ ul, ol { margin: 0; }
     .listing-hero { padding: 46px 0 32px; }
     .listing-body { padding: 34px 0 58px; }
     .filter-bar { flex-direction: column; align-items: stretch; }
-    .search-box { min-width: 0; }
-    .chips { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
+    .search-box { min-width: 0; width: 100%; max-width: 100%; overflow: hidden; }
+    .search-box input { min-width: 0; width: 100%; max-width: 100%; }
+    .chips { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; max-width: 100%; }
     .chip { flex-shrink: 0; }
 
     .article-shell { padding-top: 32px; padding-bottom: 62px; }
