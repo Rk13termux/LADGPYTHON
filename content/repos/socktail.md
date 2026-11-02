@@ -1,11 +1,11 @@
 ---
-title: "SockTail: SockTail is a small binary that joins a device to a Tailscale network and expose"
+title: "SockTail: el túnel que atraviesa NAT y firewalls sin pedir permiso"
 slug: "socktail"
-summary: "SockTail is a small binary that joins a device to a Tailscale network and exposes a local SOCKS5 proxy on port 1080. It's meant for red team operations where you need network access into a target system without setting up wonky port forwards, persistent daemons, or noisy tunnels."
+summary: "SockTail: movimiento lateral y ejecución remota en redes Windows."
 category: "ciberseguridad"
-level: "Intermedio"
-reading: 6
-tags: ['lateral-movement', 'tunneling', 'red-team']
+level: "Avanzado"
+reading: 7
+tags: ["movimiento-lateral", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,22 +13,28 @@ order: 999
 
 ## Qué es SockTail
 
-SockTail es una herramienta de seguridad ofensiva / red team. SockTail is a small binary that joins a device to a Tailscale network and exposes a local SOCKS5 proxy on port 1080. It's meant for red team operations where you need network access into a target system without setting up wonky port forwards, persistent daemons, or noisy tunnels.
+**SockTail** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. El movimiento lateral permite pasar de un host a otro usando credenciales, servicios y confianza interna, hasta alcanzar los objetivos.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: SockTail is a small binary that joins a device to a Tailscale network and exposes a local SOCKS5 proxy on port 1080. It's meant for red team operations where you need network access into a target system without setting up wonky port forwards, persistent daemons, or noisy tunnels.
 
-- **Repositorio oficial:** [https://github.com/Yeeb1/SockTail](https://github.com/Yeeb1/SockTail)
-- **Sección del toolkit:** Lateral Movement → Tunneling
+## Para qué sirve
 
-## Objetivo y función
+SockTail se utiliza en la fase de **movimiento lateral** (tunneling). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de SockTail es socktail is a small binary that joins a device to a tailscale network and exposes a local socks5 proxy on port 1080. it's meant for red team operations where you need network access into a target system without setting up wonky port forwards, persistent daemons, or noisy tunnels.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, permite al operador centrarse en la estrategia y en la interpretación de los resultados, no en repetir comandos.
 
 ## Instalación
 
+```bash
+git clone https://github.com/Yeeb1/SockTail
+cd SockTail
 ```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
+
+## Uso básico
+
+```bash
 Usage: ./SockTail [hostname] [authkey] [control-url]
 
   hostname:    Optional. Auto-generated if not specified
@@ -50,30 +56,20 @@ Examples:
     - All custom: hostname, auth key, and control server (e.g., Headscale)
 ```
 
-## Uso básico
+## Compatibilidad y requisitos
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
+- **Lenguaje principal:** Go
+- **Última actualización del repositorio:** 2025-10-03
+- **Estrellas en GitHub:** 576
+- **Termux:** sí, con matices
 
-```bash
-# Clonar
-git clone https://github.com/Yeeb1/SockTail
-cd socktail
+**Compatible con Termux (con matices).** Si el proyecto es Python, Go, Rust o Bash, puedes clonarlo en Termux e instalar sus dependencias. Algunas funciones que dependen de la red, del almacenamiento o de permisos del sistema pueden requerir un entorno Linux completo.
 
-# Revisar ayuda
-./socktail --help 2>/dev/null || python3 -m socktail --help 2>/dev/null || true
-```
+## Ética y alcance
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
-
-## ¿Se puede usar en Termux?
-
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
-
-## Buenas prácticas y ética
-
-Usa SockTail únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa SockTail únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/Yeeb1/SockTail
+- Repositorio oficial: https://github.com/Yeeb1/SockTail
 - Toolkit de origen: Red Teaming Toolkit

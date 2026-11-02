@@ -1,11 +1,11 @@
 ---
-title: "goexec: GoExec is a new take on some of the methods used to gain remote execution on Win"
+title: "goexec: de una sesión a todo el bosque de Active Directory"
 slug: "goexec"
-summary: "GoExec is a new take on some of the methods used to gain remote execution on Windows devices. GoExec implements a number of largely unrealized execution methods and provides significant OPSEC improvements overall."
+summary: "goexec: movimiento lateral y ejecución remota en redes Windows."
 category: "ciberseguridad"
-level: "Intermedio"
-reading: 6
-tags: ['lateral-movement', 'red-team']
+level: "Avanzado"
+reading: 7
+tags: ["movimiento-lateral", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,52 +13,78 @@ order: 999
 
 ## Qué es goexec
 
-goexec es una herramienta de seguridad ofensiva / red team. GoExec is a new take on some of the methods used to gain remote execution on Windows devices. GoExec implements a number of largely unrealized execution methods and provides significant OPSEC improvements overall.
+**goexec** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. El movimiento lateral permite pasar de un host a otro usando credenciales, servicios y confianza interna, hasta alcanzar los objetivos.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: GoExec is a new take on some of the methods used to gain remote execution on Windows devices. GoExec implements a number of largely unrealized execution methods and provides significant OPSEC improvements overall.
 
-- **Repositorio oficial:** [https://github.com/FalconOpsLLC/goexec](https://github.com/FalconOpsLLC/goexec)
-- **Sección del toolkit:** Lateral Movement 
+## Para qué sirve
 
-## Objetivo y función
+goexec se utiliza en la fase de **movimiento lateral**. Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de goexec es goexec is a new take on some of the methods used to gain remote execution on windows devices. goexec implements a number of largely unrealized execution methods and provides significant opsec improvements overall.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
-Clona el repositorio y sigue las instrucciones del README oficial:
-
-```bash
-git clone https://github.com/FalconOpsLLC/goexec
-cd goexec
+```shell
+# Install goexec (release)
+go install -ldflags="-s -w" -trimpath "github.com/FalconOpsLLC/goexec@latest"
 ```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
+```text
+Usage:
+  goexec wmi [command] [flags]
 
-```bash
-# Clonar
-git clone https://github.com/FalconOpsLLC/goexec
-cd goexec
+Available Commands:
+  proc        Start a Windows process
+  call        Execute specified WMI method
 
-# Revisar ayuda
-./goexec --help 2>/dev/null || python3 -m goexec --help 2>/dev/null || true
+... [inherited flags] ...
+
+Network:
+  -x, --proxy URI           Proxy URI
+  -F, --epm-filter string   String binding to filter endpoints returned by the RPC endpoint mapper (EPM)
+      --endpoint string     Explicit RPC endpoint definition
+      --epm                 Use EPM to discover available bindings
+      --no-sign             Disable signing on DCERPC messages
+      --no-seal             Disable packet stub encryption on DCERPC message
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+```text
+Usage:
+  goexec wmi proc [target] [flags]
 
-## ¿Se puede usar en Termux?
+Execution:
+  -e, --exec string         Remote Windows executable to invoke
+  -a, --args string         Process command line arguments
+  -c, --command string      Windows process command line (executable &
+                            arguments)
+  -o, --out string          Fetch execution output to file or "-" for
+                            standard output
+  -m, --out-method string   Method to fetch execution output (default "smb")
+      --no-delete-out       Preserve output file on remote filesystem
+  -d, --directory string    Working directory (default "C:\\")
 
-Esta herramienta está pensada para Windows, .NET o entornos de Active Directory. No se instala de forma nativa en Termux; úsala desde una máquina virtual, un contenedor o un laboratorio con Windows/Linux completo.
+... [inherited flags] ...
+```
 
-## Buenas prácticas y ética
+## Compatibilidad y requisitos
 
-Usa goexec únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+- **Lenguaje principal:** Go
+- **Última actualización del repositorio:** 2026-03-25
+- **Estrellas en GitHub:** 815
+- **Termux:** no
+
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
+
+## Ética y alcance
+
+Usa goexec únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/FalconOpsLLC/goexec
+- Repositorio oficial: https://github.com/FalconOpsLLC/goexec
 - Toolkit de origen: Red Teaming Toolkit

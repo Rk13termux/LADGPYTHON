@@ -1,11 +1,11 @@
 ---
-title: "reGeorg: The successor to reDuh, pwn a bastion webserver and create SOCKS proxies through"
+title: "reGeorg: cómo sobrevivir a un reinicio sin ser detectado"
 slug: "regeorg"
-summary: "The successor to reDuh, pwn a bastion webserver and create SOCKS proxies through the DMZ. Pivot and pwn."
-category: "ciberseguridad"
+summary: "reGeorg: persistencia para sobrevivir a reinicios y limpiezas."
+category: "python"
 level: "Intermedio"
-reading: 6
-tags: ['persistence', 'red-team']
+reading: 7
+tags: ["persistencia", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,52 +13,86 @@ order: 999
 
 ## Qué es reGeorg
 
-reGeorg es una herramienta de seguridad ofensiva / red team. The successor to reDuh, pwn a bastion webserver and create SOCKS proxies through the DMZ. Pivot and pwn.
+**reGeorg** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. La persistencia garantiza que el acceso sobreviva a reinicios, cierres de sesión y limpiezas parciales del equipo comprometido.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: The successor to reDuh, pwn a bastion webserver and create SOCKS proxies through the DMZ. Pivot and pwn.
 
-- **Repositorio oficial:** [https://github.com/sensepost/reGeorg](https://github.com/sensepost/reGeorg)
-- **Sección del toolkit:** Persistence 
+## Para qué sirve
 
-## Objetivo y función
+reGeorg se utiliza en la fase de **persistencia**. Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de reGeorg es the successor to reduh, pwn a bastion webserver and create socks proxies through the dmz. pivot and pwn.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, permite al operador centrarse en la estrategia y en la interpretación de los resultados, no en repetir comandos.
 
 ## Instalación
 
-Clona el repositorio y sigue las instrucciones del README oficial:
-
 ```bash
 git clone https://github.com/sensepost/reGeorg
-cd regeorg
+cd reGeorg
 ```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
 ```bash
-# Clonar
-git clone https://github.com/sensepost/reGeorg
-cd regeorg
+willem@sensepost.com / [@\_w\_m\_\_]
 
-# Revisar ayuda
-./regeorg --help 2>/dev/null || python3 -m regeorg --help 2>/dev/null || true
+sam@sensepost.com / [@trowalts]
+
+etienne@sensepost.com / [@kamp_staaldraad]
+
+
+Version
+----
+
+1.0
+
+Dependencies
+-----------
+
+reGeorg requires Python 2.7 and the following modules:
+
+* [urllib3] - HTTP library with thread-safe connection pooling, file post, and more.
+
+
+Usage
+--------------
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+```bash
+* **Step 1.**
+Upload tunnel.(aspx|ashx|jsp|php) to a webserver (How you do that is up to
+you)
 
-## ¿Se puede usar en Termux?
+* **Step 2.**
+Configure you tools to use a socks proxy, use the ip address and port you
+specified when
+you started the reGeorgSocksProxy.py
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+** Note, if you tools, such as NMap doesn't support socks proxies, use
+[proxychains] (see wiki) 
 
-## Buenas prácticas y ética
+* **Step 3.** Hack the planet :)
 
-Usa reGeorg únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+
+Example
+---------
+```
+
+## Compatibilidad y requisitos
+
+- **Lenguaje principal:** Python
+- **Última actualización del repositorio:** 2025-03-06
+- **Estrellas en GitHub:** 3.181
+- **Termux:** sí, con matices
+
+**Compatible con Termux (con matices).** Si el proyecto es Python, Go, Rust o Bash, puedes clonarlo en Termux e instalar sus dependencias. Algunas funciones que dependen de la red, del almacenamiento o de permisos del sistema pueden requerir un entorno Linux completo.
+
+## Ética y alcance
+
+Usa reGeorg únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/sensepost/reGeorg
+- Repositorio oficial: https://github.com/sensepost/reGeorg
 - Toolkit de origen: Red Teaming Toolkit

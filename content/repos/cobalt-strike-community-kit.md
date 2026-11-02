@@ -1,11 +1,11 @@
 ---
-title: "Cobalt Strike Community Kit: Community Kit is a central repository of extensions written by the user communit"
+title: "Cobalt Strike Community Kit: la herramienta que cambia las reglas del juego"
 slug: "cobalt-strike-community-kit"
-summary: "Community Kit is a central repository of extensions written by the user community to extend the capabilities of Cobalt Strike."
+summary: "Cobalt Strike Community Kit: herramienta de seguridad ofensiva para operaciones de red team."
 category: "ciberseguridad"
 level: "Intermedio"
-reading: 6
-tags: ['miscellaneous', 'red-team-scripts', 'red-team']
+reading: 7
+tags: ["recursos-y-automatización", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,52 +13,47 @@ order: 999
 
 ## Qué es Cobalt Strike Community Kit
 
-Cobalt Strike Community Kit es una herramienta de seguridad ofensiva / red team. Community Kit is a central repository of extensions written by the user community to extend the capabilities of Cobalt Strike.
+**Cobalt Strike Community Kit** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. En un ejercicio de red team, esta herramienta aporta capacidad operativa en una fase concreta del ataque y ayuda a medir la madurez defensiva.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: Community Kit is a central repository of extensions written by the user community to extend the capabilities of Cobalt Strike.
 
-- **Repositorio oficial:** [https://cobalt-strike.github.io/community_kit/](https://cobalt-strike.github.io/community_kit/)
-- **Sección del toolkit:** Miscellaneous → Red Team Scripts
+## Para qué sirve
 
-## Objetivo y función
+Cobalt Strike Community Kit se utiliza en la fase de **recursos y automatización** (red team scripts). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de Cobalt Strike Community Kit es community kit is a central repository of extensions written by the user community to extend the capabilities of cobalt strike.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
-Clona el repositorio y sigue las instrucciones del README oficial:
-
 ```bash
 git clone https://cobalt-strike.github.io/community_kit/
-cd cobalt-strike-community-kit
+cd community_kit
 ```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
+Consulta la ayuda del proyecto tras la instalación:
 
 ```bash
-# Clonar
-git clone https://cobalt-strike.github.io/community_kit/
-cd cobalt-strike-community-kit
-
-# Revisar ayuda
-./cobalt-strike-community-kit --help 2>/dev/null || python3 -m cobalt_strike_community_kit --help 2>/dev/null || true
+./community_kit --help
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+## Compatibilidad y requisitos
 
-## ¿Se puede usar en Termux?
+- **Lenguaje principal:** no especificado
+- **Última actualización del repositorio:** —
+- **Estrellas en GitHub:** —
+- **Termux:** no
 
-Esta herramienta está pensada para Windows, .NET o entornos de Active Directory. No se instala de forma nativa en Termux; úsala desde una máquina virtual, un contenedor o un laboratorio con Windows/Linux completo.
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-## Buenas prácticas y ética
+## Ética y alcance
 
-Usa Cobalt Strike Community Kit únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa Cobalt Strike Community Kit únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://cobalt-strike.github.io/community_kit/
+- Repositorio oficial: https://cobalt-strike.github.io/community_kit/
 - Toolkit de origen: Red Teaming Toolkit

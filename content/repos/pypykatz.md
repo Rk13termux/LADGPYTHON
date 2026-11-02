@@ -1,11 +1,11 @@
 ---
-title: "pypykatz: Mimikatz implementation in pure Python. At least a part of it :)"
+title: "pypykatz: los secretos que Windows guarda en memoria"
 slug: "pypykatz"
-summary: "Mimikatz implementation in pure Python. At least a part of it :)"
+summary: "pypykatz: extracción y abuso de credenciales en entornos Windows y AD."
 category: "python"
 level: "Avanzado"
-reading: 6
-tags: ['credential-dumping', 'red-team', 'python']
+reading: 7
+tags: ["volcado-de-credenciales", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,49 +13,44 @@ order: 999
 
 ## Qué es pypykatz
 
-pypykatz es una herramienta de seguridad ofensiva / red team. Mimikatz implementation in pure Python. At least a part of it :)
+**pypykatz** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. Las credenciales son el activo más valioso de una red. Obtenerlas permite pivotar, escalar y persistir sin explotar nuevas vulnerabilidades.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: Mimikatz implementation in pure Python. At least a part of it :)
 
-- **Repositorio oficial:** [https://github.com/skelsec/pypykatz](https://github.com/skelsec/pypykatz)
-- **Sección del toolkit:** Credential Dumping 
+## Para qué sirve
 
-## Objetivo y función
+pypykatz se utiliza en la fase de **volcado de credenciales**. Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de pypykatz es mimikatz implementation in pure python. at least a part of it :).
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, permite al operador centrarse en la estrategia y en la interpretación de los resultados, no en repetir comandos.
 
 ## Instalación
 
-Install it via pip or by cloning it from github.  
-The installer will create a pypykatz executable in the python's Script directory. You can run it from there, should be in your PATH.  
-Take care, that the github master version might fail because I'm layz to do a proper branch for the new versions. I'll try to create a branch of stable version tho.
+```bash
+pip3 install pypykatz
+```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
 ```bash
-# Clonar
-git clone https://github.com/skelsec/pypykatz
-cd pypykatz
-
-# Revisar ayuda
-./pypykatz --help 2>/dev/null || python3 -m pypykatz --help 2>/dev/null || true
+pypykatz.py rekall <momeory_dump_file> -t 0
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+## Compatibilidad y requisitos
 
-## ¿Se puede usar en Termux?
+- **Lenguaje principal:** Python
+- **Última actualización del repositorio:** 2026-04-09
+- **Estrellas en GitHub:** 3.375
+- **Termux:** sí, con matices
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+**Compatible con Termux (con matices).** Si el proyecto es Python, Go, Rust o Bash, puedes clonarlo en Termux e instalar sus dependencias. Algunas funciones que dependen de la red, del almacenamiento o de permisos del sistema pueden requerir un entorno Linux completo.
 
-## Buenas prácticas y ética
+## Ética y alcance
 
-Usa pypykatz únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa pypykatz únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/skelsec/pypykatz
+- Repositorio oficial: https://github.com/skelsec/pypykatz
 - Toolkit de origen: Red Teaming Toolkit

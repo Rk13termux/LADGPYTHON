@@ -1,11 +1,11 @@
 ---
-title: "ThreatCheck: Identifies the bytes that Microsoft Defender / AMSI Consumer flags on"
+title: "ThreatCheck: acceso inicial con precisión quirúrgica"
 slug: "threatcheck"
-summary: "Identifies the bytes that Microsoft Defender / AMSI Consumer flags on."
+summary: "ThreatCheck: técnicas de acceso inicial para operaciones de red team."
 category: "ciberseguridad"
 level: "Intermedio"
-reading: 6
-tags: ['initial-access', 'payload-development', 'red-team']
+reading: 7
+tags: ["acceso-inicial", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,52 +13,51 @@ order: 999
 
 ## Qué es ThreatCheck
 
-ThreatCheck es una herramienta de seguridad ofensiva / red team. Identifies the bytes that Microsoft Defender / AMSI Consumer flags on.
+**ThreatCheck** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. El acceso inicial es el momento más delicado de una intrusión: hay que conseguir una entrada sin activar las alertas y sin quemar infraestructura.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: Identifies the bytes that Microsoft Defender / AMSI Consumer flags on.
 
-- **Repositorio oficial:** [https://github.com/rasta-mouse/ThreatCheck](https://github.com/rasta-mouse/ThreatCheck)
-- **Sección del toolkit:** Initial Access → Payload Development
+## Para qué sirve
 
-## Objetivo y función
+ThreatCheck se utiliza en la fase de **acceso inicial** (payload development). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de ThreatCheck es identifies the bytes that microsoft defender / amsi consumer flags on.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
-Clona el repositorio y sigue las instrucciones del README oficial:
-
 ```bash
 git clone https://github.com/rasta-mouse/ThreatCheck
-cd threatcheck
+cd ThreatCheck
 ```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
-```bash
-# Clonar
-git clone https://github.com/rasta-mouse/ThreatCheck
-cd threatcheck
-
-# Revisar ayuda
-./threatcheck --help 2>/dev/null || python3 -m threatcheck --help 2>/dev/null || true
+```text
+C:\>ThreatCheck.exe --help
+  -e, --engine    (Default: Defender) Scanning engine. Options: Defender, AMSI
+  -f, --file      Analyze a file on disk
+  -u, --url       Analyze a file from a URL
+  -t, --type      File type to scan. Options: Bin, Script
+  --help          Display this help screen.
+  --version       Display version information.
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+## Compatibilidad y requisitos
 
-## ¿Se puede usar en Termux?
+- **Lenguaje principal:** C#
+- **Última actualización del repositorio:** 2026-03-17
+- **Estrellas en GitHub:** 1.635
+- **Termux:** no
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-## Buenas prácticas y ética
+## Ética y alcance
 
-Usa ThreatCheck únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa ThreatCheck únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/rasta-mouse/ThreatCheck
+- Repositorio oficial: https://github.com/rasta-mouse/ThreatCheck
 - Toolkit de origen: Red Teaming Toolkit

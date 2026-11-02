@@ -1,11 +1,11 @@
 ---
-title: "BBOT: Recursive internet scanner inspired by Spiderfoot, but designed to be faster, mo"
+title: "BBOT: el radar que encuentra lo que otros pasan por alto"
 slug: "bbot"
-summary: "Recursive internet scanner inspired by Spiderfoot, but designed to be faster, more reliable, and friendlier to pentesters, bug bounty hunters, and developers."
-category: "ciberseguridad"
+summary: "BBOT: reconocimiento para descubrir activos, puertos y servicios expuestos."
+category: "python"
 level: "Intermedio"
-reading: 6
-tags: ['reconnaissance', 'red-team']
+reading: 7
+tags: ["reconocimiento", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,47 +13,57 @@ order: 999
 
 ## Qué es BBOT
 
-BBOT es una herramienta de seguridad ofensiva / red team. Recursive internet scanner inspired by Spiderfoot, but designed to be faster, more reliable, and friendlier to pentesters, bug bounty hunters, and developers.
+**BBOT** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. En un red team, el reconocimiento define el resto del engagement: cuanto mejor sea el mapa inicial, menos ruido y más precisión en las fases siguientes.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: Recursive internet scanner inspired by Spiderfoot, but designed to be faster, more reliable, and friendlier to pentesters, bug bounty hunters, and developers.
 
-- **Repositorio oficial:** [https://github.com/blacklanternsecurity/bbot](https://github.com/blacklanternsecurity/bbot)
-- **Sección del toolkit:** Reconnaissance 
+## Para qué sirve
 
-## Objetivo y función
+BBOT se utiliza en la fase de **reconocimiento**. Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de BBOT es recursive internet scanner inspired by spiderfoot, but designed to be faster, more reliable, and friendlier to pentesters, bug bounty hunters, and developers.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, permite al operador centrarse en la estrategia y en la interpretación de los resultados, no en repetir comandos.
 
 ## Instalación
 
 ```bash
+# stable version
+pipx install bbot
+
+# bleeding edge (dev branch)
+pipx install --pip-args '\--pre' bbot
+```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
 ```bash
-# Clonar
-git clone https://github.com/blacklanternsecurity/bbot
-cd bbot
+# find subdomains of evilcorp.com
+bbot -t evilcorp.com -p subdomain-enum
 
-# Revisar ayuda
-./bbot --help 2>/dev/null || python3 -m bbot --help 2>/dev/null || true
+# passive sources only
+bbot -t evilcorp.com -p subdomain-enum -rf passive
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+```bash
+# crawl evilcorp.com, extracting emails and other goodies
+bbot -t evilcorp.com -p spider
+```
 
-## ¿Se puede usar en Termux?
+## Compatibilidad y requisitos
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+- **Lenguaje principal:** Python
+- **Última actualización del repositorio:** 2026-11-01
+- **Estrellas en GitHub:** 10.909
+- **Termux:** sí, con matices
 
-## Buenas prácticas y ética
+**Compatible con Termux (con matices).** Si el proyecto es Python, Go, Rust o Bash, puedes clonarlo en Termux e instalar sus dependencias. Algunas funciones que dependen de la red, del almacenamiento o de permisos del sistema pueden requerir un entorno Linux completo.
 
-Usa BBOT únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+## Ética y alcance
+
+Usa BBOT únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/blacklanternsecurity/bbot
+- Repositorio oficial: https://github.com/blacklanternsecurity/bbot
 - Toolkit de origen: Red Teaming Toolkit

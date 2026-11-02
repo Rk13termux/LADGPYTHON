@@ -1,11 +1,11 @@
 ---
-title: "SQLRecon: A C# MS SQL toolkit designed for offensive reconnaissance and post-exploitation"
+title: "SQLRecon: de una sesión a todo el bosque de Active Directory"
 slug: "sqlrecon"
-summary: "A C# MS SQL toolkit designed for offensive reconnaissance and post-exploitation."
+summary: "SQLRecon: movimiento lateral y ejecución remota en redes Windows."
 category: "ciberseguridad"
-level: "Intermedio"
-reading: 6
-tags: ['lateral-movement', 'red-team']
+level: "Avanzado"
+reading: 7
+tags: ["movimiento-lateral", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,52 +13,47 @@ order: 999
 
 ## Qué es SQLRecon
 
-SQLRecon es una herramienta de seguridad ofensiva / red team. A C# MS SQL toolkit designed for offensive reconnaissance and post-exploitation.
+**SQLRecon** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. El movimiento lateral permite pasar de un host a otro usando credenciales, servicios y confianza interna, hasta alcanzar los objetivos.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: A C# MS SQL toolkit designed for offensive reconnaissance and post-exploitation.
 
-- **Repositorio oficial:** [https://github.com/skahwah/SQLRecon](https://github.com/skahwah/SQLRecon)
-- **Sección del toolkit:** Lateral Movement 
+## Para qué sirve
 
-## Objetivo y función
+SQLRecon se utiliza en la fase de **movimiento lateral**. Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de SQLRecon es a c# ms sql toolkit designed for offensive reconnaissance and post-exploitation.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
-Clona el repositorio y sigue las instrucciones del README oficial:
-
 ```bash
 git clone https://github.com/skahwah/SQLRecon
-cd sqlrecon
+cd SQLRecon
 ```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
+Consulta la ayuda del proyecto tras la instalación:
 
 ```bash
-# Clonar
-git clone https://github.com/skahwah/SQLRecon
-cd sqlrecon
-
-# Revisar ayuda
-./sqlrecon --help 2>/dev/null || python3 -m sqlrecon --help 2>/dev/null || true
+./sqlrecon --help
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+## Compatibilidad y requisitos
 
-## ¿Se puede usar en Termux?
+- **Lenguaje principal:** C#
+- **Última actualización del repositorio:** 2026-06-16
+- **Estrellas en GitHub:** 819
+- **Termux:** no
 
-Esta herramienta está pensada para Windows, .NET o entornos de Active Directory. No se instala de forma nativa en Termux; úsala desde una máquina virtual, un contenedor o un laboratorio con Windows/Linux completo.
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-## Buenas prácticas y ética
+## Ética y alcance
 
-Usa SQLRecon únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa SQLRecon únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/skahwah/SQLRecon
+- Repositorio oficial: https://github.com/skahwah/SQLRecon
 - Toolkit de origen: Red Teaming Toolkit

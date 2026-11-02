@@ -1,11 +1,11 @@
 ---
-title: "SharpRDPHijack: Sharp RDP Hijack is a proof-of-concept .NET/C# Remote Desktop Protocol (RDP) ses"
+title: "SharpRDPHijack: el salto silencioso entre equipos de una red"
 slug: "sharprdphijack"
-summary: "Sharp RDP Hijack is a proof-of-concept .NET/C# Remote Desktop Protocol (RDP) session hijack utility for disconnected sessions"
+summary: "SharpRDPHijack: movimiento lateral y ejecución remota en redes Windows."
 category: "ciberseguridad"
-level: "Intermedio"
-reading: 6
-tags: ['lateral-movement', 'red-team']
+level: "Avanzado"
+reading: 7
+tags: ["movimiento-lateral", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,22 +13,28 @@ order: 999
 
 ## Qué es SharpRDPHijack
 
-SharpRDPHijack es una herramienta de seguridad ofensiva / red team. Sharp RDP Hijack is a proof-of-concept .NET/C# Remote Desktop Protocol (RDP) session hijack utility for disconnected sessions
+**SharpRDPHijack** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. El movimiento lateral permite pasar de un host a otro usando credenciales, servicios y confianza interna, hasta alcanzar los objetivos.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: Sharp RDP Hijack is a proof-of-concept .NET/C# Remote Desktop Protocol (RDP) session hijack utility for disconnected sessions
 
-- **Repositorio oficial:** [https://github.com/bohops/SharpRDPHijack](https://github.com/bohops/SharpRDPHijack)
-- **Sección del toolkit:** Lateral Movement 
+## Para qué sirve
 
-## Objetivo y función
+SharpRDPHijack se utiliza en la fase de **movimiento lateral**. Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de SharpRDPHijack es sharp rdp hijack is a proof-of-concept .net/c# remote desktop protocol (rdp) session hijack utility for disconnected sessions.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
+```bash
+git clone https://github.com/bohops/SharpRDPHijack
+cd SharpRDPHijack
 ```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
+
+## Uso básico
+
+```bash
 [*] Parameters:
 [*] A proof-of-concept Remote Desktop (RDP) session hijack utility
     - For session hijacking, this utility must be run in an elevated context to connect to another session
@@ -55,34 +61,30 @@ En un engagement de red team, esta herramienta se usa para automatizar o simplif
 [*] Example Usage 4: Disconnect active session #3
     SharpRDPHijack.exe --session=3 --disconnect
 
-[*] Example Usage 5: Query the local host for RDP/TS session 
-...
+[*] Example Usage 5: Query the local host for RDP/TS session information
+    SharpRDPHijack.exe --tsquery=localhost
 
+[*] Example Usage 6: Shadow active session #3
+    SharpRDPHijack.exe --session=3 --shadow
 
-## Uso básico
-
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
-```bash
-# Clonar
-git clone https://github.com/bohops/SharpRDPHijack
-cd sharprdphijack
-
-# Revisar ayuda
-./sharprdphijack --help 2>/dev/null || python3 -m sharprdphijack --help 2>/dev/null || true
+[*] Example Usage 7: Shadow inactive session #2 by redirecting the session to the console
+    SharpRDPHijack.exe --session=2 --shadow --console
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+## Compatibilidad y requisitos
 
-## ¿Se puede usar en Termux?
+- **Lenguaje principal:** C#
+- **Última actualización del repositorio:** 2024-11-28
+- **Estrellas en GitHub:** 504
+- **Termux:** no
 
-Esta herramienta está pensada para Windows, .NET o entornos de Active Directory. No se instala de forma nativa en Termux; úsala desde una máquina virtual, un contenedor o un laboratorio con Windows/Linux completo.
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-## Buenas prácticas y ética
+## Ética y alcance
 
-Usa SharpRDPHijack únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa SharpRDPHijack únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/bohops/SharpRDPHijack
+- Repositorio oficial: https://github.com/bohops/SharpRDPHijack
 - Toolkit de origen: Red Teaming Toolkit

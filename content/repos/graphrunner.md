@@ -1,11 +1,11 @@
 ---
-title: "GraphRunner: A Post-exploitation Toolset for Interacting with the Microsoft Graph API"
+title: "GraphRunner: la puerta trasera que nadie revisa en la nube"
 slug: "graphrunner"
-summary: "A Post-exploitation Toolset for Interacting with the Microsoft Graph API"
+summary: "GraphRunner: herramienta de seguridad ofensiva para operaciones de red team."
 category: "ciberseguridad"
 level: "Intermedio"
-reading: 6
-tags: ['miscellaneous', 'cloud', 'red-team']
+reading: 7
+tags: ["recursos-y-automatización", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,55 +13,47 @@ order: 999
 
 ## Qué es GraphRunner
 
-GraphRunner es una herramienta de seguridad ofensiva / red team. A Post-exploitation Toolset for Interacting with the Microsoft Graph API
+**GraphRunner** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. En un ejercicio de red team, esta herramienta aporta capacidad operativa en una fase concreta del ataque y ayuda a medir la madurez defensiva.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: A Post-exploitation Toolset for Interacting with the Microsoft Graph API
 
-- **Repositorio oficial:** [https://github.com/dafthack/GraphRunner/](https://github.com/dafthack/GraphRunner/)
-- **Sección del toolkit:** Miscellaneous → Cloud
+## Para qué sirve
 
-## Objetivo y función
+GraphRunner se utiliza en la fase de **recursos y automatización** (cloud). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de GraphRunner es a post-exploitation toolset for interacting with the microsoft graph api.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
-As GraphRunner is a post-exploitation tool most of the modules rely on having authenticated access tokens. To assist with this there are multiple modules for obtaining and working with both user and application (service principal) tokens. 
-
-A good starting place is to import the PowerShell script and run the Get-GraphTokens module.
-
-```PowerShell
+```powershell
 Import-Module .\GraphRunner.ps1
 Get-GraphTokens
 ```
-Next, check out the [wiki](https://github.com/dafthack/GraphRunner/wiki) for the full user guide and information about individual modules.
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
+Consulta la ayuda del proyecto tras la instalación:
 
 ```bash
-# Clonar
-git clone https://github.com/dafthack/GraphRunner/
-cd graphrunner
-
-# Revisar ayuda
-./graphrunner --help 2>/dev/null || python3 -m graphrunner --help 2>/dev/null || true
+./graphrunner --help
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+## Compatibilidad y requisitos
 
-## ¿Se puede usar en Termux?
+- **Lenguaje principal:** PowerShell
+- **Última actualización del repositorio:** 2026-04-09
+- **Estrellas en GitHub:** 1.351
+- **Termux:** no
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-## Buenas prácticas y ética
+## Ética y alcance
 
-Usa GraphRunner únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa GraphRunner únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/dafthack/GraphRunner/
+- Repositorio oficial: https://github.com/dafthack/GraphRunner/
 - Toolkit de origen: Red Teaming Toolkit

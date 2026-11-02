@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#000000">
     <meta name="robots" content="index,follow">
-    <title>skyhook: A round-trip obfuscated HTTP file transfer setup built to bypass IDS detections | CHMODX</title>
-    <meta name="description" content="A round-trip obfuscated HTTP file transfer setup built to bypass IDS detections.">
+    <title>skyhook: C2: el cerebro invisible de una intrusión | CHMODX</title>
+    <meta name="description" content="skyhook: framework de mando y control para mantener el acceso.">
     <link rel="canonical" href="https://chmodxcode.pro/repositorios/skyhook/">
 
     <link rel="icon" type="image/png" href="/assets/logo.png">
@@ -14,13 +14,13 @@
 
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="CHMODX">
-    <meta property="og:title" content="skyhook: A round-trip obfuscated HTTP file transfer setup built to bypass IDS detections | CHMODX">
-    <meta property="og:description" content="A round-trip obfuscated HTTP file transfer setup built to bypass IDS detections.">
+    <meta property="og:title" content="skyhook: C2: el cerebro invisible de una intrusión | CHMODX">
+    <meta property="og:description" content="skyhook: framework de mando y control para mantener el acceso.">
     <meta property="og:url" content="https://chmodxcode.pro/repositorios/skyhook/">
     <meta property="og:image" content="https://chmodxcode.pro/assets/logo.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="skyhook: A round-trip obfuscated HTTP file transfer setup built to bypass IDS detections | CHMODX">
-    <meta name="twitter:description" content="A round-trip obfuscated HTTP file transfer setup built to bypass IDS detections.">
+    <meta name="twitter:title" content="skyhook: C2: el cerebro invisible de una intrusión | CHMODX">
+    <meta name="twitter:description" content="skyhook: framework de mando y control para mantener el acceso.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,8 +34,8 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareSourceCode",
-  "name": "skyhook: A round-trip obfuscated HTTP file transfer setup built to bypass IDS detections",
-  "description": "A round-trip obfuscated HTTP file transfer setup built to bypass IDS detections.",
+  "name": "skyhook: C2: el cerebro invisible de una intrusión",
+  "description": "skyhook: framework de mando y control para mantener el acceso.",
   "dateModified": "2026-11-01",
   "inLanguage": "es",
   "url": "https://chmodxcode.pro/repositorios/skyhook/",
@@ -102,15 +102,15 @@
         <span aria-hidden="true">/</span>
         <a href="/repositorios/">Repositorios</a>
         <span aria-hidden="true">/</span>
-        <span aria-current="page">skyhook: A round-trip obfuscated HTTP file transfer set…</span>
+        <span aria-current="page">skyhook: C2: el cerebro invisible de una intrusión</span>
     </nav>
 </div>
 
 <header class="article-hero repo-hero">
     <div class="container">
         <span class="badge badge-ciberseguridad"><i class="fas fa-shield-halved" aria-hidden="true"></i> Ciberseguridad</span>
-        <h1 class="article-title">skyhook: A round-trip obfuscated HTTP file transfer setup built to bypass IDS detections</h1>
-        <p class="article-summary">A round-trip obfuscated HTTP file transfer setup built to bypass IDS detections.</p>
+        <h1 class="article-title">skyhook: C2: el cerebro invisible de una intrusión</h1>
+        <p class="article-summary">skyhook: framework de mando y control para mantener el acceso.</p>
 
         <dl class="repo-meta">
             <div><dt>Dificultad</dt><dd>Intermedio</dd></div>
@@ -127,7 +127,7 @@
         </div>
 
         <div class="tag-list">
-            <span class="tag">command-and-control</span><span class="tag">staging</span><span class="tag">red-team</span>
+            <span class="tag">mando-y-control</span><span class="tag">red-team</span><span class="tag">ciberseguridad</span>
         </div>
     </div>
 </header>
@@ -138,36 +138,61 @@
 
         <div class="article-body">
             <h2 id="que-es-skyhook">Qué es skyhook</h2>
-<p>skyhook es una herramienta de seguridad ofensiva / red team. A round-trip obfuscated HTTP file transfer setup built to bypass IDS detections.</p>
-<p>Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.</p>
-<ul>
-<li><strong>Repositorio oficial:</strong> <a href="https://github.com/blackhillsinfosec/skyhook">https://github.com/blackhillsinfosec/skyhook</a></li>
-<li><strong>Sección del toolkit:</strong> Command and Control → Staging</li>
-</ul>
-<h2 id="objetivo-y-funcion">Objetivo y función</h2>
-<p>El objetivo principal de skyhook es a round-trip obfuscated http file transfer setup built to bypass ids detections.</p>
-<p>En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.</p>
+<p><strong>skyhook</strong> es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. El C2 es el sistema nervioso de la operación: permite enviar tareas, recibir resultados y mantener el control aunque cambie la red.</p>
+<blockquote><p>Descripción oficial: A round-trip obfuscated HTTP file transfer setup built to bypass IDS detections.</p></blockquote>
+<h2 id="para-que-sirve">Para qué sirve</h2>
+<p>skyhook se utiliza en la fase de <strong>mando y control</strong> (staging). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.</p>
+<p>En la práctica, permite al operador centrarse en la estrategia y en la interpretación de los resultados, no en repetir comandos.</p>
 <h2 id="instalacion">Instalación</h2>
-<p>Clona el repositorio y sigue las instrucciones del README oficial:</p>
 <div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">git clone https://github.com/blackhillsinfosec/skyhook
 cd skyhook</code></pre></div>
+<blockquote><p>Revisa el README oficial para dependencias específicas, versiones y notas de compilación.</p></blockquote>
 <h2 id="uso-basico">Uso básico</h2>
-<p>Consulta el README oficial para la sintaxis exacta. Un flujo típico:</p>
-<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash"># Clonar
-git clone https://github.com/blackhillsinfosec/skyhook
-cd skyhook
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">flowchart
 
-# Revisar ayuda
-./skyhook --help 2&gt;/dev/null || python3 -m skyhook --help 2&gt;/dev/null || true</code></pre></div>
+subgraph sg-cloudfront[Cloudfront CDN]
+    cf-listener(443/tls)
+end
+
+subgraph sg-vps[VPS]
+    subgraph sg-skyhook[Skyhook Servers]
+        admin-listener(Admin Server&lt;br&gt;45000/tls)
+        transfer-listener(Transfer Server&lt;br&gt;45001/tls)
+    end
+
+    config-file(Config File&lt;br&gt;/var/skyroot/config.yml)
+
+    admin-listener -..-&gt;|Reads &amp;&lt;br&gt;Manages| config-file
+
+    webroot(Webroot&lt;br&gt;/var/skyhook/webroot)
+    transfer-listener -..-&gt;|Serves From &amp;&lt;br&gt;Writes Cleartext&lt;br&gt;Files To| webroot
+end
+
+
+    op-browser(Operator&lt;br&gt;Web Browser) --&gt;|Administration&lt;br&gt;Traffic| admin-listener
+    op-browser &lt;--&gt;|Obfuscated&lt;br&gt;Data| transfer-listener
+
+subgraph sg-corp[Corporate Environment]
+    subgraph sg-compromised[Beachhead Host]
+        comp-browser(Web Browser) --&gt;|Reads &amp;&lt;br&gt;Writes| cleartext-file(Cleartext Files)
+    end
+end
+
+comp-browser &lt;--&gt;|Obfuscated&lt;br&gt;Data| cf-listener &lt;--&gt;|Obfuscated&lt;br&gt;Data| transfer-listener</code></pre></div>
 <aside class="cta-code" data-cta="code" data-content="skyhook" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Practicar comandos sueltos no te prepara para una auditoría. En el Curso de Python 3 de 0 a Master trabajas alcance, evidencia y reporte con método.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=skyhook&utm_content=bloque-1" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
-<blockquote><p>Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.</p></blockquote>
-<h2 id="se-puede-usar-en-termux">¿Se puede usar en Termux?</h2>
-<p>Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.</p>
-<h2 id="buenas-practicas-y-etica">Buenas prácticas y ética</h2>
-<p>Usa skyhook únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.</p>
+<h2 id="compatibilidad-y-requisitos">Compatibilidad y requisitos</h2>
+<ul>
+<li><strong>Lenguaje principal:</strong> JavaScript</li>
+<li><strong>Última actualización del repositorio:</strong> 2024-05-10</li>
+<li><strong>Estrellas en GitHub:</strong> 291</li>
+<li><strong>Termux:</strong> sí, con matices</li>
+</ul>
+<p><strong>Compatible con Termux (con matices).</strong> Si el proyecto es Python, Go, Rust o Bash, puedes clonarlo en Termux e instalar sus dependencias. Algunas funciones que dependen de la red, del almacenamiento o de permisos del sistema pueden requerir un entorno Linux completo.</p>
+<h2 id="etica-y-alcance">Ética y alcance</h2>
+<p>Usa skyhook únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.</p>
 <h2 id="referencias">Referencias</h2>
 <ul>
-<li>Repositorio: https://github.com/blackhillsinfosec/skyhook</li>
+<li>Repositorio oficial: https://github.com/blackhillsinfosec/skyhook</li>
 <li>Toolkit de origen: Red Teaming Toolkit</li>
 </ul>
         </div>
@@ -183,7 +208,7 @@ cd skyhook
     </article>
 
     <aside class="article-side">
-        <nav class="toc" aria-label="En esta página"><p class="toc-title">En esta página</p><ol><li class="toc-l2"><a href="#que-es-skyhook">Qué es skyhook</a></li><li class="toc-l2"><a href="#objetivo-y-funcion">Objetivo y función</a></li><li class="toc-l2"><a href="#instalacion">Instalación</a></li><li class="toc-l2"><a href="#uso-basico">Uso básico</a></li><li class="toc-l2"><a href="#se-puede-usar-en-termux">¿Se puede usar en Termux?</a></li><li class="toc-l2"><a href="#buenas-practicas-y-etica">Buenas prácticas y ética</a></li><li class="toc-l2"><a href="#referencias">Referencias</a></li></ol></nav>
+        <nav class="toc" aria-label="En esta página"><p class="toc-title">En esta página</p><ol><li class="toc-l2"><a href="#que-es-skyhook">Qué es skyhook</a></li><li class="toc-l2"><a href="#para-que-sirve">Para qué sirve</a></li><li class="toc-l2"><a href="#instalacion">Instalación</a></li><li class="toc-l2"><a href="#uso-basico">Uso básico</a></li><li class="toc-l2"><a href="#compatibilidad-y-requisitos">Compatibilidad y requisitos</a></li><li class="toc-l2"><a href="#etica-y-alcance">Ética y alcance</a></li><li class="toc-l2"><a href="#referencias">Referencias</a></li></ol></nav>
 
         <aside class="sidebar-card sidebar-academy"><span class="sidebar-kicker">Curso de Python 3 de 0 a Master</span><h2>Ordena lo que ya practicas</h2><p>19 módulos, proyectos reales y acceso de por vida. La ruta completa para pasar de copiar comandos a tomar decisiones.</p><ul class="sidebar-list"><li><i class="fas fa-check" aria-hidden="true"></i> Python desde cero</li><li><i class="fas fa-check" aria-hidden="true"></i> Proyectos y certificado</li><li><i class="fas fa-check" aria-hidden="true"></i> Comunidad en Telegram</li></ul><a href="/academia/?utm_source=contenido&utm_medium=sidebar&utm_campaign=skyhook&utm_content=repositorio" class="btn btn-primary btn-sm">Ver el temario</a><span class="sidebar-note">Pago seguro con Hotmart</span></aside>
 

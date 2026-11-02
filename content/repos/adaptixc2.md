@@ -1,11 +1,11 @@
 ---
-title: "AdaptixC2: Adaptix is an extensible post-exploitation and adversarial emulation framework m"
+title: "AdaptixC2: mando y control para operaciones de larga duración"
 slug: "adaptixc2"
-summary: "Adaptix is an extensible post-exploitation and adversarial emulation framework made for penetration testers. The Adaptix server is written in Golang and to allow operator flexibility."
+summary: "AdaptixC2: framework de mando y control para mantener el acceso."
 category: "ciberseguridad"
 level: "Avanzado"
-reading: 6
-tags: ['command-and-control', 'remote-access-tools-rat', 'red-team']
+reading: 7
+tags: ["mando-y-control", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,47 +13,47 @@ order: 999
 
 ## Qué es AdaptixC2
 
-AdaptixC2 es una herramienta de seguridad ofensiva / red team. Adaptix is an extensible post-exploitation and adversarial emulation framework made for penetration testers. The Adaptix server is written in Golang and to allow operator flexibility.
+**AdaptixC2** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. El C2 es el sistema nervioso de la operación: permite enviar tareas, recibir resultados y mantener el control aunque cambie la red.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: Adaptix is an extensible post-exploitation and adversarial emulation framework made for penetration testers. The Adaptix server is written in Golang and to allow operator flexibility.
 
-- **Repositorio oficial:** [https://github.com/Adaptix-Framework/AdaptixC2](https://github.com/Adaptix-Framework/AdaptixC2)
-- **Sección del toolkit:** Command and Control → Remote Access Tools (RAT)
+## Para qué sirve
 
-## Objetivo y función
+AdaptixC2 se utiliza en la fase de **mando y control** (remote access tools (rat)). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de AdaptixC2 es adaptix is an extensible post-exploitation and adversarial emulation framework made for penetration testers. the adaptix server is written in golang and to allow operator flexibility.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
-Please checkout the [wiki](https://adaptix-framework.gitbook.io/adaptix-framework/adaptix-c2/getting-starting/installation).
+```bash
+git clone https://github.com/Adaptix-Framework/AdaptixC2
+cd AdaptixC2
+```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
+Consulta la ayuda del proyecto tras la instalación:
 
 ```bash
-# Clonar
-git clone https://github.com/Adaptix-Framework/AdaptixC2
-cd adaptixc2
-
-# Revisar ayuda
-./adaptixc2 --help 2>/dev/null || python3 -m adaptixc2 --help 2>/dev/null || true
+./adaptixc2 --help
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+## Compatibilidad y requisitos
 
-## ¿Se puede usar en Termux?
+- **Lenguaje principal:** C++
+- **Última actualización del repositorio:** 2026-11-01
+- **Estrellas en GitHub:** 3.815
+- **Termux:** no
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-## Buenas prácticas y ética
+## Ética y alcance
 
-Usa AdaptixC2 únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa AdaptixC2 únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/Adaptix-Framework/AdaptixC2
+- Repositorio oficial: https://github.com/Adaptix-Framework/AdaptixC2
 - Toolkit de origen: Red Teaming Toolkit

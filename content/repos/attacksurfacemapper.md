@@ -1,11 +1,11 @@
 ---
-title: "AttackSurfaceMapper: AttackSurfaceMapper is a tool that aims to automate the reconnaissance process"
+title: "AttackSurfaceMapper: cómo mapear la superficie de ataque antes de tocar nada"
 slug: "attacksurfacemapper"
-summary: "AttackSurfaceMapper is a tool that aims to automate the reconnaissance process."
-category: "ciberseguridad"
+summary: "AttackSurfaceMapper: reconocimiento para descubrir activos, puertos y servicios expuestos."
+category: "python"
 level: "Intermedio"
-reading: 6
-tags: ['reconnaissance', 'red-team']
+reading: 7
+tags: ["reconocimiento", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,78 +13,49 @@ order: 999
 
 ## Qué es AttackSurfaceMapper
 
-AttackSurfaceMapper es una herramienta de seguridad ofensiva / red team. AttackSurfaceMapper is a tool that aims to automate the reconnaissance process.
+**AttackSurfaceMapper** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. En un red team, el reconocimiento define el resto del engagement: cuanto mejor sea el mapa inicial, menos ruido y más precisión en las fases siguientes.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: AttackSurfaceMapper is a tool that aims to automate the reconnaissance process.
 
-- **Repositorio oficial:** [https://github.com/superhedgy/AttackSurfaceMapper](https://github.com/superhedgy/AttackSurfaceMapper)
-- **Sección del toolkit:** Reconnaissance 
+## Para qué sirve
 
-## Objetivo y función
+AttackSurfaceMapper se utiliza en la fase de **reconocimiento**. Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de AttackSurfaceMapper es attacksurfacemapper is a tool that aims to automate the reconnaissance process.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, permite al operador centrarse en la estrategia y en la interpretación de los resultados, no en repetir comandos.
 
 ## Instalación
-
-As this is a Python based tool, it should theoretically run on Linux, ChromeOS ([Developer Mode](https://www.chromium.org/chromium-os/developer-information-for-chrome-os-devices/generic)), macOS and Windows.
-
-1. Download AttackSurfaceMapper
 
 ```sh
 git clone https://github.com/superhedgy/AttackSurfaceMapper
 cd AttackSurfaceMapper
 ```
 
-2. Install Python3 dependencies
-
 ```sh
 python3 -m pip install --no-cache-dir -r requirements.txt
 ```
 
-3. Add optional API keys to enhance data gathering & analysis
-
-Register and obtain an API key from:
-
-- [VirusTotal](https://www.virustotal.com/gui/join-us)
-- [Shodan.io](https://account.shodan.io/register)
-- [Hunter.io](https://hunter.io/users/sign_up)
-- ~~[WeLeakInfo](https://weleakinfo.com/register)~~
-- [LinkedIn](https://www.linkedin.com/start/join)
-- [GrayHatWarfare](https://buckets.grayhatwarfare.com/register)
-- [Censys.io](https://search.censys.io/account)
-
-Edit and enter the keys in keylist file
-
-```sh
-nano keylist.asm
-```
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
-```bash
-# Clonar
-git clone https://github.com/superhedgy/AttackSurfaceMapper
-cd attacksurfacemapper
-
-# Revisar ayuda
-./attacksurfacemapper --help 2>/dev/null || python3 -m attacksurfacemapper --help 2>/dev/null || true
+```sh
+python3 asm.py -t your_site.com -ln -w resources/top100_sublist.txt -o demo_run
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+## Compatibilidad y requisitos
 
-## ¿Se puede usar en Termux?
+- **Lenguaje principal:** Python
+- **Última actualización del repositorio:** 2024-04-08
+- **Estrellas en GitHub:** 1.413
+- **Termux:** sí, con matices
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+**Compatible con Termux (con matices).** Si el proyecto es Python, Go, Rust o Bash, puedes clonarlo en Termux e instalar sus dependencias. Algunas funciones que dependen de la red, del almacenamiento o de permisos del sistema pueden requerir un entorno Linux completo.
 
-## Buenas prácticas y ética
+## Ética y alcance
 
-Usa AttackSurfaceMapper únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa AttackSurfaceMapper únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/superhedgy/AttackSurfaceMapper
+- Repositorio oficial: https://github.com/superhedgy/AttackSurfaceMapper
 - Toolkit de origen: Red Teaming Toolkit

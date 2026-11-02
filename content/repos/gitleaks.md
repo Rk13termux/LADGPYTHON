@@ -1,11 +1,11 @@
 ---
-title: "gitleaks: Gitleaks is a SAST tool for detecting hardcoded secrets like passwords, api keys"
+title: "gitleaks: cómo se roban credenciales en un entorno real"
 slug: "gitleaks"
-summary: "Gitleaks is a SAST tool for detecting hardcoded secrets like passwords, api keys, and tokens in git repos."
+summary: "gitleaks: extracción, spraying y reutilización de credenciales."
 category: "ciberseguridad"
 level: "Intermedio"
-reading: 6
-tags: ['reconnaissance', 'red-team']
+reading: 7
+tags: ["reconocimiento", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,47 +13,85 @@ order: 999
 
 ## Qué es gitleaks
 
-gitleaks es una herramienta de seguridad ofensiva / red team. Gitleaks is a SAST tool for detecting hardcoded secrets like passwords, api keys, and tokens in git repos.
+**gitleaks** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. En un red team, el reconocimiento define el resto del engagement: cuanto mejor sea el mapa inicial, menos ruido y más precisión en las fases siguientes.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: Gitleaks is a SAST tool for detecting hardcoded secrets like passwords, api keys, and tokens in git repos.
 
-- **Repositorio oficial:** [https://github.com/zricethezav/gitleaks](https://github.com/zricethezav/gitleaks)
-- **Sección del toolkit:** Reconnaissance 
+## Para qué sirve
 
-## Objetivo y función
+gitleaks se utiliza en la fase de **reconocimiento**. Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de gitleaks es gitleaks is a sast tool for detecting hardcoded secrets like passwords, api keys, and tokens in git repos.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, permite al operador centrarse en la estrategia y en la interpretación de los resultados, no en repetir comandos.
 
 ## Instalación
 
-Gitleaks can be installed using Homebrew, Docker, or Go. Gitleaks is also available in binary form for many popular platforms and OS types on the [releases page](https://github.com/gitleaks/gitleaks/releases). In addition, Gitleaks can be implemented as a pre-commit hook directly in your repo or as a GitHub action using [Gitleaks-Action](https://github.com/gitleaks/gitleaks-action).
+```bash
+# MacOS
+brew install gitleaks
+
+# Docker (DockerHub)
+docker pull zricethezav/gitleaks:latest
+docker run -v ${path_to_host_folder_to_scan}:/path zricethezav/gitleaks:latest [COMMAND] [OPTIONS] [SOURCE_PATH]
+
+# Docker (ghcr.io)
+docker pull ghcr.io/gitleaks/gitleaks:latest
+docker run -v ${path_to_host_folder_to_scan}:/path ghcr.io/gitleaks/gitleaks:latest [COMMAND] [OPTIONS] [SOURCE_PATH]
+
+# From Source (make sure `go` is installed)
+git clone https://github.com/gitleaks/gitleaks.git
+cd gitleaks
+make build
+```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
 ```bash
-# Clonar
-git clone https://github.com/zricethezav/gitleaks
-cd gitleaks
+➜  ~/code(master) gitleaks git -v
 
-# Revisar ayuda
-./gitleaks --help 2>/dev/null || python3 -m gitleaks --help 2>/dev/null || true
+    ○
+    │╲
+    │ ○
+    ○ ░
+    ░    gitleaks
+
+
+Finding:     "export BUNDLE_ENTERPRISE__CONTRIBSYS__COM=cafebabe:deadbeef",
+Secret:      cafebabe:deadbeef
+RuleID:      sidekiq-secret
+Entropy:     2.609850
+File:        cmd/generate/config/rules/sidekiq.go
+Line:        23
+Commit:      cd5226711335c68be1e720b318b7bc3135a30eb2
+Author:      John
+Email:       john@users.noreply.github.com
+Date:        2022-08-03T12:31:40Z
+Fingerprint: cd5226711335c68be1e720b318b7bc3135a30eb2:cmd/generate/config/rules/sidekiq.go:sidekiq-secret:23
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+```bash
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.24.2
+    hooks:
+      - id: gitleaks
+```
 
-## ¿Se puede usar en Termux?
+## Compatibilidad y requisitos
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+- **Lenguaje principal:** Go
+- **Última actualización del repositorio:** 2026-10-28
+- **Estrellas en GitHub:** 30.575
+- **Termux:** sí, con matices
 
-## Buenas prácticas y ética
+**Compatible con Termux (con matices).** Si el proyecto es Python, Go, Rust o Bash, puedes clonarlo en Termux e instalar sus dependencias. Algunas funciones que dependen de la red, del almacenamiento o de permisos del sistema pueden requerir un entorno Linux completo.
 
-Usa gitleaks únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+## Ética y alcance
+
+Usa gitleaks únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/zricethezav/gitleaks
+- Repositorio oficial: https://github.com/zricethezav/gitleaks
 - Toolkit de origen: Red Teaming Toolkit

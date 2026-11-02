@@ -1,11 +1,11 @@
 ---
-title: "EDRSandBlast: EDRSandBlast is a tool written in C that weaponize a vulnerable signed driver to"
+title: "EDRSandBlast: la técnica para operar sin que el EDR lo detecte"
 slug: "edrsandblast"
-summary: "EDRSandBlast is a tool written in C that weaponize a vulnerable signed driver to bypass EDR detections (Kernel callbacks and ETW TI provider) and LSASS protections."
+summary: "EDRSandBlast: evasión de EDR, antivirus y telemetría defensiva."
 category: "ciberseguridad"
 level: "Avanzado"
-reading: 6
-tags: ['defense-evasion', 'red-team']
+reading: 7
+tags: ["evasión-de-defensas", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,52 +13,69 @@ order: 999
 
 ## Qué es EDRSandBlast
 
-EDRSandBlast es una herramienta de seguridad ofensiva / red team. EDRSandBlast is a tool written in C that weaponize a vulnerable signed driver to bypass EDR detections (Kernel callbacks and ETW TI provider) and LSASS protections.
+**EDRSandBlast** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. La evasión de defensas es una carrera constante: cada técnica busca reducir la telemetría, retrasar la detección o inutilizar controles.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: EDRSandBlast is a tool written in C that weaponize a vulnerable signed driver to bypass EDR detections (Kernel callbacks and ETW TI provider) and LSASS protections.
 
-- **Repositorio oficial:** [https://github.com/wavestone-cdt/EDRSandblast](https://github.com/wavestone-cdt/EDRSandblast)
-- **Sección del toolkit:** Defense Evasion 
+## Para qué sirve
 
-## Objetivo y función
+EDRSandBlast se utiliza en la fase de **evasión de defensas**. Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de EDRSandBlast es edrsandblast is a tool written in c that weaponize a vulnerable signed driver to bypass edr detections (kernel callbacks and etw ti provider) and lsass protections.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
-Clona el repositorio y sigue las instrucciones del README oficial:
-
 ```bash
-git clone https://github.com/wavestone-cdt/EDRSandblast
-cd edrsandblast
+# Installation of Python dependencies
+pip.exe install -m .\requirements.txt
+
+# Script usage
+ExtractOffsets.py [-h] -i INPUT [-o OUTPUT] [-d] mode
+
+positional arguments:
+  mode                  ntoskrnl or wdigest. Mode to download and extract offsets for either ntoskrnl or wdigest
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i INPUT, --input INPUT
+                        Single file or directory containing ntoskrnl.exe / wdigest.dll to extract offsets from.
+                        If in download mode, the PE downloaded from MS symbols servers will be placed in this folder.
+  -o OUTPUT, --output OUTPUT
+                        CSV file to write offsets to. If the specified file already exists, only new ntoskrnl versions will be
+                        downloaded / analyzed.
+                        Defaults to NtoskrnlOffsets.csv / WdigestOffsets.csv in the current folder.
+  -d, --download         Flag to download the PE from Microsoft servers using list of versions from winbindex.m417z.com.
 ```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
 ```bash
-# Clonar
-git clone https://github.com/wavestone-cdt/EDRSandblast
-cd edrsandblast
-
-# Revisar ayuda
-./edrsandblast --help 2>/dev/null || python3 -m edrsandblast --help 2>/dev/null || true
+Usage: EDRSandblast.exe [-h | --help] [-v | --verbose] <audit | dump | cmd | credguard | firewall | load_unsigned_driver>
+[--usermode] [--unhook-method <N>] [--direct-syscalls] [--add-dll <dll name or path>]*
+[--kernelmode] [--dont-unload-driver] [--no-restore]
+    [--nt-offsets <NtoskrnlOffsets.csv>] [--fltmgr-offsets <FltmgrOffsets.csv>] [--wdigest-offsets <WdigestOffsets.csv>] [--ci-offsets <CiOffsets.csv>] [--internet]
+    [--vuln-driver <RTCore64.sys>] [--vuln-service <SERVICE_NAME>]
+    [--unsigned-driver <evil.sys>] [--unsigned-service <SERVICE_NAME>]
+    [--no-kdp]
+[-o | --dump-output <DUMP_FILE>]
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+## Compatibilidad y requisitos
 
-## ¿Se puede usar en Termux?
+- **Lenguaje principal:** C
+- **Última actualización del repositorio:** 2024-08-30
+- **Estrellas en GitHub:** 1.857
+- **Termux:** no
 
-Esta herramienta está pensada para Windows, .NET o entornos de Active Directory. No se instala de forma nativa en Termux; úsala desde una máquina virtual, un contenedor o un laboratorio con Windows/Linux completo.
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-## Buenas prácticas y ética
+## Ética y alcance
 
-Usa EDRSandBlast únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa EDRSandBlast únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/wavestone-cdt/EDRSandblast
+- Repositorio oficial: https://github.com/wavestone-cdt/EDRSandblast
 - Toolkit de origen: Red Teaming Toolkit

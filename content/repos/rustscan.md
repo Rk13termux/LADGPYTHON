@@ -1,11 +1,11 @@
 ---
-title: "RustScan: The Modern Port Scanner. Find ports quickly (3 seconds at its fastest). Run scri"
+title: "RustScan: la información que convierte un objetivo en un mapa"
 slug: "rustscan"
-summary: "The Modern Port Scanner. Find ports quickly (3 seconds at its fastest). Run scripts through our scripting engine (Python, Lua, Shell supported)."
-category: "python"
+summary: "RustScan: reconocimiento para descubrir activos, puertos y servicios expuestos."
+category: "ciberseguridad"
 level: "Intermedio"
-reading: 6
-tags: ['reconnaissance', 'red-team', 'python']
+reading: 7
+tags: ["reconocimiento", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,69 +13,50 @@ order: 999
 
 ## Qué es RustScan
 
-RustScan es una herramienta de seguridad ofensiva / red team. The Modern Port Scanner. Find ports quickly (3 seconds at its fastest). Run scripts through our scripting engine (Python, Lua, Shell supported).
+**RustScan** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. En un red team, el reconocimiento define el resto del engagement: cuanto mejor sea el mapa inicial, menos ruido y más precisión en las fases siguientes.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: The Modern Port Scanner. Find ports quickly (3 seconds at its fastest). Run scripts through our scripting engine (Python, Lua, Shell supported).
 
-- **Repositorio oficial:** [https://github.com/RustScan/RustScan](https://github.com/RustScan/RustScan)
-- **Sección del toolkit:** Reconnaissance 
+## Para qué sirve
 
-## Objetivo y función
+RustScan se utiliza en la fase de **reconocimiento**. Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de RustScan es the modern port scanner. find ports quickly (3 seconds at its fastest). run scripts through our scripting engine (python, lua, shell supported).
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, permite al operador centrarse en la estrategia y en la interpretación de los resultados, no en repetir comandos.
 
 ## Instalación
 
-You can install RustScan's binary from our [releases page](https://github.com/RustScan/RustScan/releases).
-
-We would prefer you to install with a package manager so it is tested and works for your system.
-
-RustScan is in many repositories already. Install it with whatever tools you wish:
-
-[![Packaging status](https://repology.org/badge/vertical-allrepos/rustscan.svg)](https://repology.org/project/rustscan/versions)
-
-RustScan only officially supports Cargo installations, if you want to use that please install Rust and then `cargo install rustscan`
-
-Example installations include:
-
-MacOS:
-
-```
-  brew install rustscan
+```bash
+brew install rustscan
 ```
 
-Arch:
+```bash
+pacman -S rustscan
+```
 
-```
-  pacman -S rustscan
-```
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
+Consulta la ayuda del proyecto tras la instalación:
 
 ```bash
-# Clonar
-git clone https://github.com/RustScan/RustScan
-cd rustscan
-
-# Revisar ayuda
-./rustscan --help 2>/dev/null || python3 -m rustscan --help 2>/dev/null || true
+./rustscan --help
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+## Compatibilidad y requisitos
 
-## ¿Se puede usar en Termux?
+- **Lenguaje principal:** Rust
+- **Última actualización del repositorio:** 2026-10-20
+- **Estrellas en GitHub:** 20.652
+- **Termux:** sí, con matices
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+**Compatible con Termux (con matices).** Si el proyecto es Python, Go, Rust o Bash, puedes clonarlo en Termux e instalar sus dependencias. Algunas funciones que dependen de la red, del almacenamiento o de permisos del sistema pueden requerir un entorno Linux completo.
 
-## Buenas prácticas y ética
+## Ética y alcance
 
-Usa RustScan únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa RustScan únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/RustScan/RustScan
+- Repositorio oficial: https://github.com/RustScan/RustScan
 - Toolkit de origen: Red Teaming Toolkit

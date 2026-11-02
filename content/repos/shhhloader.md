@@ -1,11 +1,11 @@
 ---
-title: "Shhhloader: Shhhloader is a work in progress shellcode loader. It takes raw shellcode as inp"
+title: "Shhhloader: la técnica para operar sin que el EDR lo detecte"
 slug: "shhhloader"
-summary: "Shhhloader is a work in progress shellcode loader. It takes raw shellcode as input and compiles a C++ stub that does a bunch of different things to try and bypass AV/EDR"
-category: "ciberseguridad"
+summary: "Shhhloader: evasión de EDR, antivirus y telemetría defensiva."
+category: "python"
 level: "Intermedio"
-reading: 6
-tags: ['initial-access', 'payload-development', 'red-team']
+reading: 7
+tags: ["acceso-inicial", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,55 +13,47 @@ order: 999
 
 ## Qué es Shhhloader
 
-Shhhloader es una herramienta de seguridad ofensiva / red team. Shhhloader is a work in progress shellcode loader. It takes raw shellcode as input and compiles a C++ stub that does a bunch of different things to try and bypass AV/EDR
+**Shhhloader** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. El acceso inicial es el momento más delicado de una intrusión: hay que conseguir una entrada sin activar las alertas y sin quemar infraestructura.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: Shhhloader is a work in progress shellcode loader. It takes raw shellcode as input and compiles a C++ stub that does a bunch of different things to try and bypass AV/EDR
 
-- **Repositorio oficial:** [https://github.com/icyguider/Shhhloader](https://github.com/icyguider/Shhhloader)
-- **Sección del toolkit:** Initial Access → Payload Development
+## Para qué sirve
 
-## Objetivo y función
+Shhhloader se utiliza en la fase de **acceso inicial** (payload development). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de Shhhloader es shhhloader is a work in progress shellcode loader. it takes raw shellcode as input and compiles a c++ stub that does a bunch of different things to try and bypass av/edr.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, permite al operador centrarse en la estrategia y en la interpretación de los resultados, no en repetir comandos.
 
 ## Instalación
 
-cd ..
-git clone https://github.com/tpoechtrager/wclang.git
-cd wclang/
-cmake -DCMAKE_INSTALL_PREFIX=_prefix_ .
-make
-make install
-export wclang_path=$(pwd)/_prefix_/bin
-echo "export PATH=$wclang_path:$PATH" >> ~/.bashrc
-export PATH=$wclang_path:$PATH
+```bash
+git clone https://github.com/icyguider/Shhhloader
+cd Shhhloader
+```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
+Consulta la ayuda del proyecto tras la instalación:
 
 ```bash
-# Clonar
-git clone https://github.com/icyguider/Shhhloader
-cd shhhloader
-
-# Revisar ayuda
-./shhhloader --help 2>/dev/null || python3 -m shhhloader --help 2>/dev/null || true
+./shhhloader --help
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+## Compatibilidad y requisitos
 
-## ¿Se puede usar en Termux?
+- **Lenguaje principal:** Python
+- **Última actualización del repositorio:** 2024-05-08
+- **Estrellas en GitHub:** 1.292
+- **Termux:** sí, con matices
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+**Compatible con Termux (con matices).** Si el proyecto es Python, Go, Rust o Bash, puedes clonarlo en Termux e instalar sus dependencias. Algunas funciones que dependen de la red, del almacenamiento o de permisos del sistema pueden requerir un entorno Linux completo.
 
-## Buenas prácticas y ética
+## Ética y alcance
 
-Usa Shhhloader únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa Shhhloader únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/icyguider/Shhhloader
+- Repositorio oficial: https://github.com/icyguider/Shhhloader
 - Toolkit de origen: Red Teaming Toolkit

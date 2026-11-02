@@ -1,11 +1,11 @@
 ---
-title: "CloudMapper: CloudMapper helps you analyze your Amazon Web Services (AWS) environments"
+title: "CloudMapper: la puerta trasera que nadie revisa en la nube"
 slug: "cloudmapper"
-summary: "CloudMapper helps you analyze your Amazon Web Services (AWS) environments."
+summary: "CloudMapper: enumeración y ataque de entornos cloud y Microsoft 365."
 category: "ciberseguridad"
 level: "Intermedio"
-reading: 6
-tags: ['miscellaneous', 'cloud', 'red-team']
+reading: 7
+tags: ["recursos-y-automatización", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,53 +13,58 @@ order: 999
 
 ## Qué es CloudMapper
 
-CloudMapper es una herramienta de seguridad ofensiva / red team. CloudMapper helps you analyze your Amazon Web Services (AWS) environments.
+**CloudMapper** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. En un ejercicio de red team, esta herramienta aporta capacidad operativa en una fase concreta del ataque y ayuda a medir la madurez defensiva.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: CloudMapper helps you analyze your Amazon Web Services (AWS) environments.
 
-- **Repositorio oficial:** [https://github.com/duo-labs/cloudmapper](https://github.com/duo-labs/cloudmapper)
-- **Sección del toolkit:** Miscellaneous → Cloud
+## Para qué sirve
 
-## Objetivo y función
+CloudMapper se utiliza en la fase de **recursos y automatización** (cloud). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de CloudMapper es cloudmapper helps you analyze your amazon web services (aws) environments.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, permite al operador centrarse en la estrategia y en la interpretación de los resultados, no en repetir comandos.
 
 ## Instalación
 
-Requirements:
-- python 3 (3.7.0rc1 is known to work), `pip`, and `virtualenv`
-- You will also need `jq` (https://stedolan.github.io/jq/) and the library `pyjq` (https://github.com/doloopwhile/pyjq), which require some additional tools installed that will be shown.
-
-On macOS:
-
+```bash
+# clone the repo
+git clone https://github.com/duo-labs/cloudmapper.git
+# Install pre-reqs for pyjq
+brew install autoconf automake awscli freetype jq libtool python3
+cd cloudmapper/
+python3 -m venv ./venv && source venv/bin/activate
+pip install --prefer-binary -r requirements.txt
 ```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
 ```bash
-# Clonar
-git clone https://github.com/duo-labs/cloudmapper
-cd cloudmapper
-
-# Revisar ayuda
-./cloudmapper --help 2>/dev/null || python3 -m cloudmapper --help 2>/dev/null || true
+# Generate the data for the network map
+python cloudmapper.py prepare --config config.json.demo --account demo
+# Generate a report
+python cloudmapper.py report --config config.json.demo --account demo
+python cloudmapper.py webserver
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+```bash
+python cloudmapper.py collect --account my_account
+```
 
-## ¿Se puede usar en Termux?
+## Compatibilidad y requisitos
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+- **Lenguaje principal:** JavaScript
+- **Última actualización del repositorio:** 2024-07-15
+- **Estrellas en GitHub:** 6.289
+- **Termux:** sí, con matices
 
-## Buenas prácticas y ética
+**Compatible con Termux (con matices).** Si el proyecto es Python, Go, Rust o Bash, puedes clonarlo en Termux e instalar sus dependencias. Algunas funciones que dependen de la red, del almacenamiento o de permisos del sistema pueden requerir un entorno Linux completo.
 
-Usa CloudMapper únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+## Ética y alcance
+
+Usa CloudMapper únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/duo-labs/cloudmapper
+- Repositorio oficial: https://github.com/duo-labs/cloudmapper
 - Toolkit de origen: Red Teaming Toolkit

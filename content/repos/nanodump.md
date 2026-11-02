@@ -1,11 +1,11 @@
 ---
-title: "nanodump: A Beacon Object File that creates a minidump of the LSASS process"
+title: "nanodump: las llaves del reino, a un comando de distancia"
 slug: "nanodump"
-summary: "A Beacon Object File that creates a minidump of the LSASS process."
+summary: "nanodump: extracción y abuso de credenciales en entornos Windows y AD."
 category: "ciberseguridad"
 level: "Avanzado"
-reading: 6
-tags: ['credential-dumping', 'red-team']
+reading: 7
+tags: ["volcado-de-credenciales", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,52 +13,48 @@ order: 999
 
 ## Qué es nanodump
 
-nanodump es una herramienta de seguridad ofensiva / red team. A Beacon Object File that creates a minidump of the LSASS process.
+**nanodump** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. Las credenciales son el activo más valioso de una red. Obtenerlas permite pivotar, escalar y persistir sin explotar nuevas vulnerabilidades.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: A Beacon Object File that creates a minidump of the LSASS process.
 
-- **Repositorio oficial:** [https://github.com/helpsystems/nanodump](https://github.com/helpsystems/nanodump)
-- **Sección del toolkit:** Credential Dumping 
+## Para qué sirve
 
-## Objetivo y función
+nanodump se utiliza en la fase de **volcado de credenciales**. Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de nanodump es a beacon object file that creates a minidump of the lsass process.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
-Clona el repositorio y sigue las instrucciones del README oficial:
-
 ```bash
-git clone https://github.com/helpsystems/nanodump
-cd nanodump
+git clone https://github.com/fortra/nanodump.git
 ```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
 ```bash
-# Clonar
-git clone https://github.com/helpsystems/nanodump
-cd nanodump
-
-# Revisar ayuda
-./nanodump --help 2>/dev/null || python3 -m nanodump --help 2>/dev/null || true
+beacon> nanodump_ssp -v -w C:\Windows\Temp\lsass.dmp
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+```bash
+beacon> nanodump_ssp -v -w C:\Windows\Temp\lsass.dmp --load-dll C:\Windows\Temp\ssp.dll
+```
 
-## ¿Se puede usar en Termux?
+## Compatibilidad y requisitos
 
-Esta herramienta está pensada para Windows, .NET o entornos de Active Directory. No se instala de forma nativa en Termux; úsala desde una máquina virtual, un contenedor o un laboratorio con Windows/Linux completo.
+- **Lenguaje principal:** C
+- **Última actualización del repositorio:** 2024-09-17
+- **Estrellas en GitHub:** 2.143
+- **Termux:** no
 
-## Buenas prácticas y ética
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-Usa nanodump únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+## Ética y alcance
+
+Usa nanodump únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/helpsystems/nanodump
+- Repositorio oficial: https://github.com/helpsystems/nanodump
 - Toolkit de origen: Red Teaming Toolkit

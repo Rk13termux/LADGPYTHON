@@ -1,11 +1,11 @@
 ---
-title: "Atomic Red Team: Small and highly portable detection tests mapped to the Mitre ATT&CK Framework"
+title: "Atomic Red Team: simula al adversario para medir tus defensas"
 slug: "atomic-red-team"
-summary: "Small and highly portable detection tests mapped to the Mitre ATT&CK Framework."
+summary: "Atomic Red Team: herramienta de seguridad ofensiva para operaciones de red team."
 category: "ciberseguridad"
 level: "Intermedio"
-reading: 6
-tags: ['miscellaneous', 'adversary-emulation', 'red-team']
+reading: 7
+tags: ["recursos-y-automatización", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,52 +13,47 @@ order: 999
 
 ## Qué es Atomic Red Team
 
-Atomic Red Team es una herramienta de seguridad ofensiva / red team. Small and highly portable detection tests mapped to the Mitre ATT&CK Framework.
+**Atomic Red Team** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. En un ejercicio de red team, esta herramienta aporta capacidad operativa en una fase concreta del ataque y ayuda a medir la madurez defensiva.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: Small and highly portable detection tests mapped to the Mitre ATT&CK Framework.
 
-- **Repositorio oficial:** [https://github.com/redcanaryco/atomic-red-team](https://github.com/redcanaryco/atomic-red-team)
-- **Sección del toolkit:** Miscellaneous → Adversary Emulation
+## Para qué sirve
 
-## Objetivo y función
+Atomic Red Team se utiliza en la fase de **recursos y automatización** (adversary emulation). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de Atomic Red Team es small and highly portable detection tests mapped to the mitre att&ck framework.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
-Clona el repositorio y sigue las instrucciones del README oficial:
-
 ```bash
 git clone https://github.com/redcanaryco/atomic-red-team
 cd atomic-red-team
 ```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
+Consulta la ayuda del proyecto tras la instalación:
 
 ```bash
-# Clonar
-git clone https://github.com/redcanaryco/atomic-red-team
-cd atomic-red-team
-
-# Revisar ayuda
-./atomic-red-team --help 2>/dev/null || python3 -m atomic_red_team --help 2>/dev/null || true
+./atomic-red-team --help
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+## Compatibilidad y requisitos
 
-## ¿Se puede usar en Termux?
+- **Lenguaje principal:** C
+- **Última actualización del repositorio:** 2026-10-31
+- **Estrellas en GitHub:** 12.750
+- **Termux:** no
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-## Buenas prácticas y ética
+## Ética y alcance
 
-Usa Atomic Red Team únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa Atomic Red Team únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/redcanaryco/atomic-red-team
+- Repositorio oficial: https://github.com/redcanaryco/atomic-red-team
 - Toolkit de origen: Red Teaming Toolkit

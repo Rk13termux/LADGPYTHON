@@ -1,11 +1,11 @@
 ---
-title: "GraphStrike: Cobalt Strike HTTPS beaconing over Microsoft Graph API"
+title: "GraphStrike: C2: el cerebro invisible de una intrusión"
 slug: "graphstrike"
-summary: "Cobalt Strike HTTPS beaconing over Microsoft Graph API"
+summary: "GraphStrike: framework de mando y control para mantener el acceso."
 category: "ciberseguridad"
 level: "Avanzado"
-reading: 6
-tags: ['command-and-control', 'staging', 'red-team']
+reading: 7
+tags: ["mando-y-control", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,50 +13,49 @@ order: 999
 
 ## Qué es GraphStrike
 
-GraphStrike es una herramienta de seguridad ofensiva / red team. Cobalt Strike HTTPS beaconing over Microsoft Graph API
+**GraphStrike** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. El C2 es el sistema nervioso de la operación: permite enviar tareas, recibir resultados y mantener el control aunque cambie la red.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: Cobalt Strike HTTPS beaconing over Microsoft Graph API
 
-- **Repositorio oficial:** [https://github.com/RedSiege/GraphStrike](https://github.com/RedSiege/GraphStrike)
-- **Sección del toolkit:** Command and Control → Staging
+## Para qué sirve
 
-## Objetivo y función
+GraphStrike se utiliza en la fase de **mando y control** (staging). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de GraphStrike es cobalt strike https beaconing over microsoft graph api.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
-GraphStrike requires the following before you get started:  
-1. A Microsoft Azure tenant with a SharePoint/O365 license assigned + site created. The default site is fine.
-2. An Azure account with Global Administrator permissions in that tenant.  
-3. Python 3.8-3.11<sup>[Note #4](#notes)</sup> (and additional dependencies that will be installed during the setup process)
+```bash
+git clone https://github.com/RedSiege/GraphStrike
+cd GraphStrike
+```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
 ```bash
-# Clonar
-git clone https://github.com/RedSiege/GraphStrike
-cd graphstrike
+# Cleanup
 
-# Revisar ayuda
-./graphstrike --help 2>/dev/null || python3 -m graphstrike --help 2>/dev/null || true
+### On the machine that is running the TS + GraphStrike Server:
+1. Stop the GraphStrike server
+2. Change back to the setup directory and run 
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+## Compatibilidad y requisitos
 
-## ¿Se puede usar en Termux?
+- **Lenguaje principal:** C
+- **Última actualización del repositorio:** 2024-06-25
+- **Estrellas en GitHub:** 638
+- **Termux:** no
 
-Esta herramienta está pensada para Windows, .NET o entornos de Active Directory. No se instala de forma nativa en Termux; úsala desde una máquina virtual, un contenedor o un laboratorio con Windows/Linux completo.
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-## Buenas prácticas y ética
+## Ética y alcance
 
-Usa GraphStrike únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa GraphStrike únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/RedSiege/GraphStrike
+- Repositorio oficial: https://github.com/RedSiege/GraphStrike
 - Toolkit de origen: Red Teaming Toolkit

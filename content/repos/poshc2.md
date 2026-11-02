@@ -1,11 +1,11 @@
 ---
-title: "PoshC2: PoshC2 is a proxy aware C2 framework used to aid penetration testers with red te"
+title: "PoshC2: el implante que responde aunque cambie la red"
 slug: "poshc2"
-summary: "PoshC2 is a proxy aware C2 framework used to aid penetration testers with red teaming, post-exploitation and lateral movement."
+summary: "PoshC2: framework de mando y control para mantener el acceso."
 category: "ciberseguridad"
 level: "Avanzado"
-reading: 6
-tags: ['command-and-control', 'remote-access-tools-rat', 'red-team']
+reading: 7
+tags: ["mando-y-control", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,47 +13,56 @@ order: 999
 
 ## Qué es PoshC2
 
-PoshC2 es una herramienta de seguridad ofensiva / red team. PoshC2 is a proxy aware C2 framework used to aid penetration testers with red teaming, post-exploitation and lateral movement.
+**PoshC2** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. El C2 es el sistema nervioso de la operación: permite enviar tareas, recibir resultados y mantener el control aunque cambie la red.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: PoshC2 is a proxy aware C2 framework used to aid penetration testers with red teaming, post-exploitation and lateral movement.
 
-- **Repositorio oficial:** [https://github.com/nettitude/PoshC2](https://github.com/nettitude/PoshC2)
-- **Sección del toolkit:** Command and Control → Remote Access Tools (RAT)
+## Para qué sirve
 
-## Objetivo y función
+PoshC2 se utiliza en la fase de **mando y control** (remote access tools (rat)). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de PoshC2 es poshc2 is a proxy aware c2 framework used to aid penetration testers with red teaming, post-exploitation and lateral movement.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
-You can install PoshC2 directly or use the Docker images, instructions for both are below.
+```bash
+*** PoshC2 Install script ***
+Usage:
+./Install.sh -b <git branch> -p <Directory to clone PoshC2 to>
+
+Defaults are master branch to /opt/PoshC2
+```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
 ```bash
-# Clonar
-git clone https://github.com/nettitude/PoshC2
-cd poshc2
-
-# Revisar ayuda
-./poshc2 --help 2>/dev/null || python3 -m poshc2 --help 2>/dev/null || true
+posh-project -n <project-name>
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+```bash
+[*] Usage: posh-project -n <new-project-name>
+[*] Usage: posh-project -s <project-to-switch-to>
+[*] Usage: posh-project -l (lists projects)
+[*] Usage: posh-project -d <project-to-delete>
+[*] Usage: posh-project -c (shows current project)
+```
 
-## ¿Se puede usar en Termux?
+## Compatibilidad y requisitos
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+- **Lenguaje principal:** PowerShell
+- **Última actualización del repositorio:** 2025-11-20
+- **Estrellas en GitHub:** 2.136
+- **Termux:** no
 
-## Buenas prácticas y ética
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-Usa PoshC2 únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+## Ética y alcance
+
+Usa PoshC2 únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/nettitude/PoshC2
+- Repositorio oficial: https://github.com/nettitude/PoshC2
 - Toolkit de origen: Red Teaming Toolkit

@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#000000">
     <meta name="robots" content="index,follow">
-    <title>SourcePoint: SourcePoint is a C2 profile generator for Cobalt Strike command and control serv | CHMODX</title>
-    <meta name="description" content="SourcePoint is a C2 profile generator for Cobalt Strike command and control servers designed to ensure evasion.">
+    <title>SourcePoint: control remoto persistente con tráfico camuflado | CHMODX</title>
+    <meta name="description" content="SourcePoint: framework de mando y control para mantener el acceso.">
     <link rel="canonical" href="https://chmodxcode.pro/repositorios/sourcepoint/">
 
     <link rel="icon" type="image/png" href="/assets/logo.png">
@@ -14,13 +14,13 @@
 
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="CHMODX">
-    <meta property="og:title" content="SourcePoint: SourcePoint is a C2 profile generator for Cobalt Strike command and control serv | CHMODX">
-    <meta property="og:description" content="SourcePoint is a C2 profile generator for Cobalt Strike command and control servers designed to ensure evasion.">
+    <meta property="og:title" content="SourcePoint: control remoto persistente con tráfico camuflado | CHMODX">
+    <meta property="og:description" content="SourcePoint: framework de mando y control para mantener el acceso.">
     <meta property="og:url" content="https://chmodxcode.pro/repositorios/sourcepoint/">
     <meta property="og:image" content="https://chmodxcode.pro/assets/logo.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="SourcePoint: SourcePoint is a C2 profile generator for Cobalt Strike command and control serv | CHMODX">
-    <meta name="twitter:description" content="SourcePoint is a C2 profile generator for Cobalt Strike command and control servers designed to ensure evasion.">
+    <meta name="twitter:title" content="SourcePoint: control remoto persistente con tráfico camuflado | CHMODX">
+    <meta name="twitter:description" content="SourcePoint: framework de mando y control para mantener el acceso.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,8 +34,8 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareSourceCode",
-  "name": "SourcePoint: SourcePoint is a C2 profile generator for Cobalt Strike command and control serv",
-  "description": "SourcePoint is a C2 profile generator for Cobalt Strike command and control servers designed to ensure evasion.",
+  "name": "SourcePoint: control remoto persistente con tráfico camuflado",
+  "description": "SourcePoint: framework de mando y control para mantener el acceso.",
   "dateModified": "2026-11-01",
   "inLanguage": "es",
   "url": "https://chmodxcode.pro/repositorios/sourcepoint/",
@@ -102,15 +102,15 @@
         <span aria-hidden="true">/</span>
         <a href="/repositorios/">Repositorios</a>
         <span aria-hidden="true">/</span>
-        <span aria-current="page">SourcePoint: SourcePoint is a C2 profile generator for…</span>
+        <span aria-current="page">SourcePoint: control remoto persistente con tráfico cam…</span>
     </nav>
 </div>
 
 <header class="article-hero repo-hero">
     <div class="container">
         <span class="badge badge-ciberseguridad"><i class="fas fa-shield-halved" aria-hidden="true"></i> Ciberseguridad</span>
-        <h1 class="article-title">SourcePoint: SourcePoint is a C2 profile generator for Cobalt Strike command and control serv</h1>
-        <p class="article-summary">SourcePoint is a C2 profile generator for Cobalt Strike command and control servers designed to ensure evasion.</p>
+        <h1 class="article-title">SourcePoint: control remoto persistente con tráfico camuflado</h1>
+        <p class="article-summary">SourcePoint: framework de mando y control para mantener el acceso.</p>
 
         <dl class="repo-meta">
             <div><dt>Dificultad</dt><dd>Intermedio</dd></div>
@@ -127,7 +127,7 @@
         </div>
 
         <div class="tag-list">
-            <span class="tag">command-and-control</span><span class="tag">staging</span><span class="tag">red-team</span>
+            <span class="tag">mando-y-control</span><span class="tag">red-team</span><span class="tag">ciberseguridad</span>
         </div>
     </div>
 </header>
@@ -138,37 +138,216 @@
 
         <div class="article-body">
             <h2 id="que-es-sourcepoint">Qué es SourcePoint</h2>
-<p>SourcePoint es una herramienta de seguridad ofensiva / red team. SourcePoint is a C2 profile generator for Cobalt Strike command and control servers designed to ensure evasion.</p>
-<p>Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.</p>
-<ul>
-<li><strong>Repositorio oficial:</strong> <a href="https://github.com/Tylous/SourcePoint">https://github.com/Tylous/SourcePoint</a></li>
-<li><strong>Sección del toolkit:</strong> Command and Control → Staging</li>
-</ul>
-<h2 id="objetivo-y-funcion">Objetivo y función</h2>
-<p>El objetivo principal de SourcePoint es sourcepoint is a c2 profile generator for cobalt strike command and control servers designed to ensure evasion.</p>
-<p>En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.</p>
+<p><strong>SourcePoint</strong> es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. El C2 es el sistema nervioso de la operación: permite enviar tareas, recibir resultados y mantener el control aunque cambie la red.</p>
+<blockquote><p>Descripción oficial: SourcePoint is a C2 profile generator for Cobalt Strike command and control servers designed to ensure evasion.</p></blockquote>
+<h2 id="para-que-sirve">Para qué sirve</h2>
+<p>SourcePoint se utiliza en la fase de <strong>mando y control</strong> (staging). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.</p>
+<p>En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.</p>
 <h2 id="instalacion">Instalación</h2>
-<div class="code-block" data-lang="clike"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">clike</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-clike">$go get gopkg.in/yaml.v2
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">go get gopkg.in/yaml.v2
 
-$go build SourcePoint.go</code></pre></div>
-<aside class="cta-code" data-cta="code" data-content="sourcepoint" data-lang="clike"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Practicar comandos sueltos no te prepara para una auditoría. En el Curso de Python 3 de 0 a Master trabajas alcance, evidencia y reporte con método.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=sourcepoint&utm_content=bloque-1" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
+go build SourcePoint.go</code></pre></div>
+<aside class="cta-code" data-cta="code" data-content="sourcepoint" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Practicar comandos sueltos no te prepara para una auditoría. En el Curso de Python 3 de 0 a Master trabajas alcance, evidencia y reporte con método.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=sourcepoint&utm_content=bloque-1" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
+<blockquote><p>Revisa el README oficial para dependencias específicas, versiones y notas de compilación.</p></blockquote>
 <h2 id="uso-basico">Uso básico</h2>
-<p>Consulta el README oficial para la sintaxis exacta. Un flujo típico:</p>
-<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash"># Clonar
-git clone https://github.com/Tylous/SourcePoint
-cd sourcepoint
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">#./SourcePoint -h
 
-# Revisar ayuda
-./sourcepoint --help 2&gt;/dev/null || python3 -m sourcepoint --help 2&gt;/dev/null || true</code></pre></div>
+	   _____                            ____        _       __
+	  / ___/____  __  _______________  / __ \____  (_)___  / /_
+	  \__ \/ __ \/ / / / ___/ ___/ _ \/ /_/ / __ \/ / __ \/ __/
+	 ___/ / /_/ / /_/ / /  / /__/  __/ ____/ /_/ / / / / / /_
+	/____/\____/\__,_/_/   \___/\___/_/    \____/_/_/ /_/\__/
+  							(@Tyl0us)
+
+
+Usage of ./SourcePoint:
+  -Allocation string
+        Minimum amount of memory to request for injected content (must be higher than 4096)
+  -BeaconGate string
+        Specify beacon gate options (All, Comms, Core, Cleanup) or specific APIs
+  -CDN string
+        CDN cookie name (typically used for AzureEdge profiles)
+  -CDN-Value string
+        CDN cookie value (typically used for AzureEdge profiles)
+  -Customuri string
+        The base URI for custom HTTP GET/POST profile - Cannot be used with CustomuriGET or CustomuriPOST
+  -CustomuriGET string
+        The base URI for custom HTTP GET profile - Must be used with CustomuriPOST
+  -CustomuriPOST string
+        The base URI for custom HTTP POST profile - Must be used with CustomuriGET
+  -Datajitter string
+        Appends a value to HTTP-Get and HTTP-Post server output (default "50")
+  -Forwarder
+        Enabled the X-forwarded-For header (Good for when your C2 is behind a redirector)
+  -Host string
+        Team server domain name
+  -Httplib string
+        Select the default HTTP Beacon library:
+        [*] wininet
+        [*] winhttp' (default "winhttp")
+  -Injector string
+        Select the preferred method to allocate memory in the remote process:
+        [*] VirtualAllocEx (Great for cross architecture i.e x86 -&gt; x64 and x64-&gt;x86)
+        [*] NtMapViewOfSection (A more stealthly option, however fails over to VirtualAllocEx, generating more events when it does)
+  -Jitter string
+        Jitter percentage for beacon call home
+  -Keylogger string
+        Select the preferred method the beacon will use to log keystrokes: 
+        [*] GetAsyncKeyState (Uses GetAsyncKeyState API (Separate DLL for x86/x64 process))
+        [*] SetWindowsHookEx (Uses SetWindowsHookEx API)
+  -Keystore string
+        SSL keystore name
+  -Metadata string
+        Specifies how to transform and embed metadata into the HTTP request:
+        [*] base64
+        [*] base64url
+        [*] netbios
+        [*] netbiosu (default "base64url")
+  -Outfile string
+        Name of output file
+  -PE_Clone string
+        PE file beacon will mimic (Use the number):
+        [1] ActivationManager.dll
+        [2] audioeng.dll
+        [3] AzureSettingSyncProvider.dll
+        [4] BingMaps.dll
+        [5] DIAGCPL.dll
+        [6] EDGEHTML.dll
+        [7] FILEMGMT.dll
+        [8] FIREWALLCONTROLPANEL.dll
+        [9] GPSVC.dll
+        [10] gpupvdev.dll
+        [11] libcrypto.dll
+        [12] srvcli.dll
+        [13] srvsvc.dll
+        [14] Windows.Storage.Search.dll
+        [15] Windows.System.Diagnostics.dll
+        [16] Windows.System.Launcher.dll
+        [17] Windows.System.SystemManagement.dll
+        [18] Windows.UI.BioFeedback.dll
+        [19] Windows.UI.BlockedShutdown.dll
+        [20] Windows.UI.Core.TextInput.DLL
+        [21] winsqlite3.dll
+        [22] WMNetMgr.DLL
+        [23] wwanapi.dll
+        [24] WWANSVC.DLL
+        [25] wow64win.dll
+        [26] wow64.dll
+        [27] ctiuser.dll (Carbon Black's DLL)
+        [28] InProcessClient.dll (SentinelOne's DLL)
+        [29] umppc.dll (CrowdStrike's DLL)
+        [30] CyMemDef64.dll (Cylance's DLL)
+  -Password string
+        SSL certificate password
+  -PostEX_Name string
+        File Post-Ex activities will spawn and inject into (Use the number):
+        [1] WerFault.exe
+        [2] WWAHost.exe
+        [3] choice.exe
+        [4] bootcfg.exe
+        [5] w32tm.exe
+        [6] expand.exe
+        [7] fsutil.exe
+        [8] gpupdate.exe
+        [9] gpresult.exe
+        [10] logman.exe
+        [11] mcbuilder.exe
+        [12] mtstocom.exe
+        [13] pcaui.exe
+        [14] powercfg.exe
+        [15] svchost.exe
+  -Profile string
+        HTTP GET/POST profile (Use the number):
+        [1] Windowsupdate
+        [2] Slack
+        [3] Gotomeeting
+        [4] Outlook.Live
+        [5] Safebrowsing [Cloudfront Compatible]
+        [6] AzureEdge [AzureEdge Compatible]
+        [7] Field-Keyword [Cloudfront Compatible]
+        [8] Custom (Used with ProfilePath)
+  -ProfilePath string
+        Path of custom HTTP GET/POST profile...
+  -Sleep string
+        Initial beacon sleep time
+  -Stage string
+        Disable host staging (Default: False) (default "false")
+  -Syscall string
+        Defines the ability to use direct/indirect system calls instead of the standard Windows API functions calls:
+        [*] None
+        [*] Direct
+        [*] Indirect (default "None")
+  -TasksDnsProxyMaxSize string
+        The maximum size (in bytes) of proxy data to transfer via the DNS communication channel at a check in
+  -TasksMaxSize string
+        The maximum size (in bytes) of task(s) and proxy data that can be transferred through a communication channel at a check in
+  -TasksProxyMaxSize string
+        The maximum size (in bytes) of proxy data to transfer via the communication channel at a check in
+  -ThreadSpoof
+        Sets post-ex DLLs to spawn threads with a spoofed start address. These are generated randomly (default true)
+  -RdllUseDriploading
+        Enable driploading for RDLL stage (gradually loads beacon in smaller chunks to evade memory scanners) (default true)
+  -RdllDriploadDelay string
+        Delay in milliseconds between loading chunks for RDLL driploading (default: random 100-200ms)
+  -UseDriploading
+        Enable driploading for process injection (gradually writes payload in smaller chunks to evade EDR) (default true)
+  -DriploadDelay string
+        Delay in milliseconds between writing chunks for process injection driploading (default: random 100-200ms)
+  -CopyPEHeader
+        Copy PE Header to match cloned DLL characteristics (default false)
+  -EafBypass
+        Enable Export Address Filtering (EAF) bypass (default false)
+  -RdllLoader string
+        Rdll Loader Options:
+        [*] PrependLoader (default)
+        [*] StompLoader (Older method)
+  -RdllUseSyscalls
+        Use Syscalls for Rdll operations (default false)
+  -SmartInject
+        Enable Smart Inject - uses embedded function pointer hints to bootstrap without walking kernel32 EAT (default false)
+  -SleepMask
+        Enable Sleep Mask - obfuscates beacon in memory while sleeping (default true)
+  -TransformObfuscate string
+        Transform obfuscate options (comma-separated list):
+        [*] lznt1
+        [*] rc4 "64"
+        [*] xor "32"
+        [*] base64
+        Example: "lznt1,rc4 \"64\",xor \"32\",base64"
+  -CheckinDelay string
+        Delay in milliseconds before Beacon's initial check-in (CS 4.13+ - breaks event correlation on reflective load)
+  -ClientMaxPostPostSize string
+        Maximum size in bytes of POST body (CS 4.13+ - bypass DLP solutions)
+  -ClientMaxPostGetSize string
+        Maximum size in bytes of chunked data when posting via a GET header (CS 4.13+ - bypass DLP solutions)
+  -Uri string
+        The number URIs a profile for beacons to choose from
+  -Useragent string
+        UserAgent string for the beacon to use (Leave blank to randomly select one):
+        [*] Win10Chrome
+        [*] Win10Edge
+        [*] Win10IE
+        [*] Win10Firefox
+        [*] Win10
+        [*] Win6.3
+        [*] Linux
+        [*] Mac
+  -Yaml string
+        Path to the Yaml config file</code></pre></div>
 <aside class="cta-code" data-cta="code" data-content="sourcepoint" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Este comando es una pieza. Entender el contexto, el riesgo y la remediación es lo que convierte una prueba en un trabajo profesional.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=sourcepoint&utm_content=bloque-2" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
-<blockquote><p>Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.</p></blockquote>
-<h2 id="se-puede-usar-en-termux">¿Se puede usar en Termux?</h2>
-<p>Esta herramienta está pensada para Windows, .NET o entornos de Active Directory. No se instala de forma nativa en Termux; úsala desde una máquina virtual, un contenedor o un laboratorio con Windows/Linux completo.</p>
-<h2 id="buenas-practicas-y-etica">Buenas prácticas y ética</h2>
-<p>Usa SourcePoint únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.</p>
+<h2 id="compatibilidad-y-requisitos">Compatibilidad y requisitos</h2>
+<ul>
+<li><strong>Lenguaje principal:</strong> Go</li>
+<li><strong>Última actualización del repositorio:</strong> 2026-09-29</li>
+<li><strong>Estrellas en GitHub:</strong> 1.227</li>
+<li><strong>Termux:</strong> no</li>
+</ul>
+<p><strong>Requiere Windows o un entorno Windows.</strong> Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.</p>
+<h2 id="etica-y-alcance">Ética y alcance</h2>
+<p>Usa SourcePoint únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.</p>
 <h2 id="referencias">Referencias</h2>
 <ul>
-<li>Repositorio: https://github.com/Tylous/SourcePoint</li>
+<li>Repositorio oficial: https://github.com/Tylous/SourcePoint</li>
 <li>Toolkit de origen: Red Teaming Toolkit</li>
 </ul>
         </div>
@@ -184,7 +363,7 @@ cd sourcepoint
     </article>
 
     <aside class="article-side">
-        <nav class="toc" aria-label="En esta página"><p class="toc-title">En esta página</p><ol><li class="toc-l2"><a href="#que-es-sourcepoint">Qué es SourcePoint</a></li><li class="toc-l2"><a href="#objetivo-y-funcion">Objetivo y función</a></li><li class="toc-l2"><a href="#instalacion">Instalación</a></li><li class="toc-l2"><a href="#uso-basico">Uso básico</a></li><li class="toc-l2"><a href="#se-puede-usar-en-termux">¿Se puede usar en Termux?</a></li><li class="toc-l2"><a href="#buenas-practicas-y-etica">Buenas prácticas y ética</a></li><li class="toc-l2"><a href="#referencias">Referencias</a></li></ol></nav>
+        <nav class="toc" aria-label="En esta página"><p class="toc-title">En esta página</p><ol><li class="toc-l2"><a href="#que-es-sourcepoint">Qué es SourcePoint</a></li><li class="toc-l2"><a href="#para-que-sirve">Para qué sirve</a></li><li class="toc-l2"><a href="#instalacion">Instalación</a></li><li class="toc-l2"><a href="#uso-basico">Uso básico</a></li><li class="toc-l2"><a href="#compatibilidad-y-requisitos">Compatibilidad y requisitos</a></li><li class="toc-l2"><a href="#etica-y-alcance">Ética y alcance</a></li><li class="toc-l2"><a href="#referencias">Referencias</a></li></ol></nav>
 
         <aside class="sidebar-card sidebar-academy"><span class="sidebar-kicker">Curso de Python 3 de 0 a Master</span><h2>Ordena lo que ya practicas</h2><p>19 módulos, proyectos reales y acceso de por vida. La ruta completa para pasar de copiar comandos a tomar decisiones.</p><ul class="sidebar-list"><li><i class="fas fa-check" aria-hidden="true"></i> Python desde cero</li><li><i class="fas fa-check" aria-hidden="true"></i> Proyectos y certificado</li><li><i class="fas fa-check" aria-hidden="true"></i> Comunidad en Telegram</li></ul><a href="/academia/?utm_source=contenido&utm_medium=sidebar&utm_campaign=sourcepoint&utm_content=repositorio" class="btn btn-primary btn-sm">Ver el temario</a><span class="sidebar-note">Pago seguro con Hotmart</span></aside>
 

@@ -1,11 +1,11 @@
 ---
-title: "TTPForge: The TTPForge is a Framework created to facilitate the development, automation, a"
+title: "TTPForge: simula al adversario para medir tus defensas"
 slug: "ttpforge"
-summary: "The TTPForge is a Framework created to facilitate the development, automation, and execution of Tactics, Techniques, and Procedures (TTPs)."
+summary: "TTPForge: herramienta de seguridad ofensiva para operaciones de red team."
 category: "ciberseguridad"
 level: "Intermedio"
-reading: 6
-tags: ['miscellaneous', 'adversary-emulation', 'red-team']
+reading: 7
+tags: ["recursos-y-automatización", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,104 +13,56 @@ order: 999
 
 ## Qué es TTPForge
 
-TTPForge es una herramienta de seguridad ofensiva / red team. The TTPForge is a Framework created to facilitate the development, automation, and execution of Tactics, Techniques, and Procedures (TTPs).
+**TTPForge** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. En un ejercicio de red team, esta herramienta aporta capacidad operativa en una fase concreta del ataque y ayuda a medir la madurez defensiva.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: The TTPForge is a Framework created to facilitate the development, automation, and execution of Tactics, Techniques, and Procedures (TTPs).
 
-- **Repositorio oficial:** [https://github.com/facebookincubator/TTPForge](https://github.com/facebookincubator/TTPForge)
-- **Sección del toolkit:** Miscellaneous → Adversary Emulation
+## Para qué sirve
 
-## Objetivo y función
+TTPForge se utiliza en la fase de **recursos y automatización** (adversary emulation). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de TTPForge es the ttpforge is a framework created to facilitate the development, automation, and execution of tactics, techniques, and procedures (ttps).
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, permite al operador centrarse en la estrategia y en la interpretación de los resultados, no en repetir comandos.
 
 ## Instalación
 
-1. Get latest TTPForge release:
+```bash
+curl \
+https://raw.githubusercontent.com/facebookincubator/TTPForge/main/dl-rl.sh \
+| bash
+```
 
-   ```bash
-   curl \
-   https://raw.githubusercontent.com/facebookincubator/TTPForge/main/dl-rl.sh \
-   | bash
-   ```
+```bash
+export PATH=$HOME/.local/bin:$PATH
+```
 
-   At this point, the latest `ttpforge` release should be in
-   `$HOME/.local/bin/ttpforge` and subsequently, the `$USER`'s `$PATH`.
-
-   If running in a stripped down system, you can add TTPForge to your `$PATH`
-   with the following command:
-
-   ```bash
-   export PATH=$HOME/.local/bin:$PATH
-   ```
-
-1. Initialize TTPForge configuration
-
-   This command will place a configuration file at the default location
-   `~/.ttpforge/config.yaml` and configure the `examples` and `forgearmory` TTP
-   repositories:
-
-   ```bash
-   ttpforge init
-   ```
-
-1. List available TTP repositories (should show `examples` and `forgearmory`)
-
-   ```bash
-   ttpforge list repos
-   ```
-
-   The `examples` repository contains the TTPForge examples found in this
-   repository. The
-   [ForgeArmory](https://github.com/facebookincubator/ForgeArmory) repository
-   contains our arsenal of attacker TTPs powered by TTPForge.
-
-1. List available TTPs that you can run:
-
-   ```bash
-   ttpforge list ttps
-   ```
-
-1. Examine an example TTP:
-
-   ```bash
-   ttpforge show ttp examples//args/basic.yaml
-   ```
-
-1. Run the specified example:
-
-   ```bash
-   ttpforge run examples//args/basic.yaml \
-     --arg str_to_print=hello \
-     --arg run_second_step=true
-   ```
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
 ```bash
-# Clonar
-git clone https://github.com/facebookincubator/TTPForge
-cd ttpforge
-
-# Revisar ayuda
-./ttpforge --help 2>/dev/null || python3 -m ttpforge --help 2>/dev/null || true
+curl \
+https://raw.githubusercontent.com/facebookincubator/TTPForge/main/dl-rl.sh \
+| bash
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+```bash
+ttpforge init
+```
 
-## ¿Se puede usar en Termux?
+## Compatibilidad y requisitos
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+- **Lenguaje principal:** Go
+- **Última actualización del repositorio:** 2026-09-30
+- **Estrellas en GitHub:** 446
+- **Termux:** sí, con matices
 
-## Buenas prácticas y ética
+**Compatible con Termux (con matices).** Si el proyecto es Python, Go, Rust o Bash, puedes clonarlo en Termux e instalar sus dependencias. Algunas funciones que dependen de la red, del almacenamiento o de permisos del sistema pueden requerir un entorno Linux completo.
 
-Usa TTPForge únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+## Ética y alcance
+
+Usa TTPForge únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/facebookincubator/TTPForge
+- Repositorio oficial: https://github.com/facebookincubator/TTPForge
 - Toolkit de origen: Red Teaming Toolkit

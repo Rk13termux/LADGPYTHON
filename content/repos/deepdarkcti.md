@@ -1,11 +1,11 @@
 ---
-title: "deepdarkCTI: Collection of Cyber Threat Intelligence sources from the deep and dark web"
+title: "deepdarkCTI: la inteligencia que anticipa el siguiente ataque"
 slug: "deepdarkcti"
-summary: "Collection of Cyber Threat Intelligence sources from the deep and dark web"
+summary: "deepdarkCTI: herramienta de seguridad ofensiva para operaciones de red team."
 category: "ciberseguridad"
 level: "Intermedio"
-reading: 6
-tags: ['miscellaneous', 'threat-intelligence', 'red-team']
+reading: 7
+tags: ["recursos-y-automatización", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,52 +13,47 @@ order: 999
 
 ## Qué es deepdarkCTI
 
-deepdarkCTI es una herramienta de seguridad ofensiva / red team. Collection of Cyber Threat Intelligence sources from the deep and dark web
+**deepdarkCTI** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. En un ejercicio de red team, esta herramienta aporta capacidad operativa en una fase concreta del ataque y ayuda a medir la madurez defensiva.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: Collection of Cyber Threat Intelligence sources from the deep and dark web
 
-- **Repositorio oficial:** [https://github.com/fastfire/deepdarkCTI](https://github.com/fastfire/deepdarkCTI)
-- **Sección del toolkit:** Miscellaneous → Threat Intelligence
+## Para qué sirve
 
-## Objetivo y función
+deepdarkCTI se utiliza en la fase de **recursos y automatización** (threat intelligence). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de deepdarkCTI es collection of cyber threat intelligence sources from the deep and dark web.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, permite al operador centrarse en la estrategia y en la interpretación de los resultados, no en repetir comandos.
 
 ## Instalación
 
-Clona el repositorio y sigue las instrucciones del README oficial:
-
 ```bash
 git clone https://github.com/fastfire/deepdarkCTI
-cd deepdarkcti
+cd deepdarkCTI
 ```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
+Consulta la ayuda del proyecto tras la instalación:
 
 ```bash
-# Clonar
-git clone https://github.com/fastfire/deepdarkCTI
-cd deepdarkcti
-
-# Revisar ayuda
-./deepdarkcti --help 2>/dev/null || python3 -m deepdarkcti --help 2>/dev/null || true
+./deepdarkcti --help
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+## Compatibilidad y requisitos
 
-## ¿Se puede usar en Termux?
+- **Lenguaje principal:** no especificado
+- **Última actualización del repositorio:** 2026-11-01
+- **Estrellas en GitHub:** 7.449
+- **Termux:** sí, con matices
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+**Compatible con Termux (con matices).** Si el proyecto es Python, Go, Rust o Bash, puedes clonarlo en Termux e instalar sus dependencias. Algunas funciones que dependen de la red, del almacenamiento o de permisos del sistema pueden requerir un entorno Linux completo.
 
-## Buenas prácticas y ética
+## Ética y alcance
 
-Usa deepdarkCTI únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa deepdarkCTI únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/fastfire/deepdarkCTI
+- Repositorio oficial: https://github.com/fastfire/deepdarkCTI
 - Toolkit de origen: Red Teaming Toolkit

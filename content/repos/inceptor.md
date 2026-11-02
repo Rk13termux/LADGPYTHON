@@ -1,11 +1,11 @@
 ---
-title: "inceptor: Template-Driven AV/EDR Evasion Framework"
+title: "inceptor: la técnica para operar sin que el EDR lo detecte"
 slug: "inceptor"
-summary: "Template-Driven AV/EDR Evasion Framework"
+summary: "inceptor: evasión de EDR, antivirus y telemetría defensiva."
 category: "ciberseguridad"
 level: "Intermedio"
-reading: 6
-tags: ['initial-access', 'payload-development', 'red-team']
+reading: 7
+tags: ["acceso-inicial", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,26 +13,19 @@ order: 999
 
 ## Qué es inceptor
 
-inceptor es una herramienta de seguridad ofensiva / red team. Template-Driven AV/EDR Evasion Framework
+**inceptor** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. El acceso inicial es el momento más delicado de una intrusión: hay que conseguir una entrada sin activar las alertas y sin quemar infraestructura.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: Template-Driven AV/EDR Evasion Framework
 
-- **Repositorio oficial:** [https://github.com/klezVirus/inceptor](https://github.com/klezVirus/inceptor)
-- **Sección del toolkit:** Initial Access → Payload Development
+## Para qué sirve
 
-## Objetivo y función
+inceptor se utiliza en la fase de **acceso inicial** (payload development). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de inceptor es template-driven av/edr evasion framework.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
-Inceptor has been designed to work on Windows. The `update-config.py` utility can locate the required Microsoft binaries
-and update the configuration accordingly. It might be required to install Microsoft Build Tools, the Windows SDK,
-and Visual Studio, `update-config.py` will guide the user on how to install the required dependencies.
-
-```
+```bash
 git clone --recursive https://github.com/klezVirus/inceptor.git
 cd inceptor
 virtualenv venv
@@ -41,32 +34,43 @@ pip install -r requirements.txt
 cd inceptor
 python update-config.py
 ```
-<!-- installstop -->
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
 ```bash
-# Clonar
-git clone https://github.com/klezVirus/inceptor
-cd inceptor
+usage: inceptor.py [-h] [-hh] [-Z] {native,dotnet,powershell} ...
 
-# Revisar ayuda
-./inceptor --help 2>/dev/null || python3 -m inceptor --help 2>/dev/null || true
+inceptor: A Windows-based PE Packing framework designed to help 
+          Red Team Operators to bypass common AV and EDR solutions
+
+positional arguments:
+  {native,dotnet,powershell}
+    native              Native Binaries Generator
+    dotnet              .NET Binaries Generator
+    powershell          PowerShell Wrapper Scripts Generator
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -hh                   Show functional table
+  -Z, --check           Check file against ThreatCheck
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+## Compatibilidad y requisitos
 
-## ¿Se puede usar en Termux?
+- **Lenguaje principal:** Assembly
+- **Última actualización del repositorio:** 2023-11-03
+- **Estrellas en GitHub:** 1.836
+- **Termux:** no
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-## Buenas prácticas y ética
+## Ética y alcance
 
-Usa inceptor únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa inceptor únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/klezVirus/inceptor
+- Repositorio oficial: https://github.com/klezVirus/inceptor
 - Toolkit de origen: Red Teaming Toolkit

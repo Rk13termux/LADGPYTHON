@@ -1,11 +1,11 @@
 ---
-title: "cloud_enum: Multi-cloud OSINT tool. Enumerate public resources in AWS, Azure, and Google Clo"
+title: "cloud_enum: la puerta trasera que nadie revisa en la nube"
 slug: "cloud-enum"
-summary: "Multi-cloud OSINT tool. Enumerate public resources in AWS, Azure, and Google Cloud."
-category: "ciberseguridad"
+summary: "cloud_enum: enumeración y ataque de entornos cloud y Microsoft 365."
+category: "python"
 level: "Intermedio"
-reading: 6
-tags: ['reconnaissance', 'red-team']
+reading: 7
+tags: ["reconocimiento", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,52 +13,48 @@ order: 999
 
 ## Qué es cloud_enum
 
-cloud_enum es una herramienta de seguridad ofensiva / red team. Multi-cloud OSINT tool. Enumerate public resources in AWS, Azure, and Google Cloud.
+**cloud_enum** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. En un red team, el reconocimiento define el resto del engagement: cuanto mejor sea el mapa inicial, menos ruido y más precisión en las fases siguientes.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: Multi-cloud OSINT tool. Enumerate public resources in AWS, Azure, and Google Cloud.
 
-- **Repositorio oficial:** [https://github.com/initstring/cloud_enum](https://github.com/initstring/cloud_enum)
-- **Sección del toolkit:** Reconnaissance 
+## Para qué sirve
 
-## Objetivo y función
+cloud_enum se utiliza en la fase de **reconocimiento**. Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de cloud_enum es multi-cloud osint tool. enumerate public resources in aws, azure, and google cloud.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, permite al operador centrarse en la estrategia y en la interpretación de los resultados, no en repetir comandos.
 
 ## Instalación
 
-Clona el repositorio y sigue las instrucciones del README oficial:
-
-```bash
-git clone https://github.com/initstring/cloud_enum
-cd cloud_enum
+```sh
+uv tool install git+https://github.com/initstring/cloud_enum
 ```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
-```bash
-# Clonar
-git clone https://github.com/initstring/cloud_enum
-cd cloud-enum
-
-# Revisar ayuda
-./cloud_enum --help 2>/dev/null || python3 -m cloud_enum --help 2>/dev/null || true
+```sh
+uv run cloud_enum -k somecompany -k somecompany.io -k blockchaindoohickey
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+```sh
+uv run cloud_enum -k keyword -t 10
+```
 
-## ¿Se puede usar en Termux?
+## Compatibilidad y requisitos
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+- **Lenguaje principal:** Python
+- **Última actualización del repositorio:** 2026-10-04
+- **Estrellas en GitHub:** 2.158
+- **Termux:** sí, con matices
 
-## Buenas prácticas y ética
+**Compatible con Termux (con matices).** Si el proyecto es Python, Go, Rust o Bash, puedes clonarlo en Termux e instalar sus dependencias. Algunas funciones que dependen de la red, del almacenamiento o de permisos del sistema pueden requerir un entorno Linux completo.
 
-Usa cloud_enum únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+## Ética y alcance
+
+Usa cloud_enum únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/initstring/cloud_enum
+- Repositorio oficial: https://github.com/initstring/cloud_enum
 - Toolkit de origen: Red Teaming Toolkit

@@ -1,11 +1,11 @@
 ---
-title: "SharpUp: SharpUp is a C# port of various PowerUp functionality. Currently, only the most "
+title: "SharpUp: cómo convertir un acceso menor en control total"
 slug: "sharpup"
-summary: "SharpUp is a C# port of various PowerUp functionality. Currently, only the most common checks have been ported; no weaponization functions have yet been implemented."
+summary: "SharpUp: escalada de privilegios y abuso de configuraciones débiles."
 category: "ciberseguridad"
 level: "Avanzado"
-reading: 6
-tags: ['privilege-escalation', 'red-team']
+reading: 7
+tags: ["escalada-de-privilegios", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,22 +13,28 @@ order: 999
 
 ## Qué es SharpUp
 
-SharpUp es una herramienta de seguridad ofensiva / red team. SharpUp is a C# port of various PowerUp functionality. Currently, only the most common checks have been ported; no weaponization functions have yet been implemented.
+**SharpUp** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. La escalada de privilegios convierte un acceso limitado en control administrativo, y con él en la capacidad de tocar casi cualquier sistema.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: SharpUp is a C# port of various PowerUp functionality. Currently, only the most common checks have been ported; no weaponization functions have yet been implemented.
 
-- **Repositorio oficial:** [https://github.com/GhostPack/SharpUp](https://github.com/GhostPack/SharpUp)
-- **Sección del toolkit:** Privilege Escalation 
+## Para qué sirve
 
-## Objetivo y función
+SharpUp se utiliza en la fase de **escalada de privilegios**. Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de SharpUp es sharpup is a c# port of various powerup functionality. currently, only the most common checks have been ported; no weaponization functions have yet been implemented.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
+```bash
+git clone https://github.com/GhostPack/SharpUp
+cd SharpUp
 ```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
+
+## Uso básico
+
+```bash
 SharpUp.exe [audit] [check1] [check2]...
 
     audit   - Specifies whether or not to enable audit mode. If enabled, SharpUp will run vulenrability checks
@@ -53,12 +59,12 @@ SharpUp.exe [audit] [check1] [check2]...
               - TokenPrivileges
               - UnattendedInstallFiles
               - UnquotedServicePath
-            
+
 
     Examples:
         SharpUp.exe audit
             -> Runs all vulnerability checks regardless of integrity level or group membership.
-        
+
         SharpUp.exe HijackablePaths
             -> Check only if there are modifiable paths in the user's %PATH% variable.
 
@@ -66,30 +72,20 @@ SharpUp.exe [audit] [check1] [check2]...
             -> Check only for modifiable paths in the user's %PATH% regardless of integrity level or group membership. 
 ```
 
-## Uso básico
+## Compatibilidad y requisitos
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
+- **Lenguaje principal:** C#
+- **Última actualización del repositorio:** 2024-02-14
+- **Estrellas en GitHub:** 1.549
+- **Termux:** no
 
-```bash
-# Clonar
-git clone https://github.com/GhostPack/SharpUp
-cd sharpup
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-# Revisar ayuda
-./sharpup --help 2>/dev/null || python3 -m sharpup --help 2>/dev/null || true
-```
+## Ética y alcance
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
-
-## ¿Se puede usar en Termux?
-
-Esta herramienta está pensada para Windows, .NET o entornos de Active Directory. No se instala de forma nativa en Termux; úsala desde una máquina virtual, un contenedor o un laboratorio con Windows/Linux completo.
-
-## Buenas prácticas y ética
-
-Usa SharpUp únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa SharpUp únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/GhostPack/SharpUp
+- Repositorio oficial: https://github.com/GhostPack/SharpUp
 - Toolkit de origen: Red Teaming Toolkit

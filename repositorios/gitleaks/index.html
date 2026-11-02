@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#000000">
     <meta name="robots" content="index,follow">
-    <title>gitleaks: Gitleaks is a SAST tool for detecting hardcoded secrets like passwords, api keys | CHMODX</title>
-    <meta name="description" content="Gitleaks is a SAST tool for detecting hardcoded secrets like passwords, api keys, and tokens in git repos.">
+    <title>gitleaks: cómo se roban credenciales en un entorno real | CHMODX</title>
+    <meta name="description" content="gitleaks: extracción, spraying y reutilización de credenciales.">
     <link rel="canonical" href="https://chmodxcode.pro/repositorios/gitleaks/">
 
     <link rel="icon" type="image/png" href="/assets/logo.png">
@@ -14,13 +14,13 @@
 
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="CHMODX">
-    <meta property="og:title" content="gitleaks: Gitleaks is a SAST tool for detecting hardcoded secrets like passwords, api keys | CHMODX">
-    <meta property="og:description" content="Gitleaks is a SAST tool for detecting hardcoded secrets like passwords, api keys, and tokens in git repos.">
+    <meta property="og:title" content="gitleaks: cómo se roban credenciales en un entorno real | CHMODX">
+    <meta property="og:description" content="gitleaks: extracción, spraying y reutilización de credenciales.">
     <meta property="og:url" content="https://chmodxcode.pro/repositorios/gitleaks/">
     <meta property="og:image" content="https://chmodxcode.pro/assets/logo.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="gitleaks: Gitleaks is a SAST tool for detecting hardcoded secrets like passwords, api keys | CHMODX">
-    <meta name="twitter:description" content="Gitleaks is a SAST tool for detecting hardcoded secrets like passwords, api keys, and tokens in git repos.">
+    <meta name="twitter:title" content="gitleaks: cómo se roban credenciales en un entorno real | CHMODX">
+    <meta name="twitter:description" content="gitleaks: extracción, spraying y reutilización de credenciales.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,8 +34,8 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareSourceCode",
-  "name": "gitleaks: Gitleaks is a SAST tool for detecting hardcoded secrets like passwords, api keys",
-  "description": "Gitleaks is a SAST tool for detecting hardcoded secrets like passwords, api keys, and tokens in git repos.",
+  "name": "gitleaks: cómo se roban credenciales en un entorno real",
+  "description": "gitleaks: extracción, spraying y reutilización de credenciales.",
   "dateModified": "2026-11-01",
   "inLanguage": "es",
   "url": "https://chmodxcode.pro/repositorios/gitleaks/",
@@ -102,15 +102,15 @@
         <span aria-hidden="true">/</span>
         <a href="/repositorios/">Repositorios</a>
         <span aria-hidden="true">/</span>
-        <span aria-current="page">gitleaks: Gitleaks is a SAST tool for detecting hardcod…</span>
+        <span aria-current="page">gitleaks: cómo se roban credenciales en un entorno real</span>
     </nav>
 </div>
 
 <header class="article-hero repo-hero">
     <div class="container">
         <span class="badge badge-ciberseguridad"><i class="fas fa-shield-halved" aria-hidden="true"></i> Ciberseguridad</span>
-        <h1 class="article-title">gitleaks: Gitleaks is a SAST tool for detecting hardcoded secrets like passwords, api keys</h1>
-        <p class="article-summary">Gitleaks is a SAST tool for detecting hardcoded secrets like passwords, api keys, and tokens in git repos.</p>
+        <h1 class="article-title">gitleaks: cómo se roban credenciales en un entorno real</h1>
+        <p class="article-summary">gitleaks: extracción, spraying y reutilización de credenciales.</p>
 
         <dl class="repo-meta">
             <div><dt>Dificultad</dt><dd>Intermedio</dd></div>
@@ -127,7 +127,7 @@
         </div>
 
         <div class="tag-list">
-            <span class="tag">reconnaissance</span><span class="tag">red-team</span>
+            <span class="tag">reconocimiento</span><span class="tag">red-team</span><span class="tag">ciberseguridad</span>
         </div>
     </div>
 </header>
@@ -138,34 +138,70 @@
 
         <div class="article-body">
             <h2 id="que-es-gitleaks">Qué es gitleaks</h2>
-<p>gitleaks es una herramienta de seguridad ofensiva / red team. Gitleaks is a SAST tool for detecting hardcoded secrets like passwords, api keys, and tokens in git repos.</p>
-<p>Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.</p>
-<ul>
-<li><strong>Repositorio oficial:</strong> <a href="https://github.com/zricethezav/gitleaks">https://github.com/zricethezav/gitleaks</a></li>
-<li><strong>Sección del toolkit:</strong> Reconnaissance </li>
-</ul>
-<h2 id="objetivo-y-funcion">Objetivo y función</h2>
-<p>El objetivo principal de gitleaks es gitleaks is a sast tool for detecting hardcoded secrets like passwords, api keys, and tokens in git repos.</p>
-<p>En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.</p>
+<p><strong>gitleaks</strong> es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. En un red team, el reconocimiento define el resto del engagement: cuanto mejor sea el mapa inicial, menos ruido y más precisión en las fases siguientes.</p>
+<blockquote><p>Descripción oficial: Gitleaks is a SAST tool for detecting hardcoded secrets like passwords, api keys, and tokens in git repos.</p></blockquote>
+<h2 id="para-que-sirve">Para qué sirve</h2>
+<p>gitleaks se utiliza en la fase de <strong>reconocimiento</strong>. Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.</p>
+<p>En la práctica, permite al operador centrarse en la estrategia y en la interpretación de los resultados, no en repetir comandos.</p>
 <h2 id="instalacion">Instalación</h2>
-<p>Gitleaks can be installed using Homebrew, Docker, or Go. Gitleaks is also available in binary form for many popular platforms and OS types on the <a href="https://github.com/gitleaks/gitleaks/releases">releases page</a>. In addition, Gitleaks can be implemented as a pre-commit hook directly in your repo or as a GitHub action using <a href="https://github.com/gitleaks/gitleaks-action">Gitleaks-Action</a>.</p>
-<h2 id="uso-basico">Uso básico</h2>
-<p>Consulta el README oficial para la sintaxis exacta. Un flujo típico:</p>
-<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash"># Clonar
-git clone https://github.com/zricethezav/gitleaks
-cd gitleaks
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash"># MacOS
+brew install gitleaks
 
-# Revisar ayuda
-./gitleaks --help 2&gt;/dev/null || python3 -m gitleaks --help 2&gt;/dev/null || true</code></pre></div>
+# Docker (DockerHub)
+docker pull zricethezav/gitleaks:latest
+docker run -v ${path_to_host_folder_to_scan}:/path zricethezav/gitleaks:latest [COMMAND] [OPTIONS] [SOURCE_PATH]
+
+# Docker (ghcr.io)
+docker pull ghcr.io/gitleaks/gitleaks:latest
+docker run -v ${path_to_host_folder_to_scan}:/path ghcr.io/gitleaks/gitleaks:latest [COMMAND] [OPTIONS] [SOURCE_PATH]
+
+# From Source (make sure `go` is installed)
+git clone https://github.com/gitleaks/gitleaks.git
+cd gitleaks
+make build</code></pre></div>
 <aside class="cta-code" data-cta="code" data-content="gitleaks" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Practicar comandos sueltos no te prepara para una auditoría. En el Curso de Python 3 de 0 a Master trabajas alcance, evidencia y reporte con método.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=gitleaks&utm_content=bloque-1" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
-<blockquote><p>Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.</p></blockquote>
-<h2 id="se-puede-usar-en-termux">¿Se puede usar en Termux?</h2>
-<p>Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.</p>
-<h2 id="buenas-practicas-y-etica">Buenas prácticas y ética</h2>
-<p>Usa gitleaks únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.</p>
+<blockquote><p>Revisa el README oficial para dependencias específicas, versiones y notas de compilación.</p></blockquote>
+<h2 id="uso-basico">Uso básico</h2>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">➜  ~/code(master) gitleaks git -v
+
+    ○
+    │╲
+    │ ○
+    ○ ░
+    ░    gitleaks
+
+
+Finding:     "export BUNDLE_ENTERPRISE__CONTRIBSYS__COM=cafebabe:deadbeef",
+Secret:      cafebabe:deadbeef
+RuleID:      sidekiq-secret
+Entropy:     2.609850
+File:        cmd/generate/config/rules/sidekiq.go
+Line:        23
+Commit:      cd5226711335c68be1e720b318b7bc3135a30eb2
+Author:      John
+Email:       john@users.noreply.github.com
+Date:        2022-08-03T12:31:40Z
+Fingerprint: cd5226711335c68be1e720b318b7bc3135a30eb2:cmd/generate/config/rules/sidekiq.go:sidekiq-secret:23</code></pre></div>
+<aside class="cta-code" data-cta="code" data-content="gitleaks" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Este comando es una pieza. Entender el contexto, el riesgo y la remediación es lo que convierte una prueba en un trabajo profesional.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=gitleaks&utm_content=bloque-2" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.24.2
+    hooks:
+      - id: gitleaks</code></pre></div>
+<aside class="cta-code" data-cta="code" data-content="gitleaks" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> La diferencia entre un hallazgo y un informe útil está en el criterio. En el Curso de Python 3 de 0 a Master entrenas ese criterio con laboratorios guiados.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=gitleaks&utm_content=bloque-3" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
+<h2 id="compatibilidad-y-requisitos">Compatibilidad y requisitos</h2>
+<ul>
+<li><strong>Lenguaje principal:</strong> Go</li>
+<li><strong>Última actualización del repositorio:</strong> 2026-10-28</li>
+<li><strong>Estrellas en GitHub:</strong> 30.575</li>
+<li><strong>Termux:</strong> sí, con matices</li>
+</ul>
+<p><strong>Compatible con Termux (con matices).</strong> Si el proyecto es Python, Go, Rust o Bash, puedes clonarlo en Termux e instalar sus dependencias. Algunas funciones que dependen de la red, del almacenamiento o de permisos del sistema pueden requerir un entorno Linux completo.</p>
+<h2 id="etica-y-alcance">Ética y alcance</h2>
+<p>Usa gitleaks únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.</p>
 <h2 id="referencias">Referencias</h2>
 <ul>
-<li>Repositorio: https://github.com/zricethezav/gitleaks</li>
+<li>Repositorio oficial: https://github.com/zricethezav/gitleaks</li>
 <li>Toolkit de origen: Red Teaming Toolkit</li>
 </ul>
         </div>
@@ -181,7 +217,7 @@ cd gitleaks
     </article>
 
     <aside class="article-side">
-        <nav class="toc" aria-label="En esta página"><p class="toc-title">En esta página</p><ol><li class="toc-l2"><a href="#que-es-gitleaks">Qué es gitleaks</a></li><li class="toc-l2"><a href="#objetivo-y-funcion">Objetivo y función</a></li><li class="toc-l2"><a href="#instalacion">Instalación</a></li><li class="toc-l2"><a href="#uso-basico">Uso básico</a></li><li class="toc-l2"><a href="#se-puede-usar-en-termux">¿Se puede usar en Termux?</a></li><li class="toc-l2"><a href="#buenas-practicas-y-etica">Buenas prácticas y ética</a></li><li class="toc-l2"><a href="#referencias">Referencias</a></li></ol></nav>
+        <nav class="toc" aria-label="En esta página"><p class="toc-title">En esta página</p><ol><li class="toc-l2"><a href="#que-es-gitleaks">Qué es gitleaks</a></li><li class="toc-l2"><a href="#para-que-sirve">Para qué sirve</a></li><li class="toc-l2"><a href="#instalacion">Instalación</a></li><li class="toc-l2"><a href="#uso-basico">Uso básico</a></li><li class="toc-l2"><a href="#compatibilidad-y-requisitos">Compatibilidad y requisitos</a></li><li class="toc-l2"><a href="#etica-y-alcance">Ética y alcance</a></li><li class="toc-l2"><a href="#referencias">Referencias</a></li></ol></nav>
 
         <aside class="sidebar-card sidebar-academy"><span class="sidebar-kicker">Curso de Python 3 de 0 a Master</span><h2>Ordena lo que ya practicas</h2><p>19 módulos, proyectos reales y acceso de por vida. La ruta completa para pasar de copiar comandos a tomar decisiones.</p><ul class="sidebar-list"><li><i class="fas fa-check" aria-hidden="true"></i> Python desde cero</li><li><i class="fas fa-check" aria-hidden="true"></i> Proyectos y certificado</li><li><i class="fas fa-check" aria-hidden="true"></i> Comunidad en Telegram</li></ul><a href="/academia/?utm_source=contenido&utm_medium=sidebar&utm_campaign=gitleaks&utm_content=repositorio" class="btn btn-primary btn-sm">Ver el temario</a><span class="sidebar-note">Pago seguro con Hotmart</span></aside>
 

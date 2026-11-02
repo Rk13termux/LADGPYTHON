@@ -1,11 +1,11 @@
 ---
-title: "StandIn: StandIn is a small AD post-compromise toolkit. StandIn came about because recent"
+title: "StandIn: la radiografía del entorno comprometido"
 slug: "standin"
-summary: "StandIn is a small AD post-compromise toolkit. StandIn came about because recently at xforcered we needed a .NET native solution to perform resource based constrained delegation."
+summary: "StandIn: conciencia situacional para entender el entorno comprometido."
 category: "ciberseguridad"
 level: "Intermedio"
-reading: 6
-tags: ['situational-awareness', 'domain-situational-awareness', 'red-team']
+reading: 7
+tags: ["conciencia-situacional", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,48 +13,79 @@ order: 999
 
 ## Qué es StandIn
 
-StandIn es una herramienta de seguridad ofensiva / red team. StandIn is a small AD post-compromise toolkit. StandIn came about because recently at xforcered we needed a .NET native solution to perform resource based constrained delegation.
+**StandIn** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. La conciencia situacional permite al operador entender el entorno antes de moverse: procesos, defensas, usuarios, shares y configuraciones.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: StandIn is a small AD post-compromise toolkit. StandIn came about because recently at xforcered we needed a .NET native solution to perform resource based constrained delegation.
 
-- **Repositorio oficial:** [https://github.com/FuzzySecurity/StandIn](https://github.com/FuzzySecurity/StandIn)
-- **Sección del toolkit:** Situational Awareness → Domain Situational Awareness
+## Para qué sirve
 
-## Objetivo y función
+StandIn se utiliza en la fase de **conciencia situacional** (domain situational awareness). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de StandIn es standin is a small ad post-compromise toolkit. standin came about because recently at xforcered we needed a .net native solution to perform resource based constrained delegation.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
-StandIn.exe --adcs --filter Kingsport --clientauth --add
-StandIn.exe --adcs --filter Kingsport --clientauth --remove --domain redhook --user RFludd --pass Cl4vi$Alchemi4e
+```bash
+C:\> StandIn.exe --computer M-1337-b33f --make
+
+[?] Using DC    : m-w16-dc01.main.redhook.local
+    |_ Domain   : main.redhook.local
+    |_ DN       : CN=M-1337-b33f,CN=Computers,DC=main,DC=redhook,DC=local
+    |_ Password : MlCGkaacS5SRUOt
+
+[+] Machine account added to AD..
+```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
 ```bash
-# Clonar
-git clone https://github.com/FuzzySecurity/StandIn
-cd standin
+C:\> StandIn.exe --sid user001
 
-# Revisar ayuda
-./standin --help 2>/dev/null || python3 -m standin --help 2>/dev/null || true
+[?] Using DC : m-w16-dc01.main.redhook.local
+[?] Object   : CN=user 001
+    Path     : LDAP://CN=user 001,CN=Users,DC=redhook,DC=local
+
+[+] User     : REDHOOK.LOCAL\user001
+    SID      : S-1-5-21-315358687-3711474269-2098994107-1105
+
+C:\> StandIn.exe --sid S-1-5-21-315358687-3711474269-2098994107-1105
+
+[?] Using DC : m-w16-dc01.main.redhook.local
+[?] Object   : CN=user 001
+    Path     : LDAP://CN=user 001,CN=Users,DC=redhook,DC=local
+
+[+] User     : REDHOOK.LOCAL\user001
+    SID      : S-1-5-21-315358687-3711474269-2098994107-1105
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+```bash
+C:\> StandIn.exe --asrep
 
-## ¿Se puede usar en Termux?
+[?] Using DC : m-w16-dc01.main.redhook.local
 
-Esta herramienta está pensada para Windows, .NET o entornos de Active Directory. No se instala de forma nativa en Termux; úsala desde una máquina virtual, un contenedor o un laboratorio con Windows/Linux completo.
+[?] Found 1 object(s) that do not require Kerberos preauthentication..
 
-## Buenas prácticas y ética
+[*] SamAccountName           : user005
+    DistinguishedName        : CN=User 005,OU=Users,OU=OCCULT,DC=main,DC=redhook,DC=local
+    userAccountControl       : NORMAL_ACCOUNT, DONT_EXPIRE_PASSWD, DONT_REQUIRE_PREAUTH
+```
 
-Usa StandIn únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+## Compatibilidad y requisitos
+
+- **Lenguaje principal:** C#
+- **Última actualización del repositorio:** 2023-12-02
+- **Estrellas en GitHub:** 878
+- **Termux:** no
+
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
+
+## Ética y alcance
+
+Usa StandIn únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/FuzzySecurity/StandIn
+- Repositorio oficial: https://github.com/FuzzySecurity/StandIn
 - Toolkit de origen: Red Teaming Toolkit

@@ -1,11 +1,11 @@
 ---
-title: "S3Scanner: Scan for open S3 buckets and dump the contents"
+title: "S3Scanner: reconocimiento profundo sin disparar alarmas"
 slug: "s3scanner"
-summary: "Scan for open S3 buckets and dump the contents"
+summary: "S3Scanner: reconocimiento para descubrir activos, puertos y servicios expuestos."
 category: "ciberseguridad"
 level: "Intermedio"
-reading: 6
-tags: ['reconnaissance', 'red-team']
+reading: 7
+tags: ["reconocimiento", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,22 +13,31 @@ order: 999
 
 ## Qué es S3Scanner
 
-S3Scanner es una herramienta de seguridad ofensiva / red team. Scan for open S3 buckets and dump the contents
+**S3Scanner** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. En un red team, el reconocimiento define el resto del engagement: cuanto mejor sea el mapa inicial, menos ruido y más precisión en las fases siguientes.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: Scan for open S3 buckets and dump the contents
 
-- **Repositorio oficial:** [https://github.com/sa7mon/S3Scanner](https://github.com/sa7mon/S3Scanner)
-- **Sección del toolkit:** Reconnaissance 
+## Para qué sirve
 
-## Objetivo y función
+S3Scanner se utiliza en la fase de **reconocimiento**. Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de S3Scanner es scan for open s3 buckets and dump the contents.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, permite al operador centrarse en la estrategia y en la interpretación de los resultados, no en repetir comandos.
 
 ## Instalación
 
+```shell
+s3scanner -bucket-file names.txt -enumerate
 ```
+
+```shell
+s3scanner -provider gcp -db -bucket my-bucket -enumerate
+```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
+
+## Uso básico
+
+```bash
 INPUT: (1 required)
   -bucket        string  Name of bucket to check.
   -bucket-file   string  File of bucket names to check.
@@ -50,30 +59,20 @@ DEBUG:
 If config file is required these locations will be searched for config.yml: "." "/etc/s3scanner/" "$HOME/.s3scanner/"
 ```
 
-## Uso básico
+## Compatibilidad y requisitos
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
+- **Lenguaje principal:** Go
+- **Última actualización del repositorio:** 2026-08-03
+- **Estrellas en GitHub:** 3.179
+- **Termux:** sí, con matices
 
-```bash
-# Clonar
-git clone https://github.com/sa7mon/S3Scanner
-cd s3scanner
+**Compatible con Termux (con matices).** Si el proyecto es Python, Go, Rust o Bash, puedes clonarlo en Termux e instalar sus dependencias. Algunas funciones que dependen de la red, del almacenamiento o de permisos del sistema pueden requerir un entorno Linux completo.
 
-# Revisar ayuda
-./s3scanner --help 2>/dev/null || python3 -m s3scanner --help 2>/dev/null || true
-```
+## Ética y alcance
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
-
-## ¿Se puede usar en Termux?
-
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
-
-## Buenas prácticas y ética
-
-Usa S3Scanner únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa S3Scanner únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/sa7mon/S3Scanner
+- Repositorio oficial: https://github.com/sa7mon/S3Scanner
 - Toolkit de origen: Red Teaming Toolkit

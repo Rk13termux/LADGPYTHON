@@ -1,11 +1,11 @@
 ---
-title: "APTSimulator: A Windows Batch script that uses a set of tools and output files to make a syste"
+title: "APTSimulator: simula al adversario para medir tus defensas"
 slug: "aptsimulator"
-summary: "A Windows Batch script that uses a set of tools and output files to make a system look as if it was compromised."
+summary: "APTSimulator: herramienta de seguridad ofensiva para operaciones de red team."
 category: "ciberseguridad"
 level: "Intermedio"
-reading: 6
-tags: ['miscellaneous', 'adversary-emulation', 'red-team']
+reading: 7
+tags: ["recursos-y-automatización", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,50 +13,45 @@ order: 999
 
 ## Qué es APTSimulator
 
-APTSimulator es una herramienta de seguridad ofensiva / red team. A Windows Batch script that uses a set of tools and output files to make a system look as if it was compromised.
+**APTSimulator** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. En un ejercicio de red team, esta herramienta aporta capacidad operativa en una fase concreta del ataque y ayuda a medir la madurez defensiva.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: A Windows Batch script that uses a set of tools and output files to make a system look as if it was compromised.
 
-- **Repositorio oficial:** [https://github.com/NextronSystems/APTSimulator](https://github.com/NextronSystems/APTSimulator)
-- **Sección del toolkit:** Miscellaneous → Adversary Emulation
+## Para qué sirve
 
-## Objetivo y función
+APTSimulator se utiliza en la fase de **recursos y automatización** (adversary emulation). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de APTSimulator es a windows batch script that uses a set of tools and output files to make a system look as if it was compromised.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
-1. Download the latest release from the "release" section
-2. Extract the package on a demo system (Password: apt)
-3. Start a cmd.exe as Administrator
-4. Navigate to the extracted program folder and run APTSimulator.bat
+```bash
+git clone https://github.com/NextronSystems/APTSimulator
+cd APTSimulator
+```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
-```bash
-# Clonar
-git clone https://github.com/NextronSystems/APTSimulator
-cd aptsimulator
-
-# Revisar ayuda
-./aptsimulator --help 2>/dev/null || python3 -m aptsimulator --help 2>/dev/null || true
+```batch
+APTSimulator.bat -b
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+## Compatibilidad y requisitos
 
-## ¿Se puede usar en Termux?
+- **Lenguaje principal:** Batchfile
+- **Última actualización del repositorio:** 2025-09-23
+- **Estrellas en GitHub:** 2.786
+- **Termux:** no
 
-Esta herramienta está pensada para Windows, .NET o entornos de Active Directory. No se instala de forma nativa en Termux; úsala desde una máquina virtual, un contenedor o un laboratorio con Windows/Linux completo.
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-## Buenas prácticas y ética
+## Ética y alcance
 
-Usa APTSimulator únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa APTSimulator únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/NextronSystems/APTSimulator
+- Repositorio oficial: https://github.com/NextronSystems/APTSimulator
 - Toolkit de origen: Red Teaming Toolkit

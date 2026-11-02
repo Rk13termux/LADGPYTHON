@@ -1,11 +1,11 @@
 ---
-title: "EDRs: This repo contains information about EDRs that can be useful during red team exe"
+title: "EDRs: la técnica para operar sin que el EDR lo detecte"
 slug: "edrs"
-summary: "This repo contains information about EDRs that can be useful during red team exercise."
+summary: "EDRs: evasión de EDR, antivirus y telemetría defensiva."
 category: "ciberseguridad"
 level: "Intermedio"
-reading: 6
-tags: ['miscellaneous', 'red-team-scripts', 'red-team']
+reading: 7
+tags: ["recursos-y-automatización", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,52 +13,47 @@ order: 999
 
 ## Qué es EDRs
 
-EDRs es una herramienta de seguridad ofensiva / red team. This repo contains information about EDRs that can be useful during red team exercise.
+**EDRs** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. En un ejercicio de red team, esta herramienta aporta capacidad operativa en una fase concreta del ataque y ayuda a medir la madurez defensiva.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: This repo contains information about EDRs that can be useful during red team exercise.
 
-- **Repositorio oficial:** [https://github.com/Mr-Un1k0d3r/EDRs](https://github.com/Mr-Un1k0d3r/EDRs)
-- **Sección del toolkit:** Miscellaneous → Red Team Scripts
+## Para qué sirve
 
-## Objetivo y función
+EDRs se utiliza en la fase de **recursos y automatización** (red team scripts). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de EDRs es this repo contains information about edrs that can be useful during red team exercise.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
-Clona el repositorio y sigue las instrucciones del README oficial:
-
 ```bash
 git clone https://github.com/Mr-Un1k0d3r/EDRs
-cd edrs
+cd EDRs
 ```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
+Consulta la ayuda del proyecto tras la instalación:
 
 ```bash
-# Clonar
-git clone https://github.com/Mr-Un1k0d3r/EDRs
-cd edrs
-
-# Revisar ayuda
-./edrs --help 2>/dev/null || python3 -m edrs --help 2>/dev/null || true
+./edrs --help
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+## Compatibilidad y requisitos
 
-## ¿Se puede usar en Termux?
+- **Lenguaje principal:** C
+- **Última actualización del repositorio:** 2026-04-03
+- **Estrellas en GitHub:** 2.211
+- **Termux:** no
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-## Buenas prácticas y ética
+## Ética y alcance
 
-Usa EDRs únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa EDRs únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/Mr-Un1k0d3r/EDRs
+- Repositorio oficial: https://github.com/Mr-Un1k0d3r/EDRs
 - Toolkit de origen: Red Teaming Toolkit

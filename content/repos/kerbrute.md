@@ -1,11 +1,11 @@
 ---
-title: "kerbrute: A tool to quickly bruteforce and enumerate valid Active Directory accounts throu"
+title: "kerbrute: el ticket que abre todo un dominio"
 slug: "kerbrute"
-summary: "A tool to quickly bruteforce and enumerate valid Active Directory accounts through Kerberos Pre-Authentication"
+summary: "kerbrute: abuso de Kerberos y tickets para comprometer Active Directory."
 category: "ciberseguridad"
-level: "Intermedio"
-reading: 6
-tags: ['lateral-movement', 'red-team']
+level: "Avanzado"
+reading: 7
+tags: ["movimiento-lateral", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,41 +13,54 @@ order: 999
 
 ## Qué es kerbrute
 
-kerbrute es una herramienta de seguridad ofensiva / red team. A tool to quickly bruteforce and enumerate valid Active Directory accounts through Kerberos Pre-Authentication
+**kerbrute** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. El movimiento lateral permite pasar de un host a otro usando credenciales, servicios y confianza interna, hasta alcanzar los objetivos.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: A tool to quickly bruteforce and enumerate valid Active Directory accounts through Kerberos Pre-Authentication
 
-- **Repositorio oficial:** [https://github.com/ropnop/kerbrute](https://github.com/ropnop/kerbrute)
-- **Sección del toolkit:** Lateral Movement 
+## Para qué sirve
 
-## Objetivo y función
+kerbrute se utiliza en la fase de **movimiento lateral**. Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de kerbrute es a tool to quickly bruteforce and enumerate valid active directory accounts through kerberos pre-authentication.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
-Kerbrute has three main commands:
- * **bruteuser** - Bruteforce a single user's password from a wordlist
- * **bruteforce** - Read username:password combos from a file or stdin and test them
- * **passwordspray** - Test a single password against a list of users
- * **userenum** - Enumerate valid domain usernames via Kerberos
-
-A domain (`-d`) or a domain controller (`--dc`) must be specified. If a Domain Controller is not given the KDC will be looked up via DNS.
-
-By default, Kerbrute is multithreaded and uses 10 threads. This can be changed with the `-t` option.
-
-Output is logged to stdout, but a log file can be specified with `-o`.
-
-By default, failures are not logged, but that can be changed with `-v`.
-
-Lastly, Kerbrute has a `--safe` option. When this option is enabled, if an account comes back as locked out, it will abort all threads to stop locking out any other accounts.
-
-The `help` command can be used for more information
-
+```bash
+go get github.com/ropnop/kerbrute
 ```
-$ ./kerbrute -h
+
+```bash
+make help
+help:            Show this help.
+windows:  Make Windows x86 and x64 Binaries
+linux:  Make Linux x86 and x64 Binaries
+mac:  Make Darwin (Mac) x86 and x64 Binaries
+clean:  Delete any binaries
+all:  Make Windows, Linux and Mac x86/x64 Binaries
+
+make all
+Done.
+Building for windows amd64..
+Building for windows 386..
+Done.
+Building for linux amd64...
+Building for linux 386...
+Done.
+Building for mac amd64...
+Building for mac 386...
+Done.
+
+ls dist/
+kerbrute_darwin_386        kerbrute_linux_386         kerbrute_windows_386.exe
+kerbrute_darwin_amd64      kerbrute_linux_amd64       kerbrute_windows_amd64.exe
+```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
+
+## Uso básico
+
+```bash
+./kerbrute -h
 
     __             __               __
    / /_____  _____/ /_  _______  __/ /____
@@ -59,34 +72,48 @@ Version: dev (bc1d606) - 11/15/20 - Ronnie Flathers @ropnop
 
 This tool is designed to assist in quickly bruteforcing valid Active Directory accounts through Kerberos Pre-Authentication.
 It is designed to be used on an internal Windows domain with access to one of the Domain Controllers.
-Warning: failed Kerberos Pre-Auth cou
-...
+Warning: failed Kerberos Pre-Auth counts as a failed login and WILL lock out accounts
 
+Usage:
+  kerbrute [command]
 
-## Uso básico
+Available Commands:
+  bruteforce    Bruteforce username:password combos, from a file or stdin
+  bruteuser     Bruteforce a single user's password from a wordlist
+  help          Help about any command
+  passwordspray Test a single password against a list of users
+  userenum      Enumerate valid domain usernames via Kerberos
+  version       Display version info and quit
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
+Flags:
+      --dc string          The location of the Domain Controller (KDC) to target. If blank, will lookup via DNS
+      --delay int          Delay in millisecond between each attempt. Will always use single thread if set
+  -d, --domain string      The full domain to use (e.g. contoso.com)
+      --downgrade          Force downgraded encryption type (arcfour-hmac-md5)
+      --hash-file string   File to save AS-REP hashes to (if any captured), otherwise just logged
+  -h, --help               help for kerbrute
+  -o, --output string      File to write logs to. Optional.
+      --safe               Safe mode. Will abort if any user comes back as locked out. Default: FALSE
+  -t, --threads int        Threads to use (default 10)
+  -v, --verbose            Log failures and errors
 
-```bash
-# Clonar
-git clone https://github.com/ropnop/kerbrute
-cd kerbrute
-
-# Revisar ayuda
-./kerbrute --help 2>/dev/null || python3 -m kerbrute --help 2>/dev/null || true
+Use "kerbrute [command] --help" for more information about a command.
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+## Compatibilidad y requisitos
 
-## ¿Se puede usar en Termux?
+- **Lenguaje principal:** Go
+- **Última actualización del repositorio:** 2024-08-20
+- **Estrellas en GitHub:** 3.483
+- **Termux:** no
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-## Buenas prácticas y ética
+## Ética y alcance
 
-Usa kerbrute únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa kerbrute únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/ropnop/kerbrute
+- Repositorio oficial: https://github.com/ropnop/kerbrute
 - Toolkit de origen: Red Teaming Toolkit

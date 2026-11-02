@@ -1,11 +1,11 @@
 ---
-title: "SharpDPAPI: SharpDPAPI is a C# port of some DPAPI functionality from @gentilkiwi's Mimikatz "
+title: "SharpDPAPI: las llaves del reino, a un comando de distancia"
 slug: "sharpdpapi"
-summary: "SharpDPAPI is a C# port of some DPAPI functionality from @gentilkiwi's Mimikatz project."
+summary: "SharpDPAPI: extracción y abuso de credenciales en entornos Windows y AD."
 category: "ciberseguridad"
 level: "Avanzado"
-reading: 6
-tags: ['credential-dumping', 'red-team']
+reading: 7
+tags: ["volcado-de-credenciales", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,81 +13,47 @@ order: 999
 
 ## Qué es SharpDPAPI
 
-SharpDPAPI es una herramienta de seguridad ofensiva / red team. SharpDPAPI is a C# port of some DPAPI functionality from @gentilkiwi's Mimikatz project.
+**SharpDPAPI** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. Las credenciales son el activo más valioso de una red. Obtenerlas permite pivotar, escalar y persistir sin explotar nuevas vulnerabilidades.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: SharpDPAPI is a C# port of some DPAPI functionality from @gentilkiwi's Mimikatz project.
 
-- **Repositorio oficial:** [https://github.com/GhostPack/SharpDPAPI](https://github.com/GhostPack/SharpDPAPI)
-- **Sección del toolkit:** Credential Dumping 
+## Para qué sirve
 
-## Objetivo y función
+SharpDPAPI se utiliza en la fase de **volcado de credenciales**. Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de SharpDPAPI es sharpdpapi is a c# port of some dpapi functionality from @gentilkiwi's mimikatz project.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
-__                 _   _       _ ___
-     (_  |_   _. ._ ._  | \ |_) /\  |_) |
-     __) | | (_| |  |_) |_/ |  /--\ |  _|_
-                    |
-      v1.20.0
+```bash
+git clone https://github.com/GhostPack/SharpDPAPI
+cd SharpDPAPI
+```
 
-    Retrieve a domain controller's DPAPI backup key, optionally specifying a DC and output file:
-
-      SharpDPAPI backupkey [/nowrap] [/server:SERVER.domain] [/file:key.pvk]
-
-
-    The *search* comand will search for potential DPAPI blobs in the registry, files, folders, and base64 blobs:
-
-        search /type:registry [/path:HKLM\path\to\key] [/showErrors]
-        search /type:folder /path:C:\path\to\folder [/maxBytes:<numOfBytes>] [/showErrors]
-        search /type:file /path:C:\path\to\file [/maxBytes:<numOfBytes>]
-        search /type:base64 [/base:<base64 string>]
-
-
-    Machine/SYSTEM Triage:
-
-        machinemasterkeys       -   triage all reachable machine masterkey files (elevates to SYSTEM to retrieve the DPAPI_SYSTEM LSA secret)
-        machinecredentials      -   use 'machinemasterkeys' and then triage machine Credential files
-        machinevaults           -   use 'machinemasterkeys' and then triage machine Vaults
-        machinetriage           -   run the 'machinecredentials' and 'machinevaults' commands
-
-
-    User Triage:
-
-        Arguments for the 'masterkeys' command:
-
-            /target:FILE/folder     -   triage a specific masterkey, or a folder full of masterkeys (otherwise triage local masterkeys)
-            /pvk:BASE64...          -   use a base64'ed DPAPI domain private key file to first decrypt
-...
-
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
+Consulta la ayuda del proyecto tras la instalación:
 
 ```bash
-# Clonar
-git clone https://github.com/GhostPack/SharpDPAPI
-cd sharpdpapi
-
-# Revisar ayuda
-./sharpdpapi --help 2>/dev/null || python3 -m sharpdpapi --help 2>/dev/null || true
+./sharpdpapi --help
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+## Compatibilidad y requisitos
 
-## ¿Se puede usar en Termux?
+- **Lenguaje principal:** C#
+- **Última actualización del repositorio:** 2024-06-27
+- **Estrellas en GitHub:** 1.460
+- **Termux:** no
 
-Esta herramienta está pensada para Windows, .NET o entornos de Active Directory. No se instala de forma nativa en Termux; úsala desde una máquina virtual, un contenedor o un laboratorio con Windows/Linux completo.
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-## Buenas prácticas y ética
+## Ética y alcance
 
-Usa SharpDPAPI únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa SharpDPAPI únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/GhostPack/SharpDPAPI
+- Repositorio oficial: https://github.com/GhostPack/SharpDPAPI
 - Toolkit de origen: Red Teaming Toolkit

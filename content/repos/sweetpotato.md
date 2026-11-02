@@ -1,11 +1,11 @@
 ---
-title: "SweetPotato: A collection of various native Windows privilege escalation techniques from serv"
+title: "SweetPotato: la escalada que rompe el modelo de permisos"
 slug: "sweetpotato"
-summary: "A collection of various native Windows privilege escalation techniques from service accounts to SYSTEM"
+summary: "SweetPotato: escalada de privilegios y abuso de configuraciones débiles."
 category: "ciberseguridad"
 level: "Avanzado"
-reading: 6
-tags: ['privilege-escalation', 'red-team']
+reading: 7
+tags: ["escalada-de-privilegios", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,52 +13,58 @@ order: 999
 
 ## Qué es SweetPotato
 
-SweetPotato es una herramienta de seguridad ofensiva / red team. A collection of various native Windows privilege escalation techniques from service accounts to SYSTEM
+**SweetPotato** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. La escalada de privilegios convierte un acceso limitado en control administrativo, y con él en la capacidad de tocar casi cualquier sistema.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: A collection of various native Windows privilege escalation techniques from service accounts to SYSTEM
 
-- **Repositorio oficial:** [https://github.com/CCob/SweetPotato](https://github.com/CCob/SweetPotato)
-- **Sección del toolkit:** Privilege Escalation 
+## Para qué sirve
 
-## Objetivo y función
+SweetPotato se utiliza en la fase de **escalada de privilegios**. Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de SweetPotato es a collection of various native windows privilege escalation techniques from service accounts to system.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
-Clona el repositorio y sigue las instrucciones del README oficial:
-
 ```bash
 git clone https://github.com/CCob/SweetPotato
-cd sweetpotato
+cd SweetPotato
 ```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
 ```bash
-# Clonar
-git clone https://github.com/CCob/SweetPotato
-cd sweetpotato
-
-# Revisar ayuda
-./sweetpotato --help 2>/dev/null || python3 -m sweetpotato --help 2>/dev/null || true
+SweetPotato by @_EthicalChaos_
+  Orignal RottenPotato code and exploit by @foxglovesec
+  Weaponized JuciyPotato by @decoder_it and @Guitro along with BITS WinRM discovery
+  PrintSpoofer discovery and original exploit by @itm4n
+  EfsRpc built on EfsPotato by @zcgonvh and PetitPotam by @topotam
+  -c, --clsid=VALUE          CLSID (default BITS:
+                               4991D34B-80A1-4291-83B6-3328366B9097)
+  -m, --method=VALUE         Auto,User,Thread (default Auto)
+  -p, --prog=VALUE           Program to launch (default cmd.exe)
+  -a, --args=VALUE           Arguments for program (default null)
+  -e, --exploit=VALUE        Exploit mode
+                               [DCOM|WinRM|EfsRpc|PrintSpoofer(default)]
+  -l, --listenPort=VALUE     COM server listen port (default 6666)
+  -h, --help                 Display this help
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+## Compatibilidad y requisitos
 
-## ¿Se puede usar en Termux?
+- **Lenguaje principal:** C#
+- **Última actualización del repositorio:** 2024-09-04
+- **Estrellas en GitHub:** 1.845
+- **Termux:** no
 
-Esta herramienta está pensada para Windows, .NET o entornos de Active Directory. No se instala de forma nativa en Termux; úsala desde una máquina virtual, un contenedor o un laboratorio con Windows/Linux completo.
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-## Buenas prácticas y ética
+## Ética y alcance
 
-Usa SweetPotato únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa SweetPotato únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/CCob/SweetPotato
+- Repositorio oficial: https://github.com/CCob/SweetPotato
 - Toolkit de origen: Red Teaming Toolkit

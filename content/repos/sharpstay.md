@@ -1,11 +1,11 @@
 ---
-title: "SharpStay: .NET project for installing Persistence"
+title: "SharpStay: el ancla que mantiene el acceso tras el reinicio"
 slug: "sharpstay"
-summary: ".NET project for installing Persistence"
+summary: "SharpStay: persistencia para sobrevivir a reinicios y limpiezas."
 category: "ciberseguridad"
 level: "Intermedio"
-reading: 6
-tags: ['persistence', 'red-team']
+reading: 7
+tags: ["persistencia", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,52 +13,49 @@ order: 999
 
 ## Qué es SharpStay
 
-SharpStay es una herramienta de seguridad ofensiva / red team. .NET project for installing Persistence
+**SharpStay** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. La persistencia garantiza que el acceso sobreviva a reinicios, cierres de sesión y limpiezas parciales del equipo comprometido.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: .NET project for installing Persistence
 
-- **Repositorio oficial:** [https://github.com/0xthirteen/SharpStay](https://github.com/0xthirteen/SharpStay)
-- **Sección del toolkit:** Persistence 
+## Para qué sirve
 
-## Objetivo y función
+SharpStay se utiliza en la fase de **persistencia**. Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de SharpStay es .net project for installing persistence.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
-Clona el repositorio y sigue las instrucciones del README oficial:
-
 ```bash
 git clone https://github.com/0xthirteen/SharpStay
-cd sharpstay
+cd SharpStay
 ```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
 ```bash
-# Clonar
-git clone https://github.com/0xthirteen/SharpStay
-cd sharpstay
-
-# Revisar ayuda
-./sharpstay --help 2>/dev/null || python3 -m sharpstay --help 2>/dev/null || true
+Sharpstay.exe action=ElevatedRegistryKey keyname=Debug keypath=HKCU:Software\Microsoft\Windows\CurrentVersion\Run command="C:\Windows\temp\fun.exe"
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+```bash
+Sharpstay.exe action=UserRegistryKey keyname=Debug keypath=HKCU:Software\Microsoft\Windows\CurrentVersion\Run command="C:\Windows\temp\fun.exe"
+```
 
-## ¿Se puede usar en Termux?
+## Compatibilidad y requisitos
 
-Esta herramienta está pensada para Windows, .NET o entornos de Active Directory. No se instala de forma nativa en Termux; úsala desde una máquina virtual, un contenedor o un laboratorio con Windows/Linux completo.
+- **Lenguaje principal:** C#
+- **Última actualización del repositorio:** 2024-06-26
+- **Estrellas en GitHub:** 500
+- **Termux:** no
 
-## Buenas prácticas y ética
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-Usa SharpStay únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+## Ética y alcance
+
+Usa SharpStay únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/0xthirteen/SharpStay
+- Repositorio oficial: https://github.com/0xthirteen/SharpStay
 - Toolkit de origen: Red Teaming Toolkit

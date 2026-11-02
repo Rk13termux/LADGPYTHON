@@ -1,11 +1,11 @@
 ---
-title: "Nimhawk: A powerful, modular, lightweight and efficient command & control framework writt"
+title: "Nimhawk: el implante que responde aunque cambie la red"
 slug: "nimhawk"
-summary: "A powerful, modular, lightweight and efficient command & control framework written in Nim."
-category: "ciberseguridad"
+summary: "Nimhawk: framework de mando y control para mantener el acceso."
+category: "python"
 level: "Avanzado"
-reading: 6
-tags: ['command-and-control', 'remote-access-tools-rat', 'red-team']
+reading: 7
+tags: ["mando-y-control", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,50 +13,53 @@ order: 999
 
 ## Qué es Nimhawk
 
-Nimhawk es una herramienta de seguridad ofensiva / red team. A powerful, modular, lightweight and efficient command & control framework written in Nim.
+**Nimhawk** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. El C2 es el sistema nervioso de la operación: permite enviar tareas, recibir resultados y mantener el control aunque cambie la red.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: A powerful, modular, lightweight and efficient command & control framework written in Nim.
 
-- **Repositorio oficial:** [https://github.com/hdbreaker/Nimhawk](https://github.com/hdbreaker/Nimhawk)
-- **Sección del toolkit:** Command and Control → Remote Access Tools (RAT)
+## Para qué sirve
 
-## Objetivo y función
+Nimhawk se utiliza en la fase de **mando y control** (remote access tools (rat)). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de Nimhawk es a powerful, modular, lightweight and efficient command & control framework written in nim.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, permite al operador centrarse en la estrategia y en la interpretación de los resultados, no en repetir comandos.
 
 ## Instalación
 
-- [Introduction](#introduction)
-- [Key Features](#key-features)
-- [Quick Start Guide](#quick-start-guide)
-- [Basic Usage](#basic-usage)
+```bash
+# Clone the repository
+git clone https://github.com/hdbreaker/nimhawk
+cd nimhawk
+
+# Configure your environment
+cp config.toml.example config.toml
+```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
 ```bash
-# Clonar
-git clone https://github.com/hdbreaker/Nimhawk
-cd nimhawk
-
-# Revisar ayuda
-./nimhawk --help 2>/dev/null || python3 -m nimhawk --help 2>/dev/null || true
+python3 nimhawk.py server
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+```bash
+python3 nimhawk.py compile [exe|dll|raw|all] nim-debug
+```
 
-## ¿Se puede usar en Termux?
+## Compatibilidad y requisitos
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+- **Lenguaje principal:** Python
+- **Última actualización del repositorio:** 2025-11-03
+- **Estrellas en GitHub:** 229
+- **Termux:** sí, con matices
 
-## Buenas prácticas y ética
+**Compatible con Termux (con matices).** Si el proyecto es Python, Go, Rust o Bash, puedes clonarlo en Termux e instalar sus dependencias. Algunas funciones que dependen de la red, del almacenamiento o de permisos del sistema pueden requerir un entorno Linux completo.
 
-Usa Nimhawk únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+## Ética y alcance
+
+Usa Nimhawk únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/hdbreaker/Nimhawk
+- Repositorio oficial: https://github.com/hdbreaker/Nimhawk
 - Toolkit de origen: Red Teaming Toolkit

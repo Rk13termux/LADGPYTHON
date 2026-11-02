@@ -1,11 +1,11 @@
 ---
-title: "Mimikatz: Mimikatz is an open-source application that allows users to view and save authen"
+title: "Mimikatz: el ticket que abre todo un dominio"
 slug: "mimikatz"
-summary: "Mimikatz is an open-source application that allows users to view and save authentication credentials like Kerberos tickets."
+summary: "Mimikatz: abuso de Kerberos y tickets para comprometer Active Directory."
 category: "ciberseguridad"
 level: "Avanzado"
-reading: 6
-tags: ['credential-dumping', 'red-team']
+reading: 7
+tags: ["volcado-de-credenciales", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,50 +13,46 @@ order: 999
 
 ## Qué es Mimikatz
 
-Mimikatz es una herramienta de seguridad ofensiva / red team. Mimikatz is an open-source application that allows users to view and save authentication credentials like Kerberos tickets.
+**Mimikatz** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. Las credenciales son el activo más valioso de una red. Obtenerlas permite pivotar, escalar y persistir sin explotar nuevas vulnerabilidades.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: Mimikatz is an open-source application that allows users to view and save authentication credentials like Kerberos tickets.
 
-- **Repositorio oficial:** [https://github.com/gentilkiwi/mimikatz](https://github.com/gentilkiwi/mimikatz)
-- **Sección del toolkit:** Credential Dumping 
+## Para qué sirve
 
-## Objetivo y función
+Mimikatz se utiliza en la fase de **volcado de credenciales**. Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de Mimikatz es mimikatz is an open-source application that allows users to view and save authentication credentials like kerberos tickets.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
+```bash
+git clone https://github.com/gentilkiwi/mimikatz
+cd mimikatz
 ```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
+
+## Uso básico
+
+```bash
 log
 privilege::debug
 ```
 
-## Uso básico
+## Compatibilidad y requisitos
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
+- **Lenguaje principal:** C
+- **Última actualización del repositorio:** 2026-10-30
+- **Estrellas en GitHub:** 21.942
+- **Termux:** no
 
-```bash
-# Clonar
-git clone https://github.com/gentilkiwi/mimikatz
-cd mimikatz
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-# Revisar ayuda
-./mimikatz --help 2>/dev/null || python3 -m mimikatz --help 2>/dev/null || true
-```
+## Ética y alcance
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
-
-## ¿Se puede usar en Termux?
-
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
-
-## Buenas prácticas y ética
-
-Usa Mimikatz únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa Mimikatz únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/gentilkiwi/mimikatz
+- Repositorio oficial: https://github.com/gentilkiwi/mimikatz
 - Toolkit de origen: Red Teaming Toolkit

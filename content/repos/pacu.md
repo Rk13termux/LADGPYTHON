@@ -1,11 +1,11 @@
 ---
-title: "pacu: The AWS exploitation framework, designed for testing the security of Amazon Web "
+title: "pacu: la puerta trasera que nadie revisa en la nube"
 slug: "pacu"
-summary: "The AWS exploitation framework, designed for testing the security of Amazon Web Services environments."
-category: "ciberseguridad"
+summary: "pacu: enumeración y ataque de entornos cloud y Microsoft 365."
+category: "python"
 level: "Intermedio"
-reading: 6
-tags: ['miscellaneous', 'cloud', 'red-team']
+reading: 7
+tags: ["recursos-y-automatización", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,47 +13,48 @@ order: 999
 
 ## Qué es pacu
 
-pacu es una herramienta de seguridad ofensiva / red team. The AWS exploitation framework, designed for testing the security of Amazon Web Services environments.
+**pacu** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. En un ejercicio de red team, esta herramienta aporta capacidad operativa en una fase concreta del ataque y ayuda a medir la madurez defensiva.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: The AWS exploitation framework, designed for testing the security of Amazon Web Services environments.
 
-- **Repositorio oficial:** [https://github.com/RhinoSecurityLabs/pacu](https://github.com/RhinoSecurityLabs/pacu)
-- **Sección del toolkit:** Miscellaneous → Cloud
+## Para qué sirve
 
-## Objetivo y función
+pacu se utiliza en la fase de **recursos y automatización** (cloud). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de pacu es the aws exploitation framework, designed for testing the security of amazon web services environments.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, permite al operador centrarse en la estrategia y en la interpretación de los resultados, no en repetir comandos.
 
 ## Instalación
 
-Pacu is a fairly lightweight program, as it requires only [Python3.7+](https://www.python.org/downloads/) and pip3 to install a handful of Python libraries.
+```bash
+pip3 install -U pip
+pip3 install -U pacu
+pacu
+```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
+Consulta la ayuda del proyecto tras la instalación:
 
 ```bash
-# Clonar
-git clone https://github.com/RhinoSecurityLabs/pacu
-cd pacu
-
-# Revisar ayuda
-./pacu --help 2>/dev/null || python3 -m pacu --help 2>/dev/null || true
+./pacu --help
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+## Compatibilidad y requisitos
 
-## ¿Se puede usar en Termux?
+- **Lenguaje principal:** Python
+- **Última actualización del repositorio:** 2026-05-19
+- **Estrellas en GitHub:** 5.385
+- **Termux:** sí, con matices
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+**Compatible con Termux (con matices).** Si el proyecto es Python, Go, Rust o Bash, puedes clonarlo en Termux e instalar sus dependencias. Algunas funciones que dependen de la red, del almacenamiento o de permisos del sistema pueden requerir un entorno Linux completo.
 
-## Buenas prácticas y ética
+## Ética y alcance
 
-Usa pacu únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa pacu únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/RhinoSecurityLabs/pacu
+- Repositorio oficial: https://github.com/RhinoSecurityLabs/pacu
 - Toolkit de origen: Red Teaming Toolkit

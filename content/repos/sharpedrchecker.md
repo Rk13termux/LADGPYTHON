@@ -1,11 +1,11 @@
 ---
-title: "SharpEDRChecker: Checks running processes, process metadata, Dlls loaded into your current proces"
+title: "SharpEDRChecker: la técnica para operar sin que el EDR lo detecte"
 slug: "sharpedrchecker"
-summary: "Checks running processes, process metadata, Dlls loaded into your current process and the each DLLs metadata, common install directories, installed services and each service binaries metadata, installed drivers and each drivers metadata, all for the presence of known defensive products such as AV's, EDR's and logging tools."
+summary: "SharpEDRChecker: evasión de EDR, antivirus y telemetría defensiva."
 category: "ciberseguridad"
 level: "Intermedio"
-reading: 6
-tags: ['situational-awareness', 'host-situational-awareness', 'red-team']
+reading: 7
+tags: ["conciencia-situacional", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,51 +13,49 @@ order: 999
 
 ## Qué es SharpEDRChecker
 
-SharpEDRChecker es una herramienta de seguridad ofensiva / red team. Checks running processes, process metadata, Dlls loaded into your current process and the each DLLs metadata, common install directories, installed services and each service binaries metadata, installed drivers and each drivers metadata, all for the presence of known defensive products such as AV's, EDR's and logging tools.
+**SharpEDRChecker** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. La conciencia situacional permite al operador entender el entorno antes de moverse: procesos, defensas, usuarios, shares y configuraciones.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: Checks running processes, process metadata, Dlls loaded into your current process and the each DLLs metadata, common install directories, installed services and each service binaries metadata, installed drivers and each drivers metadata, all for the presence of known defensive products such as AV's, EDR's and logging tools.
 
-- **Repositorio oficial:** [https://github.com/PwnDexter/SharpEDRChecker](https://github.com/PwnDexter/SharpEDRChecker)
-- **Sección del toolkit:** Situational Awareness → Host Situational Awareness
+## Para qué sirve
 
-## Objetivo y función
+SharpEDRChecker se utiliza en la fase de **conciencia situacional** (host situational awareness). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de SharpEDRChecker es checks running processes, process metadata, dlls loaded into your current process and the each dlls metadata, common install directories, installed services and each service binaries metadata, installed drivers and each drivers metadata, all for the presence of known defensive products such as av's, edr's and logging tools.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
-Git clone the repo down and open the solution in Visual Studio then build the project or alternatively download the latest release from [here](https://github.com/PwnDexter/SharpEDRChecker/releases).
-
-```
+```bash
 git clone https://github.com/PwnDexter/SharpEDRChecker.git
 ```
 
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
+
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
 ```bash
-# Clonar
-git clone https://github.com/PwnDexter/SharpEDRChecker
-cd sharpedrchecker
-
-# Revisar ayuda
-./sharpedrchecker --help 2>/dev/null || python3 -m sharpedrchecker --help 2>/dev/null || true
+.\SharpEDRChecker.exe
+run-exe SharpEDRChecker.Program SharpEDRChecker
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+```bash
+sharpedrchecker
+```
 
-## ¿Se puede usar en Termux?
+## Compatibilidad y requisitos
 
-Esta herramienta está pensada para Windows, .NET o entornos de Active Directory. No se instala de forma nativa en Termux; úsala desde una máquina virtual, un contenedor o un laboratorio con Windows/Linux completo.
+- **Lenguaje principal:** C#
+- **Última actualización del repositorio:** 2026-02-24
+- **Estrellas en GitHub:** 761
+- **Termux:** no
 
-## Buenas prácticas y ética
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-Usa SharpEDRChecker únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+## Ética y alcance
+
+Usa SharpEDRChecker únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/PwnDexter/SharpEDRChecker
+- Repositorio oficial: https://github.com/PwnDexter/SharpEDRChecker
 - Toolkit de origen: Red Teaming Toolkit

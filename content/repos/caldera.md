@@ -1,11 +1,11 @@
 ---
-title: "Caldera: An automated adversary emulation system that performs post-compromise adversaria"
+title: "Caldera: simula al adversario para medir tus defensas"
 slug: "caldera"
-summary: "An automated adversary emulation system that performs post-compromise adversarial behavior within Windows Enterprise networks."
+summary: "Caldera: herramienta de seguridad ofensiva para operaciones de red team."
 category: "ciberseguridad"
 level: "Intermedio"
-reading: 6
-tags: ['miscellaneous', 'adversary-emulation', 'red-team']
+reading: 7
+tags: ["recursos-y-automatización", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,53 +13,56 @@ order: 999
 
 ## Qué es Caldera
 
-Caldera es una herramienta de seguridad ofensiva / red team. An automated adversary emulation system that performs post-compromise adversarial behavior within Windows Enterprise networks.
+**Caldera** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. En un ejercicio de red team, esta herramienta aporta capacidad operativa en una fase concreta del ataque y ayuda a medir la madurez defensiva.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: An automated adversary emulation system that performs post-compromise adversarial behavior within Windows Enterprise networks.
 
-- **Repositorio oficial:** [https://github.com/mitre/caldera](https://github.com/mitre/caldera)
-- **Sección del toolkit:** Miscellaneous → Adversary Emulation
+## Para qué sirve
 
-## Objetivo y función
+Caldera se utiliza en la fase de **recursos y automatización** (adversary emulation). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de Caldera es an automated adversary emulation system that performs post-compromise adversarial behavior within windows enterprise networks.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
-These requirements are for the computer running the core framework:
+```bash
+git clone https://github.com/apache/caldera.git --recursive
+cd caldera
+pip3 install -r requirements.txt
+python3 server.py --insecure --build
+```
 
-* Any Linux or MacOS
-  * Python 3.10+ (with Pip3)
-* Recommended hardware to run on is 8GB+ RAM and 2+ CPUs
-* Recommended: [GoLang 1.24+](https://go.dev/doc/install) to dynamically compile GoLang-based agents.
-* NodeJS (v16+ recommended for v5 VueJS UI)
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
 ```bash
-# Clonar
-git clone https://github.com/mitre/caldera
-cd caldera
-
-# Revisar ayuda
-./caldera --help 2>/dev/null || python3 -m caldera --help 2>/dev/null || true
+python3 -m venv .calderavenv
+source .calderavenv/bin/activate
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+```sh
+# Find the container ID for your docker container running Caldera
+docker ps
 
-## ¿Se puede usar en Termux?
+# Stop the container
+docker stop <container ID>
+```
 
-Esta herramienta está pensada para Windows, .NET o entornos de Active Directory. No se instala de forma nativa en Termux; úsala desde una máquina virtual, un contenedor o un laboratorio con Windows/Linux completo.
+## Compatibilidad y requisitos
 
-## Buenas prácticas y ética
+- **Lenguaje principal:** Python
+- **Última actualización del repositorio:** 2026-10-12
+- **Estrellas en GitHub:** 7.483
+- **Termux:** no
 
-Usa Caldera únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
+
+## Ética y alcance
+
+Usa Caldera únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/mitre/caldera
+- Repositorio oficial: https://github.com/mitre/caldera
 - Toolkit de origen: Red Teaming Toolkit

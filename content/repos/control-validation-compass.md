@@ -1,11 +1,11 @@
 ---
-title: "Control Validation Compass: Threat modeling aide & purple team content repository, pointing security & intel"
+title: "Control Validation Compass: la herramienta que cambia las reglas del juego"
 slug: "control-validation-compass"
-summary: "Threat modeling aide & purple team content repository, pointing security & intelligence teams to 10,000+ publicly-accessible technical and policy controls and 2,100+ offensive security tests, aligned with nearly 600 common attacker techniques"
+summary: "Control Validation Compass: herramienta de seguridad ofensiva para operaciones de red team."
 category: "ciberseguridad"
 level: "Intermedio"
-reading: 6
-tags: ['miscellaneous', 'threat-informed-defense', 'red-team']
+reading: 7
+tags: ["recursos-y-automatización", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,52 +13,47 @@ order: 999
 
 ## Qué es Control Validation Compass
 
-Control Validation Compass es una herramienta de seguridad ofensiva / red team. Threat modeling aide & purple team content repository, pointing security & intelligence teams to 10,000+ publicly-accessible technical and policy controls and 2,100+ offensive security tests, aligned with nearly 600 common attacker techniques
+**Control Validation Compass** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. En un ejercicio de red team, esta herramienta aporta capacidad operativa en una fase concreta del ataque y ayuda a medir la madurez defensiva.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: Threat modeling aide & purple team content repository, pointing security & intelligence teams to 10,000+ publicly-accessible technical and policy controls and 2,100+ offensive security tests, aligned with nearly 600 common attacker techniques
 
-- **Repositorio oficial:** [https://controlcompass.github.io](https://controlcompass.github.io)
-- **Sección del toolkit:** Miscellaneous → Threat-informed Defense
+## Para qué sirve
 
-## Objetivo y función
+Control Validation Compass se utiliza en la fase de **recursos y automatización** (threat-informed defense). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de Control Validation Compass es threat modeling aide & purple team content repository, pointing security & intelligence teams to 10,000+ publicly-accessible technical and policy controls and 2,100+ offensive security tests, aligned with nearly 600 common attacker techniques.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, permite al operador centrarse en la estrategia y en la interpretación de los resultados, no en repetir comandos.
 
 ## Instalación
 
-Clona el repositorio y sigue las instrucciones del README oficial:
-
 ```bash
 git clone https://controlcompass.github.io
-cd control-validation-compass
+cd controlcompass.github.io
 ```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
+Consulta la ayuda del proyecto tras la instalación:
 
 ```bash
-# Clonar
-git clone https://controlcompass.github.io
-cd control-validation-compass
-
-# Revisar ayuda
-./control-validation-compass --help 2>/dev/null || python3 -m control_validation_compass --help 2>/dev/null || true
+./controlcompass.github.io --help
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+## Compatibilidad y requisitos
 
-## ¿Se puede usar en Termux?
+- **Lenguaje principal:** no especificado
+- **Última actualización del repositorio:** —
+- **Estrellas en GitHub:** —
+- **Termux:** sí, con matices
 
-Esta herramienta está pensada para Windows, .NET o entornos de Active Directory. No se instala de forma nativa en Termux; úsala desde una máquina virtual, un contenedor o un laboratorio con Windows/Linux completo.
+**Compatible con Termux (con matices).** Si el proyecto es Python, Go, Rust o Bash, puedes clonarlo en Termux e instalar sus dependencias. Algunas funciones que dependen de la red, del almacenamiento o de permisos del sistema pueden requerir un entorno Linux completo.
 
-## Buenas prácticas y ética
+## Ética y alcance
 
-Usa Control Validation Compass únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa Control Validation Compass únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://controlcompass.github.io
+- Repositorio oficial: https://controlcompass.github.io
 - Toolkit de origen: Red Teaming Toolkit

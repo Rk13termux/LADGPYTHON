@@ -1,11 +1,11 @@
 ---
-title: "EDRSilencer: A tool uses Windows Filtering Platform (WFP) to block Endpoint Detection and Res"
+title: "EDRSilencer: la técnica para operar sin que el EDR lo detecte"
 slug: "edrsilencer"
-summary: "A tool uses Windows Filtering Platform (WFP) to block Endpoint Detection and Response (EDR) agents from reporting security events to the server"
+summary: "EDRSilencer: evasión de EDR, antivirus y telemetría defensiva."
 category: "ciberseguridad"
 level: "Avanzado"
-reading: 6
-tags: ['defense-evasion', 'red-team']
+reading: 7
+tags: ["evasión-de-defensas", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,22 +13,27 @@ order: 999
 
 ## Qué es EDRSilencer
 
-EDRSilencer es una herramienta de seguridad ofensiva / red team. A tool uses Windows Filtering Platform (WFP) to block Endpoint Detection and Response (EDR) agents from reporting security events to the server
+**EDRSilencer** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. La evasión de defensas es una carrera constante: cada técnica busca reducir la telemetría, retrasar la detección o inutilizar controles.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: A tool uses Windows Filtering Platform (WFP) to block Endpoint Detection and Response (EDR) agents from reporting security events to the server
 
-- **Repositorio oficial:** [https://github.com/netero1010/EDRSilencer](https://github.com/netero1010/EDRSilencer)
-- **Sección del toolkit:** Defense Evasion 
+## Para qué sirve
 
-## Objetivo y función
+EDRSilencer se utiliza en la fase de **evasión de defensas**. Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de EDRSilencer es a tool uses windows filtering platform (wfp) to block endpoint detection and response (edr) agents from reporting security events to the server.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
+```bash
+x86_64-w64-mingw32-gcc EDRSilencer.c utils.c -o EDRSilencer.exe -lfwpuclnt
 ```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
+
+## Uso básico
+
+```bash
 Usage: EDRSilencer.exe <blockedr/block/unblockall/unblock>
 - Add WFP filters to block the IPv4 and IPv6 outbound traffic of all detected EDR processes:
   EDRSilencer.exe blockedr
@@ -43,30 +48,20 @@ Usage: EDRSilencer.exe <blockedr/block/unblockall/unblock>
   EDRSilencer.exe unblock <filter id>
 ```
 
-## Uso básico
+## Compatibilidad y requisitos
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
+- **Lenguaje principal:** C
+- **Última actualización del repositorio:** 2024-11-03
+- **Estrellas en GitHub:** 1.913
+- **Termux:** no
 
-```bash
-# Clonar
-git clone https://github.com/netero1010/EDRSilencer
-cd edrsilencer
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-# Revisar ayuda
-./edrsilencer --help 2>/dev/null || python3 -m edrsilencer --help 2>/dev/null || true
-```
+## Ética y alcance
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
-
-## ¿Se puede usar en Termux?
-
-Esta herramienta está pensada para Windows, .NET o entornos de Active Directory. No se instala de forma nativa en Termux; úsala desde una máquina virtual, un contenedor o un laboratorio con Windows/Linux completo.
-
-## Buenas prácticas y ética
-
-Usa EDRSilencer únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa EDRSilencer únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/netero1010/EDRSilencer
+- Repositorio oficial: https://github.com/netero1010/EDRSilencer
 - Toolkit de origen: Red Teaming Toolkit

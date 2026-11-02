@@ -1,11 +1,11 @@
 ---
-title: "frp: frp is a fast reverse proxy that allows you to expose a local server located beh"
+title: "frp: el túnel que atraviesa NAT y firewalls sin pedir permiso"
 slug: "frp"
-summary: "frp is a fast reverse proxy that allows you to expose a local server located behind a NAT or firewall to the Internet."
+summary: "frp: movimiento lateral y ejecución remota en redes Windows."
 category: "ciberseguridad"
-level: "Intermedio"
-reading: 6
-tags: ['lateral-movement', 'tunneling', 'red-team']
+level: "Avanzado"
+reading: 7
+tags: ["movimiento-lateral", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,53 +13,59 @@ order: 999
 
 ## Qué es frp
 
-frp es una herramienta de seguridad ofensiva / red team. frp is a fast reverse proxy that allows you to expose a local server located behind a NAT or firewall to the Internet.
+**frp** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. El movimiento lateral permite pasar de un host a otro usando credenciales, servicios y confianza interna, hasta alcanzar los objetivos.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: frp is a fast reverse proxy that allows you to expose a local server located behind a NAT or firewall to the Internet.
 
-- **Repositorio oficial:** [https://github.com/fatedier/frp](https://github.com/fatedier/frp)
-- **Sección del toolkit:** Lateral Movement → Tunneling
+## Para qué sirve
 
-## Objetivo y función
+frp se utiliza en la fase de **movimiento lateral** (tunneling). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de frp es frp is a fast reverse proxy that allows you to expose a local server located behind a nat or firewall to the internet.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, permite al operador centrarse en la estrategia y en la interpretación de los resultados, no en repetir comandos.
 
 ## Instalación
 
-To begin, download the latest program for your operating system and architecture from the [Release](https://github.com/fatedier/frp/releases) page.
+```bash
+git clone https://github.com/fatedier/frp
+cd frp
+```
 
-Next, place the `frps` binary and server configuration file on Server A, which has a public IP address.
-
-Finally, place the `frpc` binary and client configuration file on Server B, which is located on a LAN that cannot be directly accessed from the public internet.
-
-Some antiviruses improperly mark frpc as malware and delete it. This is due to frp being a networking tool capable of creating reverse proxies. Antiviruses sometimes flag reverse proxies due to their ability to bypass firewall port restrictions. If you are using antivirus, then you may need to whitelist/exclude frpc in your antivirus settings to avoid accidental quarantine/deletion. See [issue 3637](https://github.com/fatedier/frp/issues/3637) for more details.
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
 ```bash
-# Clonar
-git clone https://github.com/fatedier/frp
-cd frp
-
-# Revisar ayuda
-./frp --help 2>/dev/null || python3 -m frp --help 2>/dev/null || true
+# frps.toml
+bindPort = 7000
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+```bash
+# frpc.toml
+serverAddr = "x.x.x.x"
+serverPort = 7000
 
-## ¿Se puede usar en Termux?
+[[proxies]]
+name = "ssh"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 22
+remotePort = 6000
+```
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+## Compatibilidad y requisitos
 
-## Buenas prácticas y ética
+- **Lenguaje principal:** Go
+- **Última actualización del repositorio:** 2026-10-23
+- **Estrellas en GitHub:** 110.375
+- **Termux:** sí, con matices
 
-Usa frp únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+**Compatible con Termux (con matices).** Si el proyecto es Python, Go, Rust o Bash, puedes clonarlo en Termux e instalar sus dependencias. Algunas funciones que dependen de la red, del almacenamiento o de permisos del sistema pueden requerir un entorno Linux completo.
+
+## Ética y alcance
+
+Usa frp únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/fatedier/frp
+- Repositorio oficial: https://github.com/fatedier/frp
 - Toolkit de origen: Red Teaming Toolkit

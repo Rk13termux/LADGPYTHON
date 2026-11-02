@@ -1,11 +1,11 @@
 ---
-title: "SharpRDP: Remote Desktop Protocol Console Application for Authenticated Command Execution"
+title: "SharpRDP: de un equipo comprometido a todo el dominio"
 slug: "sharprdp"
-summary: "Remote Desktop Protocol Console Application for Authenticated Command Execution"
+summary: "SharpRDP: movimiento lateral y ejecución remota en redes Windows."
 category: "ciberseguridad"
-level: "Intermedio"
-reading: 6
-tags: ['lateral-movement', 'red-team']
+level: "Avanzado"
+reading: 7
+tags: ["movimiento-lateral", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,89 +13,51 @@ order: 999
 
 ## Qué es SharpRDP
 
-SharpRDP es una herramienta de seguridad ofensiva / red team. Remote Desktop Protocol Console Application for Authenticated Command Execution
+**SharpRDP** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. El movimiento lateral permite pasar de un host a otro usando credenciales, servicios y confianza interna, hasta alcanzar los objetivos.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: Remote Desktop Protocol Console Application for Authenticated Command Execution
 
-- **Repositorio oficial:** [https://github.com/0xthirteen/SharpRDP](https://github.com/0xthirteen/SharpRDP)
-- **Sección del toolkit:** Lateral Movement 
+## Para qué sirve
 
-## Objetivo y función
+SharpRDP se utiliza en la fase de **movimiento lateral**. Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de SharpRDP es remote desktop protocol console application for authenticated command execution.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
-```
-Regular RDP connection and execution
-  SharpRDP.exe computername=target.domain command="C:\Temp\file.exe" username=domain\user password=password
-```
-
-```
+```bash
 Exec program as child process of cmd or powershell
   SharpRDP.exe computername=target.domain command="C:\Temp\file.exe" username=domain\user password=password exec=cmd
 ```
 
-```
-Use restricted admin mode
-  SharpRDP.exe computername=target.domain command="C:\Temp\file.exe"
-```
-
-```
-Connect first host drives
-  SharpRDP.exe computername=domain.target command="\\tsclient\C\Temp\file.exe" username=domain\user password=password connectdrive=true
-```
-
-```
-Execute command elevated through Run Dialog - CURRENTLY BUGGED
-  SharpRDP.exe computername=domain.target command="C:\Temp\file.exe" username=domain\user password=password elevated=winr
-```
-
-```
-Execute command elevated through task manager
-  SharpRDP.exe computername=domain.target command="C:\Temp\file.exe\" username=domain\user password=password elevated=taskmgr
-```
-
-```
-Add Network Level Authentication
-  SharpRDP.exe computername=domain.target command="C:\Temp\file.exe\" username=domain\user password=password nla=true
-```
-
-```
-Ask to take over logon session
-  SharpRDP.exe computername=domain.target command="C:\Temp\file.exe\" username=domain\user password=password takeover=true
-```
-
-If restricted admin mode is enabled on the target do not specify any credentials and it will use the current user context. Can `PTH` or `make_token` in beacon or `runas /netonly` on a Windows syst
-...
-
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
 ```bash
-# Clonar
-git clone https://github.com/0xthirteen/SharpRDP
-cd sharprdp
-
-# Revisar ayuda
-./sharprdp --help 2>/dev/null || python3 -m sharprdp --help 2>/dev/null || true
+Regular RDP connection and execution
+  SharpRDP.exe computername=target.domain command="C:\Temp\file.exe" username=domain\user password=password
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+```bash
+Exec program as child process of cmd or powershell
+  SharpRDP.exe computername=target.domain command="C:\Temp\file.exe" username=domain\user password=password exec=cmd
+```
 
-## ¿Se puede usar en Termux?
+## Compatibilidad y requisitos
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+- **Lenguaje principal:** C#
+- **Última actualización del repositorio:** 2026-08-03
+- **Estrellas en GitHub:** 1.176
+- **Termux:** no
 
-## Buenas prácticas y ética
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-Usa SharpRDP únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+## Ética y alcance
+
+Usa SharpRDP únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/0xthirteen/SharpRDP
+- Repositorio oficial: https://github.com/0xthirteen/SharpRDP
 - Toolkit de origen: Red Teaming Toolkit

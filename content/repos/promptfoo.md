@@ -1,11 +1,11 @@
 ---
-title: "promptfoo: CLI and framework for evaluating, testing, and red-teaming LLM applications and "
+title: "promptfoo: cómo romper un modelo de IA antes de que lo haga un atacante"
 slug: "promptfoo"
-summary: "CLI and framework for evaluating, testing, and red-teaming LLM applications and prompts."
+summary: "promptfoo: pruebas de seguridad y red teaming sobre modelos de IA."
 category: "ciberseguridad"
 level: "Intermedio"
-reading: 6
-tags: ['miscellaneous', 'ai-red-teaming', 'red-team']
+reading: 7
+tags: ["recursos-y-automatización", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,52 +13,54 @@ order: 999
 
 ## Qué es promptfoo
 
-promptfoo es una herramienta de seguridad ofensiva / red team. CLI and framework for evaluating, testing, and red-teaming LLM applications and prompts.
+**promptfoo** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. En un ejercicio de red team, esta herramienta aporta capacidad operativa en una fase concreta del ataque y ayuda a medir la madurez defensiva.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: CLI and framework for evaluating, testing, and red-teaming LLM applications and prompts.
 
-- **Repositorio oficial:** [https://github.com/promptfoo/promptfoo](https://github.com/promptfoo/promptfoo)
-- **Sección del toolkit:** Miscellaneous → AI Red Teaming
+## Para qué sirve
 
-## Objetivo y función
+promptfoo se utiliza en la fase de **recursos y automatización** (ai red teaming). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de promptfoo es cli and framework for evaluating, testing, and red-teaming llm applications and prompts.
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, permite al operador centrarse en la estrategia y en la interpretación de los resultados, no en repetir comandos.
 
 ## Instalación
 
-Clona el repositorio y sigue las instrucciones del README oficial:
-
-```bash
-git clone https://github.com/promptfoo/promptfoo
-cd promptfoo
+```sh
+npm install -g promptfoo
+promptfoo init --example getting-started
 ```
+
+```sh
+export OPENAI_API_KEY=sk-abc123
+```
+
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-
-```bash
-# Clonar
-git clone https://github.com/promptfoo/promptfoo
-cd promptfoo
-
-# Revisar ayuda
-./promptfoo --help 2>/dev/null || python3 -m promptfoo --help 2>/dev/null || true
+```sh
+npm install -g promptfoo
+promptfoo init --example getting-started
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+```sh
+export OPENAI_API_KEY=sk-abc123
+```
 
-## ¿Se puede usar en Termux?
+## Compatibilidad y requisitos
 
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
+- **Lenguaje principal:** TypeScript
+- **Última actualización del repositorio:** 2026-11-01
+- **Estrellas en GitHub:** 26.704
+- **Termux:** sí, con matices
 
-## Buenas prácticas y ética
+**Compatible con Termux (con matices).** Si el proyecto es Python, Go, Rust o Bash, puedes clonarlo en Termux e instalar sus dependencias. Algunas funciones que dependen de la red, del almacenamiento o de permisos del sistema pueden requerir un entorno Linux completo.
 
-Usa promptfoo únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+## Ética y alcance
+
+Usa promptfoo únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/promptfoo/promptfoo
+- Repositorio oficial: https://github.com/promptfoo/promptfoo
 - Toolkit de origen: Red Teaming Toolkit

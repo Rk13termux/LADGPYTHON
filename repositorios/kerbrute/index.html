@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#000000">
     <meta name="robots" content="index,follow">
-    <title>kerbrute: A tool to quickly bruteforce and enumerate valid Active Directory accounts throu | CHMODX</title>
-    <meta name="description" content="A tool to quickly bruteforce and enumerate valid Active Directory accounts through Kerberos Pre-Authentication">
+    <title>kerbrute: el ticket que abre todo un dominio | CHMODX</title>
+    <meta name="description" content="kerbrute: abuso de Kerberos y tickets para comprometer Active Directory.">
     <link rel="canonical" href="https://chmodxcode.pro/repositorios/kerbrute/">
 
     <link rel="icon" type="image/png" href="/assets/logo.png">
@@ -14,13 +14,13 @@
 
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="CHMODX">
-    <meta property="og:title" content="kerbrute: A tool to quickly bruteforce and enumerate valid Active Directory accounts throu | CHMODX">
-    <meta property="og:description" content="A tool to quickly bruteforce and enumerate valid Active Directory accounts through Kerberos Pre-Authentication">
+    <meta property="og:title" content="kerbrute: el ticket que abre todo un dominio | CHMODX">
+    <meta property="og:description" content="kerbrute: abuso de Kerberos y tickets para comprometer Active Directory.">
     <meta property="og:url" content="https://chmodxcode.pro/repositorios/kerbrute/">
     <meta property="og:image" content="https://chmodxcode.pro/assets/logo.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="kerbrute: A tool to quickly bruteforce and enumerate valid Active Directory accounts throu | CHMODX">
-    <meta name="twitter:description" content="A tool to quickly bruteforce and enumerate valid Active Directory accounts through Kerberos Pre-Authentication">
+    <meta name="twitter:title" content="kerbrute: el ticket que abre todo un dominio | CHMODX">
+    <meta name="twitter:description" content="kerbrute: abuso de Kerberos y tickets para comprometer Active Directory.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,8 +34,8 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareSourceCode",
-  "name": "kerbrute: A tool to quickly bruteforce and enumerate valid Active Directory accounts throu",
-  "description": "A tool to quickly bruteforce and enumerate valid Active Directory accounts through Kerberos Pre-Authentication",
+  "name": "kerbrute: el ticket que abre todo un dominio",
+  "description": "kerbrute: abuso de Kerberos y tickets para comprometer Active Directory.",
   "dateModified": "2026-11-01",
   "inLanguage": "es",
   "url": "https://chmodxcode.pro/repositorios/kerbrute/",
@@ -102,15 +102,15 @@
         <span aria-hidden="true">/</span>
         <a href="/repositorios/">Repositorios</a>
         <span aria-hidden="true">/</span>
-        <span aria-current="page">kerbrute: A tool to quickly bruteforce and enumerate va…</span>
+        <span aria-current="page">kerbrute: el ticket que abre todo un dominio</span>
     </nav>
 </div>
 
 <header class="article-hero repo-hero">
     <div class="container">
         <span class="badge badge-ciberseguridad"><i class="fas fa-shield-halved" aria-hidden="true"></i> Ciberseguridad</span>
-        <h1 class="article-title">kerbrute: A tool to quickly bruteforce and enumerate valid Active Directory accounts throu</h1>
-        <p class="article-summary">A tool to quickly bruteforce and enumerate valid Active Directory accounts through Kerberos Pre-Authentication</p>
+        <h1 class="article-title">kerbrute: el ticket que abre todo un dominio</h1>
+        <p class="article-summary">kerbrute: abuso de Kerberos y tickets para comprometer Active Directory.</p>
 
         <dl class="repo-meta">
             <div><dt>Dificultad</dt><dd>Intermedio</dd></div>
@@ -127,7 +127,7 @@
         </div>
 
         <div class="tag-list">
-            <span class="tag">lateral-movement</span><span class="tag">red-team</span>
+            <span class="tag">movimiento-lateral</span><span class="tag">red-team</span><span class="tag">ciberseguridad</span>
         </div>
     </div>
 </header>
@@ -138,30 +138,40 @@
 
         <div class="article-body">
             <h2 id="que-es-kerbrute">Qué es kerbrute</h2>
-<p>kerbrute es una herramienta de seguridad ofensiva / red team. A tool to quickly bruteforce and enumerate valid Active Directory accounts through Kerberos Pre-Authentication</p>
-<p>Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.</p>
-<ul>
-<li><strong>Repositorio oficial:</strong> <a href="https://github.com/ropnop/kerbrute">https://github.com/ropnop/kerbrute</a></li>
-<li><strong>Sección del toolkit:</strong> Lateral Movement </li>
-</ul>
-<h2 id="objetivo-y-funcion">Objetivo y función</h2>
-<p>El objetivo principal de kerbrute es a tool to quickly bruteforce and enumerate valid active directory accounts through kerberos pre-authentication.</p>
-<p>En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.</p>
+<p><strong>kerbrute</strong> es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. El movimiento lateral permite pasar de un host a otro usando credenciales, servicios y confianza interna, hasta alcanzar los objetivos.</p>
+<blockquote><p>Descripción oficial: A tool to quickly bruteforce and enumerate valid Active Directory accounts through Kerberos Pre-Authentication</p></blockquote>
+<h2 id="para-que-sirve">Para qué sirve</h2>
+<p>kerbrute se utiliza en la fase de <strong>movimiento lateral</strong>. Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.</p>
+<p>En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.</p>
 <h2 id="instalacion">Instalación</h2>
-<p>Kerbrute has three main commands:</p>
-<ul>
-<li><strong>bruteuser</strong> - Bruteforce a single user's password from a wordlist</li>
-<li><strong>bruteforce</strong> - Read username:password combos from a file or stdin and test them</li>
-<li><strong>passwordspray</strong> - Test a single password against a list of users</li>
-<li><strong>userenum</strong> - Enumerate valid domain usernames via Kerberos</li>
-</ul>
-<p>A domain (<code>-d</code>) or a domain controller (<code>--dc</code>) must be specified. If a Domain Controller is not given the KDC will be looked up via DNS.</p>
-<p>By default, Kerbrute is multithreaded and uses 10 threads. This can be changed with the <code>-t</code> option.</p>
-<p>Output is logged to stdout, but a log file can be specified with <code>-o</code>.</p>
-<p>By default, failures are not logged, but that can be changed with <code>-v</code>.</p>
-<p>Lastly, Kerbrute has a <code>--safe</code> option. When this option is enabled, if an account comes back as locked out, it will abort all threads to stop locking out any other accounts.</p>
-<p>The <code>help</code> command can be used for more information</p>
-<div class="code-block" data-lang="clike"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">clike</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-clike">$ ./kerbrute -h
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">go get github.com/ropnop/kerbrute</code></pre></div>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">make help
+help:            Show this help.
+windows:  Make Windows x86 and x64 Binaries
+linux:  Make Linux x86 and x64 Binaries
+mac:  Make Darwin (Mac) x86 and x64 Binaries
+clean:  Delete any binaries
+all:  Make Windows, Linux and Mac x86/x64 Binaries
+
+make all
+Done.
+Building for windows amd64..
+Building for windows 386..
+Done.
+Building for linux amd64...
+Building for linux 386...
+Done.
+Building for mac amd64...
+Building for mac 386...
+Done.
+
+ls dist/
+kerbrute_darwin_386        kerbrute_linux_386         kerbrute_windows_386.exe
+kerbrute_darwin_amd64      kerbrute_linux_amd64       kerbrute_windows_amd64.exe</code></pre></div>
+<aside class="cta-code" data-cta="code" data-content="kerbrute" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Practicar comandos sueltos no te prepara para una auditoría. En el Curso de Python 3 de 0 a Master trabajas alcance, evidencia y reporte con método.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=kerbrute&utm_content=bloque-1" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
+<blockquote><p>Revisa el README oficial para dependencias específicas, versiones y notas de compilación.</p></blockquote>
+<h2 id="uso-basico">Uso básico</h2>
+<div class="code-block" data-lang="bash"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">bash</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-bash">./kerbrute -h
 
     __             __               __
    / /_____  _____/ /_  _______  __/ /____
@@ -173,36 +183,48 @@ Version: dev (bc1d606) - 11/15/20 - Ronnie Flathers @ropnop
 
 This tool is designed to assist in quickly bruteforcing valid Active Directory accounts through Kerberos Pre-Authentication.
 It is designed to be used on an internal Windows domain with access to one of the Domain Controllers.
-Warning: failed Kerberos Pre-Auth cou
-...
+Warning: failed Kerberos Pre-Auth counts as a failed login and WILL lock out accounts
 
+Usage:
+  kerbrute [command]
 
-## Uso básico
+Available Commands:
+  bruteforce    Bruteforce username:password combos, from a file or stdin
+  bruteuser     Bruteforce a single user's password from a wordlist
+  help          Help about any command
+  passwordspray Test a single password against a list of users
+  userenum      Enumerate valid domain usernames via Kerberos
+  version       Display version info and quit
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
-</code></pre></div>
-<aside class="cta-code" data-cta="code" data-content="kerbrute" data-lang="clike"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Practicar comandos sueltos no te prepara para una auditoría. En el Curso de Python 3 de 0 a Master trabajas alcance, evidencia y reporte con método.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=kerbrute&utm_content=bloque-1" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
-<h1 id="clonar">Clonar</h1>
-<p>git clone https://github.com/ropnop/kerbrute cd kerbrute</p>
-<h1 id="revisar-ayuda">Revisar ayuda</h1>
-<p>./kerbrute --help 2&gt;/dev/null || python3 -m kerbrute --help 2&gt;/dev/null || true</p>
-<div class="code-block" data-lang="clike"><div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">clike</span><button type="button" class="code-copy" data-copy-code><i class="far fa-copy" aria-hidden="true"></i> Copiar</button></div><pre class="line-numbers"><code class="language-clike">
-&gt; Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+Flags:
+      --dc string          The location of the Domain Controller (KDC) to target. If blank, will lookup via DNS
+      --delay int          Delay in millisecond between each attempt. Will always use single thread if set
+  -d, --domain string      The full domain to use (e.g. contoso.com)
+      --downgrade          Force downgraded encryption type (arcfour-hmac-md5)
+      --hash-file string   File to save AS-REP hashes to (if any captured), otherwise just logged
+  -h, --help               help for kerbrute
+  -o, --output string      File to write logs to. Optional.
+      --safe               Safe mode. Will abort if any user comes back as locked out. Default: FALSE
+  -t, --threads int        Threads to use (default 10)
+  -v, --verbose            Log failures and errors
 
-## ¿Se puede usar en Termux?
-
-Este repositorio puede instalarse en Termux si el dispositivo cumple los requisitos (Python/Go/Rust y dependencias). En Android, ejecuta los comandos dentro de Termux y verifica permisos de red/almacenamiento.
-
-## Buenas prácticas y ética
-
-Usa kerbrute únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
-
-## Referencias
-
-- Repositorio: https://github.com/ropnop/kerbrute
-- Toolkit de origen: Red Teaming Toolkit
-</code></pre></div>
-<aside class="cta-code" data-cta="code" data-content="kerbrute" data-lang="clike"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Este comando es una pieza. Entender el contexto, el riesgo y la remediación es lo que convierte una prueba en un trabajo profesional.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=kerbrute&utm_content=bloque-2" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
+Use "kerbrute [command] --help" for more information about a command.</code></pre></div>
+<aside class="cta-code" data-cta="code" data-content="kerbrute" data-lang="bash"><span class="cta-code-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span><p><strong>Curso de Python 3 de 0 a Master</strong> Este comando es una pieza. Entender el contexto, el riesgo y la remediación es lo que convierte una prueba en un trabajo profesional.</p><a href="/academia/?utm_source=contenido&utm_medium=cta_codigo&utm_campaign=kerbrute&utm_content=bloque-2" class="btn btn-primary btn-sm">Ver el curso <i class="fas fa-arrow-right" aria-hidden="true"></i></a></aside>
+<h2 id="compatibilidad-y-requisitos">Compatibilidad y requisitos</h2>
+<ul>
+<li><strong>Lenguaje principal:</strong> Go</li>
+<li><strong>Última actualización del repositorio:</strong> 2024-08-20</li>
+<li><strong>Estrellas en GitHub:</strong> 3.483</li>
+<li><strong>Termux:</strong> no</li>
+</ul>
+<p><strong>Requiere Windows o un entorno Windows.</strong> Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.</p>
+<h2 id="etica-y-alcance">Ética y alcance</h2>
+<p>Usa kerbrute únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.</p>
+<h2 id="referencias">Referencias</h2>
+<ul>
+<li>Repositorio oficial: https://github.com/ropnop/kerbrute</li>
+<li>Toolkit de origen: Red Teaming Toolkit</li>
+</ul>
         </div>
 
         <section class="cta-end" aria-labelledby="ctaEndTitle"><div class="cta-end-copy"><span class="eyebrow">Curso de Python 3 de 0 a Master</span><h2 id="ctaEndTitle">¿Quieres aprender a programar tus propias herramientas?</h2><p>Domina la lógica y el desarrollo en nuestro Curso de Python 3 de 0 a Master.</p></div><div class="cta-end-actions"><a href="/academia/?utm_source=contenido&utm_medium=cta_final&utm_campaign=kerbrute&utm_content=fin-repositorio" class="btn btn-primary btn-lg"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Entrar al curso</a><a href="https://t.me/chmodxcode" target="_blank" rel="noopener noreferrer" class="btn btn-outline"><i class="fab fa-telegram" aria-hidden="true"></i> Resolver dudas</a></div></section>
@@ -216,7 +238,7 @@ Usa kerbrute únicamente en entornos que poseas o para los que tengas autorizaci
     </article>
 
     <aside class="article-side">
-        <nav class="toc" aria-label="En esta página"><p class="toc-title">En esta página</p><ol><li class="toc-l2"><a href="#que-es-kerbrute">Qué es kerbrute</a></li><li class="toc-l2"><a href="#objetivo-y-funcion">Objetivo y función</a></li><li class="toc-l2"><a href="#instalacion">Instalación</a></li></ol></nav>
+        <nav class="toc" aria-label="En esta página"><p class="toc-title">En esta página</p><ol><li class="toc-l2"><a href="#que-es-kerbrute">Qué es kerbrute</a></li><li class="toc-l2"><a href="#para-que-sirve">Para qué sirve</a></li><li class="toc-l2"><a href="#instalacion">Instalación</a></li><li class="toc-l2"><a href="#uso-basico">Uso básico</a></li><li class="toc-l2"><a href="#compatibilidad-y-requisitos">Compatibilidad y requisitos</a></li><li class="toc-l2"><a href="#etica-y-alcance">Ética y alcance</a></li><li class="toc-l2"><a href="#referencias">Referencias</a></li></ol></nav>
 
         <aside class="sidebar-card sidebar-academy"><span class="sidebar-kicker">Curso de Python 3 de 0 a Master</span><h2>Ordena lo que ya practicas</h2><p>19 módulos, proyectos reales y acceso de por vida. La ruta completa para pasar de copiar comandos a tomar decisiones.</p><ul class="sidebar-list"><li><i class="fas fa-check" aria-hidden="true"></i> Python desde cero</li><li><i class="fas fa-check" aria-hidden="true"></i> Proyectos y certificado</li><li><i class="fas fa-check" aria-hidden="true"></i> Comunidad en Telegram</li></ul><a href="/academia/?utm_source=contenido&utm_medium=sidebar&utm_campaign=kerbrute&utm_content=repositorio" class="btn btn-primary btn-sm">Ver el temario</a><span class="sidebar-note">Pago seguro con Hotmart</span></aside>
 

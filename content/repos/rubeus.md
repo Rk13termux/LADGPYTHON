@@ -1,11 +1,11 @@
 ---
-title: "Rubeus: Rubeus is a C# toolset for raw Kerberos interaction and abuses. It is heavily ad"
+title: "Rubeus: el ticket que abre todo un dominio"
 slug: "rubeus"
-summary: "Rubeus is a C# toolset for raw Kerberos interaction and abuses. It is heavily adapted from Benjamin Delpy's Kekeo project (CC BY-NC-SA 4.0 license) and Vincent LE TOUX's MakeMeEnterpriseAdmin project (GPL v3.0 license)."
+summary: "Rubeus: abuso de Kerberos y tickets para comprometer Active Directory."
 category: "ciberseguridad"
 level: "Intermedio"
-reading: 6
-tags: ['situational-awareness', 'domain-situational-awareness', 'red-team']
+reading: 7
+tags: ["conciencia-situacional", "red-team", "ciberseguridad"]
 updated: "2026-11-01"
 featured: false
 order: 999
@@ -13,68 +13,47 @@ order: 999
 
 ## Qué es Rubeus
 
-Rubeus es una herramienta de seguridad ofensiva / red team. Rubeus is a C# toolset for raw Kerberos interaction and abuses. It is heavily adapted from Benjamin Delpy's Kekeo project (CC BY-NC-SA 4.0 license) and Vincent LE TOUX's MakeMeEnterpriseAdmin project (GPL v3.0 license).
+**Rubeus** es una herramienta de código abierto orientada a operaciones de red team y adversary simulation. La conciencia situacional permite al operador entender el entorno antes de moverse: procesos, defensas, usuarios, shares y configuraciones.
 
-Forma parte del ecosistema de herramientas de adversary simulation y es útil para comprender cómo operan los atacantes y cómo detectar sus técnicas.
+> Descripción oficial: Rubeus is a C# toolset for raw Kerberos interaction and abuses. It is heavily adapted from Benjamin Delpy's Kekeo project (CC BY-NC-SA 4.0 license) and Vincent LE TOUX's MakeMeEnterpriseAdmin project (GPL v3.0 license).
 
-- **Repositorio oficial:** [https://github.com/GhostPack/Rubeus](https://github.com/GhostPack/Rubeus)
-- **Sección del toolkit:** Situational Awareness → Domain Situational Awareness
+## Para qué sirve
 
-## Objetivo y función
+Rubeus se utiliza en la fase de **conciencia situacional** (domain situational awareness). Su función es automatizar o simplificar una tarea técnica que, hecha a mano, consumiría tiempo y aumentaría el riesgo de errores.
 
-El objetivo principal de Rubeus es rubeus is a c# toolset for raw kerberos interaction and abuses. it is heavily adapted from benjamin delpy's kekeo project (cc by-nc-sa 4.0 license) and vincent le toux's makemeenterpriseadmin project (gpl v3.0 license).
-
-En un engagement de red team, esta herramienta se usa para automatizar o simplificar una fase concreta del ataque (reconocimiento, acceso inicial, movimiento lateral, evasión, etc.), reduciendo el tiempo manual y aumentando la cobertura.
+En la práctica, se integra en cadenas de ataque sobre Windows y Active Directory, donde el operador necesita ejecución fiable y controlada.
 
 ## Instalación
 
-______        _
-      (_____ \      | |
-       _____) )_   _| |__  _____ _   _  ___
-      |  __  /| | | |  _ \| ___ | | | |/___)
-      | |  \ \| |_| | |_) ) ____| |_| |___ |
-      |_|   |_|____/|____/|_____)____/(___/
+```bash
+git clone https://github.com/GhostPack/Rubeus
+cd Rubeus
+```
 
-      v2.3.3
-
-
-     Ticket requests and renewals:
-
-        Retrieve a TGT based on a user password/hash, optionally saving to a file or applying to the current logon session or a specific LUID:
-            Rubeus.exe asktgt /user:USER </password:PASSWORD [/enctype:DES|RC4|AES128|AES256] | /des:HASH | /rc4:HASH | /aes128:HASH | /aes256:HASH> [/domain:DOMAIN] [/dc:DOMAIN_CONTROLLER] [/outfile:FILENAME] [/ptt] [/luid] [/nowrap] [/opsec] [/nopac] [/proxyurl:https://KDC_PROXY/kdcproxy] [/suppenctype:DES|RC4|AES128|AES256]
-
-        Retrieve a TGT based on a user password/hash, optionally saving to a file or applying to the current logon session or a specific LUID:
-            Rubeus.exe asktgt /user:USER </password:PASSWORD [/enctype:DES|RC4|AES128|AES256] | /des:HASH | /rc4:HASH | /aes128:HASH | /aes256:HASH> [/domain:DOMAIN] [/dc:DOMAIN_CONTROLLER] [/outfile:FILENAME] [/ptt] [/luid] [/nowrap] [/opsec] [/nopac] [/proxyurl:https://KDC_PROXY/kdcproxy] [/suppenctype:DES|RC4|AES128|AES256]
-    
-        Retrieve a TGT based on a user password/hash, start a /netonly process, and to apply the ticket to the new process/logon session:
-            Rubeus.exe asktgt /user:USER </password:PASSWORD [/enctype:DES|RC4|AES128|AES256] | /des:HASH | /rc4:HASH | /aes128:HASH | /aes256
-...
-
+> Revisa el README oficial para dependencias específicas, versiones y notas de compilación.
 
 ## Uso básico
 
-Consulta el README oficial para la sintaxis exacta. Un flujo típico:
+Consulta la ayuda del proyecto tras la instalación:
 
 ```bash
-# Clonar
-git clone https://github.com/GhostPack/Rubeus
-cd rubeus
-
-# Revisar ayuda
-./rubeus --help 2>/dev/null || python3 -m rubeus --help 2>/dev/null || true
+./rubeus --help
 ```
 
-> Adapta los comandos a tu entorno. Muchas de estas herramientas requieren privilegios elevados o sistemas Windows/Active Directory.
+## Compatibilidad y requisitos
 
-## ¿Se puede usar en Termux?
+- **Lenguaje principal:** C#
+- **Última actualización del repositorio:** 2026-05-21
+- **Estrellas en GitHub:** 5.202
+- **Termux:** no
 
-Esta herramienta está pensada para Windows, .NET o entornos de Active Directory. No se instala de forma nativa en Termux; úsala desde una máquina virtual, un contenedor o un laboratorio con Windows/Linux completo.
+**Requiere Windows o un entorno Windows.** Esta herramienta está diseñada para Windows, .NET, Active Directory o Cobalt Strike. No se ejecuta de forma nativa en Termux; úsala en una máquina virtual, un laboratorio aislado o un equipo de pruebas con Windows.
 
-## Buenas prácticas y ética
+## Ética y alcance
 
-Usa Rubeus únicamente en entornos que poseas o para los que tengas autorización escrita. El uso no autorizado es ilegal. En laboratorios, monta una VM aislada y una red de pruebas.
+Usa Rubeus únicamente en sistemas propios o con autorización escrita. El uso no autorizado es ilegal. En laboratorio, aísla la red, documenta cada paso y respeta el alcance acordado.
 
 ## Referencias
 
-- Repositorio: https://github.com/GhostPack/Rubeus
+- Repositorio oficial: https://github.com/GhostPack/Rubeus
 - Toolkit de origen: Red Teaming Toolkit
