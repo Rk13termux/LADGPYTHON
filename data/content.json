@@ -188,6 +188,41 @@
     },
     {
       "kind": "repos",
+      "slug": "strix-pentesting-autonomo-con-ia-que-valida-exploits-reales",
+      "title": "Strix: Pentesting autónomo con IA que valida exploits reales",
+      "summary": "Agente de IA open-source que actúa como hacker ético: encuentra vulnerabilidades y las valida con PoC funcionales, no con falsos positivos como los scanners estáticos.",
+      "category": "ciberseguridad",
+      "category_label": "Ciberseguridad",
+      "category_icon": "fas fa-shield-halved",
+      "updated": "2026-11-08",
+      "date_human": "8 nov 2026",
+      "date_ord": 739928,
+      "tags": [
+        "pentesting",
+        "ia-security",
+        "devsecops",
+        "bug-bounty",
+        "appsec"
+      ],
+      "stack": [
+        "Python 3.12+",
+        "Docker",
+        "LLM APIs",
+        "Claude Code",
+        "Cursor"
+      ],
+      "featured": false,
+      "order": 99,
+      "repo": "",
+      "license": "MIT",
+      "url": "/repositorios/strix-pentesting-autonomo-con-ia-que-valida-exploits-reales/",
+      "difficulty": "Principiante",
+      "reading": 4,
+      "search": "strix: pentesting autónomo con ia que valida exploits reales agente de ia open-source que actúa como hacker ético: encuentra vulnerabilidades y las valida con poc funcionales, no con falsos positivos como los scanners estáticos. ciberseguridad principiante pentesting ia-security devsecops bug-bounty appsec python 3.12+ docker llm apis claude code cursor",
+      "short_title": "Strix: Pentesting autónomo con IA que valida exploits r…"
+    },
+    {
+      "kind": "repos",
       "slug": "shannon-pentester-de-ia-en-typescript-para-auditar-apps-web-y-apis",
       "title": "Shannon: pentester de IA en TypeScript para auditar apps web y APIs",
       "summary": "Cómo instalar y ejecutar Shannon, el agente en TypeScript que lee tu código, mapea la superficie de ataque y lanza pruebas de penetración.",
